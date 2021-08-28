@@ -7,19 +7,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register-screen.component.less']
 })
 export class RegisterScreenComponent implements OnInit {
-
-  firstFormGroup!: FormGroup;
-  secondFormGroup!: FormGroup;
-  isEditable = false;
-
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor() {}
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    
   }
 }
