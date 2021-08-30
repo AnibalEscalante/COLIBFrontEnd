@@ -6,18 +6,24 @@ import { LoginScreenComponent } from './views/login-screen/login-screen.componen
 import { RegisterScreenComponent } from './views/register-screen/register-screen.component';
 
 const routes: Routes = [
-    {
-      path: 'home',
-      component: HomeScreenComponent
-    },
-    {
-      path: 'register',
-      component: RegisterScreenComponent
-    },
-    {
-      path: 'login',
-      component: LoginScreenComponent
-    }
+  {
+    path: '',
+    component: NavbarComponent,
+    children: [
+      {
+        path: 'home',
+        component: HomeScreenComponent
+      }
+    ]
+  },
+  {
+    path: 'register',
+    component: RegisterScreenComponent
+  },
+  {
+    path: 'login',
+    component: LoginScreenComponent
+  }
 ];
 
 @NgModule({
