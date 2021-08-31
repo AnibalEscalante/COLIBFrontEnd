@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeScreenComponent } from '../visitor/views/home-screen/home-screen.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ContactsScreenComponent } from './views/contacts-screen/contacts-screen.component';
+import { HomeScreenComponent } from './views/home-screen/home-screen.component';
 import { MyProjectsScreenComponent } from './views/my-projects-screen/my-projects-screen.component';
 import { ProjectInfoScreenComponent } from './views/project-info-screen/project-info-screen.component';
 import { RequestsScreenComponent } from './views/requests-screen/requests-screen.component';
