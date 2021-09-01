@@ -20,3 +20,48 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.overall-info-header {
+  background-color: #ECECEC;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #C4C4C4;
+}
+.overall-info-header .overall-info {
+  font-size: x-large;
+  font-weight: bolder;
+}
+.card-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.personal-info-header {
+  background-color: #E5E5E5;
+}
+.personal-info-header .personal-info {
+  font-size: medium;
+}
+.btn-edit {
+  padding: 0px;
+  line-height: 0px;
+}
+.info-item {
+  font-size: medium;
+  color: #C4C4C4;
+}
+.type-item {
+  font-size: small;
+  padding-bottom: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #C4C4C4;
+}
+/*------------Modal-----------*/
+.modal-personal-info {
+  font-size: medium;
+}
+.modal-header {
+  border-bottom: 0px;
+  background-color: #E5E5E5;
+}
