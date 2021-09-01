@@ -11,6 +11,8 @@ import { SavedProjectsScreenComponent } from './views/saved-projects-screen/save
 import { MyProjectsScreenComponent } from './views/my-projects-screen/my-projects-screen.component';
 import { RequestsScreenComponent } from './views/requests-screen/requests-screen.component';
 import { ProjectInfoScreenComponent } from './views/project-info-screen/project-info-screen.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ProjectInfoScreenComponent } from './views/project-info-screen/project-
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    MatChipsModule,
+    MatFormFieldModule
   ]
 })
 export class UserModule { }
