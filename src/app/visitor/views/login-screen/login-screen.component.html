@@ -1,44 +1,30 @@
- <div class="container-fluid" id="contenedor">
+<div class="container-fluid" id="contenedor">
     <div class="row justify-content-center">
-        <div class="title text-center" id="row_titulo">
-            <div class="" id="col_titulo">
-                <h1 id="titulo">Colib</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="d-grid gap-2 col-10 mt-4 mx-auto">
-                        <h1 id="titulo">Iniciar sesion</h1>
-                    </div>
-                    <div class="" id="row_centrada">
-                        <form>
-                            <div class="">
-                                <div class="d-grid gap-2 col-10 mt-2 mx-auto">
-                                    <label class="labels" id="firstLabel">Correo electrónico:</label>
-                                    <input id="email" name="email" type="email" formControlName="email" class="form-control" placeholder="correo@ejemplo.com" />
-                
-                                </div>
-                                <div class="d-grid gap-2 col-10 mt-2 mx-auto">
-                                    <label class="labels">Contraseña:</label>
-                                    <input id="password" name="password" type="password" formControlName="password" class="form-control" placeholder="••••••••••••••••" />
-
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="row">
-                        <div class="d-grid gap-2 col-10 my-4 mx-auto">
-                            <button class="btn btn-success" type="button">Iniciar sesion</button>
-                        </div>
-                    </div>
+        <h1 class="title text-center mb-5">Colib</h1>
+        <div class="col mb-4">
+            <div class="card">
+                <h2 class="d-grid gap-2 col-10 my-4 mx-auto">Iniciar sesion</h2>
+                <div class="d-grid gap-2 col-10 my-1 mx-auto">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ingresar correo electrónico</mat-label>
+                        <input matInput placeholder="example@dom.com" [formControl]="email">
+                        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="d-grid gap-2 col-10 my-1 mx-auto">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ingresar contraseña</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div class="d-grid gap-2 col-10 mt-4 mb-5 mx-auto">
+                    <button class="btn btn-logIn" type="button">Iniciar sesion</button>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="d-grid gap-2 col-10 mx-auto">
-                <button class="btn btn-link" type="link">Registrarse</button>
-            </div>
-        </div>
+        <a href="#" class="link-primary text-center">Registrarse</a>
     </div>
 </div>
