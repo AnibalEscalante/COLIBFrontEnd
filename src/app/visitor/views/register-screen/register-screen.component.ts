@@ -8,8 +8,18 @@ export class CdkCustomStepperWithoutFormExample {}
   templateUrl: './register-screen.component.html',
   styleUrls: ['./register-screen.component.less']
 })
-export class RegisterScreenComponent extends CdkStepper {
-  selectStepByIndex(index: number): void {
-    this.selectedIndex = index;
+export class RegisterScreenComponent implements OnInit {
+  firstFormGroup!: FormGroup;
+  secondFormGroup!: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder) {}
+
+  ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ''
+    });
   }
 }
