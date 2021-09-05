@@ -42,10 +42,6 @@
 .personal-info-header .personal-info {
   font-size: medium;
 }
-.btn-edit {
-  padding: 0px;
-  line-height: 0px;
-}
 .info-item {
   font-size: medium;
   color: #C4C4C4;
@@ -56,6 +52,9 @@
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: #C4C4C4;
+}
+a {
+  text-decoration: none;
 }
 /*------------Modal-----------*/
 .modal-personal-info {

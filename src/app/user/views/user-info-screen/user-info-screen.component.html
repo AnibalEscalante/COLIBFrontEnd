@@ -24,7 +24,7 @@
                     </div>
                     <div class="card-body card-center">
                         <div class="col-11 col-lg-9">
-                            <div class="card mt-4">
+                            <div class="card mt-4 mb-2">
                                 <div class="personal-info-header card-header">
                                     <div class="row">
                                         <div class="col-10">
@@ -33,9 +33,7 @@
                                             </h5>
                                         </div>
                                         <div class="col-2 d-flex align-items-center justify-content-end">
-                                            <button type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editPersonalInfo">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+                                            <i class="fas fa-edit" type="button" data-bs-toggle="modal" data-bs-target="#editPersonalInfo"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -48,6 +46,9 @@
                                     <p class="info-item ms-4">9 9564 3421</p>
                                 </div>
                             </div>
+                            <span>
+                                <a type="button" class="link-primary" data-bs-toggle="modal" data-bs-target="#newPassword">Cambiar contraseña</a>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -93,6 +94,59 @@
                                 <span matPrefix> &nbsp;</span>
                                 <input matInput #input maxlength="9" type="tel" placeholder="9 4554 1234">
                                 <mat-hint align="end">{{input.value?.length || 0}}/9</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal New Password -->
+
+<div class="modal fade" id="newPassword" tabindex="-1" aria-labelledby="newPasswordLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title modal-personal-info ms-3 mt-3" id="editPersonalInfoLabel">Cambiar contraseña</h5>
+                <button type="button" class="btn-close me-1" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body card-center">
+                <div class="col-12">
+                    <div class="card-body">
+                        <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                            <mat-form-field class="full-width mt-2" appearance="fill">
+                                <mat-label>Ingresar Contraseña actual</mat-label>
+                                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="password.invalid">{{getErrorActualPasswordMessage()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                            <mat-form-field class="full-width mt-2" appearance="fill">
+                                <mat-label>Ingresar nueva contraseña</mat-label>
+                                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="newPassword" required>
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="newPassword.invalid">{{getErrorNewPasswordMessage()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                            <mat-form-field class="full-width mt-2" appearance="fill">
+                                <mat-label>Repetir nueva contraseña</mat-label>
+                                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="reNewPassword" required>
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="newPassword.invalid">{{getErrorReNewPasswordMessage()}}</mat-error>
                             </mat-form-field>
                         </div>
                     </div>
