@@ -59,31 +59,42 @@
 <!-- Modal Personal Info -->
 
 <div class="modal fade" id="editPersonalInfo" tabindex="-1" aria-labelledby="editPersonalInfoLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title modal-personal-info ms-3 mt-3" id="editPersonalInfoLabel">Información personal</h5>
                 <button type="button" class="btn-close me-1" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body card-center">
-                <div class="col-12 col-lg-10">
+                <div class="col-12">
                     <div class="card-body">
-                        <form class="form-floating mb-2">
-                            <input type="text" class="form-control" id="NameUser" placeholder="Name">
-                            <label for="NameUser">Nombre</label>
-                        </form>
-                        <form class="form-floating mb-2">
-                            <input type="text" class="form-control" id="LastNameUser" placeholder="LastName">
-                            <label for="LastNameUser">Apellido</label>
-                        </form>
-                        <form class="form-floating mb-2">
-                            <input type="email" class="form-control" id="emailUser" placeholder="example@dom.com">
-                            <label for="emailUser">Correo electrónico</label>
-                        </form>
-                        <form class="form-floating">
-                            <input type="number" class="form-control" id="phoneUser" placeholder="1 2345 6789">
-                            <label for="phoneUser">Número móvil</label>
-                        </form>
+                        <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Ingresar Nombre</mat-label>
+                                <input matInput placeholder="Nombre">
+                            </mat-form-field>
+                        </div>
+                        <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Ingresar Apellido</mat-label>
+                                <input matInput placeholder="Apellido">
+                            </mat-form-field>
+                        </div>
+                        <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Ingresar correo electrónico</mat-label>
+                                <input matInput placeholder="ejemplo@dom.com" [formControl]="email">
+                                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                            <mat-form-field class="full-width" appearance="fill">
+                                <mat-label>Telefono móvil</mat-label>
+                                <span matPrefix> &nbsp;</span>
+                                <input matInput #input maxlength="9" type="tel" placeholder="9 4554 1234">
+                                <mat-hint align="end">{{input.value?.length || 0}}/9</mat-hint>
+                            </mat-form-field>
+                        </div>
                     </div>
                 </div>
             </div>
