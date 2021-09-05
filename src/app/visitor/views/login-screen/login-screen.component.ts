@@ -18,7 +18,7 @@ export class LoginScreenComponent implements OnInit {
       return 'Correo electrónico no valido';
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.email.hasError('email') ? 'Correo electrónico no valido' : '';
   }
 
   ngOnInit(): void {

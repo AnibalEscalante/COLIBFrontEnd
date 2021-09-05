@@ -1,104 +1,102 @@
 <div class="container-fluid">
-  <div class="container">
-    <mat-stepper linear #stepper>
-      <mat-step [stepControl]="firstFormGroup" >
-        <div class="title text-center" id="row_titulo">
-          <div class="" id="col_titulo">
-              <h1 id="titulo">Colib</h1>
-          </div>
-      </div>
-        <div class="row">
-          <div class="col-12 col-lg-12 card-center">
-            <div class="card">
-              <div class="card-header text-center">
-                <H1>Registro</H1>
-              </div>
-              <div class="card-body">
-                <form class="form" [formGroup]="firstFormGroup">
-                  <ng-template matStepLabel>rellena tus datos</ng-template>
-                  <mat-form-field class="full-width mt-2" appearance="fill">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput formControlName="firstCtrl" placeholder="Nombre" required>
-                  </mat-form-field>
+    <div class="container">
+        <mat-stepper linear #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <div class="title text-center" id="row_titulo">
+                    <div class="" id="col_titulo">
+                        <h1 id="titulo">Colib</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12 card-center">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <H1>Registro</H1>
+                            </div>
+                            <div class="card-body">
+                                <form class="form" [formGroup]="firstFormGroup">
+                                    <ng-template matStepLabel>rellena tus datos</ng-template>
+                                    <mat-form-field class="full-width mt-2" appearance="fill">
+                                        <mat-label>Nombre</mat-label>
+                                        <input matInput formControlName="firstCtrl" placeholder="Nombre" required>
+                                    </mat-form-field>
 
-                  <mat-form-field class="full-width mt-2" appearance="fill">
-                    <mat-label>Apellido</mat-label>
-                    <input matInput formControlName="firstCtrl" placeholder="Apellido" required>
-                  </mat-form-field>
+                                    <mat-form-field class="full-width mt-2" appearance="fill">
+                                        <mat-label>Apellido</mat-label>
+                                        <input matInput formControlName="firstCtrl" placeholder="Apellido" required>
+                                    </mat-form-field>
 
-                  <div class="example-container mt-2">
-                    <mat-form-field class="full-width" appearance="fill">
-                      <mat-label>Enter your email</mat-label>
-                      <input matInput placeholder="pat@example.com" [formControl]="email" required>
-                      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                  </div>
+                                    <div class="example-container mt-2">
+                                        <mat-form-field class="full-width" appearance="fill">
+                                            <mat-label>Enter your email</mat-label>
+                                            <input matInput placeholder="pat@example.com" [formControl]="email" required>
+                                            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                                        </mat-form-field>
+                                    </div>
 
-                  <form class="example-form mt-2">
-                    <mat-form-field class="full-width" appearance="fill">
-                      <mat-label>Telefono móvil</mat-label>
-                      <span matPrefix> &nbsp;</span>
-                      <input matInput #input maxlength="9" type="tel" placeholder="9 4554 1234">
-                      <mat-hint align="end">{{input.value?.length || 0}}/9</mat-hint>
-                    </mat-form-field>
-                  </form>
+                                    <form class="example-form mt-2">
+                                        <mat-form-field class="full-width" appearance="fill">
+                                            <mat-label>Telefono móvil</mat-label>
+                                            <span matPrefix> &nbsp;</span>
+                                            <input matInput #input maxlength="9" type="tel" placeholder="9 4554 1234">
+                                            <mat-hint align="end">{{input.value?.length || 0}}/9</mat-hint>
+                                        </mat-form-field>
+                                    </form>
 
-                  <mat-form-field class="full-width mt-2" appearance="fill">
-                    <mat-label>Enter your password</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="firstCtrl" required>
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-form-field class="full-width mt-2" appearance="fill">
+                                        <mat-label>Enter your password</mat-label>
+                                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="firstCtrl" required>
+                                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
-                  </mat-form-field>
+                                    </mat-form-field>
 
-                  <mat-form-field class="full-width mt-2" appearance="fill">
-                    <mat-label>Enter your password</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="firstCtrl" required>
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-form-field class="full-width mt-2" appearance="fill">
+                                        <mat-label>Enter your password</mat-label>
+                                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="firstCtrl" required>
+                                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
-                  </mat-form-field>
-                  <div>
-                    <button mat-button matStepperNext>Next</button>
-                  </div>
+                                    </mat-form-field>
+                                    <div>
+                                        <button mat-button matStepperNext>Next</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-step>
+
+            <mat-step [stepControl]="secondFormGroup" optional>
+                <form [formGroup]="secondFormGroup" class="form">
+                    <ng-template matStepLabel>Fill out your address</ng-template>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Address</mat-label>
+                        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY">
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
                 </form>
-              </div>
-            </div>
-        </div>
-      </div>
-      </mat-step>
-        
-      <mat-step [stepControl]="secondFormGroup" optional>
-        <form [formGroup]="secondFormGroup" class="form">  
-          <ng-template matStepLabel>Fill out your address</ng-template>
-          <mat-form-field appearance="fill">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                  >
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
-      </mat-step>
-    </mat-stepper>
-  </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </div>
 </div>
-

@@ -13,6 +13,8 @@ import { RequestsScreenComponent } from './views/requests-screen/requests-screen
 import { ProjectInfoScreenComponent } from './views/project-info-screen/project-info-screen.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,17 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     SavedProjectsScreenComponent,
     MyProjectsScreenComponent,
     RequestsScreenComponent,
-    ProjectInfoScreenComponent,
+    ProjectInfoScreenComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     MatChipsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class UserModule { }
