@@ -28,9 +28,9 @@
                                             <h1 class="card-title-info">"Nombre del Proyecto"</h1>
                                         </div>
                                         <div class="col-2 d-flex align-items-top justify-content-end">
-                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#infoproyect">
+                                            <button mat-button (click)="openDialog()">
                                                 <i class="fas fa-edit"></i>
-                                              </button>
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -80,9 +80,9 @@
                                             <button type="button" class="btn btn-outline-secondary btn-sm ms-2 mb-2">Disciplina 2</button>
                                         </div>
                                         <div class="col-2 d-flex align-items-top justify-content-end">
-                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#infodisci">
+                                            <button mat-button (click)="openDialogEditDisci()">
                                                 <i class="fas fa-edit"></i>
-                                              </button>
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -92,7 +92,7 @@
                                             <button type="button" class="btn btn-outline-secondary btn-sm ms-2 mb-2">Habilidad 2</button>
                                         </div>
                                         <div class="col-2  d-flex align-items-top justify-content-end">
-                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#infoskill">
+                                            <button mat-button (click)="openDialogEditSkills()">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                         </div>
@@ -107,187 +107,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="infoproyect" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content modal-scroll">
-        <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form>
-            <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Titulo del proyecto:</label>
-                <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="mb-3">
-                <label for="message-text" class="col-form-label">Contenido del proyecto:</label>
-                <textarea class="form-control" id="message-text"></textarea>
-            </div>
-            </form>
-            <div class="row mb-4">
-            <div class="col-12 col-lg-6 mt-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Seleccione los colaboradores</h5>
-                    </div>
-                    <div class="card-body card-scroll">
-                        <mat-form-field class="example-chip-list" appearance="fill">
-                            <mat-label>Colaboradores</mat-label>
-                            <mat-chip-list #chipList aria-label="Fruit selection">
-                                <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
-                                        [removable]="removable" (removed)="remove(fruit)">
-                                {{fruit.name}}
-                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                </mat-chip>
-                                <input placeholder="Ingrese un colaborador"
-                                        [matChipInputFor]="chipList"
-                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                        [matChipInputAddOnBlur]="addOnBlur"
-                                        (matChipInputTokenEnd)="add($event)">
-                            </mat-chip-list>
-                            </mat-form-field>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6 mt-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Colaboradores agregados</h5>
-                    </div>
-                    <div class="card-body">
-                        <mat-chip-list aria-label="Fish selection">
-                            <mat-chip>One fish</mat-chip>
-                            <mat-chip>Two fish</mat-chip>
-                            <mat-chip color="primary" selected>Primary fish</mat-chip>
-                            <mat-chip color="accent" selected>Accent fish</mat-chip>
-                        </mat-chip-list>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Send message</button>
-        </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="infodisci" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content modal-scroll">
-        <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="row mb-4">
-            <div class="col-12 col-lg-6 mt-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Seleccione las disciplinas</h5>
-                    </div>
-                    <div class="card-body card-scroll">
-                        <mat-form-field class="example-chip-list" appearance="fill">
-                            <mat-label>Colaboradores</mat-label>
-                            <mat-chip-list #chipList aria-label="Fruit selection">
-                                <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
-                                        [removable]="removable" (removed)="remove(fruit)">
-                                {{fruit.name}}
-                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                </mat-chip>
-                                <input placeholder="Ingrese un colaborador"
-                                        [matChipInputFor]="chipList"
-                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                        [matChipInputAddOnBlur]="addOnBlur"
-                                        (matChipInputTokenEnd)="add($event)">
-                            </mat-chip-list>
-                            </mat-form-field>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6 mt-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Disciplinas agregadas</h5>
-                    </div>
-                    <div class="card-body">
-                        <mat-chip-list aria-label="Fish selection">
-                            <mat-chip>One fish</mat-chip>
-                            <mat-chip>Two fish</mat-chip>
-                            <mat-chip color="primary" selected>Primary fish</mat-chip>
-                            <mat-chip color="accent" selected>Accent fish</mat-chip>
-                        </mat-chip-list>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Send message</button>
-        </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="infoskill" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content modal-scroll">
-        <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="row mb-4">
-            <div class="col-12 col-lg-6 mt-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Seleccione las habilidades</h5>
-                    </div>
-                    <div class="card-body card-scroll">
-                        <mat-form-field class="example-chip-list" appearance="fill">
-                            <mat-label>Colaboradores</mat-label>
-                            <mat-chip-list #chipList aria-label="Fruit selection">
-                                <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
-                                        [removable]="removable" (removed)="remove(fruit)">
-                                {{fruit.name}}
-                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                </mat-chip>
-                                <input placeholder="Ingrese un colaborador"
-                                        [matChipInputFor]="chipList"
-                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                        [matChipInputAddOnBlur]="addOnBlur"
-                                        (matChipInputTokenEnd)="add($event)">
-                            </mat-chip-list>
-                            </mat-form-field>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6 mt-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Habilidades agregadas</h5>
-                    </div>
-                    <div class="card-body">
-                        <mat-chip-list aria-label="Fish selection">
-                            <mat-chip>One fish</mat-chip>
-                            <mat-chip>Two fish</mat-chip>
-                            <mat-chip color="primary" selected>Primary fish</mat-chip>
-                            <mat-chip color="accent" selected>Accent fish</mat-chip>
-                        </mat-chip-list>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Send message</button>
-        </div>
         </div>
     </div>
 </div>

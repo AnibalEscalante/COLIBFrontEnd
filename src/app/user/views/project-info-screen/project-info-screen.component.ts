@@ -1,47 +1,42 @@
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Component} from '@angular/core';
-import {MatChipInputEvent} from '@angular/material/chips';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogComponent } from '../../components/dialog/dialog.component';
+import { EditDisciComponent } from '../../components/dialogs/edit-disci/edit-disci.component';
+import { EditSkillsComponent } from '../../components/dialogs/edit-skills/edit-skills.component';
 
-export interface Fruit {
-  name: string;
-}
 
-/**
- * @title Chips with input
- */
  @Component({
   selector: 'app-project-info-screen',
   templateUrl: './project-info-screen.component.html',
   styleUrls: ['./project-info-screen.component.less']
 })
 export class ProjectInfoScreenComponent {
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  fruits: Fruit[] = [
-    {name: 'Lemon'},
-    {name: 'Lime'},
-    {name: 'Apple'},
-  ];
+ 
 
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
+  constructor(public dialog: MatDialog) {}
 
-    // Add our fruit
-    if (value) {
-      this.fruits.push({name: value});
-    }
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent);
 
-    // Clear the input value
-    event.chipInput!.clear();
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
-  remove(fruit: Fruit): void {
-    const index = this.fruits.indexOf(fruit);
+  openDialogEditDisci() {
+    const dialogRef = this.dialog.open(EditDisciComponent);
 
-    if (index >= 0) {
-      this.fruits.splice(index, 1);
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
+
+  openDialogEditSkills() {
+    const dialogRef = this.dialog.open(EditSkillsComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  
 }
