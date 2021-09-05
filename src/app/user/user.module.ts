@@ -15,8 +15,16 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatIconModule} from '@angular/material/icon';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { EditDisciComponent } from './components/dialogs/edit-disci/edit-disci.component';
+import { EditSkillsComponent } from './components/dialogs/edit-skills/edit-skills.component';
+
 
 
 @NgModule({
@@ -29,7 +37,10 @@ import { MatButtonModule } from '@angular/material/button';
     SavedProjectsScreenComponent,
     MyProjectsScreenComponent,
     RequestsScreenComponent,
-    ProjectInfoScreenComponent
+    ProjectInfoScreenComponent,
+    DialogComponent,
+    EditDisciComponent,
+    EditSkillsComponent
   ],
   imports: [
     CommonModule,
@@ -37,11 +48,14 @@ import { MatButtonModule } from '@angular/material/button';
     MatChipsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule,
+    MatStepperModule,
     MatButtonModule,
-
+    MatIconModule,
+    MatAutocompleteModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule,
+    MatDialogModule
   ]
 })
 export class UserModule { }
