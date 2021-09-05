@@ -1,0 +1,96 @@
+<div class="background container-fuild">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <div class="card mt-4">
+                    <div class="card-header text-center">
+                        <i class="fas fa-user-circle mt-2"></i>
+                        <p class="name-profile my-3">"Nombre del usuario"</p>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="list-group mb-5">
+                            <a href="#" class="list-group-item list-group-item-action">Información general</a>
+                            <a href="#" class="list-group-item list-group-item-action">Proyectos publicados</a>
+                            <a href="#" class="list-group-item list-group-item-action">Proyectos guardados</a>
+                            <a href="#" class="list-group-item list-group-item-action">Solicitudes de colaboración</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="card mt-4">
+                    <div class="overall-info-header card-header text-center">
+                        <h4 class="overall-info mt-3">Información general</h4>
+                    </div>
+                    <div class="card-body card-center">
+                        <div class="col-11 col-lg-9">
+                            <div class="card mt-4">
+                                <div class="personal-info-header card-header">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="personal-info mt-3 ms-4">
+                                                Información personal
+                                            </h5>
+                                        </div>
+                                        <div class="col-2 d-flex align-items-center justify-content-end">
+                                            <button type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editPersonalInfo">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="type-item mx-4">Nombre del usuario</p>
+                                    <p class="info-item ms-4">Roberto Vasquez</p>
+                                    <p class="type-item mx-4">Correo electrónico</p>
+                                    <p class="info-item ms-4">roberto.v@gmail.com</p>
+                                    <p class="type-item mx-4">Número de móvil</p>
+                                    <p class="info-item ms-4">9 9564 3421</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Personal Info -->
+
+<div class="modal fade" id="editPersonalInfo" tabindex="-1" aria-labelledby="editPersonalInfoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title modal-personal-info ms-3 mt-3" id="editPersonalInfoLabel">Información personal</h5>
+                <button type="button" class="btn-close me-1" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body card-center">
+                <div class="col-12 col-lg-10">
+                    <div class="card-body">
+                        <form class="form-floating mb-2">
+                            <input type="text" class="form-control" id="NameUser" placeholder="Name">
+                            <label for="NameUser">Nombre</label>
+                        </form>
+                        <form class="form-floating mb-2">
+                            <input type="text" class="form-control" id="LastNameUser" placeholder="LastName">
+                            <label for="LastNameUser">Apellido</label>
+                        </form>
+                        <form class="form-floating mb-2">
+                            <input type="email" class="form-control" id="emailUser" placeholder="example@dom.com">
+                            <label for="emailUser">Correo electrónico</label>
+                        </form>
+                        <form class="form-floating">
+                            <input type="number" class="form-control" id="phoneUser" placeholder="1 2345 6789">
+                            <label for="phoneUser">Número móvil</label>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
