@@ -25,6 +25,8 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { EditDisciComponent } from './components/dialogs/edit-disci/edit-disci.component';
 import { EditSkillsComponent } from './components/dialogs/edit-skills/edit-skills.component';
 
+
+
 @NgModule({
   declarations: [
     NavbarComponent,
