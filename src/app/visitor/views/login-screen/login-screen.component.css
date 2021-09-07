@@ -1,7 +1,5 @@
 .card {
-  background-color: #F3F3F3;
   border-radius: 20px;
-  border-width: 0px;
 }
 .container-fluid {
   display: flex;

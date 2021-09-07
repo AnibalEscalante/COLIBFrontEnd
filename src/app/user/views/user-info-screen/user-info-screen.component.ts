@@ -21,28 +21,33 @@ export class UserInfoScreenComponent implements OnInit {
   }
 
   getErrorActualPasswordMessage() {
-    if (this.email.hasError('required')) {
-      return 'Es requerida la contraseña actual';
+    if (this.password.hasError('required')) {
+      return 'Se requiere la contraseña actual';
     }
 
-    return this.email.hasError('password') ? 'Contraseña actual incorrecta' : '';
+    return this.password.hasError('password') ? 'Contraseña actual incorrecta' : '';
   }
 
   getErrorNewPasswordMessage() {
-    if (this.email.hasError('required')) {
-      return 'Es requerida la nueva contraseña';
+    if (this.newPassword.hasError('required')) {
+      return 'Se requiere la nueva contraseña';
     }
 
-    return this.email.hasError('password') ? 'Contraseña no cumple con el formato' : '';
+    return this.newPassword.hasError('newPassword') ? 'Contraseña no cumple con el formato' : '';
   }
 
   getErrorReNewPasswordMessage() {
-    if (this.email.hasError('required')) {
-      return 'Es requerido volver a ingresar la nueva contraseña';
+    if (this.reNewPassword.hasError('required')) {
+      return 'Se requiere repetir la nueva contraseña';
     }
 
-    return this.email.hasError('password') ? 'Las contraseñas no son iguales' : '';
+    if (this.reNewPassword !== this.newPassword) {
+      return this.reNewPassword.hasError('Las contraseñas no son iguales');
+    }
+  
+    return this.reNewPassword.hasError('reNewPassword') ? 'Las contraseñas no son iguales' : '';
   }
+  
 
   ngOnInit(): void {
   }

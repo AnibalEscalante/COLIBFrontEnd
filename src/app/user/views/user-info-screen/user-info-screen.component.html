@@ -70,26 +70,26 @@
                 <div class="col-12">
                     <div class="card-body">
                         <div class="d-grid gap-2 col-12 my-1 mx-auto">
-                            <mat-form-field appearance="fill">
+                            <mat-form-field appearance="outline">
                                 <mat-label>Ingresar Nombre</mat-label>
                                 <input matInput placeholder="Nombre">
                             </mat-form-field>
                         </div>
                         <div class="d-grid gap-2 col-12 my-1 mx-auto">
-                            <mat-form-field appearance="fill">
+                            <mat-form-field appearance="outline">
                                 <mat-label>Ingresar Apellido</mat-label>
                                 <input matInput placeholder="Apellido">
                             </mat-form-field>
                         </div>
                         <div class="d-grid gap-2 col-12 my-1 mx-auto">
-                            <mat-form-field appearance="fill">
+                            <mat-form-field appearance="outline">
                                 <mat-label>Ingresar correo electrónico</mat-label>
                                 <input matInput placeholder="ejemplo@dom.com" [formControl]="email">
                                 <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                             </mat-form-field>
                         </div>
                         <div class="d-grid gap-2 col-12 my-1 mx-auto">
-                            <mat-form-field class="full-width" appearance="fill">
+                            <mat-form-field class="full-width" appearance="outline">
                                 <mat-label>Telefono móvil</mat-label>
                                 <span matPrefix> &nbsp;</span>
                                 <input matInput #input maxlength="9" type="tel" placeholder="9 4554 1234">
@@ -120,7 +120,7 @@
                 <div class="col-12">
                     <div class="card-body">
                         <div class="d-grid gap-2 col-12 my-1 mx-auto">
-                            <mat-form-field class="full-width mt-2" appearance="fill">
+                            <mat-form-field class="full-width mt-2" appearance="outline">
                                 <mat-label>Ingresar Contraseña actual</mat-label>
                                 <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
                                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -130,7 +130,7 @@
                             </mat-form-field>
                         </div>
                         <div class="d-grid gap-2 col-12 my-1 mx-auto">
-                            <mat-form-field class="full-width mt-2" appearance="fill">
+                            <mat-form-field class="full-width mt-2" appearance="outline">
                                 <mat-label>Ingresar nueva contraseña</mat-label>
                                 <input matInput [type]="hide ? 'password' : 'text'" [formControl]="newPassword" required>
                                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -140,7 +140,7 @@
                             </mat-form-field>
                         </div>
                         <div class="d-grid gap-2 col-12 my-1 mx-auto">
-                            <mat-form-field class="full-width mt-2" appearance="fill">
+                            <mat-form-field class="full-width mt-2" appearance="outline">
                                 <mat-label>Repetir nueva contraseña</mat-label>
                                 <input matInput [type]="hide ? 'password' : 'text'" [formControl]="reNewPassword" required>
                                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">

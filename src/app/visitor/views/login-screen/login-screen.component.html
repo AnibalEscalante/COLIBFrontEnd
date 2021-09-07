@@ -3,16 +3,16 @@
         <h1 class="title text-center mb-5">Colib</h1>
         <div class="col mb-4">
             <div class="card">
-                <h2 class="d-grid gap-2 col-10 my-4 mx-auto">Iniciar sesion</h2>
+                <h2 class="d-grid gap-2 col-10 my-4 mx-auto">Iniciar sesión</h2>
                 <div class="d-grid gap-2 col-10 my-1 mx-auto">
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="outline">
                         <mat-label>Ingresar correo electrónico</mat-label>
                         <input matInput placeholder="ejemplo@dom.com" [formControl]="email">
                         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="d-grid gap-2 col-10 my-1 mx-auto">
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="outline">
                         <mat-label>Ingresar contraseña</mat-label>
                         <input matInput [type]="hide ? 'password' : 'text'">
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
