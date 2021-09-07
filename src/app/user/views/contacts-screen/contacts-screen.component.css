@@ -1,0 +1,46 @@
+.contacts {
+  font-size: x-large;
+}
+.card-header {
+  background-color: white;
+}
+.list-group {
+  overflow-y: scroll;
+  height: 450px;
+}
+.list-group-item {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.list-group-item-action {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #C4C4C4;
+}
+.user-item-contact {
+  font-size: medium;
+}
+.user-item-fa-user {
+  font-size: 15px;
+  padding: 5px;
+  padding-right: 6px;
+  padding-left: 6px;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 20px;
+}
+/*--------------- Chat ----------------*/
+.chat-contact {
+  font-size: x-large;
+}
+.chat-fa-user {
+  font-size: 30px;
+  padding: 8px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 30px;
+}
