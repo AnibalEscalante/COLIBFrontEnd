@@ -7,12 +7,13 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {MatChipInputEvent} from '@angular/material/chips';
 
+
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.less']
+  selector: 'app-edit-personal-info',
+  templateUrl: './edit-personal-info.component.html',
+  styleUrls: ['./edit-personal-info.component.less']
 })
-export class DialogComponent implements OnInit {
+export class EditPersonalInfoComponent implements OnInit {
 
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
@@ -74,4 +75,5 @@ export class DialogComponent implements OnInit {
 
     return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
   }
+
 }

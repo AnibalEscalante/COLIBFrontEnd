@@ -16,13 +16,15 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HomePageScreenComponent } from './views/home-page-screen/home-page-screen.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     LoginScreenComponent,
     RegisterScreenComponent,
-    HomeScreenComponent
+    HomeScreenComponent,
+    HomePageScreenComponent
   ],
   imports: [
     CommonModule,
