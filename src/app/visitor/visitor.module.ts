@@ -12,6 +12,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -28,10 +32,14 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-
     FormsModule,
     ReactiveFormsModule,
-    CdkStepperModule
+    CdkStepperModule,
+    CommonModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatDialogModule
   ]
 })
 export class VisitorModule { }
