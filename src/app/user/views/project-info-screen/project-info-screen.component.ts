@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import { DialogComponent } from '../../components/dialog/dialog.component';
 import { EditDisciComponent } from '../../components/dialogs/edit-disci/edit-disci.component';
+import { EditPersonalInfoComponent } from '../../components/dialogs/edit-personal-info/edit-personal-info.component';
 import { EditSkillsComponent } from '../../components/dialogs/edit-skills/edit-skills.component';
 
 
@@ -16,7 +16,7 @@ export class ProjectInfoScreenComponent {
   constructor(public dialog: MatDialog) {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogComponent);
+    const dialogRef = this.dialog.open(EditPersonalInfoComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

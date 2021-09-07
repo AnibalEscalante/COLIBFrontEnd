@@ -20,11 +20,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatCardModule} from '@angular/material/card';
 import { MatDialogModule} from '@angular/material/dialog';
-import { DialogComponent } from './components/dialog/dialog.component';
 import { EditDisciComponent } from './components/dialogs/edit-disci/edit-disci.component';
 import { EditSkillsComponent } from './components/dialogs/edit-skills/edit-skills.component';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { EditPersonalInfoComponent } from './components/dialogs/edit-personal-info/edit-personal-info.component';
 
 
 @NgModule({
@@ -38,9 +38,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MyProjectsScreenComponent,
     RequestsScreenComponent,
     ProjectInfoScreenComponent,
-    DialogComponent,
     EditDisciComponent,
-    EditSkillsComponent
+    EditSkillsComponent,
+    EditPersonalInfoComponent
   ],
   imports: [
     CommonModule,
