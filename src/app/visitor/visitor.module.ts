@@ -17,6 +17,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HomePageScreenComponent } from './views/home-page-screen/home-page-screen.component';
+import { ProjectsPublishedComponent } from './views/projects-published/projects-published.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HomePageScreenComponent } from './views/home-page-screen/home-page-scre
     LoginScreenComponent,
     RegisterScreenComponent,
     HomeScreenComponent,
-    HomePageScreenComponent
+    HomePageScreenComponent,
+    ProjectsPublishedComponent
   ],
   imports: [
     CommonModule,
