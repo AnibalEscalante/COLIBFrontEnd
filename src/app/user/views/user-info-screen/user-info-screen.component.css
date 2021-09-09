@@ -1,14 +1,6 @@
-.card-header {
-  background-color: white;
-}
 .fa-user-circle {
-  font-size: 100px;
+  font-size: 150px;
   color: #C4C4C4;
-}
-.name-profile {
-  font-family: "Roboto";
-  font-size: large;
-  font-weight: bold;
 }
 .list-group-item {
   border: 0px;
@@ -17,15 +9,8 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
-.overall-info-header {
-  background-color: #ECECEC;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #C4C4C4;
-}
-.overall-info-header .overall-info {
-  font-size: x-large;
-  font-weight: bolder;
+.overall-info {
+  margin: 0px;
 }
 .card-center {
   display: flex;
@@ -33,10 +18,7 @@
   align-items: center;
   justify-content: center;
 }
-.personal-info-header {
-  background-color: #E5E5E5;
-}
-.personal-info-header .personal-info {
+.personal-info {
   font-size: medium;
 }
 .info-item {
@@ -52,6 +34,17 @@
 }
 a {
   text-decoration: none;
+}
+.card-content {
+  border-bottom-style: solid;
+  padding-bottom: 1;
+  border-width: 1px ;
+}
+.card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 /*------------Modal-----------*/
 .modal-personal-info {
