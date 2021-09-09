@@ -22,7 +22,7 @@
             </li>
             <li class="nav-item me-3 dropdown">
                 <button type="button" class="messages">
-                    <i class="fas fa-comments"></i>
+                    <i class="fas fa-comments" [routerLink]="['/user/contacts']"></i>
                     <span class="badge rounded-pill bg-danger">1</span>
                 </button>
             </li>
@@ -35,7 +35,7 @@
                     <li><a class="dropdown-item" href="#" [routerLink]="['/user/myprojects']">Proyectos publicados</a></li>
                     <li><a class="dropdown-item" href="#" [routerLink]="['/user/savedprojects']">Proyectos guardados</a></li>
                     <li><a class="dropdown-item" href="#" [routerLink]="['/user/requests']">Solicitudes de colaboración</a></li>
-                    <li><a class="dropdown-item" href="#"[routerLink]="['/visitor/home']">Cerrar sesión</a></li>
+                    <li><a class="dropdown-item" href="#" [routerLink]="['/visitor/home']">Cerrar sesión</a></li>
                 </ul>
             </li>
         </ul>
