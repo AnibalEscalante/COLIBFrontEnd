@@ -1,7 +1,31 @@
-.mat-stepper-horizontal {
-    margin-top: 8px;
-  }
-  
-  .mat-form-field {
-    margin-top: 16px;
-  }
+.card-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+  min-width: 500px;
+  max-width: 500px;
+  width: 80%;
+}
+.full-width {
+  width: 100%;
+}
+h1 {
+  color: #32CD32;
+  font-size: 50px;
+}
+.card {
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.example-chip-list {
+  width: 500px;
+  height: 330px;
+}
+.container-fluid {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
