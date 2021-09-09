@@ -17,7 +17,10 @@ export class ContactsScreenComponent implements OnInit {
   }
 
   editContacts() {
-    const editContactsDialog = this.contactsDialog.open(EditContactsComponent);
+    let dialogRef = this.contactsDialog.open(EditContactsComponent, {
+      height: '510px',
+      width: '1000px',
+    });
   }
 
 }
