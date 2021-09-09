@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-info-screen',
@@ -12,44 +13,47 @@ export class UserInfoScreenComponent implements OnInit {
   password = new FormControl('', [Validators.required]);
   newPassword = new FormControl('', [Validators.required]);
   reNewPassword = new FormControl('', [Validators.required]);
+  validPassword!: string;
+  validRePassword!: string;
   hide = true;
 
-  constructor() { }
+  constructor(
+    private toastr: ToastrService
+  ) {
+    this.newPassword.valueChanges.subscribe(value => {
+      this.validPassword = value;
+    });
+
+    this.reNewPassword.valueChanges.subscribe(value => {
+      this.validRePassword = value;
+    });
+  }
+  
+  ngOnInit(): void {
+  }
+
+  showNotification() {
+    if (this.validPassword !== this.validRePassword) {
+      this.toastr.error('Las contraseñas no son iguales.');
+    } else {
+      this.toastr.success('La contraseña se guardó exitosamente.');
+    }
+  }
 
   getErrorMessage() {
     return this.email.hasError('email') ? 'Correo electrónico no valido' : '';
   }
 
   getErrorActualPasswordMessage() {
-    if (this.password.hasError('required')) {
-      return 'Se requiere la contraseña actual';
-    }
-
-    return this.password.hasError('password') ? 'Contraseña actual incorrecta' : '';
+    return this.password.hasError('required') ? 'Se requiere la contraseña actual' : '';
   }
 
   getErrorNewPasswordMessage() {
-    if (this.newPassword.hasError('required')) {
-      return 'Se requiere la nueva contraseña';
-    }
-
-    return this.newPassword.hasError('newPassword') ? 'Contraseña no cumple con el formato' : '';
+    return this.newPassword.hasError('required') ? 'Se requiere la nueva contraseña' : '';
   }
 
   getErrorReNewPasswordMessage() {
-    if (this.reNewPassword.hasError('required')) {
-      return 'Se requiere repetir la nueva contraseña';
-    }
-
-    if (this.reNewPassword !== this.newPassword) {
-      return this.reNewPassword.hasError('Las contraseñas no son iguales');
-    }
-  
-    return this.reNewPassword.hasError('reNewPassword') ? 'Las contraseñas no son iguales' : '';
-  }
-  
-
-  ngOnInit(): void {
+    return this.reNewPassword.hasError('reNewPassword') ? 'Se requiere repetir la nueva contraseña' : '';
   }
 
 }
