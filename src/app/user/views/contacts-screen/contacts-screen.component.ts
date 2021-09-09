@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import { EditContactsComponent } from '../../components/dialogs/edit-contacts/edit-contacts.component';
 
 @Component({
   selector: 'app-contacts-screen',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactsScreenComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private contactsDialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  editContacts() {
+    const editContactsDialog = this.contactsDialog.open(EditContactsComponent);
   }
 
 }
