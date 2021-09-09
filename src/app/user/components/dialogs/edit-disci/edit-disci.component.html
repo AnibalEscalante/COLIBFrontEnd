@@ -35,7 +35,9 @@
         </div>
     </mat-card>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+<mat-dialog-actions >
+  <button class="btn btn-secondary" mat-dialog-close>Cancel</button>
+  <div class="col d-flex align-items-bot justify-content-end">
+    <button class="btn btn-primary" [mat-dialog-close]="true" cdkFocusInitial>Guardar</button>
+  </div>
 </mat-dialog-actions>

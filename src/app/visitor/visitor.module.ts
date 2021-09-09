@@ -16,7 +16,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
-import { HomePageScreenComponent } from './views/home-page-screen/home-page-screen.component';
 import { ProjectsPublishedComponent } from './views/projects-published/projects-published.component';
 
 @NgModule({
@@ -25,7 +24,6 @@ import { ProjectsPublishedComponent } from './views/projects-published/projects-
     LoginScreenComponent,
     RegisterScreenComponent,
     HomeScreenComponent,
-    HomePageScreenComponent,
     ProjectsPublishedComponent
   ],
   imports: [
