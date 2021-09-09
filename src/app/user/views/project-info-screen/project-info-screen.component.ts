@@ -16,26 +16,24 @@ export class ProjectInfoScreenComponent {
   constructor(public dialog: MatDialog) {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(EditPersonalInfoComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    
+    let dialogRef = this.dialog.open(EditPersonalInfoComponent, {
+      height: '630px',
+      width: '1000px',
     });
   }
 
   openDialogEditDisci() {
-    const dialogRef = this.dialog.open(EditDisciComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    let dialogRef = this.dialog.open(EditDisciComponent, {
+      height: '500px',
+      width: '800px',
     });
   }
 
   openDialogEditSkills() {
-    const dialogRef = this.dialog.open(EditSkillsComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    let dialogRef = this.dialog.open(EditSkillsComponent, {
+      height: '500px',
+      width: '800px',
     });
   }
   

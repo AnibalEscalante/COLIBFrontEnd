@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <mat-stepper linear #stepper>
         <mat-step [stepControl]="firstFormGroup" optional>
-            <div class="title text-center" id="row_titulo">
-                <div class="" id="col_titulo">
-                    <h1 class="title text-center mb-4 mt-1">Colib</h1>
+            <div class="row justify-content-center mt-3">
+                <div class="col-auto">
+                    <h1 class="title text-center mb-4" type="button" [routerLink]="['/visitor/home']">Colib</h1>
                 </div>
             </div>
             <div class="row">
@@ -68,9 +68,9 @@
         <mat-step [stepControl]="secondFormGroup" optional>
             <ng-template matStepLabel>Complete Disciplinas</ng-template>
             <div class="containt">
-                <div class="title text-center" id="row_titulo">
-                    <div class="" id="col_titulo">
-                        <h1 class="title text-center mb-4 mt-1">Colib</h1>
+                <div class="row justify-content-center mt-3">
+                    <div class="col-auto">
+                        <h1 class="title text-center mb-4" type="button" [routerLink]="['/visitor/home']">Colib</h1>
                     </div>
                 </div>
                 <div class="row">
@@ -109,7 +109,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="link-secondary text-center mt-3" matStepperNext>Omitir</a>
+                        <a matStepperNext class="link-secondary text-center mt-3" type="button">Omitir</a>
                     </div>
                 </div>
             </div>
@@ -117,9 +117,9 @@
         <mat-step [stepControl]="secondFormGroup" optional>
             <ng-template matStepLabel>Complete sus habilidades</ng-template>
             <div class="containt">
-                <div class="title text-center" id="row_titulo">
-                    <div class="" id="col_titulo">
-                        <h1 class="title text-center mb-4 mt-1">Colib</h1>
+                <div class="row justify-content-center mt-3">
+                    <div class="col-auto">
+                        <h1 class="title text-center mb-4" type="button" [routerLink]="['/visitor/home']">Colib</h1>
                     </div>
                 </div>
                 <div class="row">
