@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatStepperModule} from '@angular/material/stepper';
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -18,7 +17,6 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatStepperModule,
     ToastrModule.forRoot({
       closeButton: true,
       positionClass: 'toast-top-right',
