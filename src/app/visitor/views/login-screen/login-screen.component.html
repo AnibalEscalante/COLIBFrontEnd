@@ -1,7 +1,11 @@
 <body>
     <div class="container-fluid" id="contenedor">
         <div class="row justify-content-center">
-            <h1 class="title text-center mb-5">Colib</h1>
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <h1 class="title text-center mb-5" type="button" [routerLink]="['/visitor/home']">Colib</h1>
+                </div>
+            </div>
             <div class="col mb-4">
                 <div class="card">
                     <h2 class="d-grid gap-2 col-10 my-4 mx-auto">Iniciar sesión</h2>
@@ -24,9 +28,13 @@
                     <div class="d-grid gap-2 col-10 mt-4 mb-5 mx-auto">
                         <button class="btn btn-logIn" type="button">Iniciar sesion</button>
                     </div>
+                </div>
             </div>
-        </div>
-            <a href="#" class="link-primary text-center">Registrarse</a>
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <a href="#" class="link-primary text-center" [routerLink]="['/visitor/register']">Registrarse</a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
