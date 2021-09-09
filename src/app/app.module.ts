@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -17,7 +18,13 @@ import {MatStepperModule} from '@angular/material/stepper';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      resetTimeoutOnDuplicate: true
+    })
   ],
   bootstrap: [AppComponent]
 })
