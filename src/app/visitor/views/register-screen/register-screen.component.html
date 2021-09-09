@@ -56,8 +56,8 @@
                                                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                                             </button>
                                 </mat-form-field>
-                                <div>
-                                    <button mat-button matStepperNext>Next</button>
+                                <div class="d-flex align-items-bot justify-content-end">
+                                    <button matStepperNext class="btn btn-primary">Siguiente</button>
                                 </div>
                             </form>
                         </div>
@@ -81,24 +81,35 @@
                                 <mat-form-field class="example-chip-list" appearance="fill">
                                     <mat-label>Favorite Fruits</mat-label>
                                     <mat-chip-list #chipList aria-label="Fruit selection">
-                                        <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="removeFruit(fruit)">
-                                            {{fruit}}
-                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                        </mat-chip>
-                                        <input placeholder="New fruit..." #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addFruit($event)">
+                                    <mat-chip
+                                        *ngFor="let fruit of fruits"
+                                        [selectable]="selectable"
+                                        [removable]="removable"
+                                        (removed)="removeFruit(fruit)">
+                                        {{fruit}}
+                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                    </mat-chip>
+                                    <input
+                                        placeholder="New fruit..."
+                                        #fruitInput
+                                        [formControl]="fruitCtrl"
+                                        [matAutocomplete]="auto"
+                                        [matChipInputFor]="chipList"
+                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                        (matChipInputTokenEnd)="addFruit($event)">
                                     </mat-chip-list>
                                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedFruit($event)">
-                                        <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                                            {{fruit}}
-                                        </mat-option>
+                                    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                                        {{fruit}}
+                                    </mat-option>
                                     </mat-autocomplete>
                                 </mat-form-field>
-                                <div>
-                                    <button mat-button matStepperPrevious>Back</button>
-                                    <button mat-button matStepperNext>Next</button>
+                                <div class="d-flex align-items-bot justify-content-end">
+                                    <button matStepperNext class="btn btn-primary">Siguiente</button>
                                 </div>
                             </div>
                         </div>
+                        <a href="#" class="link-secondary text-center mt-3" matStepperNext>Omitir</a>
                     </div>
                 </div>
             </div>
@@ -119,21 +130,31 @@
                                 <mat-form-field class="example-chip-list" appearance="fill">
                                     <mat-label>Disciplinas</mat-label>
                                     <mat-chip-list #chipList aria-label="Fruit selection">
-                                        <mat-chip *ngFor="let vegetable of vegetables" [selectable]="selectable" [removable]="removable" (removed)="removeVegetable(vegetable)">
-                                            {{vegetable}}
-                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                        </mat-chip>
-                                        <input placeholder="New fruit..." #fruitInput [formControl]="vegetableCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addVegetable($event)">
+                                    <mat-chip
+                                        *ngFor="let vegetable of vegetables"
+                                        [selectable]="selectable"
+                                        [removable]="removable"
+                                        (removed)="removeVegetable(vegetable)">
+                                        {{vegetable}}
+                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                    </mat-chip>
+                                    <input
+                                        placeholder="New fruit..."
+                                        #fruitInput
+                                        [formControl]="vegetableCtrl"
+                                        [matAutocomplete]="auto"
+                                        [matChipInputFor]="chipList"
+                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                        (matChipInputTokenEnd)="addVegetable($event)">
                                     </mat-chip-list>
                                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedVegetable($event)">
-                                        <mat-option *ngFor="let vegetable of filteredVegetables | async" [value]="vegetable">
-                                            {{vegetable}}
-                                        </mat-option>
+                                    <mat-option *ngFor="let vegetable of filteredVegetables | async" [value]="vegetable">
+                                        {{vegetable}}
+                                    </mat-option>
                                     </mat-autocomplete>
                                 </mat-form-field>
-                                <div>
-                                    <button mat-button matStepperPrevious>Back</button>
-                                    <button mat-button matStepperNext>Next</button>
+                                <div class="d-flex align-items-bot justify-content-end">
+                                    <button matStepperNext class="btn btn-primary">Siguiente</button>
                                 </div>
                             </div>
                         </div>
