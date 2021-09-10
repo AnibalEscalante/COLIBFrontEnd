@@ -26,6 +26,8 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { EditContactsComponent } from './components/dialogs/edit-contacts/edit-contacts.component';
 import { EditProjectComponent } from './components/dialogs/edit-project/edit-project.component';
+import { EditPersonalInfoComponent } from './components/dialogs/edit-personal-info/edit-personal-info.component';
+import { EditPasswordComponent } from './components/dialogs/edit-password/edit-password.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import { EditProjectComponent } from './components/dialogs/edit-project/edit-pro
     EditSkillsComponent,
     EditContactsComponent,
     EditProjectComponent,
+    EditPersonalInfoComponent,
+    EditPasswordComponent,
   ],
   imports: [
     CommonModule,
