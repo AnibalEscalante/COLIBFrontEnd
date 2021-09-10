@@ -9,22 +9,15 @@ import {MatChipInputEvent} from '@angular/material/chips';
 
 
 @Component({
-  selector: 'app-edit-personal-info',
-  templateUrl: './edit-personal-info.component.html',
-  styleUrls: ['./edit-personal-info.component.less']
+  selector: 'app-edit-project',
+  templateUrl: './edit-project.component.html',
+  styleUrls: ['./edit-project.component.less']
 })
-export class EditPersonalInfoComponent implements OnInit {
-
+export class EditProjectComponent implements OnInit {
+  
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions!: Observable<string[]>;
-
-  ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
-  }
 
   selectable = true;
   removable = true;
@@ -38,8 +31,15 @@ export class EditPersonalInfoComponent implements OnInit {
 
   constructor() {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-        startWith(null),
-        map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+      startWith(null),
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+   }
+
+  ngOnInit() {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
   }
 
   add(event: MatChipInputEvent): void {

@@ -10,8 +10,8 @@
                     <div class="card-body text-center">
                         <div class="list-group mb-5">
                             <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/userinfo']">Información general</a>
-                            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/myprojects']" >Proyectos publicados</a>
-                            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/savedprojects']" >Proyectos guardados</a>
+                            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/myprojects']">Proyectos publicados</a>
+                            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/savedprojects']">Proyectos guardados</a>
                             <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/requests']">Solicitudes de colaboración</a>
                         </div>
                     </div>
@@ -27,10 +27,8 @@
                                         <div class="col-10">
                                             <h1 class="card-title-info">"Nombre del Proyecto"</h1>
                                         </div>
-                                        <div class="col-2 d-flex align-items-top justify-content-end">
-                                            <button mat-button (click)="openDialog()">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+                                        <div class="col-2 mt-1 d-flex align-items-top justify-content-end">
+                                            <i class="fas fa-edit" type="button" (click)="openDialog()"></i>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -41,10 +39,10 @@
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="#">Colaborador 1</a>
-                                                </li>   
+                                                </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="#">Colaborador 1</a>
-                                                </li>   
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -58,20 +56,11 @@
                                         </div>
                                     </div>
                                     <p class="card-subtitle-info mb-2 text-muted">
-                                        “Lorem ipsum dolor sit amet consectetur adipiscing elit molestie nulla mus blandit
-                                        condimentum eu tempus, egestas potenti cubilia urna etiam donec fringilla gravida non 
-                                        fames volutpat pharetra. Senectus etiam elementum aptent tincidunt habitant himenaeos, 
-                                        commodo potenti dictumst eu quis phasellus feugiat, integer varius quam in pulvinar. 
-                                        Sociosqu habitasse auctor dignissim id faucibus mauris eleifend facilisi facilisis, 
-                                        aenean felis consequat per cursus fames eget aptent, urna quam dis turpis senectus
-                                        nec gravida ornare.
-                            
-                                        Aliquam posuere diam sollicitudin mollis vestibulum cubilia, nunc vivamus commodo ut
-                                        porttitor quis, nisi nibh phasellus convallis accumsan. Turpis interdum tortor ligula 
-                                        vestibulum metus posuere condimentum eu pretium, aliquet eleifend volutpat ultrices 
-                                        senectus quisque imperdiet eros, luctus class netus habitant sociosqu dapibus molestie aptent. 
-                                        Sodales duis diam etiam aliquet nunc dictum eu, mollis proin arcu faucibus risus rhoncus metus dui, 
-                                        litora quam egestas per himenaeos aliquam.”
+                                        “Lorem ipsum dolor sit amet consectetur adipiscing elit molestie nulla mus blandit condimentum eu tempus, egestas potenti cubilia urna etiam donec fringilla gravida non fames volutpat pharetra. Senectus etiam elementum aptent tincidunt habitant himenaeos,
+                                        commodo potenti dictumst eu quis phasellus feugiat, integer varius quam in pulvinar. Sociosqu habitasse auctor dignissim id faucibus mauris eleifend facilisi facilisis, aenean felis consequat per cursus fames eget
+                                        aptent, urna quam dis turpis senectus nec gravida ornare. Aliquam posuere diam sollicitudin mollis vestibulum cubilia, nunc vivamus commodo ut porttitor quis, nisi nibh phasellus convallis accumsan. Turpis interdum
+                                        tortor ligula vestibulum metus posuere condimentum eu pretium, aliquet eleifend volutpat ultrices senectus quisque imperdiet eros, luctus class netus habitant sociosqu dapibus molestie aptent. Sodales duis diam
+                                        etiam aliquet nunc dictum eu, mollis proin arcu faucibus risus rhoncus metus dui, litora quam egestas per himenaeos aliquam.”
                                     </p>
                                     <div class="row">
                                         <div class="col-10">
@@ -79,10 +68,8 @@
                                             <button type="button" class="btn btn-outline-secondary btn-sm ms-2 mb-2">Disciplina 1</button>
                                             <button type="button" class="btn btn-outline-secondary btn-sm ms-2 mb-2">Disciplina 2</button>
                                         </div>
-                                        <div class="col-2 d-flex align-items-top justify-content-end">
-                                            <button mat-button (click)="openDialogEditDisci()">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+                                        <div class="col-2 mt-2 d-flex align-items-top justify-content-end">
+                                            <i class="fas fa-edit" type="button" (click)="openDialogEditDisci()"></i>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -91,10 +78,8 @@
                                             <button type="button" class="btn btn-outline-secondary btn-sm ms-2 mb-2">Habilidad 1</button>
                                             <button type="button" class="btn btn-outline-secondary btn-sm ms-2 mb-2">Habilidad 2</button>
                                         </div>
-                                        <div class="col-2  d-flex align-items-top justify-content-end">
-                                            <button mat-button (click)="openDialogEditSkills()">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+                                        <div class="col-2 mt-2 d-flex align-items-top justify-content-end">
+                                            <i class="fas fa-edit" type="button" (click)="openDialogEditSkills()"></i>
                                         </div>
                                     </div>
                                     <div class="button-search">
