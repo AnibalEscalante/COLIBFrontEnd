@@ -46,11 +46,3 @@ a {
   align-items: center;
   justify-content: center;
 }
-/*------------Modal-----------*/
-.modal-personal-info {
-  font-size: large;
-}
-.modal-header {
-  border-bottom: 0px;
-  background-color: #E5E5E5;
-}
