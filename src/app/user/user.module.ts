@@ -28,6 +28,7 @@ import { EditContactsComponent } from './components/dialogs/edit-contacts/edit-c
 import { EditProjectComponent } from './components/dialogs/edit-project/edit-project.component';
 import { EditPersonalInfoComponent } from './components/dialogs/edit-personal-info/edit-personal-info.component';
 import { EditPasswordComponent } from './components/dialogs/edit-password/edit-password.component';
+import { CreateProjectComponent } from './components/dialogs/create-project/create-project.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { EditPasswordComponent } from './components/dialogs/edit-password/edit-p
     EditProjectComponent,
     EditPersonalInfoComponent,
     EditPasswordComponent,
+    CreateProjectComponent
   ],
   imports: [
     CommonModule,
