@@ -51,7 +51,8 @@ import { RequestsComponent } from './components/requests/requests.component';
     EditPersonalInfoComponent,
     EditPasswordComponent,
     CreateProjectComponent,
-    RequestsComponent
+    RequestsComponent,
+    ProjectInfoComponent
   ],
   imports: [
     CommonModule,
