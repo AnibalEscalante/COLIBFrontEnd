@@ -1,0 +1,18 @@
+.card-title {
+  border-bottom-style: solid;
+  padding-bottom: 1;
+  border-width: 1px ;
+}
+.nav-pills {
+  border-bottom-style: solid;
+  padding-bottom: 1;
+  border-width: 1px ;
+}
+.nav-link {
+  padding: 0px;
+  text-align: left;
+}
+.published-item {
+  text-align: right;
+  margin: 0px;
+}
