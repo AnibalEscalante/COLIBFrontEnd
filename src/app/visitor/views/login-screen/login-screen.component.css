@@ -1,5 +1,6 @@
 .card {
   border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 .container-fluid {
   display: flex;
@@ -11,6 +12,7 @@
 h1 {
   color: #32CD32;
   font-size: 50px;
+  text-justify: auto;
 }
 h2 {
   font-size: 25px;
@@ -21,4 +23,7 @@ h2 {
 }
 a {
   text-decoration: none;
+}
+body {
+  background-color: white;
 }

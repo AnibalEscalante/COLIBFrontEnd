@@ -1,0 +1,53 @@
+.card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.example-chip-list {
+  width: 100%;
+}
+/* .mat-content::-webkit-scrollbar {
+    width: 8px;   
+    height: 8px;   
+    display: none;  
+}
+.mat-content::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.mat-content::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+.mat-content::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+.mat-content::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px;
+}
+
+.mat-content::-webkit-scrollbar-track:hover,
+.mat-content::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+} */
+mat-dialog-content::-webkit-scrollbar {
+  width: 12px;
+  /* width of the entire scrollbar */
+}
+mat-dialog-content::-webkit-scrollbar-track {
+  background: #ffffff;
+  /* color of the tracking area */
+}
+mat-dialog-content::-webkit-scrollbar-thumb {
+  background-color: #9d9d9e;
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  border: 3px solid #ffffff;
+  /* creates padding around scroll thumb */
+}
