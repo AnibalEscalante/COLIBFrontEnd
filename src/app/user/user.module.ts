@@ -24,8 +24,10 @@ import { EditDisciComponent } from './components/dialogs/edit-disci/edit-disci.c
 import { EditSkillsComponent } from './components/dialogs/edit-skills/edit-skills.component';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { EditPersonalInfoComponent } from './components/dialogs/edit-personal-info/edit-personal-info.component';
 import { EditContactsComponent } from './components/dialogs/edit-contacts/edit-contacts.component';
+import { EditProjectComponent } from './components/dialogs/edit-project/edit-project.component';
+import { EditPersonalInfoComponent } from './components/dialogs/edit-personal-info/edit-personal-info.component';
+import { EditPasswordComponent } from './components/dialogs/edit-password/edit-password.component';
 import { CreateProjectComponent } from './components/dialogs/create-project/create-project.component';
 import { ProjectInfoComponent } from './components/project-info/project-info.component';
 import { RequestsComponent } from './components/requests/requests.component';
@@ -44,10 +46,11 @@ import { RequestsComponent } from './components/requests/requests.component';
     ProjectInfoScreenComponent,
     EditDisciComponent,
     EditSkillsComponent,
-    EditPersonalInfoComponent,
     EditContactsComponent,
+    EditProjectComponent,
+    EditPersonalInfoComponent,
+    EditPasswordComponent,
     CreateProjectComponent,
-    ProjectInfoComponent,
     RequestsComponent
   ],
   imports: [
