@@ -27,6 +27,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { EditPersonalInfoComponent } from './components/dialogs/edit-personal-info/edit-personal-info.component';
 import { EditContactsComponent } from './components/dialogs/edit-contacts/edit-contacts.component';
 import { CreateProjectComponent } from './components/dialogs/create-project/create-project.component';
+import { ProjectInfoComponent } from './components/project-info/project-info.component';
+import { RequestsComponent } from './components/requests/requests.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { CreateProjectComponent } from './components/dialogs/create-project/crea
     EditSkillsComponent,
     EditPersonalInfoComponent,
     EditContactsComponent,
-    CreateProjectComponent
+    CreateProjectComponent,
+    ProjectInfoComponent,
+    RequestsComponent
   ],
   imports: [
     CommonModule,
