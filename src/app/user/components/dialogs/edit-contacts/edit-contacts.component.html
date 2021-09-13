@@ -222,6 +222,6 @@
     </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button type="button" class="btn btn-secondary me-2" mat-dialog-close>Cancelar</button>
-    <button type="button" class="btn btn-primary" mat-dialog-close>Guardar</button>
+    <button type="button" class="btn btn-secondary me-2" mat-dialog-close (click)="cancelNotification()">Cancelar</button>
+    <button type="button" class="btn btn-primary" mat-dialog-close (click)="saveNotification()">Guardar</button>
 </mat-dialog-actions>
