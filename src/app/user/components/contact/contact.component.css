@@ -1,0 +1,21 @@
+.list-group {
+  overflow-y: scroll;
+  height: 450px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.list-group-item {
+  padding: 0px;
+}
+.fa-user {
+  font-size: 15px;
+  padding: 5px;
+  padding-right: 6px;
+  padding-left: 6px;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 20px;
+}
+.user-item-contact {
+  font-size: medium;
+}
