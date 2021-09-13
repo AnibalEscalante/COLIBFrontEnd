@@ -9,30 +9,47 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditPasswordComponent implements OnInit {
   
-  password = new FormControl('', [Validators.required]);
-  newPassword = new FormControl('', [Validators.required]);
-  reNewPassword = new FormControl('', [Validators.required]);
-  validPassword!: string;
-  validRePassword!: string;
-  hide = true;
+  private password = new FormControl('', [Validators.required]);
+  private newPassword = new FormControl('', [Validators.required]);
+  private reNewPassword = new FormControl('', [Validators.required]);
+  private validPassword!: string;
+  private validNewPassword!: string;
+  private validReNewPassword!: string;
+  hide: boolean = true;
 
   constructor(
     private toastr: ToastrService
   ) {
-    this.newPassword.valueChanges.subscribe(value => {
+    this.password.valueChanges.subscribe(value => {
       this.validPassword = value;
     });
 
+    this.newPassword.valueChanges.subscribe(value => {
+      this.validNewPassword = value;
+    });
+
     this.reNewPassword.valueChanges.subscribe(value => {
-      this.validRePassword = value;
+      this.validReNewPassword = value;
     });
   }
 
   ngOnInit(): void {
   }
 
+  getPassword() {
+    return this.password;
+  }
+
+  getNewPassword() {
+    return this.newPassword;
+  }
+
+  getReNewPassword() {
+    return this.reNewPassword;
+  }
+
   showNotification() {
-    if (this.validPassword !== this.validRePassword) {
+    if (this.validNewPassword !== this.validReNewPassword) {
       this.toastr.error('Las contraseñas no son iguales.');
     } else {
       this.toastr.success('La contraseña se guardó exitosamente.');

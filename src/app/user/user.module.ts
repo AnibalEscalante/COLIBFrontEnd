@@ -31,6 +31,8 @@ import { EditPasswordComponent } from './components/dialogs/edit-password/edit-p
 import { CreateProjectComponent } from './components/dialogs/create-project/create-project.component';
 import { ProjectInfoComponent } from './components/project-info/project-info.component';
 import { RequestsComponent } from './components/requests/requests.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { MessageComponent } from './components/message/message.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { RequestsComponent } from './components/requests/requests.component';
     EditPasswordComponent,
     CreateProjectComponent,
     RequestsComponent,
-    ProjectInfoComponent
+    ProjectInfoComponent,
+    ContactComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,

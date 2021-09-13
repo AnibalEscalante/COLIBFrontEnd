@@ -1,0 +1,18 @@
+.chat-message-card {
+  overflow-y: scroll;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+.message {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.message .card-header {
+  background-color: #E9E9E9;
+}
+.message .card-header p {
+  margin-bottom: 0px;
+}

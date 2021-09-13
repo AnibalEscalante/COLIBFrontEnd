@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-contacts',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditContactsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  saveNotification() {
+      this.toastr.success('Los cambios se guardaron exitosamente.');
+  }
+
+  cancelNotification() {
+    this.toastr.warning('Los cambios no se guardaron.');
+  }
 }
