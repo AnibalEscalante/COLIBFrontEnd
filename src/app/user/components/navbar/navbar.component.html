@@ -2,10 +2,10 @@
     <div class="container-fluid">
         <ul class="nav">
             <li class="nav-item">
-                <img src="/assets/img/icono coliv.png" type="button" href="#"[routerLink]="['/user/home']">
+                <img src="/assets/img/icono coliv.png" type="button" href="#" [routerLink]="['/user/home']">
             </li>
             <li class="nav-item mt-2">
-                <h2  type="button" href="#"[routerLink]="['/user/home']">Colib</h2>
+                <h2 type="button" href="#" [routerLink]="['/user/home']">Colib</h2>
             </li>
         </ul>
         <ul class="nav">
@@ -30,12 +30,12 @@
                 <button type="button" class="profile" id="menuProfile" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-user"></i>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end me-2" aria-labelledby="menuNotifications">
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuNotifications">
                     <li><a class="dropdown-item" href="#" [routerLink]="['/user/userinfo']">Información general</a></li>
                     <li><a class="dropdown-item" href="#" [routerLink]="['/user/myprojects']">Proyectos publicados</a></li>
                     <li><a class="dropdown-item" href="#" [routerLink]="['/user/savedprojects']">Proyectos guardados</a></li>
                     <li><a class="dropdown-item" href="#" [routerLink]="['/user/requests']">Solicitudes de colaboración</a></li>
-                    <li><a class="dropdown-item" href="#" [routerLink]="['/visitor/home']">Cerrar sesión</a></li>
+                    <li><a class="dropdown-item logOut" href="#" [routerLink]="['/visitor/home']">Cerrar sesión</a></li>
                 </ul>
             </li>
         </ul>

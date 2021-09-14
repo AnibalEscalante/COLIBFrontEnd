@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./projects-published.component.less']
 })
 export class ProjectsPublishedComponent implements OnInit {
+  
+  info: any;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+  }
+
+  recibir(event: any) {
+    this.info = event;
   }
 
 }

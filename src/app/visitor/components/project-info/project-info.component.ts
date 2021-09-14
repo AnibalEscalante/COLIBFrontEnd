@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-project-info',
@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project-info.component.less']
 })
 export class ProjectInfoComponent implements OnInit {
+  
+  @Input() mostrar: any;
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  ngDoCheck() {
+    console.log(this.mostrar);
+    
+  }
+  
 
 }
