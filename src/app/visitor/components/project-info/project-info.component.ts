@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Project } from 'src/app/core/models/project.model';
 
 @Component({
   selector: 'app-project-info',
@@ -7,17 +8,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProjectInfoComponent implements OnInit {
   
-  @Input() mostrar: any;
+  @Input() projectInfo!: Project;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  ngDoCheck() {
-    console.log(this.mostrar);
-    
-  }
-  
 
 }
