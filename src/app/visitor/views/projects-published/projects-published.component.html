@@ -7,7 +7,7 @@
                     <input type="text" class="form-control" placeholder="Buscar proyectos">
                 </div>
                 <div class="col-12 col-lg-6 mt-2 d-flex align-items-center justify-content-end">
-                    <button type="button" class="btn btn-primary btn-sm" href="#"[routerLink]="['/visitor/login']">Publicar proyecto</button>
+                    <button type="button" class="btn btn-primary btn-sm" href="#" [routerLink]="['/visitor/login']">Publicar proyecto</button>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
                     <input type="text" class="form-control" placeholder="Buscar proyectos">
                 </div>
                 <div class="col-12 col-lg-6 mt-3">
-                    <button type="button" class="btn btn-primary btn-sm" href="#"[routerLink]="['/visitor/login']">Publicar proyecto</button>
+                    <button type="button" class="btn btn-primary btn-sm" href="#" [routerLink]="['/visitor/login']">Publicar proyecto</button>
                 </div>
             </div>
         </div>
@@ -26,11 +26,14 @@
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="row">
-                    <app-project (pruebaEvent)="recibir($event)"></app-project>
+                    <div *ngFor="let project of projects">
+                        <app-project [project]="project" (readMoreEvent)="getProject($event)"></app-project>
+                    </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6" [ngClass]="{'hola': info == 'hola', 'chao': info != 'hola'}">
-                <app-project-info [mostrar]="info"></app-project-info>
+            <!-- <div class="col-12 col-lg-6" [ngClass]="{'hola': info == 'hola', 'chao': info != 'hola'}"> -->
+            <div class="col-12 col-lg-6">
+                <app-project-info [projectInfo]="project"></app-project-info>
             </div>
         </div>
     </div>

@@ -1,53 +1,43 @@
 <div class="card">
     <div class="card-body">
         <div class="content-items">
-            <h1>"Nombre del Proyecto"</h1>
+            <h1>{{projectInfo.title}}</h1>
             <div class="row">
                 <div class="col-12 col-lg-12">
-                    <ul class="nav nav-fill">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#">Colaborador 1</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Colaborador 1</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Colaborador 1</a>
-                        </li>
-                    </ul>
+                    <div class="nav nav-fill">
+                        <div *ngFor="let colaborator of projectInfo.collaborators">
+                            <a class="nav-link p-0 me-3" href="#">{{colaborator.name}} {{colaborator.lastName}}</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col">
-                    <h5 class="published-item mt-2">Publicado el 23 de Agosto, 2021</h5>
-                    <h5 class="published-item mt-2">Cerrado el 26 de Agosto, 2021</h5>
+                <div class="col mt-2">
+                    <h5 class="published-item">Publicado el 23 de Agosto, 2021</h5>
+                    <h5 class="published-item">Cerrado el {{projectInfo.finishedDate}}</h5>
                 </div>
                 <div class="col d-flex align-items-center justify-content-end">
                     <button type="button" class="btn btn-primary btn-sm" href="#" [routerLink]="['/visitor/login']">Colaborar</button>
                 </div>
             </div>
-            <p class="card-subtitle-info mb-2 text-muted">
-                “Lorem ipsum dolor sit amet consectetur adipiscing elit molestie nulla mus blandit condimentum eu tempus, egestas potenti cubilia urna etiam donec fringilla gravida non fames volutpat pharetra. Senectus etiam elementum aptent tincidunt habitant himenaeos,
-                commodo potenti dictumst eu quis phasellus feugiat, integer varius quam in pulvinar. Sociosqu habitasse auctor dignissim id faucibus mauris eleifend facilisi facilisis, aenean felis consequat per cursus fames eget aptent, urna quam dis
-                turpis senectus nec gravida ornare. Aliquam posuere diam sollicitudin mollis vestibulum cubilia, nunc vivamus commodo ut porttitor quis, nisi nibh phasellus convallis accumsan. Turpis interdum tortor ligula vestibulum metus posuere condimentum
-                eu pretium, aliquet eleifend volutpat ultrices senectus quisque imperdiet eros, luctus class netus habitant sociosqu dapibus molestie aptent. Sodales duis diam etiam aliquet nunc dictum eu, mollis proin arcu faucibus risus rhoncus metus
-                dui, litora quam egestas per himenaeos aliquam.”
-            </p>
+            <p class="card-subtitle-info mb-2">{{projectInfo.content}}</p>
             <div class="row">
                 <div class="col-12 col-lg-12">
                     <p class="skills"> Disciplinas </p>
-                    <button type="button" class="btn btn-outline-secondary btn-sm ms-2 mb-2">Disciplina 1</button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm ms-2 mb-2">Disciplina 2</button>
+                    <div *ngFor="let discipline of projectInfo.disciplines">
+                        <p class="ms-2 mb-2">{{discipline.name}}</p>
+                    </div>
                 </div>
                 <div class="col-12 col-lg-12">
                     <p class="skills"> Habilidades </p>
-                    <button type="button" class="btn btn-outline-secondary btn-sm ms-2 mt-2 mb-2">Habilidad 1</button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm ms-2 mt-2 mb-2">Habilidad 2</button>
+                    <div *ngFor="let skill of projectInfo.skills">
+                        <p class="ms-2 mb-2">{{skill.name}}</p>
+                    </div>
                 </div>
             </div>
             <div class="button-search">
-                <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2">Compartir</button>
-                <h1>{{mostrar}}</h1>
+                <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" [routerLink]="['/visitor/register']">Compartir</button>
+                <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" [routerLink]="['/visitor/register']">Guardar</button>
             </div>
         </div>
     </div>
