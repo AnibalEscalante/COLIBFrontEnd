@@ -5,7 +5,7 @@ export interface Project {
   _idContributors: string[];
   _idDisciplines: string[];
   _idSkills: string[];
-  finishedDate: Date;
+  finishedDate?: Date;
   state: string;
   updatedAt?: Date;
   createdAt?: Date;
