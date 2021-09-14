@@ -13,6 +13,7 @@ export class ProjectsPublishedComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
   recibir(event: any) {
     this.info = event;

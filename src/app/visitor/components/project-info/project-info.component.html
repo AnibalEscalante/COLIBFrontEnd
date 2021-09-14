@@ -23,9 +23,7 @@
                     <h5 class="published-item mt-2">Cerrado el 26 de Agosto, 2021</h5>
                 </div>
                 <div class="col d-flex align-items-center justify-content-end">
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="popover" title="Popover title" data-bs-placement="left" data-bs-content="Debe registrarse para acceder a esta funcionalidad.">
-                        Colaborar
-                    </button>
+                    <button type="button" class="btn btn-primary btn-sm" href="#" [routerLink]="['/visitor/login']">Colaborar</button>
                 </div>
             </div>
             <p class="card-subtitle-info mb-2 text-muted">
@@ -48,7 +46,6 @@
                 </div>
             </div>
             <div class="button-search">
-                <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2">Comentar</button>
                 <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2">Compartir</button>
                 <h1>{{mostrar}}</h1>
             </div>
