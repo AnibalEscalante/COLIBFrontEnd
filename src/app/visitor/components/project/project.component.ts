@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Project } from '../../../core/models/project.model';
 
 @Component({
   selector: 'app-project',
@@ -7,15 +8,16 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class ProjectComponent implements OnInit {
   
-  @Output() pruebaEvent = new EventEmitter<any>();
+  @Input() project!: Project;
+  @Output() readMoreEvent = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  mandarInfo() {
-    this.pruebaEvent.emit('hola!');
+  sendProjectInfo() {
+    this.readMoreEvent.emit(this.project);
   }
 
 }

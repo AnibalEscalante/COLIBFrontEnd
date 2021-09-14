@@ -1,120 +1,21 @@
 <div class="col-12 col-lg-12 mb-3">
     <div class="card">
         <div class="card-body">
-            <h1 class="card-title">"Nombre del Proyecto"</h1>
-            <h3 class="card-subtitle mb-2 text-muted">
-                “Información del proyecto: este es el contenido de la publicación pero no en su totalidad y cada ves se está difuminando con el fondo ...”
-            </h3>
-            <ul class="nav nav-pills nav-fill">
-                <li class="nav-item ">
-                    <a class="nav-link " href="#">Colaborador 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Colaborador 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Colaborador 1</a>
-                </li>
-            </ul>
+            <h1 class="card-title">{{project.title}}</h1>
+            <h3 class="card-subtitle mb-2">{{project.content}}</h3>
+            <div class="nav nav-pills nav-fill">
+                <div *ngFor="let colaborator of project.collaborators">
+                    <a class="nav-link p-0 me-3" href="#">{{colaborator.name}} {{colaborator.lastName}}</a>
+                </div>
+            </div>
             <div class="row g-3">
                 <div class="col">
                     <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2">Compartir</button>
                     <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" href="#" [routerLink]="['/visitor/login']">Guardar</button>
-                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" (click)="mandarInfo()">Leer mas</button>
+                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" (click)="sendProjectInfo()">Leer mas</button>
                 </div>
                 <div class="col position-relative">
-                    <h5 class="published-item position-absolute bottom-0 end-0">Publicado el 23 de Agosto, 2021</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-12 col-lg-12 my-2">
-    <div class="card">
-        <div class="card-body">
-            <h1 class="card-title">"Nombre del Proyecto"</h1>
-            <h3 class="card-subtitle mb-2 text-muted">
-                “Información del proyecto: este es el contenido de la publicación pero no en su totalidad y cada ves se está difuminando con el fondo ...”
-            </h3>
-            <ul class="nav nav-pills nav-fill">
-                <li class="nav-item ">
-                    <a class="nav-link " href="#">Colaborador 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Colaborador 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Colaborador 1</a>
-                </li>
-            </ul>
-            <div class="row g-3">
-                <div class="col">
-                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" href="#" [routerLink]="['/visitor/login']">Compartir</button>
-                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2">Guardar</button>
-                </div>
-                <div class="col position-relative">
-                    <h5 class="published-item position-absolute bottom-0 end-0">Publicado el 23 de Agosto, 2021</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-12 col-lg-12 my-2">
-    <div class="card">
-        <div class="card-body">
-            <h1 class="card-title">"Nombre del Proyecto"</h1>
-            <h3 class="card-subtitle mb-2 text-muted">
-                “Información del proyecto: este es el contenido de la publicación pero no en su totalidad y cada ves se está difuminando con el fondo ...”
-            </h3>
-            <ul class="nav nav-pills nav-fill">
-                <li class="nav-item ">
-                    <a class="nav-link " href="#">Colaborador 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Colaborador 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Colaborador 1</a>
-                </li>
-            </ul>
-            <div class="row g-3">
-                <div class="col">
-                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" href="#" [routerLink]="['/visitor/login']">Compartir</button>
-                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2">Guardar</button>
-                </div>
-                <div class="col position-relative">
-                    <h5 class="published-item position-absolute bottom-0 end-0">Publicado el 23 de Agosto, 2021</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-12 col-lg-12 my-2">
-    <div class="card">
-        <div class="card-body">
-            <h1 class="card-title">"Nombre del Proyecto"</h1>
-            <h3 class="card-subtitle mb-2 text-muted">
-                “Información del proyecto: este es el contenido de la publicación pero no en su totalidad y cada ves se está difuminando con el fondo ...”
-            </h3>
-            <ul class="nav nav-pills nav-fill">
-                <li class="nav-item ">
-                    <a class="nav-link " href="#">Colaborador 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Colaborador 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Colaborador 1</a>
-                </li>
-            </ul>
-            <div class="row g-3">
-                <div class="col">
-                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" href="#" [routerLink]="['/visitor/login']">Compartir</button>
-                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2">Guardar</button>
-                </div>
-                <div class="col position-relative">
-                    <h5 class="published-item position-absolute bottom-0 end-0">Publicado el 23 de Agosto, 2021</h5>
+                    <h5 class="published-item position-absolute bottom-0 end-0">{{project.finishedDate}}</h5>
                 </div>
             </div>
         </div>
