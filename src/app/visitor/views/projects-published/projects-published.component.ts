@@ -7,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsPublishedComponent implements OnInit {
   
-  constructor() { }
+  info: any;
+
+  constructor() {}
 
   ngOnInit(): void {
   }
   
+
+  recibir(event: any) {
+    this.info = event;
+  }
 
 }

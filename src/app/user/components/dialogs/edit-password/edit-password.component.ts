@@ -15,7 +15,9 @@ export class EditPasswordComponent implements OnInit {
   private validPassword!: string;
   private validNewPassword!: string;
   private validReNewPassword!: string;
-  hide: boolean = true;
+  hidePassword: boolean = true;
+  hideNewPassword: boolean = true;
+  hideReNewPassword: boolean = true;
 
   constructor(
     private toastr: ToastrService

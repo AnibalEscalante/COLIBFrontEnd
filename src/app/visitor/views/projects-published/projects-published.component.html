@@ -26,11 +26,11 @@
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="row">
-                    <app-project></app-project>
+                    <app-project (pruebaEvent)="recibir($event)"></app-project>
                 </div>
             </div>
-            <div class="col-12 col-lg-6">
-                <app-project-info></app-project-info>
+            <div class="col-12 col-lg-6" [ngClass]="{'hola': info == 'hola', 'chao': info != 'hola'}">
+                <app-project-info [mostrar]="info"></app-project-info>
             </div>
         </div>
     </div>

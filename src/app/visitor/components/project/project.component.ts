@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-project',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project.component.less']
 })
 export class ProjectComponent implements OnInit {
+  
+  @Output() pruebaEvent = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  mandarInfo() {
+    this.pruebaEvent.emit('hola!');
   }
 
 }
