@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Project } from 'src/app/core/models/project.model';
 
 @Component({
   selector: 'app-project',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project.component.less']
 })
 export class ProjectComponent implements OnInit {
+  
+  @Input()
+  public projects!: Project;
+
+  @Output() pruebaEvent = new EventEmitter<any>();
+  
+  @Output() projectList= new EventEmitter<Project>();
 
   constructor() { }
 
   ngOnInit(): void {
+
   }
+
+  mandarInfo() {
+    this.projectList.emit(this.projects);
+  } 
 
 }

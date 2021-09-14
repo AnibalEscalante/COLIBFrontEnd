@@ -15,23 +15,15 @@
         <div class="row">
             <div class="col-12 col-lg-6 mt-4">
                 <div class="row">
-                    <div class="col-12 col-lg-12 my-2">
-                        <app-project></app-project>
+                    <div class="col-12 col-lg-12 my-2" *ngFor="let project of projects">
+                        <app-project [projects]="project" (projectList)="recibir($event)"></app-project>
                     </div>
-                    <div class="col-12 col-lg-12 my-2">
-                        <app-project></app-project>
-                    </div>
-                    <div class="col-12 col-lg-12 my-2">
-                        <app-project></app-project>
-                    </div>
-                    <div class="col-12 col-lg-12 my-2">
-                        <app-project></app-project>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-12 col-lg-6 mt-4">
                 <div class="col-12 col-lg-12 my-2">
-                    <app-project-info></app-project-info>
+                    <app-project-info [Projectinfo]="projectinfo"></app-project-info>
                 </div>
             </div>
         </div>
