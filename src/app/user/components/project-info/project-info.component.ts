@@ -13,12 +13,24 @@ import { EditSkillsComponent } from '../dialogs/edit-skills/edit-skills.componen
 export class ProjectInfoComponent {
   
   @Input() Projectinfo!: Project;
+
+  @Input() showHideComponent!: boolean;
   
   constructor(public dialog: MatDialog) {}
 
+  isShown: boolean = true;
+  
+  ngOnInit(): void {
+    this.isShown = this.showHideComponent;
+  }
+
+  toggleShow() {
+    this.isShown = ! this.showHideComponent;
+  }
   
   ngDoCheck() {
     console.log(this.Projectinfo);
+    console.log(this.showHideComponent)
   }
 
 
