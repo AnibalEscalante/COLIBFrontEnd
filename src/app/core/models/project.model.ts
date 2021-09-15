@@ -6,10 +6,7 @@ export interface Project {
   _id?: string;
   title: string;
   content: string;
-  _idContributors?: string[];
-  _idDisciplines: string[];
-  _idSkills: string[];
-  finishedDate?: Date;
+  finishedDate?: string;
   collaborators: User[];
   disciplines: Discipline[];
   skills?: Skill[];
