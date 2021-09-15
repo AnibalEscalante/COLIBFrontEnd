@@ -1,23 +1,41 @@
-<div class="col-12 col-lg-12 mb-3">
-    <div class="card">
-        <div class="card-body">
-            <h1 class="card-title">{{project.title}}</h1>
-            <h3 class="card-subtitle mb-2">{{project.content}}</h3>
-            <div class="nav nav-pills nav-fill">
-                <div *ngFor="let colaborator of project.collaborators">
-                    <a class="nav-link p-0 me-3" href="#">{{colaborator.name}} {{colaborator.lastName}}</a>
-                </div>
-            </div>
-            <div class="row g-3">
-                <div class="col">
-                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2">Compartir</button>
-                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" href="#" [routerLink]="['/visitor/login']">Guardar</button>
-                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" (click)="sendProjectInfo()">Leer mas</button>
-                </div>
-                <div class="col position-relative">
-                    <h5 class="published-item position-absolute bottom-0 end-0">{{project.finishedDate}}</h5>
-                </div>
+<div class="card card-project mb-3">
+    <div class="card-body">
+        <h1 class="card-title">{{project.title}}</h1>
+        <p class="card-subtitle mb-2">{{project.content}}</p>
+        <div class="nav nav-pills nav-fill">
+            <div *ngFor="let colaborator of project.collaborators">
+                <a class="nav-link p-0 me-3 mb-1" href="#">
+                    <i class="fas fa-user"></i> {{colaborator.name}} {{colaborator.lastName}}
+                </a>
             </div>
         </div>
+        <div class="row d-none d-lg-block">
+            <div class="col">
+                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/login']">
+                        Compartir
+                        <i class="fas fa-share"></i>
+                    </button>
+                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/login']">
+                        Guardar
+                        <i class="fa fa-bookmark"></i>
+                    </button>
+                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" (click)="sendProjectInfo()">Leer mas</button>
+                <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
+            </div>
+        </div>
+        <!-- Responsive Strat -->
+        <div class="row d-block d-lg-none">
+            <div class="col">
+                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/login']">
+                        <i class="fas fa-share"></i>
+                    </button>
+                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/login']">
+                        <i class="fa fa-bookmark"></i>
+                    </button>
+                <button type="button" class="btn btn-secondary btn-sm btn-read-more mt-2" [routerLink]="['/visitor/register']">Leer mas</button>
+            </div>
+            <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
+        </div>
+        <!-- Responsive end -->
     </div>
 </div>
