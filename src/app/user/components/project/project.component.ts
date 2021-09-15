@@ -10,19 +10,25 @@ export class ProjectComponent implements OnInit {
   
   @Input()
   public projects!: Project;
-
-  @Output() pruebaEvent = new EventEmitter<any>();
   
   @Output() projectList= new EventEmitter<Project>();
+
+  @Output() show= new EventEmitter<boolean>();
+  
+  public showinfo: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
 
   }
-
+  
+  showComponent(){
+    this.showinfo = true;
+    this.show.emit(this.showinfo)
+  }
+  
   mandarInfo() {
     this.projectList.emit(this.projects);
   } 
-
 }
