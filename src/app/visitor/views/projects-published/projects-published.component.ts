@@ -21,13 +21,13 @@ export class ProjectsPublishedComponent implements OnInit {
         },
         {
           _id: '2',
-          name: 'Rafael',
-          lastName: 'Solis'
+          name: 'Gabriela',
+          lastName: 'Gonzalez'
         },
         {
           _id: '3',
-          name: 'Gabriela',
-          lastName: 'Gonzalez'
+          name: 'Rafael',
+          lastName: 'Solis'
         },
       ],
       disciplines: [
@@ -192,6 +192,7 @@ export class ProjectsPublishedComponent implements OnInit {
   ];
   
   project!: Project;
+  offcanvasProjectIndo!: string;
 
   constructor() {}
 

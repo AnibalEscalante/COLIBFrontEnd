@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProjectsPublishedComponent } from './views/projects-published/projects-published.component';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectInfoComponent } from './components/project-info/project-info.component';
+import { ProjectInfoScreenComponent } from './views/project-info-screen/project-info-screen.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProjectInfoComponent } from './components/project-info/project-info.com
     HomeScreenComponent,
     ProjectsPublishedComponent,
     ProjectComponent,
-    ProjectInfoComponent
+    ProjectInfoComponent,
+    ProjectInfoScreenComponent
   ],
   imports: [
     CommonModule,

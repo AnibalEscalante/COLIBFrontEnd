@@ -7,7 +7,7 @@
                     <input type="text" class="form-control" placeholder="Buscar proyectos">
                 </div>
                 <div class="col-12 col-lg-6 mt-2 d-flex align-items-center justify-content-end">
-                    <button type="button" class="btn btn-primary btn-sm" href="#" [routerLink]="['/visitor/login']">Publicar proyecto</button>
+                    <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/visitor/login']">Publicar proyecto</button>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
                     <input type="text" class="form-control" placeholder="Buscar proyectos">
                 </div>
                 <div class="col-12 col-lg-6 mt-3">
-                    <button type="button" class="btn btn-primary btn-sm" href="#" [routerLink]="['/visitor/login']">Publicar proyecto</button>
+                    <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/visitor/login']">Publicar proyecto</button>
                 </div>
             </div>
         </div>
@@ -31,8 +31,8 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-12 col-lg-6" [ngClass]="{'hola': info == 'hola', 'chao': info != 'hola'}"> -->
-            <div class="col-12 col-lg-6">
+            <!-- <div class="col-12 col-lg-6" [ngClass]="{'claseHola': project != '', 'claseChao': project == ''}"> -->
+            <div class="col-12 col-lg-6 d-none d-lg-block">
                 <app-project-info [projectInfo]="project"></app-project-info>
             </div>
         </div>
