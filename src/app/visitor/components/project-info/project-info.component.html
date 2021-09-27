@@ -6,7 +6,9 @@
                 <div class="col-12 col-lg-12">
                     <div class="nav nav-fill">
                         <div *ngFor="let colaborator of projectInfo.collaborators">
-                            <a class="nav-link p-0 me-3" href="#">{{colaborator.name}} {{colaborator.lastName}}</a>
+                            <a class="nav-link p-0 me-3 mb-1" href="#">
+                                <i class="fas fa-user"></i> {{colaborator.name}} {{colaborator.lastName}}
+                            </a>
                         </div>
                     </div>
                 </div>
