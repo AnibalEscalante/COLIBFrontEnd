@@ -33,6 +33,8 @@ import { ProjectInfoComponent } from './components/project-info/project-info.com
 import { RequestsComponent } from './components/requests/requests.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { MessageComponent } from './components/message/message.component';
+import { MyProjectsComponent } from './components/my-projects/my-projects.component';
+import { MyProjectsSavedComponent } from './components/my-projects-saved/my-projects-saved.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { MessageComponent } from './components/message/message.component';
     RequestsComponent,
     ProjectInfoComponent,
     ContactComponent,
-    MessageComponent
+    MessageComponent,
+    MyProjectsComponent,
+    MyProjectsSavedComponent,
   ],
   imports: [
     CommonModule,

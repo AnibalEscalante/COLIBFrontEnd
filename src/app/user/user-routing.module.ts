@@ -31,7 +31,7 @@ const routes: Routes = [
         component: MyProjectsScreenComponent
       },
       {
-        path: 'projectinfo',
+        path: 'projectinfo/:id',
         component: ProjectInfoScreenComponent
       },
       {
