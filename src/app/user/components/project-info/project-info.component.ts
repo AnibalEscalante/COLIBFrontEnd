@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Project } from 'src/app/core/models/project.model';
 import { EditDisciComponent } from '../dialogs/edit-disci/edit-disci.component';
-import { EditPersonalInfoComponent } from '../dialogs/edit-personal-info/edit-personal-info.component';
+import { EditProjectComponent } from '../dialogs/edit-project/edit-project.component';
 import { EditSkillsComponent } from '../dialogs/edit-skills/edit-skills.component';
 
 @Component({
@@ -37,7 +37,7 @@ export class ProjectInfoComponent {
   //Dialogs//
   openDialog() {
     
-    let dialogRef = this.dialog.open(EditPersonalInfoComponent, {
+    let dialogRef = this.dialog.open(EditProjectComponent, {
       height: '630px',
       width: '1000px',
     });

@@ -20,26 +20,11 @@
             <div class="col-12 col-lg-9 my-3">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h1 class="project-published">Proyectos publicados</h1>
+                        <h1 class="project-published">Proyectos guardados</h1>
                     </div>
                     <div class="card-body card-info">
-                        <div class="col-12 col-lg-9 my-2 justify-content-center">
-                            <app-project></app-project>
-                        </div>
-                    </div>
-                    <div class="card-body card-info">
-                        <div class="col-12 col-lg-9 my-2 justify-content-center">
-                            <app-project></app-project>
-                        </div>
-                    </div>
-                    <div class="card-body card-info">
-                        <div class="col-12 col-lg-9 my-2 justify-content-center">
-                            <app-project></app-project>
-                        </div>
-                    </div>
-                    <div class="card-body card-info">
-                        <div class="col-12 col-lg-9 my-2 justify-content-center">
-                            <app-project></app-project>
+                        <div class="col-12 col-lg-9 my-2 justify-content-center" *ngFor="let project of projects">
+                            <app-my-projects [projects]="project"></app-my-projects>
                         </div>
                     </div>
                 </div>
