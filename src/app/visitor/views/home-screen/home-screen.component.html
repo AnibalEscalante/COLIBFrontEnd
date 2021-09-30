@@ -1,40 +1,36 @@
-<body class="body">
-    <app-navbar></app-navbar>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-lg-6 mt-4">
-                <div class="col text-center">
-                    <h1 class=" fs-1 fw-bold lh-base mt-4">
-                        Unete y publica tus ideas <br> para que otros colaboren <br> contigo <br>
-                    </h1>
-                    <button class="btn btn-outline-success btn-lg" type="button" [routerLink]="['/visitor/register']">¡Empieza ya!</button>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6 mt-4">
-                <img src="/assets/img/colaboration.png" class="img-fluid">
-            </div>
+<app-navbar>
+</app-navbar>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-5 mt-4">
+            <h1 class=" fs-1 fw-bold lh-base mt-4">
+                Unete y publica tus ideas <br> para que otros colaboren <br> contigo <br>
+            </h1>
+            <button class="btn btn-outline-success btn-lg" type="button" [routerLink]="['/visitor/register']">¡Empieza ya!</button>
         </div>
-        <div class="row">
-            <div class="col 12- col-lg-6 mt-4">
-                <div class="col text-center">
-                    <h1 class="fs-1 fw-bold lh-base mt-4">
-                        Visita los proyectos publicados <br>
-                    </h1>
-                    <h1 class="lh-base mt-4">
-                        Seleccione las disciplinas que te interesan <br>
-                    </h1>
-                    <div class="col">
-                        <button type="button" class="btn btn-outline-success me-2 my-2">Matematicas</button>
-                        <button type="button" class="btn btn-outline-success me-2 my-2">Biologia</button>
-                        <button type="button" class="btn btn-outline-success me-2 my-2">Ingenieria</button>
-                        <button type="button" class="btn btn-outline-success me-2 my-2">Medicina</button>
-                        <button type="button" class="btn btn-outline-success me-2 my-2">Psicologia</button>
-                        <button type="button" class="btn btn-outline-success me-2 my-2">Ecologia</button>
-                        <button type="button" class="btn btn-outline-success me-2 my-2">Ciencias en computacion</button>
-                        <button type="button" class="btn btn-outline-success me-2 my-2">Primary</button>
-                    </div>
-                </div>
-            </div>
+        <div class="col-12 col-lg-5 mt-4">
+            <img src="/assets/img/colaboration.png" class="img-fluid">
         </div>
     </div>
-</body>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-5 mt-4 mb-2">
+            <h1 class="fs-1 fw-bold lh-base mt-4">
+                Visita los proyectos publicados <br>
+            </h1>
+            <h1 class="lh-base mt-4">
+                Seleccione las disciplinas que te interesan <br>
+            </h1>
+            <div class="col">
+                <button type="button" class="btn btn-outline-success me-2 my-1">Matematicas</button>
+                <button type="button" class="btn btn-outline-success me-2 my-1">Biologia</button>
+                <button type="button" class="btn btn-outline-success me-2 my-1">Ingenieria</button>
+                <button type="button" class="btn btn-outline-success me-2 my-1">Medicina</button>
+                <button type="button" class="btn btn-outline-success me-2 my-1">Psicologia</button>
+                <button type="button" class="btn btn-outline-success me-2 my-1">Ecologia</button>
+                <button type="button" class="btn btn-outline-success me-2 my-1">Ciencias en computacion</button>
+            </div>
+        </div>
+        <div class="col-0 col-lg-5"></div>
+    </div>
+</div>
+<app-footer></app-footer>
