@@ -18,13 +18,13 @@
                 </div>
             </div>
             <div class="col-12 col-lg-9 my-3">
-                <div class="card">
+                <div class="card all-proyects">
                     <div class="card-header text-center">
-                        <h1 class="project-published">Proyectos guardados</h1>
+                        <h2 class="project-published">Proyectos guardados</h2>
                     </div>
                     <div class="card-body card-info">
                         <div class="col-12 col-lg-9 my-2 justify-content-center" *ngFor="let project of projects">
-                            <app-my-projects [projects]="project"></app-my-projects>
+                            <app-my-projects-saved [projects]="project"></app-my-projects-saved>
                         </div>
                     </div>
                 </div>
