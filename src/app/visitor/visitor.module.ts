@@ -20,6 +20,7 @@ import { ProjectsPublishedComponent } from './views/projects-published/projects-
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectInfoComponent } from './components/project-info/project-info.component';
 import { ProjectInfoScreenComponent } from './views/project-info-screen/project-info-screen.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProjectInfoScreenComponent } from './views/project-info-screen/project-
     ProjectsPublishedComponent,
     ProjectComponent,
     ProjectInfoComponent,
-    ProjectInfoScreenComponent
+    ProjectInfoScreenComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
