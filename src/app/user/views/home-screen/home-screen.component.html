@@ -6,7 +6,7 @@
                     <input type="text" class="form-control" placeholder="Buscar proyectos">
                 </div>
                 <div class="col-12 col-lg-6 mt-2 d-flex align-items-center justify-content-end">
-                    <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/visitor/login']">Publicar proyecto</button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="openCreateProject()">Publicar proyecto</button>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
                     <input type="text" class="form-control" placeholder="Buscar proyectos">
                 </div>
                 <div class="col-12 col-lg-6 mt-3">
-                    <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/visitor/login']">Publicar proyecto</button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="openCreateProject()">Publicar proyecto</button>
                 </div>
             </div>
         </div>
