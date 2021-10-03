@@ -1,21 +1,8 @@
 <div class="container-fluid">
     <div class="container">
         <div class="row">
-            <div class="cart-content col-12 col-lg-3 my-3">
-                <div class="card card-info-user">
-                    <div class="card-header text-center">
-                        <i class="fas fa-user-circle mt-2"></i>
-                        <h2 class="name-profile my-3">"Nombre del usuario"</h2>
-                    </div>
-                    <div class="card-body text-center">
-                        <div class="list-group mb-5">
-                            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/userinfo']">Información general</a>
-                            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/myprojects']" >Proyectos publicados</a>
-                            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/savedprojects']" >Proyectos guardados</a>
-                            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/requests']">Solicitudes de colaboración</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-12 col-lg-3 my-3">
+                <app-menu></app-menu>
             </div>
             <div class="col-12 col-lg-9 my-3">
                 <div class="card all-proyects">
