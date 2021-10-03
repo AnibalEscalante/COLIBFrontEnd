@@ -44,6 +44,32 @@ export class HomeScreenComponent implements OnInit {
           name: 'Virología'
         },
       ],
+      skills: [
+        {
+          _id: '1',
+          name: 'C#'
+        },
+        {
+          _id: '2',
+          name: 'Java'
+        },
+        {
+          _id: '3',
+          name: 'Phyton'
+        },
+        {
+          _id: '4',
+          name: 'Virología animal'
+        },
+        {
+          _id: '5',
+          name: 'Virología epidemica'
+        },
+        {
+          _id: '6',
+          name: 'Virología marina'
+        }
+      ],
       finishedDate: '26 de Septiembre, 2021',
       state: 'activo'
     },
@@ -77,6 +103,32 @@ export class HomeScreenComponent implements OnInit {
           _id: '2',
           name: 'Virología'
         },
+      ],
+      skills: [
+        {
+          _id: '1',
+          name: 'C#'
+        },
+        {
+          _id: '2',
+          name: 'Java'
+        },
+        {
+          _id: '3',
+          name: 'Phyton'
+        },
+        {
+          _id: '4',
+          name: 'Virología animal'
+        },
+        {
+          _id: '5',
+          name: 'Virología epidemica'
+        },
+        {
+          _id: '6',
+          name: 'Virología marina'
+        }
       ],
       finishedDate: '26 de Septiembre, 2021',
       state: 'activo'
@@ -112,6 +164,32 @@ export class HomeScreenComponent implements OnInit {
           _id: '2',
           name: 'Virología'
         },
+      ],
+      skills: [
+        {
+          _id: '1',
+          name: 'C#'
+        },
+        {
+          _id: '2',
+          name: 'Java'
+        },
+        {
+          _id: '3',
+          name: 'Phyton'
+        },
+        {
+          _id: '4',
+          name: 'Virología animal'
+        },
+        {
+          _id: '5',
+          name: 'Virología epidemica'
+        },
+        {
+          _id: '6',
+          name: 'Virología marina'
+        }
       ],
       finishedDate: '26 de Septiembre, 2021',
       state: 'activo'

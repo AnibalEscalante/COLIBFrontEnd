@@ -193,6 +193,7 @@ export class ProjectsPublishedComponent implements OnInit {
   
   project!: Project;
   offcanvasProjectIndo!: string;
+  public isshowinfo!: boolean;
 
   constructor() {}
 
@@ -202,6 +203,10 @@ export class ProjectsPublishedComponent implements OnInit {
 
   getProject(event: any) {
     this.project = event;
+  }
+
+  recibirIsShowInfo(event: any){
+    this.isshowinfo = event
   }
 
 }

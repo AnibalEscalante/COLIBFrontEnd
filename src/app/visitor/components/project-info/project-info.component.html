@@ -1,4 +1,4 @@
-<div class="card card-project-info">
+<div class="card card-project-info" *ngIf="showHideComponent">
     <div class="card-body">
         <div class="content-items">
             <h1>{{projectInfo.title}}</h1>
@@ -49,4 +49,7 @@
             </div>
         </div>
     </div>
+</div>
+<div class="no-info" *ngIf="!showHideComponent">
+    <img src="/assets/img/icono coliv.png">
 </div>
