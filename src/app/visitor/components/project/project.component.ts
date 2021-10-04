@@ -13,13 +13,15 @@ export class ProjectComponent implements OnInit {
 
   @Output() readMoreEvent = new EventEmitter<any>();
 
-  @Output() show= new EventEmitter<boolean>();
+  @Output() show = new EventEmitter<boolean>();
   
   public showinfo: boolean = false;
+  public projectId: any;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+    this.projectId = 'projecto' + this.project._id;
   }
   
   showComponent(){
@@ -29,6 +31,10 @@ export class ProjectComponent implements OnInit {
 
   sendProjectInfo() {
     this.readMoreEvent.emit(this.project);
+  }
+
+  showInfo() {
+    console.log(this.project);
   }
 
 }

@@ -34,3 +34,43 @@
 .nav-link {
   color: #32CD32 !important;
 }
+/*--------- offcanvas start ----------*/
+.offcanvas-start {
+  width: max-content;
+}
+.card-subtitle-info {
+  padding: 15px;
+  border-top-style: solid;
+  padding-top: 1;
+  border-bottom-style: solid;
+  padding-bottom: 1;
+  border-width: 1px;
+}
+.tag-title {
+  font-size: medium;
+  margin-bottom: 5px;
+}
+.tag {
+  color: #6c757d;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 25px;
+  border-color: #6c757d;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.off-canvas-nav-link {
+  padding: 0px;
+  text-align: left;
+}
+.card-subtitle-info {
+  padding: 15px;
+  border-top-style: solid;
+  padding-top: 1;
+  border-bottom-style: solid;
+  padding-bottom: 1;
+  border-width: 1px;
+}
+/*---------- offcanvas end -----------*/
