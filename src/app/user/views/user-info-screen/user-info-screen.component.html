@@ -15,9 +15,9 @@
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-10">
-                                            <h5 class="personal-info mt-3 ms-4">
+                                            <p class="personal-info mt-3 ms-4">
                                                 Información personal
-                                            </h5>
+                                            </p>
                                         </div>
                                         <div class="col-2 d-flex align-items-center justify-content-end">
                                             <i class="fas fa-edit" type="button" (click)="editPersonalInfo()"></i>
@@ -25,17 +25,69 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <p class="type-item mx-4">Nombre del usuario</p>
-                                    <p class="info-item ms-4">Roberto Vasquez</p>
-                                    <p class="type-item mx-4">Correo electrónico</p>
-                                    <p class="info-item ms-4">roberto.v@gmail.com</p>
-                                    <p class="type-item mx-4">Número de móvil</p>
-                                    <p class="info-item ms-4">9 9564 3421</p>
+                                    <div class="card item">
+                                        <p class="type-item mx-4">Nombre del usuario</p>
+                                        <p class="info-item ms-4">Roberto Vasquez</p>
+                                        <p class="type-item mx-4">Correo electrónico</p>
+                                        <p class="info-item ms-4">roberto.v@gmail.com</p>
+                                        <p class="type-item mx-4">Número de móvil</p>
+                                        <p class="info-item ms-4">9 9564 3421</p>
+                                    </div>
+                                    <div class="card item mt-3">
+                                        <p class="type-item mx-4">Contraseña</p>
+                                        <p class="ms-4">Para mantener tu cuenta segura, no le des la contraseña a nadie.</p>
+                                        <div class="col change-pass">
+                                            <div class="btn btn-primary" (click)="editPassword()">
+                                                Cambiar contraseña
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col change-pass">
-                                <div class="btn btn-primary" (click)="editPassword()">
-                                    Cambiar contraseña
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="card disciplines my-2">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <p class="tag-title">Disciplinas</p>
+                                                </div>
+                                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                                    <i class="fas fa-edit" type="button" (click)="openDialogEditDisci()"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <label>
+                                                <p class="tag me-2 mb-2">discipline 1</p>
+                                                <p class="tag me-2 mb-2">discipline 1</p>
+                                                <p class="tag me-2 mb-2">discipline 1</p>
+                                                <p class="tag me-2 mb-2">discipline 1</p>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="card skills my-2">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <p class="tag-title">Habilidades</p>
+                                                </div>
+                                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                                    <i class="fas fa-edit" type="button" (click)="openDialogEditSkills()"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <label>
+                                                <p class="tag me-2 mb-2">skill 1</p>
+                                                <p class="tag me-2 mb-2">skill 1</p>
+                                                <p class="tag me-2 mb-2">skill 1</p>
+                                                <p class="tag me-2 mb-2">skill 1</p>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
