@@ -9,18 +9,19 @@ import { Project } from 'src/app/core/models/project.model';
 export class ProjectComponent implements OnInit {
   
   @Input()
-  public projects!: Project;
+  public project!: Project;
   
   @Output() projectList= new EventEmitter<Project>();
 
   @Output() show= new EventEmitter<boolean>();
   
   public showinfo: boolean = false;
+  public projectId: any;
 
   constructor() { }
 
   ngOnInit(): void {
-
+    this.projectId = 'projecto' + this.project._id;
   }
   
   showComponent(){
@@ -29,6 +30,6 @@ export class ProjectComponent implements OnInit {
   }
   
   mandarInfo() {
-    this.projectList.emit(this.projects);
+    this.projectList.emit(this.project);
   } 
 }
