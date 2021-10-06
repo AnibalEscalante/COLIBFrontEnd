@@ -9,18 +9,126 @@
             </li>
         </ul>
         <ul class="nav">
-            <li class="nav-item me-3 dropdown">
-                <button type="button" class="notifications" id="menuNotifications" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-bell"></i>
-                    <span class="badge rounded-pill bg-danger">1</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuNotifications">
-                    <li><a class="dropdown-item" href="#">notificación 1</a></li>
-                    <li><a class="dropdown-item" href="#">notificación 2</a></li>
-                    <li><a class="dropdown-item" href="#">notificación 3</a></li>
-                </ul>
-            </li>
-            <li class="nav-item me-3 dropdown">
+            <div class="d-none d-sm-block">
+                <li class="nav-item me-3">
+                    <button type="button" class="notifications" id="menuNotifications" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill bg-danger">1</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-notificactions dropdown-menu-end" aria-labelledby="menuNotifications">
+                        <div class="col notifications-drop">
+                            <h4 class="notifications-title">Notificaciones</h4>
+                        </div>
+                        <mat-tab-group>
+                            <mat-tab label="Solicitudes de colaboración">
+                                <div class="col item-notification">
+                                    <div class="col d-flex">
+                                        <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
+                                        <i class="fas fa-times ps-2" type="button"></i>
+                                    </div>
+                                    <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                </div>
+                                <div class="col item-notification">
+                                    <div class="col d-flex">
+                                        <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
+                                        <i class="fas fa-times ps-2" type="button"></i>
+                                    </div>
+                                    <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                </div>
+                                <div class="col item-notification">
+                                    <div class="col d-flex">
+                                        <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
+                                        <i class="fas fa-times ps-2" type="button"></i>
+                                    </div>
+                                    <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                </div>
+                            </mat-tab>
+                            <mat-tab label="Resultado de tus solicitudes">
+                                <div class="col item-notification d-flex">
+                                    <p class="mb-0">"Nombre del usuario" ha "estado de la solicitud" tu solicitud en el proyecto “Nombre del proyecto”.</p>
+                                    <i class="fas fa-times ps-2" type="button"></i>
+                                </div>
+                                <div class="col item-notification d-flex">
+                                    <p class="mb-0">"Nombre del usuario" ha "estado de la solicitud" tu solicitud en el proyecto “Nombre del proyecto”.</p>
+                                    <i class="fas fa-times ps-2" type="button"></i>
+                                </div>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                </li>
+            </div>
+            <!-- Responsive start -->
+            <div class="d-block d-sm-none">
+                <li class="nav-item me-3">
+                    <button type="button" class="notifications" id="menuNotifications" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill bg-danger">1</span>
+                    </button>
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
+                        <div class="offcanvas-header">
+                            <h4 class="offcanvas-title" id="offcanvasNotificationsLabel">Notificaciones</h4>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div class="accordion" id="accordionNotifications">
+                                <div class="accordion-item">
+                                    <h5 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            Solicitudes de colaboración
+                                        </button>
+                                    </h5>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionNotifications">
+                                        <div class="accordion-body">
+                                            <div class="col item-notification">
+                                                <div class="col d-flex">
+                                                    <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
+                                                    <i class="fas fa-times ps-2" type="button"></i>
+                                                </div>
+                                                <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                            </div>
+                                            <div class="col item-notification">
+                                                <div class="col d-flex">
+                                                    <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
+                                                    <i class="fas fa-times ps-2" type="button"></i>
+                                                </div>
+                                                <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                            </div>
+                                            <div class="col item-notification">
+                                                <div class="col d-flex">
+                                                    <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
+                                                    <i class="fas fa-times ps-2" type="button"></i>
+                                                </div>
+                                                <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Resultado de tus solicitudes
+                                        </button>
+                                    </h5>
+                                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionNotifications">
+                                        <div class="accordion-body">
+                                            <div class="col item-notification d-flex">
+                                                <p class="mb-0">"Nombre del usuario" ha "estado de la solicitud" tu solicitud en el proyecto “Nombre del proyecto”.</p>
+                                                <i class="fas fa-times ps-2" type="button"></i>
+                                            </div>
+                                            <div class="col item-notification d-flex">
+                                                <p class="mb-0">"Nombre del usuario" ha "estado de la solicitud" tu solicitud en el proyecto “Nombre del proyecto”.</p>
+                                                <i class="fas fa-times ps-2" type="button"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </div>
+            <!-- Responsive end -->
+            <li class="nav-item me-3">
                 <button type="button" class="messages">
                     <i class="fas fa-comments" [routerLink]="['/user/contacts']"></i>
                     <span class="badge rounded-pill bg-danger">1</span>
