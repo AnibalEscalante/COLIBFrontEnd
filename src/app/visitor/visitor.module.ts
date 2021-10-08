@@ -19,7 +19,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProjectsPublishedComponent } from './views/projects-published/projects-published.component';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectInfoComponent } from './components/project-info/project-info.component';
-import { ProjectInfoScreenComponent } from './views/project-info-screen/project-info-screen.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { FooterComponent } from './components/footer/footer.component';
     ProjectsPublishedComponent,
     ProjectComponent,
     ProjectInfoComponent,
-    ProjectInfoScreenComponent,
     FooterComponent
   ],
   imports: [
