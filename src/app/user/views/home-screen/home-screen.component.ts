@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CreateProjectComponent } from '../../components/dialogs/create-project/create-project.component';
 import {MatDialog} from '@angular/material/dialog';
 import { Project } from 'src/app/core/models/project.model';
+/* const css = require('./home-screen.component.css')
+const styles = require('./home-screen.component.css') */
 
 @Component({
   selector: 'app-home-screen',
@@ -216,9 +218,8 @@ export class HomeScreenComponent implements OnInit {
   openCreateProject(){
 
     let dialogRef = this.dialog.open(CreateProjectComponent, {
-      maxWidth: '80%',
-      width:'50%',
-      panelClass: 'full-with-dialog',
+      width:'800px',
+      height: '850px',
     });
   }
 }
