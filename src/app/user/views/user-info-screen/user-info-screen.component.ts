@@ -23,29 +23,29 @@ export class UserInfoScreenComponent implements OnInit {
 
   editPersonalInfo() {
     let dialogRef = this.contactsDialog.open(EditPersonalInfoComponent, {
-      height: '500px',
       width: '500px',
+      height: 'auto'
     });
   }
 
   editPassword() {
     let dialogRef = this.contactsDialog.open(EditPasswordComponent, {
-      height: '410px',
       width: '400px',
+      height: 'auto',
     });
   }
 
   openDialogEditDisci() {
     let dialogRef = this.contactsDialog.open(EditDisciComponent, {
-      height: '500px',
-      width: '800px',
+      width: '600px',
+      height: 'auto'
     });
   }
 
   openDialogEditSkills() {
     let dialogRef = this.contactsDialog.open(EditSkillsComponent, {
-      height: '500px',
-      width: '800px',
+      width: '600px',
+      height: 'auto'
     });
   }
 }
