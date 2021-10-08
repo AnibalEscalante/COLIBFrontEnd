@@ -3,6 +3,9 @@
   width: max-content;
   margin-top: 50px;
 }
+body {
+  background-color: white;
+}
 .container-fluid {
   background-color: white;
 }
@@ -20,16 +23,14 @@ img {
 .btn-outline-success {
   color: #32CD32;
   border-color: #32CD32;
+  border-radius: 20px;
 }
 .btn-outline-success:hover {
   color: white;
   background-color: #32CD32;
 }
-@media (max-width: 991px) {
-  img {
-    display: none;
-  }
-}
-.btn-outline-success {
-  border-radius: 20px;
+.btn-primary {
+  color: white;
+  background-color: #32CD32;
+  border-color: #32CD32;
 }

@@ -1,46 +1,84 @@
-.card {
-  background-color: #ffffff;
-  height: 100%;
+.card-project {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-.container-fluid {
-  background-color: #E9E9E9;
-}
-.fa-user-circle {
-  font-size: 150px;
-  color: #c4c4c4;
-}
-.card-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.project-published {
-  margin: 0px;
-}
-.card-title {
-  margin: 0px;
-}
-.card-content {
+.card-head {
   border-bottom-style: solid;
   padding-bottom: 1;
   border-width: 1px ;
+  height: max-content;
 }
-.nav-link {
-  padding: 0px;
-  text-align: left;
+.card-subtitle {
+  height: 100px;
+  word-wrap: break-word;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-top: 16px;
+}
+.btn-read-more {
+  float: right;
 }
 .nav-pills {
   border-bottom-style: solid;
   padding-bottom: 1;
   border-width: 1px ;
 }
-.published-item {
-  text-align: right;
-}
-.cart-content {
-  height: max-content;
-}
 .circle-color {
   color: #379831;
 }
+.fa-user {
+  font-size: 20px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3.5px;
+  padding-bottom: 3.5px;
+}
+.nav-link {
+  color: #32CD32 !important;
+}
+.card-title {
+  margin: 0px;
+}
+/*--------- offcanvas start ----------*/
+.offcanvas-start {
+  width: max-content;
+}
+.card-subtitle-info {
+  padding: 15px;
+  border-top-style: solid;
+  padding-top: 1;
+  border-bottom-style: solid;
+  padding-bottom: 1;
+  border-width: 1px;
+}
+.tag-title {
+  font-size: medium;
+  margin-bottom: 5px;
+}
+.tag {
+  color: #6c757d;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 25px;
+  border-color: #6c757d;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.off-canvas-nav-link {
+  padding: 0px;
+  text-align: left;
+}
+.card-subtitle-info {
+  padding: 15px;
+  border-top-style: solid;
+  padding-top: 1;
+  border-bottom-style: solid;
+  padding-bottom: 1;
+  border-width: 1px;
+}
+/*---------- offcanvas end -----------*/
