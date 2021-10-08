@@ -218,8 +218,8 @@ export class HomeScreenComponent implements OnInit {
   openCreateProject(){
 
     let dialogRef = this.dialog.open(CreateProjectComponent, {
-      width:'800px',
-      height: '850px',
+      width:'900px',
+      height: 'auto',
     });
   }
 }

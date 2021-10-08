@@ -140,23 +140,23 @@ export class ProjectInfoScreenComponent {
   openDialog() {
     
     let dialogRef = this.dialog.open(EditProjectComponent, {
-      height: '630px',
-      width: '1000px',
+      width: '900px',
+      height: 'auto'
     });
     console.log(this.id)
   }
 
   openDialogEditDisci() {
     let dialogRef = this.dialog.open(EditDisciComponent, {
-      height: '500px',
-      width: '800px',
+      width: '900px',
+      height: 'auto',
     });
   }
 
   openDialogEditSkills() {
     let dialogRef = this.dialog.open(EditSkillsComponent, {
-      height: '500px',
-      width: '800px',
+      width: '900px',
+      height: 'auto'
     });
   }
 
