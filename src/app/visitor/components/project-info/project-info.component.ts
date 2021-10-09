@@ -15,6 +15,7 @@ export class ProjectInfoComponent implements OnInit {
   constructor() { }
 
   isShown: boolean = true;
+  public colorState: string = '';
 
   ngOnInit(): void {
     this.isShown = this.showHideComponent;
@@ -22,6 +23,17 @@ export class ProjectInfoComponent implements OnInit {
 
   toggleShow() {
     this.isShown = ! this.showHideComponent;
+  }
+
+  showState(): string {
+    if (this.projectInfo.state === 'Abierto') {
+      this.colorState = '#198754';
+    }
+    if (this.projectInfo.state === 'Cerrado') {
+      this.colorState = '#dc3545';
+    }
+
+    return this.colorState;
   }
 
 }

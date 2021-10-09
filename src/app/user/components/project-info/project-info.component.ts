@@ -12,13 +12,14 @@ import { EditSkillsComponent } from '../dialogs/edit-skills/edit-skills.componen
 })
 export class ProjectInfoComponent {
   
-  @Input() Projectinfo!: Project;
+  @Input() projectInfo!: Project;
 
   @Input() showHideComponent!: boolean;
   
   constructor(public dialog: MatDialog) {}
 
-  isShown: boolean = true;
+  public isShown: boolean = true;
+  public colorState: string = '';
   
   ngOnInit(): void {
     this.isShown = this.showHideComponent;
@@ -29,8 +30,19 @@ export class ProjectInfoComponent {
   }
   
   ngDoCheck() {
-    console.log(this.Projectinfo);
+    console.log(this.projectInfo);
     console.log(this.showHideComponent)
+  }
+
+  showState(): string {
+    if (this.projectInfo.state === 'Abierto') {
+      this.colorState = '#198754';
+    }
+    if (this.projectInfo.state === 'Cerrado') {
+      this.colorState = '#dc3545';
+    }
+
+    return this.colorState;
   }
 
 
