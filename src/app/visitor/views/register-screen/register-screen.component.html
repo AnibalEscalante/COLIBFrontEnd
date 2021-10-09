@@ -5,7 +5,7 @@
                 <mat-step [stepControl]="firstFormGroup" optional>
                     <div class="row justify-content-center mt-3">
                         <div class="col-auto">
-                            <h1 class="title text-center mb-4" typfe="button" [routerLink]="['/visitor/home']">Colib</h1>
+                            <h1 class="title text-center mb-4" type="button" [routerLink]="['/visitor/home']">Colib</h1>
                         </div>
                     </div>
                     <div class="row justify-content-center">
@@ -93,8 +93,17 @@
                                             </mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
-                                    <div class="d-flex align-items-bot justify-content-end">
-                                        <button matStepperNext class="btn btn-primary">Siguiente</button>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="d-flex align-items-bot justify-content-start">
+                                                <button matStepperPrevious class="btn btn-secondary text-center">Volver</button>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="d-flex align-items-bot justify-content-end">
+                                                <button matStepperNext class="btn btn-primary">Siguiente</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -129,8 +138,17 @@
                                             </mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
-                                    <div class="d-flex align-items-bot justify-content-end">
-                                        <button matStepperNext class="btn btn-primary">Siguiente</button>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="d-flex align-items-bot justify-content-start">
+                                                <button matStepperPrevious class="btn btn-secondary text-center">Volver</button>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="d-flex align-items-bot justify-content-end">
+                                                <button matStepperNext class="btn btn-primary">Siguiente</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -234,8 +252,17 @@
                                     </mat-option>
                                 </mat-autocomplete>
                             </mat-form-field>
-                            <div class="d-flex align-items-bot justify-content-end">
-                                <button matStepperNext class="btn btn-primary">Siguiente</button>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex align-items-bot justify-content-start">
+                                        <button matStepperPrevious class="btn btn-secondary text-center">Volver</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex align-items-bot justify-content-end">
+                                        <button matStepperNext class="btn btn-primary">Siguiente</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <a matStepperNext class="link-secondary text-center mt-3" type="button">Omitir</a>
@@ -263,7 +290,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="d-flex align-items-bot justify-content-start">
-                                        <a matStepperNext class="link-secondary text-center mt-3" type="button">Omitir</a>
+                                        <button matStepperPrevious class="btn btn-secondary text-center">Volver</button>
                                     </div>
                                 </div>
                                 <div class="col">
