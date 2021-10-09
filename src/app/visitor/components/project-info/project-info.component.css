@@ -1,6 +1,14 @@
 .card-project-info {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+.fa-circle {
+  font-size: 20px;
+}
+.state {
+  margin-bottom: 0px;
+  padding-right: 5px;
+  font-size: 15px;
+}
 .nav-link {
   padding: 0px;
   text-align: left;

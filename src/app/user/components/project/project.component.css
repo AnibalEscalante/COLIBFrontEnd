@@ -2,9 +2,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 .card-head {
-  border-bottom-style: solid;
-  padding-bottom: 1;
-  border-width: 1px ;
   height: max-content;
 }
 .card-subtitle {
@@ -14,6 +11,9 @@
   text-overflow: ellipsis;
   overflow: hidden;
   margin-top: 16px;
+  border-top-style: solid;
+  padding-top: 1;
+  border-width: 1px ;
 }
 .btn-read-more {
   float: right;
@@ -23,7 +23,8 @@
   padding-bottom: 1;
   border-width: 1px ;
 }
-.circle-color {
+.fa-circle {
+  font-size: 20px;
   color: #379831;
 }
 .fa-user {
@@ -39,12 +40,20 @@
 .nav-link {
   color: #32CD32 !important;
 }
-.card-title {
-  margin: 0px;
-}
 /*--------- offcanvas start ----------*/
 .offcanvas-start {
   width: max-content;
+}
+.offcanvas-title {
+  white-space: initial;
+}
+.fa-circle {
+  font-size: 20px;
+}
+.state {
+  margin-bottom: 0px;
+  padding-right: 5px;
+  font-size: 15px;
 }
 .card-subtitle-info {
   padding: 15px;
@@ -80,5 +89,10 @@
   border-bottom-style: solid;
   padding-bottom: 1;
   border-width: 1px;
+}
+.published-item {
+  text-align: right;
+  text-align: left;
+  margin: 0px;
 }
 /*---------- offcanvas end -----------*/
