@@ -67,7 +67,7 @@ export class ProjectsPublishedComponent implements OnInit {
         }
       ],
       finishedDate: '26 de Septiembre, 2021',
-      state: 'open'
+      state: 'Cerrado'
     },
     {
       _id: '2',
@@ -127,7 +127,7 @@ export class ProjectsPublishedComponent implements OnInit {
         }
       ],
       finishedDate: "30 de Septiembre, 2021",
-      state: 'open'
+      state: 'Abierto'
     },
     {
       _id: '3',
@@ -187,7 +187,7 @@ export class ProjectsPublishedComponent implements OnInit {
         }
       ],
       finishedDate: "4 de Noviembre, 2021",
-      state: 'open'
+      state: 'Abierto'
     }
   ];
   

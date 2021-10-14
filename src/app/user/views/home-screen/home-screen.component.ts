@@ -73,7 +73,7 @@ export class HomeScreenComponent implements OnInit {
         }
       ],
       finishedDate: '26 de Septiembre, 2021',
-      state: 'activo'
+      state: 'Cerrado'
     },
     {
       _id:'2',
@@ -133,7 +133,7 @@ export class HomeScreenComponent implements OnInit {
         }
       ],
       finishedDate: '26 de Septiembre, 2021',
-      state: 'activo'
+      state: 'Abierto'
 
     },
     {
@@ -194,7 +194,7 @@ export class HomeScreenComponent implements OnInit {
         }
       ],
       finishedDate: '26 de Septiembre, 2021',
-      state: 'activo'
+      state: 'Abierto'
     }
   ]
   ngOnInit(): void {

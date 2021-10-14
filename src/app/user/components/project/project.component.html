@@ -3,14 +3,14 @@
         <div class="card-head">
             <div class="row">
                 <div class="col-11">
-                    <h1 class="card-title">{{project.title}}</h1>
+                    <h1 class="card-title mb-0">{{project.title}}</h1>
                 </div>
-                <div class="col-1 d-flex align-items-top justify-content-end">
-                    <i class="fas fa-circle circle-color"></i>
+                <div class="col-1 d-flex align-items-center justify-content-end">
+                    <i class="fas fa-circle" [ngStyle]="{'color': showState()}"></i>
                 </div>
             </div>
         </div>
-        <p class="card-subtitle mb-2">{{project.content}}</p>
+        <p class="card-subtitle my-2">{{project.content}}</p>
         <div class="nav nav-pills nav-fill">
             <div *ngFor="let colaborator of project.idColaborators">
                 <a class="nav-link p-0 me-3 mb-1" href="#">
@@ -43,7 +43,7 @@
                 <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
                         <i class="fa fa-bookmark"></i>
                     </button>
-                    <a type="button" class="btn btn-secondary btn-sm btn-read-more mt-2" data-bs-toggle="offcanvas" href="#{{projectId}}" aria-controls="offcanvasInfoProject">Leer mas</a>
+                <a type="button" class="btn btn-secondary btn-sm btn-read-more mt-2" data-bs-toggle="offcanvas" href="#{{projectId}}" aria-controls="offcanvasInfoProject">Leer mas</a>
             </div>
             <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
         </div>
@@ -55,10 +55,17 @@
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="{{projectId}}" aria-labelledby="offcanvasInfoProjectLabel">
     <div class="offcanvas-header">
-        <h1 class="offcanvas-title mb-0" id="offcanvasInfoProjectLabel">{{project.title}}</h1>
+        <h1 class="offcanvas-title text-break mb-0" id="offcanvasInfoProjectLabel">{{project.title}}</h1>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body pt-0">
+        <div class="row">
+            <div class="col mb-3 d-flex">
+                <p class="mb-0 pe-1">Estado:</p>
+                <h5 class="state" [ngStyle]="{'color': showState()}">{{project.state}}</h5>
+                <i class="fas fa-circle" [ngStyle]="{'color': showState()}"></i>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 col-lg-12">
                 <div class="nav nav-fill">
