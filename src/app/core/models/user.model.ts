@@ -1,12 +1,19 @@
+import { Discipline } from "./discipline.model";
+import { Project } from "./project.model";
+import { RequestC } from "./requestC.model";
+import { Skill } from "./skill.model";
+
 export interface User {
   _id?: string;
   name: string;
   lastName: string;
-  email?: string;
-  password?: string;
   movilPhone?: string;
-  _idDisciplines?: string[];
-  _idSkills?: string[];
-  updatedAt?: Date;
+  idDisciplines?: string[] | Discipline[];
+  idSkills?: Skill[];
+  idSavedProjects?: Project[] | string[];
+  idMyProjects?: Project[] | string[];
+  idRequestC?: RequestC[];
+  idRequestResults?: RequestC[];
+  updateAt?: Date;
   createdAt?: Date;
 }
