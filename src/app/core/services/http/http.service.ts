@@ -12,6 +12,7 @@ interface HttpOptions {
 })
 export class HttpService {
 
+  
   private httpOptions: HttpOptions;
   private baseUrl: string;
 
@@ -20,7 +21,7 @@ export class HttpService {
 
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        // 'Content-Type':  'application/json',
         'Access-Control-Allow-Origin': '*'
       })
     };
@@ -28,11 +29,11 @@ export class HttpService {
 
   public get<type>(path: string){
     return this.httpClient.get<type>(this.baseUrl + path, this.httpOptions)
-      .pipe( map((data: any) => {
+      .pipe( map((data: any) => {
         return data.message as type;
       }));
   }
-
+  
   public post<type>(path: string, body: any){
     return this.httpClient.post<type>(this.baseUrl + path, body, this.httpOptions)
       .pipe( map((data: any) => {
