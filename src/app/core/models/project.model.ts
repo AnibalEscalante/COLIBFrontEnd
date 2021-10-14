@@ -6,11 +6,11 @@ export interface Project {
   _id?: string;
   title: string;
   content: string;
-  finishedDate?: string;
-  collaborators: User[];
-  disciplines: Discipline[];
-  skills?: Skill[];
   state: string;
+  finishedDate?: Date | string;
+  idSkills: Skill[];
+  idDisciplines: Discipline[];
+  idColaborators: User[];
   updatedAt?: Date;
   createdAt?: Date;
 }

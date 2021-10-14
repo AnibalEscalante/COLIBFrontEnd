@@ -16,7 +16,7 @@
         </div>
         <p class="card-subtitle mb-2">{{projects.content}}</p>
         <div class="nav nav-pills nav-fill">
-            <div *ngFor="let colaborator of projects.collaborators">
+            <div *ngFor="let colaborator of projects.idColaborators">
                 <a class="nav-link p-0 me-3 mb-1" href="#">
                     <i class="fas fa-user"></i> {{colaborator.name}} {{colaborator.lastName}}
                 </a>
