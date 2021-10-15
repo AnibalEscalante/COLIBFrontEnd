@@ -1,14 +1,20 @@
-<div class="card card-info-user">
-    <div class="card-header text-center">
-        <i class="fas fa-user-circle mt-2"></i>
-        <h2 class="my-3">"Nombre del usuario"</h2>
-    </div>
-    <div class="card-body text-center">
-        <div class="list-group mb-5">
-            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/userinfo']">Información general</a>
-            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/myprojects']">Proyectos publicados</a>
-            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/savedprojects']">Proyectos guardados</a>
-            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/user/requests']">Solicitudes de colaboración</a>
+<div class="sideBar">
+    <div class="card card-info-user">
+        <div class="card-header pt-3 text-center">
+            <i type="button" class="fas fa-user mt-2"></i>
+            <h2 class="my-3">Roberto Vasquez</h2>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="list-group">
+                        <button type="button" class="list-group-item list-group-item-action" [routerLink]="['/user/userinfo']" [routerLinkActive]="['active']">Información general</button>
+                        <button type="button" class="list-group-item list-group-item-action" [routerLink]="['/user/myprojects']" [routerLinkActive]="['active']">Proyectos publicados</button>
+                        <button type="button" class="list-group-item list-group-item-action" [routerLink]="['/user/savedprojects']" [routerLinkActive]="['active']">Proyectos guardados</button>
+                        <button type="button" class="list-group-item list-group-item-action" [routerLink]="['/user/requests']" [routerLinkActive]="['active']">Solicitudes de colaboración</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

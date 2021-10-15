@@ -92,9 +92,17 @@ h2 {
 }
 .logOut {
   color: #32CD32;
-  border-top-style: solid;
-  border-top-color: #C4C4C4;
-  border-top-width: 1px;
+  /* border-top-style: solid;
+    border-top-color: #C4C4C4;
+    border-top-width: 1px; */
+}
+.itemProfile {
+  border-bottom-style: solid;
+  border-bottom-color: #C4C4C4;
+  border-bottom-width: 1px;
+}
+.dropdown-menu {
+  padding: 0px;
 }
 /*---------- off canvas start ---------*/
 .offcanvas-start {
