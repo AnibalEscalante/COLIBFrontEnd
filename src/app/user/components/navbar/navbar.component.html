@@ -139,11 +139,11 @@
                     <i class="fas fa-user"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end me-4" aria-labelledby="menuNotifications">
-                    <li><a class="dropdown-item my-2 itemProfile" href="#" [routerLink]="['/user/userinfo']">Información general</a></li>
-                    <li><a class="dropdown-item my-2 itemProfile" href="#" [routerLink]="['/user/myprojects']">Proyectos publicados</a></li>
-                    <li><a class="dropdown-item my-2 itemProfile" href="#" [routerLink]="['/user/savedprojects']">Proyectos guardados</a></li>
-                    <li><a class="dropdown-item my-2 itemProfile" href="#" [routerLink]="['/user/requests']">Solicitudes de colaboración</a></li>
-                    <li><a class="dropdown-item mt-2 logOut" href="#" [routerLink]="['/visitor/home']">Cerrar sesión</a></li>
+                    <li><a class="dropdown-item my-2 itemProfile" [routerLink]="['/user/userinfo']">Información general</a></li>
+                    <li><a class="dropdown-item my-2 itemProfile" [routerLink]="['/user/myprojects']">Proyectos publicados</a></li>
+                    <li><a class="dropdown-item my-2 itemProfile" [routerLink]="['/user/savedprojects']">Proyectos guardados</a></li>
+                    <li><a class="dropdown-item my-2 itemProfile" [routerLink]="['/user/requests']">Solicitudes de colaboración</a></li>
+                    <li><a class="dropdown-item mt-2 logOut" [routerLink]="['/visitor/home']">Cerrar sesión</a></li>
                 </ul>
             </li>
         </ul>
