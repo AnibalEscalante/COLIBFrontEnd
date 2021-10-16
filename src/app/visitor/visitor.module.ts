@@ -4,7 +4,6 @@ import { VisitorRoutingModule } from './visitor-routing.module';
 import { LoginScreenComponent } from './views/login-screen/login-screen.component';
 import { RegisterScreenComponent } from './views/register-screen/register-screen.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeScreenComponent } from './views/home-screen/home-screen.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
@@ -20,17 +19,20 @@ import { ProjectsPublishedComponent } from './views/projects-published/projects-
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectInfoComponent } from './components/project-info/project-info.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LandingScreenComponent } from './views/landing-screen/landing-screen.component';
+import { HomeScreenComponent } from './views/home-screen/home-screen.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     LoginScreenComponent,
     RegisterScreenComponent,
-    HomeScreenComponent,
+    LandingScreenComponent,
     ProjectsPublishedComponent,
     ProjectComponent,
     ProjectInfoComponent,
-    FooterComponent
+    FooterComponent,
+    HomeScreenComponent
   ],
   imports: [
     CommonModule,
