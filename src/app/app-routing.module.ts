@@ -19,8 +19,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'visitor/home'
-  } 
+    redirectTo: 'visitor/landing'
+  }  
 ];
 
 @NgModule({

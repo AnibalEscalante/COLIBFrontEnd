@@ -15,16 +15,16 @@ export class DisciplineService {
     private http: HttpClient
   ) { }
 
-  getallDiscipline(): Observable<Discipline[]> {
+ /*  getallDiscipline(): Observable<Discipline[]> {
     let disciplines: Discipline[] = [];
     const response = this.http.get<Discipline[]>(environment.baseUrl + '/Discipline/all').pipe(map((data: any) => data.message));
     response.subscribe(
       res => (disciplines = res)
     );
     return response;
-  }
+  } */
 
-  getDiscipline(id: string): Observable<Discipline> {
+ /*  getDiscipline(id: string): Observable<Discipline> {
     return this.http.get<Discipline>(environment.baseUrl + '/Discipline'+ id);
   }
 
@@ -35,7 +35,7 @@ export class DisciplineService {
   modifyDiscipline(discipline: Partial<Discipline>, id: string): Observable<Discipline> {
     return this.http.patch<Discipline>(environment.baseUrl + '/Discipline'+ id, discipline);
   }
-
+ */
  /*  deleteDiscipline(id: string): Observable<Discipline> {
     return this.http.delete<Discipline>(environment.baseUrl + '/Discipline'+ id);
   } */
