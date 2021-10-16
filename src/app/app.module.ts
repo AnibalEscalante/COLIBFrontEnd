@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth/auth.interceptor';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AuthInterceptor } from './core/interceptors/auth/auth.interceptor';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    CoreModule,
     ToastrModule.forRoot({
       closeButton: true,
       positionClass: 'toast-top-right',

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -15,15 +15,14 @@ export class ProjectService {
     private http: HttpClient
   ) { }
 
-  getAllProject(): Observable<Project[]> {
+ getAllProject(): Observable<Project[]> {
     let project: Project[] = [];
     const response = this.http.get<Project[]>(environment.baseUrl + '/project/all').pipe(map((data: any) => data.message));
     response.subscribe(
       res => (project = res)
     );
     return response;
-  } 
-
+  }  
 
   getProject(id: string): Observable<Project> {
     return this.http.get<Project>(environment.baseUrl + '/project/'+ id);
@@ -39,5 +38,5 @@ export class ProjectService {
 
   deleteProject(id: string): Observable<Project> {
     return this.http.delete<Project>(environment.baseUrl + '/project'+ id);
-  }
+  } 
 }

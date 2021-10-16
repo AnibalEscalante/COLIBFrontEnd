@@ -18,10 +18,9 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) {
     this.baseUrl = environment.baseUrl;
-
     this.httpOptions = {
       headers: new HttpHeaders({
-        // 'Content-Type':  'application/json',
+        'Content-Type':  'application/json',
         'Access-Control-Allow-Origin': '*'
       })
     };

@@ -1,54 +1,55 @@
-
-<div class="card card-project mb-3">
-    <div class="card-body">
-        <div class="card-head">
-            <div class="row">
-                <div class="col-10">
-                    <h1 class="card-title">{{projects.title}}</h1>
-                </div>
-                <div class="col-1 d-flex align-items-top justify-content-end">
-                    <i class="fas fa-circle circle-color"></i>
-                </div>
-                <div class="col-1 d-flex align-items-top justify-content-end">
-                    <i class="fas fa-trash-alt"></i>
+<div class="sideBar">
+    <div class="card card-project mb-3">
+        <div class="card-body">
+            <div class="card-head">
+                <div class="row">
+                    <div class="col-10">
+                        <h1 class="card-title">{{projects.title}}</h1>
+                    </div>
+                    <div class="col-1 d-flex align-items-top justify-content-end">
+                        <i class="fas fa-circle circle-color"></i>
+                    </div>
+                    <div class="col-1 d-flex align-items-top justify-content-end">
+                        <i class="fas fa-trash-alt"></i>
+                    </div>
                 </div>
             </div>
-        </div>
-        <p class="card-subtitle mb-2">{{projects.content}}</p>
-        <div class="nav nav-pills nav-fill">
-            <div *ngFor="let colaborator of projects.idColaborators">
-                <a class="nav-link p-0 me-3 mb-1" href="#">
-                    <i class="fas fa-user"></i> {{colaborator.name}} {{colaborator.lastName}}
-                </a>
+            <p class="card-subtitle mb-2">{{projects.content}}</p>
+            <div class="nav nav-pills nav-fill">
+                <div *ngFor="let colaborator of projects.idColaborators">
+                    <a class="nav-link p-0 me-3 mb-1" href="#">
+                        <i class="fas fa-user"></i> {{colaborator.name}} {{colaborator.lastName}}
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="row d-none d-lg-block">
-            <div class="col">
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
-                        Compartir
-                        <i class="fas fa-share"></i>
-                    </button>
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
-                        Guardar
-                        <i class="fa fa-bookmark"></i>
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" [routerLink]="['/user/projectinfo',projects._id]">Leer mas</button>
+            <div class="row d-none d-lg-block">
+                <div class="col">
+                    <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
+                            Compartir
+                            <i class="fas fa-share"></i>
+                        </button>
+                    <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
+                            Guardar
+                            <i class="fa fa-bookmark"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" [routerLink]="['/user/projectinfo',projects._id]">Leer mas</button>
+                    <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
+                </div>
+            </div>
+            <!-- Responsive Strat -->
+            <div class="row d-block d-lg-none">
+                <div class="col">
+                    <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
+                            <i class="fas fa-share"></i>
+                        </button>
+                    <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
+                            <i class="fa fa-bookmark"></i>
+                        </button>
+                    <button type="button" class="btn btn-secondary btn-sm btn-read-more mt-2">Leer mas</button>
+                </div>
                 <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
             </div>
+            <!-- Responsive end -->
         </div>
-        <!-- Responsive Strat -->
-        <div class="row d-block d-lg-none">
-            <div class="col">
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
-                        <i class="fas fa-share"></i>
-                    </button>
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
-                        <i class="fa fa-bookmark"></i>
-                    </button>
-                <button type="button" class="btn btn-secondary btn-sm btn-read-more mt-2">Leer mas</button>
-            </div>
-            <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
-        </div>
-        <!-- Responsive end -->
     </div>
 </div>
