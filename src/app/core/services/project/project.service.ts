@@ -29,14 +29,14 @@ export class ProjectService {
   }
 
   registNewProject(project: Partial<Project>): Observable<Project> {
-    return this.http.post<Project>(environment.baseUrl + '/project', project);
+    return this.http.post<Project>(environment.baseUrl + '/project/', project);
   }
 
   modifyProject(project: Partial<Project>, id: string): Observable<Project> {
-    return this.http.patch<Project>(environment.baseUrl + '/project'+ id, project);
+    return this.http.patch<Project>(environment.baseUrl + '/project/'+ id, project);
   }
 
   deleteProject(id: string): Observable<Project> {
-    return this.http.delete<Project>(environment.baseUrl + '/project'+ id);
+    return this.http.delete<Project>(environment.baseUrl + '/project/'+ id);
   } 
 }
