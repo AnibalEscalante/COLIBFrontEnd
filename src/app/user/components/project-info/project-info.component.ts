@@ -35,10 +35,10 @@ export class ProjectInfoComponent {
   }
 
   showState(): string {
-    if (this.projectInfo.state === 'Abierto') {
+    if (this.projectInfo.state === 'Open') {
       this.colorState = '#198754';
     }
-    if (this.projectInfo.state === 'Cerrado') {
+    if (this.projectInfo.state === 'Close') {
       this.colorState = '#dc3545';
     }
 
