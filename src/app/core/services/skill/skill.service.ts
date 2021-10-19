@@ -16,7 +16,7 @@ export class SkillService {
 
   getallSkill(): Observable<Skill[]> {
     let skills: Skill[] = [];
-    const response = this.http.get<Skill[]>(environment.baseUrl + '/Skill/all').pipe(map((data: any) => data.message));
+    const response = this.http.get<Skill[]>(environment.baseUrl + '/skill/all').pipe(map((data: any) => data.message));
     response.subscribe(
       res => (skills = res)
     );
@@ -24,14 +24,14 @@ export class SkillService {
   }
 
   getSkill(id: string): Observable<Skill> {
-    return this.http.get<Skill>(environment.baseUrl + '/Skill'+ id);
+    return this.http.get<Skill>(environment.baseUrl + '/skill'+ id);
   }
 
   registNewSkill(skill: Partial<Skill>): Observable<Skill> {
-    return this.http.post<Skill>(environment.baseUrl + '/Skill', skill);
+    return this.http.post<Skill>(environment.baseUrl + '/skill', skill);
   }
 
   modifySkill(skill: Partial<Skill>, id: string): Observable<Skill> {
-    return this.http.patch<Skill>(environment.baseUrl + '/Skill'+ id, skill);
+    return this.http.patch<Skill>(environment.baseUrl + '/skill'+ id, skill);
   }
 }

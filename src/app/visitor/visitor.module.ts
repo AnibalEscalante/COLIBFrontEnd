@@ -15,7 +15,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ProjectsPublishedComponent } from './views/projects-published/projects-published.component';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectInfoComponent } from './components/project-info/project-info.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -28,7 +27,6 @@ import { HomeScreenComponent } from './views/home-screen/home-screen.component';
     LoginScreenComponent,
     RegisterScreenComponent,
     LandingScreenComponent,
-    ProjectsPublishedComponent,
     ProjectComponent,
     ProjectInfoComponent,
     FooterComponent,

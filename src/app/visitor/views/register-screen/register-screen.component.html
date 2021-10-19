@@ -78,10 +78,10 @@
                             <div class="card secondcontrol">
                                 <H2 class=" mt-3 mb-0 mx-auto">Seleccione sus Disciplinas</H2>
                                 <div class="card-body">
-                                    <mat-form-field appearance="fill">
+                                    <mat-form-field appearance="outline">
                                         <mat-label>Favorite Fruits</mat-label>
                                         <mat-chip-list #chipList aria-label="Fruit selection">
-                                            <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="removeFruit(fruit)">
+                                            <mat-chip color="primary" *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="removeFruit(fruit)">
                                                 {{fruit}}
                                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                                             </mat-chip>
@@ -123,7 +123,7 @@
                             <div class="card secondcontrol">
                                 <H2 class=" mt-3 mb-0 mx-auto">Seleccione sus Habilidades</H2>
                                 <div class="card-body">
-                                    <mat-form-field appearance="fill">
+                                    <mat-form-field appearance="outline">
                                         <mat-label>Disciplinas</mat-label>
                                         <mat-chip-list #chipList aria-label="Fruit selection">
                                             <mat-chip *ngFor="let vegetable of vegetables" [selectable]="selectable" [removable]="removable" (removed)="removeVegetable(vegetable)">
@@ -170,7 +170,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12 col-lg-12 text-center">
-                                            <i class="far fa-file-image"></i>
+                                            <i class="far fa-file-image" type="button"></i>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -181,7 +181,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="d-flex align-items-bot justify-content-end">
-                                                <button matStepperNext class="btn btn-primary">Siguiente</button>
+                                                <button matStepperNext class="btn btn-primary">Finalizar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -331,11 +331,6 @@
                 <mat-step [stepControl]="fourthFormGroup" optional>
                     <ng-template matStepLabel>Seleccione una imagen</ng-template>
                     <div class="row justify-content-center mt-3">
-                        <div class="col-auto">
-                            <h1 class="title text-center mb-4" type="button" [routerLink]="['/visitor/home']">Colib</h1>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center">
                         <div class="col-12 col-md-9 col-lg-6">
                             <div class="row">
                                 <div class="col-12 col-lg-12 text-center">
@@ -350,7 +345,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="d-flex align-items-bot justify-content-end">
-                                        <button matStepperNext class="btn btn-primary">Siguiente</button>
+                                        <button matStepperNext class="btn btn-primary">Finalizar</button>
                                     </div>
                                 </div>
                             </div>

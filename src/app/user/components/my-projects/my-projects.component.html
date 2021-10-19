@@ -4,7 +4,7 @@
             <div class="card-head">
                 <div class="row">
                     <div class="col-10">
-                        <h1 class="card-title">{{projects.title}}</h1>
+                        <h1 class="card-title">{{project.title}}</h1>
                     </div>
                     <div class="col-1 d-flex align-items-top justify-content-end">
                         <i class="fas fa-circle circle-color"></i>
@@ -14,9 +14,9 @@
                     </div>
                 </div>
             </div>
-            <p class="card-subtitle mb-2">{{projects.content}}</p>
+            <p class="card-subtitle mb-2">{{project.content}}</p>
             <div class="nav nav-pills nav-fill">
-                <div *ngFor="let colaborator of projects.idColaborators">
+                <div *ngFor="let colaborator of project.idColaborators">
                     <a class="nav-link p-0 me-3 mb-1" href="#">
                         <i class="fas fa-user"></i> {{colaborator.name}} {{colaborator.lastName}}
                     </a>
@@ -32,7 +32,7 @@
                             Guardar
                             <i class="fa fa-bookmark"></i>
                         </button>
-                        <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" [routerLink]="['/user/projectinfo',projects._id]">Leer mas</button>
+                        <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2" [routerLink]="['/user/projectinfo',project._id]">Leer mas</button>
                     <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
                 </div>
             </div>

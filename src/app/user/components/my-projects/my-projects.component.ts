@@ -8,7 +8,7 @@ import { Project } from 'src/app/core/models/project.model';
 })
 export class MyProjectsComponent implements OnInit {
   @Input()
-  public projects!: Project;
+  public project!: Project;
 
   constructor() { }
 
