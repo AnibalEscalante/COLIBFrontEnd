@@ -19,7 +19,18 @@ export class MyProjectsScreenComponent implements OnInit {
   projects: Project[] = [];
 
 
-   
+ /*  window: any.onscroll = {myFunction()};
+
+  header = document.getElementById("myHeader");
+  sticky = this.header!.offsetTop;
+
+    myFunction() {
+    if (window.pageYOffset > this.sticky) {
+      this.header!.classList.add("sticky");
+    } else {
+      this.header!.classList.remove("sticky");
+    }
+  } */
 
   ngOnInit(): void {
   }
