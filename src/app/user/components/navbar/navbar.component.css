@@ -89,12 +89,22 @@ h2 {
   padding-bottom: 1;
   border-width: 1px ;
   border-color: #c4c4c4;
+  position: sticky;
+  top: 0;
 }
 .logOut {
   color: #32CD32;
-  border-top-style: solid;
-  border-top-color: #C4C4C4;
-  border-top-width: 1px;
+  /* border-top-style: solid;
+    border-top-color: #C4C4C4;
+    border-top-width: 1px; */
+}
+.itemProfile {
+  border-bottom-style: solid;
+  border-bottom-color: #C4C4C4;
+  border-bottom-width: 1px;
+}
+.dropdown-menu {
+  padding: 0px;
 }
 /*---------- off canvas start ---------*/
 .offcanvas-start {
