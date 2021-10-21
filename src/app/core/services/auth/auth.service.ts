@@ -70,7 +70,6 @@ export class AuthService {
 
 
   getToken(){
-    //return this.decrypt(this.tokenService.getToken()!);
     return this.tokenService.getToken()!;
   }
 

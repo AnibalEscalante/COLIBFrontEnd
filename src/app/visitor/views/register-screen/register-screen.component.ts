@@ -91,7 +91,7 @@ export class RegisterScreenComponent implements OnInit {
     
   }
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  emailReq = new FormControl('', [Validators.required, Validators.email]);
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,12 +102,21 @@ export class RegisterScreenComponent implements OnInit {
   submitted = false;
   mensaje: string = "";
   isDivVisible = false;
+
+
+  get name() { return this.registerForm?.get('name'); }
+  get lastName() { return this.registerForm?.get('lastName'); }
+  get email() { return this.registerForm?.get('email'); }
+  get movilPhone() { return this.registerForm?.get('movilPhone'); }
+  get password() { return this.registerForm?.get('password'); }
+
+  
   async onSubmit() {
     let usuario: Partial<User & Auth> = {
-        name: this.registerForm.get('nombre')!.value,
-        lastName: this.registerForm.get('apellido')!.value,
+        name: this.registerForm.get('name')!.value,
+        lastName: this.registerForm.get('lastName')!.value,
         email: this.registerForm.get('email')!.value,
-        movilPhone: this.registerForm.get('celular')!.value,
+        movilPhone: this.registerForm.get('movilPhone')!.value,
         password: this.registerForm.get('password')!.value,
     }
     try {
@@ -128,7 +137,7 @@ export class RegisterScreenComponent implements OnInit {
         this.isDivVisible = true;
     }
   }
-
+  
     onReset() {
         this.submitted = false;
         this.registerForm.reset();
@@ -162,10 +171,10 @@ export class RegisterScreenComponent implements OnInit {
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
   getErrorMessage() {
-    if (this.email.hasError('required')) {
+    if (this.emailReq.hasError('required')) {
       return 'You must enter a value';
     }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.emailReq.hasError('emailReq') ? 'Not a valid email' : '';
   }
 
   //chip form group//

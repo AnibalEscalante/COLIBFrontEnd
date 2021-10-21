@@ -17,7 +17,7 @@
                                         <ng-template matStepLabel>Complete sus datos</ng-template>
                                         <mat-form-field class="mt-2" appearance="outline">
                                             <mat-label>Nombre</mat-label>
-                                            <input matInput formControlName="firstCtrl" placeholder="Nombre" required>
+                                             <input matInput formControlName="firstCtrl" placeholder="Nombre" required>
                                         </mat-form-field>
 
                                         <mat-form-field class="mt-2" appearance="outline">
@@ -28,8 +28,8 @@
                                         <div class="example-container mt-2">
                                             <mat-form-field appearance="outline">
                                                 <mat-label>Enter your email</mat-label>
-                                                <input matInput placeholder="pat@example.com" [formControl]="email" required>
-                                                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                                                <input matInput placeholder="pat@example.com" [formControl]="emailReq" required>
+                                                <mat-error *ngIf="emailReq.invalid">{{getErrorMessage()}}</mat-error>
                                             </mat-form-field>
                                         </div>
 
@@ -210,54 +210,56 @@
             </div>
             <mat-stepper orientation="vertical" #stepper>
                 <mat-step [stepControl]="firstFormGroup">
-                    <form [formGroup]="firstFormGroup">
-                        <ng-template matStepLabel>Complete sus datos</ng-template>
-                        <mat-form-field class="mt-2" appearance="outline">
-                            <mat-label>Nombre</mat-label>
-                            <input matInput formControlName="firstCtrl" placeholder="Nombre" required>
-                        </mat-form-field>
-
-                        <mat-form-field class="mt-2" appearance="outline">
-                            <mat-label>Apellido</mat-label>
-                            <input matInput formControlName="firstCtrl" placeholder="Apellido" required>
-                        </mat-form-field>
-
-                        <div class="example-container mt-2">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Enter your email</mat-label>
-                                <input matInput placeholder="pat@example.com" [formControl]="email" required>
-                                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-                            </mat-form-field>
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row">
+                            <div class="form-group col-lg-12 col-12 ">
+                                <label>Nombre</label>
+                                <input id="name" name="name" type="text" formControlName="name" class="form-control" placeholder="Nombre" />
+                                
+                            </div>
+                            <div class="form-group col-lg-12 col-12">
+                                <label>Apellido Paterno</label>
+                                <input id="lastName" name="lastName" type="text" formControlName="lastName" class="form-control" placeholder="Apellido" />
+                                
+                            </div>
                         </div>
-
-                        <form class="example-form mt-2">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Telefono móvil</mat-label>
-                                <span matPrefix> &nbsp;</span>
-                                <input matInput #input maxlength="9" type="tel" placeholder="9 4554 1234">
-                                <mat-hint align="end">{{input.value?.length || 0}}/9</mat-hint>
-                            </mat-form-field>
-                        </form>
-
-                        <mat-form-field class="mt-2" appearance="outline">
-                            <mat-label>Enter your password</mat-label>
-                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="firstCtrl" required>
-                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                </button>
-                        </mat-form-field>
-
-                        <mat-form-field class="mt-2" appearance="outline">
-                            <mat-label>Enter your password</mat-label>
-                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="firstCtrl" required>
-                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                </button>
-                        </mat-form-field>
-                        <div class="d-flex align-items-bot justify-content-end">
-                            <button matStepperNext class="btn btn-primary">Siguiente</button>
+                        <div class="form-row">
+                            <div class="form-group col-lg-12 col-12">
+                                <label>Correo electronico</label>
+                                <input type="text" formControlName="email" class="form-control" placeholder="correo electronico" />
+                                
+                            </div>
+                            <div class="form-group col-lg-12 col-12">
+                                <label>Celular (+56)</label>
+                                <input type="text" min="0" formControlName="movilPhone" class="form-control" placeholder="numero celular" />
+                                
+                            </div>
                         </div>
-                  </form>
+                        <div class="form-row">
+                            <div class="form-group col-lg-12 col-12">
+                                <label>Contraseña</label>
+                                <input type="password" formControlName="password" class="form-control" placeholder="contraseña debe tener 8 caracteres minimo" />
+                                
+                            </div>
+                            <div class="form-group col-lg-12 col-12">
+                                <label>Confirmar contraseña</label>
+                                <input type="password" formControlName="confirmPassword" class="form-control" placeholder="confirmar contraseña" />
+                               
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="text-center">
+                                    <button class="btn btn-primary mr-4" type="submit" [disabled]="registerForm.valid">Registrar</button>
+                                    <button class="btn btn-secondary" type="reset" (click)="onReset()">Reiniciar</button>
+
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" class="btn btn-info mt-4" (click)="return()">Regresar</button>
+                            </div>
+                        </div>
+                    </form>
                 </mat-step>
                 <mat-step [stepControl]="secondFormGroup" optional>
                     <ng-template matStepLabel>Seleccione sus Disciplinas</ng-template>
