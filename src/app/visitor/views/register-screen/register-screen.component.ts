@@ -2,10 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {delay, map, startWith} from 'rxjs/operators';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {MatChipInputEvent} from '@angular/material/chips';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { User } from 'src/app/core/models/user.model';
+import { UserRegister } from 'src/app/core/models/userRegister';
+import { Auth } from 'src/app/core/models/auth.model';
 
 export class CdkCustomStepperWithoutFormExample {}
 @Component({
@@ -22,7 +27,28 @@ export class RegisterScreenComponent implements OnInit {
 
 
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
+    private router: Router, 
+    private AuthService : AuthService
+    
+    ) {
+      this.registerForm = this.formBuilder.group({
+          
+        name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
+        lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],         
+        email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
+        )]],
+        movilPhone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', Validators.required],
+        
+    }, {
+        validator: this.MustMatch('password', 'confirmPassword')
+        
+    });
+    
     //fruits//
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
@@ -32,6 +58,8 @@ export class RegisterScreenComponent implements OnInit {
     this.filteredVegetables = this.vegetableCtrl.valueChanges.pipe(
       startWith(null),
       map((vegetable: string | null) => vegetable ? this._filterVegetables(vegetable) : this.allVegetables.slice()));
+
+    
   }
 
   // Dialogs //
@@ -60,15 +88,93 @@ export class RegisterScreenComponent implements OnInit {
       startWith(''),
       map(value => this._filterVegetables(value))
     );
-
+    
   }
-  email = new FormControl('', [Validators.required, Validators.email]);
 
+  emailReq = new FormControl('', [Validators.required, Validators.email]);
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////// Step 1///////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  registerForm: FormGroup;
+  submitted = false;
+  mensaje: string = "";
+  isDivVisible = false;
+
+
+  get name() { return this.registerForm?.get('name'); }
+  get lastName() { return this.registerForm?.get('lastName'); }
+  get email() { return this.registerForm?.get('email'); }
+  get movilPhone() { return this.registerForm?.get('movilPhone'); }
+  get password() { return this.registerForm?.get('password'); }
+
+  
+  async onSubmit() {
+    let usuario: Partial<User & Auth> = {
+        name: this.registerForm.get('name')!.value,
+        lastName: this.registerForm.get('lastName')!.value,
+        email: this.registerForm.get('email')!.value,
+        movilPhone: this.registerForm.get('movilPhone')!.value,
+        password: this.registerForm.get('password')!.value,
+    }
+    try {
+        await this.AuthService.
+            register(usuario.name!, 
+                    usuario.lastName!,
+                    usuario.email!,
+                    usuario.movilPhone!,
+                    usuario.password!)
+            .toPromise();
+        this.mensaje="registro completo";
+        this.isDivVisible = true;
+        delay(5000);
+        this.router.navigate(['/visitor/login']);
+
+    } catch (error) {
+        this.mensaje = "registro no exitoso";
+        this.isDivVisible = true;
+    }
+  }
+  
+    onReset() {
+        this.submitted = false;
+        this.registerForm.reset();
+    }
+  
+    return() {
+        this.router.navigate(['']);
+    }
+
+
+    MustMatch(controlName: string, matchingControlName: string) {
+        return (formGroup: FormGroup) => {
+            const control = formGroup.controls[controlName];
+            const matchingControl = formGroup.controls[matchingControlName];
+        
+            if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+                return;
+            }
+            if (control.value !== matchingControl.value) {
+                matchingControl.setErrors({ mustMatch: true });
+            } else {
+                matchingControl.setErrors(null);
+            }
+        }
+    }     
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////// Step 2-3/////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////
   getErrorMessage() {
-    if (this.email.hasError('required')) {
+    if (this.emailReq.hasError('required')) {
       return 'You must enter a value';
     }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.emailReq.hasError('emailReq') ? 'Not a valid email' : '';
   }
 
   //chip form group//
@@ -166,5 +272,9 @@ export class RegisterScreenComponent implements OnInit {
 
     return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
   }
-
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////// Step 4///////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////
 }
