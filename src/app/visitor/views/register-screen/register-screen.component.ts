@@ -7,10 +7,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { User } from 'src/app/core/models/user.model';
-import { UserRegister } from 'src/app/core/models/userRegister';
-import { Auth } from 'src/app/core/models/auth.model';
 
 export class CdkCustomStepperWithoutFormExample {}
 @Component({
@@ -28,27 +25,11 @@ export class RegisterScreenComponent implements OnInit {
 
 
   constructor(
-    private _formBuilder: FormBuilder,
-    private formBuilder: FormBuilder,
-    private router: Router, 
-    private AuthService : AuthService
+    private _formBuilder: FormBuilder
     
     ) {
-      this.registerForm = this.formBuilder.group({
-          
-        name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
-        lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],         
-        email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
-        )]],
-        movilPhone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['', Validators.required],
-        
-    }, {
-        validator: this.MustMatch('password', 'confirmPassword')
-        
-    });
-    
+      
+      
     //fruits//
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
@@ -98,72 +79,7 @@ export class RegisterScreenComponent implements OnInit {
   //////////////////////////////////////////// Step 1///////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
-  registerForm: FormGroup;
-  submitted = false;
-  mensaje: string = "";
-  isDivVisible = false;
-
-
-  get name() { return this.registerForm?.get('name'); }
-  get lastName() { return this.registerForm?.get('lastName'); }
-  get email() { return this.registerForm?.get('email'); }
-  get movilPhone() { return this.registerForm?.get('movilPhone'); }
-  get password() { return this.registerForm?.get('password'); }
-
   
-  async onSubmit() {
-    let usuario: Partial<User & Auth> = {
-        name: this.registerForm.get('name')!.value,
-        lastName: this.registerForm.get('lastName')!.value,
-        email: this.registerForm.get('email')!.value,
-        movilPhone: this.registerForm.get('movilPhone')!.value,
-        password: this.registerForm.get('password')!.value,
-    }
-    try {
-        await this.AuthService.
-            register(usuario.name!, 
-                    usuario.lastName!,
-                    usuario.email!,
-                    usuario.movilPhone!,
-                    usuario.password!)
-            .toPromise();
-        this.mensaje="registro completo";
-        this.isDivVisible = true;
-        delay(5000);
-        this.router.navigate(['/visitor/login']);
-
-    } catch (error) {
-        this.mensaje = "registro no exitoso";
-        this.isDivVisible = true;
-    }
-  }
-  
-    onReset() {
-        this.submitted = false;
-        this.registerForm.reset();
-    }
-  
-    return() {
-        this.router.navigate(['']);
-    }
-
-
-    MustMatch(controlName: string, matchingControlName: string) {
-        return (formGroup: FormGroup) => {
-            const control = formGroup.controls[controlName];
-            const matchingControl = formGroup.controls[matchingControlName];
-        
-            if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-                return;
-            }
-            if (control.value !== matchingControl.value) {
-                matchingControl.setErrors({ mustMatch: true });
-            } else {
-                matchingControl.setErrors(null);
-            }
-        }
-    }     
-
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
