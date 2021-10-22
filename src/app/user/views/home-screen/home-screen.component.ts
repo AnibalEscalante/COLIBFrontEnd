@@ -3,6 +3,9 @@ import { CreateProjectComponent } from '../../components/dialogs/create-project/
 import {MatDialog} from '@angular/material/dialog';
 import { Project } from 'src/app/core/models/project.model';
 import { ProjectService } from 'src/app/core/services/project/project.service';
+import { UserService } from 'src/app/core/services/user/user.service';
+import { User } from 'src/app/core/models/user.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home-screen',
@@ -12,12 +15,16 @@ import { ProjectService } from 'src/app/core/services/project/project.service';
 export class HomeScreenComponent implements OnInit {
   
   projects: Project[] = [];
+  user!: User;
   constructor(
-    public dialog: MatDialog,
-    public  projectService: ProjectService
+    private dialog: MatDialog,
+    private  projectService: ProjectService,
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute
 
   ){
     this.fetchProjects();
+    this.fetchUser();
   }
   ngOnInit(): void {
 
@@ -29,6 +36,17 @@ export class HomeScreenComponent implements OnInit {
 
     } catch (error) {
       console.log('uh que mal :c');
+    }
+  }
+
+  async fetchUser() {
+    try {
+      this.user = await this.userService.getUser(this.activatedRoute.snapshot.params['idUser']).toPromise()
+      console.log(this.user);
+      
+    } catch (error) {
+      console.log('lol');
+      
     }
   }
 

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -11,7 +12,8 @@ import { User } from '../../models/user.model';
 export class UserService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   getallUser(): Observable<User[]> {
@@ -24,7 +26,7 @@ export class UserService {
   }
 
   getUser(id: string): Observable<User> {
-    return this.http.get<User>(environment.baseUrl + '/user'+ id);
+    return this.http.get<User>(environment.baseUrl + '/user/'+ id);
   }
 
   registNewUser(user: Partial<User>): Observable<User> {
@@ -33,5 +35,9 @@ export class UserService {
 
   modifyUser(user: Partial<User>, id: string): Observable<User> {
     return this.http.patch<User>(environment.baseUrl + '/user'+ id, user);
+  }
+
+  login(email: string, password: string): Observable<any>{
+    return this.http.get( environment.baseUrl + '/user/byEmail/'+ email + '/' + password)
   }
 }

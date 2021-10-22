@@ -19,6 +19,10 @@ const routes: Routes = [
         component: HomeScreenComponent
       },
       {
+        path: 'home/:idUser',
+        component: HomeScreenComponent
+      },
+      {
         path: 'userinfo',
         component: UserInfoScreenComponent
       },
