@@ -34,4 +34,20 @@ export class UserService {
   modifyUser(user: Partial<User>, id: string): Observable<User> {
     return this.http.patch<User>(environment.baseUrl + '/user'+ id, user);
   }
+
+  getInfoUser(id: string): Observable<any>{
+    return this.http.get( environment.baseUrl + '/user/' + id + '/infoUser/')
+  }
+
+  getMyProjects(id: string): Observable<any>{
+    return this.http.get( environment.baseUrl + '/user/' + id + '/myProjects/')
+  }
+
+  getSavedProjects(id: string): Observable<any>{
+    return this.http.get( environment.baseUrl + '/user/' + id + '/savedProjects/')
+  }
+
+  getRequests(id: string): Observable<any>{
+    return this.http.get( environment.baseUrl + '/user/' + id + '/RequestsC/')
+  }
 }
