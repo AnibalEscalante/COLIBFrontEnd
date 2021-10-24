@@ -10,7 +10,7 @@ export interface Project {
   finishedDate?: Date | string;
   idSkills: Skill[];
   idDisciplines: Discipline[];
-  idColaborators: User[];
+  idCollaborators: User[];
   updatedAt?: Date;
   createdAt?: Date;
 }
