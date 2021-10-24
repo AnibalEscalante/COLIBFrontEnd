@@ -12,7 +12,7 @@
         </div>
         <p class="card-subtitle my-2">{{project.content}}</p>
         <div class="nav nav-pills nav-fill">
-            <div *ngFor="let colaborator of project.idColaborators">
+            <div *ngFor="let colaborator of project.idCollaborators">
                 <a class="off-canvas-nav-link nav-link p-0 me-3 mb-1" href="#">
                     <i class="fas fa-user"></i> {{colaborator.name}} {{colaborator.lastName}}
                 </a>
@@ -69,7 +69,7 @@
         <div class="row">
             <div class="col-12 col-lg-12">
                 <div class="nav nav-fill">
-                    <div *ngFor="let colaborator of project.idColaborators">
+                    <div *ngFor="let colaborator of project.idCollaborators">
                         <a class="off-canvas-nav-link nav-link p-0 me-3 mb-1" href="#">
                             <i class="fas fa-user"></i> {{colaborator.name}} {{colaborator.lastName}}
                         </a>
