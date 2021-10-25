@@ -4,8 +4,8 @@ import { environment } from '../../../../environments/environment'
 import { Observable } from 'rxjs';
 import { TokenService } from '../token/token.service';
 import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { tap } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Injectable({
@@ -14,6 +14,7 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
 
   private baseUrl: string = environment.baseUrl;
+  
   private tokenDecoder = new JwtHelperService();
 
   constructor( 
@@ -21,9 +22,12 @@ export class AuthService {
     private httpClient: HttpClient,
     private router: Router
 
-    ) { 
+    ) {
+
+   
    
   }
+
 
   login(email: string, password: string): Observable<any>{
 
@@ -75,7 +79,11 @@ export class AuthService {
 
   getId(): string | null{
     const token = this.tokenDecoder.decodeToken(this.getToken());
+    console.log(token.authenticated);
+    
+    
     return token.authenticated;
+    
   }
 
   

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:5200/api',
-  privateKey: 'LFAKSeNFQqJKSHFK32'
+  privateKey: '0123456789abcdef'
 };
 
 /*

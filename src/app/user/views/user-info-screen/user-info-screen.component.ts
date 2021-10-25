@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { Auth } from 'src/app/core/models/auth.model';
 import { Discipline } from 'src/app/core/models/discipline.model';
 import { Project } from 'src/app/core/models/project.model';
+import { User } from 'src/app/core/models/user.model';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { DisciplineService } from 'src/app/core/services/discipline/discipline.service';
+import { UserService } from 'src/app/core/services/user/user.service';
 import { EditDisciComponent } from '../../components/dialogs/edit-disci/edit-disci.component';
 import { EditPasswordComponent } from '../../components/dialogs/edit-password/edit-password.component';
 import { EditPersonalInfoComponent } from '../../components/dialogs/edit-personal-info/edit-personal-info.component';
@@ -18,9 +23,13 @@ export class UserInfoScreenComponent implements OnInit {
   public disciplines!: Discipline[];
   constructor(
     private contactsDialog: MatDialog,
-    private disciplineService: DisciplineService
+    private activatedRoute: ActivatedRoute,
+    private disciplineService: DisciplineService,
+    private userService: UserService,
+    private authService: AuthService
   ) {
     this.fetchDiscipline()
+    /* this.fetchUser() */
   }
   
   async fetchDiscipline() {
@@ -30,9 +39,24 @@ export class UserInfoScreenComponent implements OnInit {
       
     }
     catch (error) {
-      console.log('uh que mal :c');
+      console.log('Algo ha salido mal');
     }
   }
+
+  /* async fetchUser() {
+    try {
+
+      let user: User  = {
+        _id!: this.authService.getId()!
+      }
+      console.log(user);
+      await this.userService.getUser(user).toPromise();
+      
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
+  } */
   ngOnInit(): void {
   }
 
