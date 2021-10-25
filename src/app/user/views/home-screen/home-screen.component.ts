@@ -11,7 +11,10 @@ import { ProjectService } from 'src/app/core/services/project/project.service';
 })
 export class HomeScreenComponent implements OnInit {
   
-  projects: Project[] = [];
+  public projects: Project[] = [];
+  public searchTerm!: string;
+  public term!: string;
+
   constructor(
     public dialog: MatDialog,
     public  projectService: ProjectService
@@ -20,13 +23,13 @@ export class HomeScreenComponent implements OnInit {
     this.fetchProjects();
   }
   ngOnInit(): void {
-
+    
   }
   
   async fetchProjects() {
     try {
-      this.projects = await this.projectService.getAllProject().toPromise();
-
+      this.projects = await this.projectService.getAllProject().toPromise()
+ 
     } catch (error) {
       console.log('uh que mal :c');
     }
