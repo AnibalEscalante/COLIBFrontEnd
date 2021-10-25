@@ -38,6 +38,7 @@ import { MessageComponent } from './components/message/message.component';
 import { MyProjectsComponent } from './components/my-projects/my-projects.component';
 import { MyProjectsSavedComponent } from './components/my-projects-saved/my-projects-saved.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -64,7 +65,7 @@ import { MenuComponent } from './components/menu/menu.component';
     MessageComponent,
     MyProjectsComponent,
     MyProjectsSavedComponent,
-    MenuComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
@@ -83,7 +84,8 @@ import { MenuComponent } from './components/menu/menu.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTabsModule,
-    MatMenuModule
+    MatMenuModule,
+    Ng2SearchPipeModule
   ]
 })
 export class UserModule { }
