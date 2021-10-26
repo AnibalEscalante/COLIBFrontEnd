@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/core/models/user.model';
+import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() {}
+  @Input()
+  public user!: User;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+    console.log(this.user);
+    
   }
 
 }

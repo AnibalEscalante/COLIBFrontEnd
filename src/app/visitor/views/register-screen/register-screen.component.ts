@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
 import {delay, map, startWith} from 'rxjs/operators';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {COMMA, ENTER, V} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { Router } from '@angular/router';
@@ -25,26 +25,30 @@ export class RegisterScreenComponent implements OnInit {
   thirdFormGroup!: FormGroup;
   fourthFormGroup!: FormGroup;
 
+  registerForm!: FormGroup;
+  submitted = false;
+  mensaje: string = "";
+  isDivVisible = false;
 
 
   constructor(
-    private _formBuilder: FormBuilder,
     private formBuilder: FormBuilder,
     private router: Router, 
     private AuthService : AuthService
     
     ) {
-      this.registerForm = this.formBuilder.group({
-          
+    (
+      this.firstFormGroup = this.formBuilder.group({
+      
         name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
         lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],         
         email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
         )]],
         movilPhone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
         password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['', Validators.required],
-        
-    }, {
+        confirmPassword: ['', [Validators.required]],
+    }),
+    {
         validator: this.MustMatch('password', 'confirmPassword')
         
     });
@@ -65,16 +69,23 @@ export class RegisterScreenComponent implements OnInit {
   // Dialogs //
   ngOnInit() {
     //dialogs//
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+    this.firstFormGroup = this.formBuilder.group({
+      
+        name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
+        lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],         
+        email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
+        )]],
+        movilPhone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', [Validators.required]],
     });
-    this.secondFormGroup = this._formBuilder.group({
+    this.secondFormGroup = this.formBuilder.group({
       secondCtrl: ''
     });
-    this.thirdFormGroup = this._formBuilder.group({
+    this.thirdFormGroup = this.formBuilder.group({
       thirdCtrl: ''
     });
-    this.fourthFormGroup = this._formBuilder.group({
+    this.fourthFormGroup = this.formBuilder.group({
       fourthCtrl: ''
     });
 
@@ -98,10 +109,6 @@ export class RegisterScreenComponent implements OnInit {
   //////////////////////////////////////////// Step 1///////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
-  registerForm: FormGroup;
-  submitted = false;
-  mensaje: string = "";
-  isDivVisible = false;
 
 
   get name() { return this.registerForm?.get('name'); }

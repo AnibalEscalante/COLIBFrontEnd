@@ -7,75 +7,31 @@
                 </div>
             </div>
             <div class="col mb-4">
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-
-                    <div class="form-row">
-                        <div class="form-group col-12 ">
-                            <label class="labels" id="firstLabel">Correo electrónico:</label>
-                            <input id="email" name="email" type="email" formControlName="email" class="form-control" placeholder="correo@ejemplo.com" />
-                    
-                        </div>
-                        <div class="form-group col-12">
-                            <label class="labels">Contraseña:</label>
-                            <input id="password" name="password" type="password" formControlName="password" class="form-control" placeholder="••••••••••••••••" />
-                            
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-8 offset-md-2" id="buttonCol">
-                            <button class="btn" id="submitButton" type="submit">Iniciar sesión
-                                </button>
-                        </div>
-                    </div>
-                </form>
-                <!-- <div class="card">
-                    <h2 class="d-grid gap-2 col-10 my-4 mx-auto">Iniciar sesión</h2>
-                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-
-                        <div class="form-row">
-                            <div class="form-group col-12 ">
-                                <label class="labels" id="firstLabel">Correo electrónico:</label>
-                                <input id="email" name="email" type="email" formControlName="email" class="form-control" placeholder="correo@ejemplo.com" />
-                        
+                <div class="card">
+                    <H2 class=" mt-4 mb-0 mx-auto">Iniciar sesion</H2>
+                    <div class="card-body">
+                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                            <div class="d-grid gap-2 col-10 my-1 mx-auto">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Ingresar correo electrónico</mat-label>
+                                    <input matInput placeholder="ejemplo@dom.com"  id="email" name="email" type="email" formControlName="email" class="form-control" [formControl]="emailreq">
+                                    <mat-error *ngIf="emailreq.invalid">{{getErrorMessage()}}</mat-error>
+                                </mat-form-field>
                             </div>
-                            <div class="form-group col-12">
-                                <label class="labels">Contraseña:</label>
-                                <input id="password" name="password" type="password" formControlName="password" class="form-control" placeholder="••••••••••••••••" />
-                                
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-8 offset-md-2" id="buttonCol">
-                                <button class="btn" id="submitButton" type="submit">Iniciar sesión
+                            <div class="d-grid gap-2 col-10 my-1 mx-auto">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Ingresar contraseña</mat-label>
+                                    <input matInput  type="password" [type]="hide ? 'password' : 'text'" id="password" name="password" formControlName="password" class="form-control">
+                                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                                     </button>
+                                </mat-form-field>
                             </div>
-                        </div>
-                    </form> -->
-                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                        <div class="d-grid gap-2 col-10 my-1 mx-auto">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Ingresar correo electrónico</mat-label>
-                                <input matInput placeholder="ejemplo@dom.com"  id="email" name="email" type="email" formControlName="email" class="form-control" [formControl]="emailreq">
-                                <mat-error *ngIf="emailreq.invalid">{{getErrorMessage()}}</mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="d-grid gap-2 col-10 my-1 mx-auto">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Ingresar contraseña</mat-label>
-                                <input matInput  type="password" [type]="hide ? 'password' : 'text'" id="password" name="password" formControlName="password" class="form-control">
-                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                </button>
-                            </mat-form-field>
-                        </div>
-                        <div class="d-grid gap-2 col-10 mt-4 mb-5 mx-auto">
-                            <button class="btn btn-logIn" id="submitButton" type="submit">Iniciar sesion</button>
-                        </div> 
-                        <!-- <div class="col-12 col-md-8 offset-md-2" id="buttonCol">
-                            <button class="btn" id="submitButton" type="submit">Iniciar sesión
-                                </button>
-                        </div> -->
-                    </form>
+                            <div class="d-grid gap-2 col-10 mt-4 mb-5 mx-auto">
+                                <button class="btn btn-logIn" id="submitButton" type="submit">Iniciar sesion</button>
+                            </div> 
+                        </form>
+                    </div>       
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -83,5 +39,6 @@
                     <a href="#" class="link-primary text-center" [routerLink]="['/visitor/register']">Registrarse</a>
                 </div>
             </div>
+        </div>
     </div>
 </body>

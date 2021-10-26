@@ -1,10 +1,10 @@
 <div class="sideBar">
-    <div class="card card-project mb-3">
-        <div class="card-body">
-            <div class="card-head">
+    <div class="project mb-3">
+        <div class="body">
+            <div class="head">
                 <div class="row">
                     <div class="col-10">
-                        <h1 class="card-title">{{project.title}}</h1>
+                        <h1 class="title">{{project.title}}</h1>
                     </div>
                     <div class="col-1 d-flex align-items-top justify-content-end">
                         <i class="fas fa-circle circle-color"></i>
@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <p class="card-subtitle mb-2">{{project.content}}</p>
+            <p class="subtitle mb-2">{{project.content}}</p>
             <div class="nav nav-pills nav-fill">
                 <div *ngFor="let collaborator of project.idCollaborators">
                     <a class="nav-link p-0 me-3 mb-1" href="#">
