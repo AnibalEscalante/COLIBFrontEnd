@@ -38,7 +38,7 @@ export class AuthService {
     }).pipe(
       tap(
         (data: any) => {
-            this.tokenService.saveToken(data.message.token);
+            this.tokenService.saveToken(data.message);
             this.router.navigate(['/user/home']);
         }
       )

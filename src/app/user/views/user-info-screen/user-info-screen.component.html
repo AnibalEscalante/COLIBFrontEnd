@@ -2,10 +2,10 @@
     <div class="container">
         <div class="row design">
             <div class="col-12 col-lg-3 my-3">
-                <app-menu></app-menu>
+                <app-menu [user]="user"></app-menu>
             </div>
             <div class="col-12 col-lg-9 py-3 my-info">
-                <div class="card general-info">
+                <div class="general-info">
                     <div class="header text-center">
                         <h2 class="overall-info">Información general</h2>
                     </div>
@@ -37,7 +37,7 @@
                                         <p class="type-item mx-4">Contraseña</p>
                                         <p class="ms-4">Para mantener tu cuenta segura, no le des la contraseña a nadie.</p>
                                         <div class="col change-pass">
-                                            <div class="btn btn-primary" (click)="editPassword()">
+                                            <div class="btn pass" (click)="editPassword()">
                                                 Cambiar contraseña
                                             </div>
                                         </div>
@@ -60,22 +60,10 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-12 col-lg-12">
-                                                    <label>
-                                                        <p class="tag me-2 mb-2">discipline 1</p>
+                                                    <label *ngFor="let discipline of disciplines">
+                                                        <p class="tag me-2 mb-2">{{discipline.name}}</p>
                                                     </label>
-                                                    <label>
-                                                        <p class="tag me-2 mb-2">discipline 1</p>
-                                                    </label>
-                                                    <label>
-                                                        <p class="tag me-2 mb-2">discipline 1</p>
-                                                    </label>
-                                                    <label>
-                                                        <p class="tag me-2 mb-2">discipline 1</p>
-                                                    </label>
-                                                    <label>
-                                                        <p class="tag me-2 mb-2">discipline 1</p>
-                                                    </label>
-                                                </div>
+                                                </div> 
                                             </div>
                                         </div>
                                     </div>

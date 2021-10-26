@@ -19,7 +19,7 @@ export class TokenService {
   getToken(): string |null {
     const token: string | null = sessionStorage.getItem('token');
     console.log(token);
-    return null;
+    return token;
   }
 
   /* getToken(): string | null{

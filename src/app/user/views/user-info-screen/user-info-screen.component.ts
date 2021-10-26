@@ -21,21 +21,23 @@ import { EditSkillsComponent } from '../../components/dialogs/edit-skills/edit-s
 export class UserInfoScreenComponent implements OnInit {
 
   public disciplines!: Discipline[];
+  public allDisciplines!: Discipline[];
+  public user!: User;
+  public _id!: string | null;
+
   constructor(
     private contactsDialog: MatDialog,
-    private activatedRoute: ActivatedRoute,
     private disciplineService: DisciplineService,
     private userService: UserService,
     private authService: AuthService
   ) {
     this.fetchDiscipline()
-    /* this.fetchUser() */
+    this.fetchUser()
   }
   
   async fetchDiscipline() {
     try {
-      this.disciplines = await this.disciplineService.getallDiscipline().toPromise();
-      console.log(this.disciplines);
+      this.allDisciplines = await this.disciplineService.getallDiscipline().toPromise();
       
     }
     catch (error) {
@@ -43,20 +45,19 @@ export class UserInfoScreenComponent implements OnInit {
     }
   }
 
-  /* async fetchUser() {
+  async fetchUser() {
     try {
 
-      let user: User  = {
-        _id!: this.authService.getId()!
-      }
-      console.log(user);
-      await this.userService.getUser(user).toPromise();
+      this._id = this.authService.getId()
+      const response: any= await this.userService.getUser(this._id!).toPromise();
+      this.user = response.message;
+      this.disciplines = response.message.idDisciplines
       
     }
     catch (error) {
       console.log('Algo ha salido mal');
     }
-  } */
+  } 
   ngOnInit(): void {
   }
 

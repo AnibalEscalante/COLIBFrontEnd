@@ -1,10 +1,10 @@
 <div class="sideBar">
-    <div class="card card-info-user">
-        <div class="card-header pt-3 text-center">
+    <div class="info-user">
+        <div class="header pt-3 text-center">
             <i type="button" class="fas fa-user mt-2"></i>
-            <h2 class="my-3">Roberto Vasquez</h2>
+            <h2 class="my-3" *ngIf="user">{{user.name}}</h2>
         </div>
-        <div class="card-body">
+        <div class="body">
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="list-group">
@@ -17,6 +17,6 @@
                 </div>
             </div>
         </div>
-    <button type="button" class="btn btn-success create-proyect py-3 text-center">Crear Proyecto</button>
     </div>
+    <button type="button" class="btn btn-success create-proyect py-3 mt-4 align-items-end text-center">Crear Proyecto</button>
 </div>
