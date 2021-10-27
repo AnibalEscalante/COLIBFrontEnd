@@ -37,14 +37,14 @@
                                             <mat-form-field appearance="outline">
                                                 <mat-label>Telefono móvil</mat-label>
                                                 <span matPrefix> &nbsp;</span>
-                                                <input matInput #input maxlength="9" type="tel" placeholder="9 4554 1234">
+                                                <input matInput  #input maxlength="9" type="tel" placeholder="9 4554 1234">
                                                 <mat-hint align="end">{{input.value?.length || 0}}/9</mat-hint>
                                             </mat-form-field>
                                         </form>
 
                                         <mat-form-field class="mt-2" appearance="outline">
                                             <mat-label>Enter your password</mat-label>
-                                            <input matInput [type]="hide ? 'password' : 'text'"  required>
+                                            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"  required>
                                             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                                                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                                                 </button>
@@ -52,13 +52,13 @@
 
                                         <mat-form-field class="mt-2" appearance="outline">
                                             <mat-label>Enter your password</mat-label>
-                                            <input matInput [type]="hide ? 'password' : 'text'" required>
-                                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                            <input matInput formControlName="confirmPassword" [type]="hide ? 'password' : 'text'" required>
+                                            <button mat-icon-button  matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                                                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                                                 </button>
                                         </mat-form-field>
                                         <div class="d-flex align-items-bot justify-content-end">
-                                            <button class="btn btn-primary" type="submit">Siguiente</button>
+                                            <button matStepperNext class="btn btn-primary">Siguiente</button>
                                         </div>
                                 </div>
                             </div>
@@ -180,7 +180,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="d-flex align-items-bot justify-content-end">
-                                                <button matStepperNext class="btn btn-primary" type="submit">Finalizar</button>
+                                                <button matStepperNext class="btn btn-primary" type="submit" (click)='onSubmit()'>Finalizar</button>
                                             </div>
                                         </div>
                                     </div>
