@@ -74,7 +74,7 @@ export class RegisterScreenComponent implements OnInit {
   ngOnInit() {
     //dialogs//
     this.firstStepFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ''
     });
     this.secondStepFormGroup = this._formBuilder.group({
       secondCtrl: ''
@@ -113,6 +113,7 @@ export class RegisterScreenComponent implements OnInit {
   get email() { return this.registerForm?.get('email'); }
   get movilPhone() { return this.registerForm?.get('movilPhone'); }
   get password() { return this.registerForm?.get('password'); }
+  get confirmPassword() { return this.registerForm?.get('confirmPassword'); }
 
   
   async onSubmit() {

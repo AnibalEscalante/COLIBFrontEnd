@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Auth } from 'src/app/core/models/auth.model';
 import { Discipline } from 'src/app/core/models/discipline.model';
 import { Project } from 'src/app/core/models/project.model';
+import { Skill } from 'src/app/core/models/skill.model';
 import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { DisciplineService } from 'src/app/core/services/discipline/discipline.service';
@@ -21,9 +22,11 @@ import { EditSkillsComponent } from '../../components/dialogs/edit-skills/edit-s
 export class UserInfoScreenComponent implements OnInit {
 
   public disciplines!: Discipline[];
+  public skills!: Skill[];
   public allDisciplines!: Discipline[];
   public user!: User;
   public _id!: string | null;
+  public email!: string | null;
 
   constructor(
     private contactsDialog: MatDialog,
@@ -52,12 +55,16 @@ export class UserInfoScreenComponent implements OnInit {
       const response: any= await this.userService.getUser(this._id!).toPromise();
       this.user = response.message;
       this.disciplines = response.message.idDisciplines
+      this.skills = response.message.idSkills
+      this.email = response.message.email
+      
       
     }
     catch (error) {
       console.log('Algo ha salido mal');
     }
-  } 
+  }
+
   ngOnInit(): void {
   }
 

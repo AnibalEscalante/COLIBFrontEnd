@@ -6,6 +6,7 @@ import { TokenService } from '../token/token.service';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Auth } from '../../models/auth.model';
 
 
 @Injectable({
@@ -85,8 +86,5 @@ export class AuthService {
     return token.authenticated;
     
   }
-
   
-
-
 }
