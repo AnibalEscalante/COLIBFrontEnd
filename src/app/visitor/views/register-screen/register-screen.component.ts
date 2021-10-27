@@ -9,7 +9,6 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { User } from 'src/app/core/models/user.model';
-import { UserRegister } from 'src/app/core/models/userRegister';
 import { Auth } from 'src/app/core/models/auth.model';
 
 export class CdkCustomStepperWithoutFormExample {}
@@ -20,10 +19,14 @@ export class CdkCustomStepperWithoutFormExample {}
 })
 export class RegisterScreenComponent implements OnInit {
   hide = true;
+  firstStepFormGroup!: FormGroup;
+  secondStepFormGroup!: FormGroup;
+  thirdStepFormGroup!: FormGroup;
+  fourthStepFormGroup!: FormGroup;
+
   firstFormGroup!: FormGroup;
-  secondFormGroup!: FormGroup;
-  thirdFormGroup!: FormGroup;
-  fourthFormGroup!: FormGroup;
+
+  
 
   registerForm!: FormGroup;
   submitted = false;
@@ -33,12 +36,13 @@ export class RegisterScreenComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private _formBuilder: FormBuilder,
     private router: Router, 
     private AuthService : AuthService
     
     ) {
     (
-      this.firstFormGroup = this.formBuilder.group({
+      this.registerForm = this.formBuilder.group({
       
         name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
         lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],         
@@ -69,23 +73,16 @@ export class RegisterScreenComponent implements OnInit {
   // Dialogs //
   ngOnInit() {
     //dialogs//
-    this.firstFormGroup = this.formBuilder.group({
-      
-        name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
-        lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],         
-        email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
-        )]],
-        movilPhone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['', [Validators.required]],
+    this.firstStepFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
     });
-    this.secondFormGroup = this.formBuilder.group({
+    this.secondStepFormGroup = this._formBuilder.group({
       secondCtrl: ''
     });
-    this.thirdFormGroup = this.formBuilder.group({
+    this.thirdStepFormGroup = this._formBuilder.group({
       thirdCtrl: ''
     });
-    this.fourthFormGroup = this.formBuilder.group({
+    this.fourthStepFormGroup = this._formBuilder.group({
       fourthCtrl: ''
     });
 
