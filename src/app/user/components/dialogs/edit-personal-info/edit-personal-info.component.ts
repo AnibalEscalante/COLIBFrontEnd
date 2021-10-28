@@ -23,13 +23,13 @@ export class EditPersonalInfoComponent implements OnInit {
   ) { 
     this.updateForm = this.formBuilder.group({
       
-      name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
-      lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],         
-      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
+      name: ['', [Validators.pattern('[a-zA-Z]{2,32}')]],
+      lastName: ['', [Validators.pattern('[a-zA-Z]{2,32}')]],         
+      email: ['', [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
       )]],
-      movilPhone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', [Validators.required]],
+      movilPhone: ['', [Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
+      password: ['', [ Validators.minLength(8)]],
+      confirmPassword: ['', [ Validators.minLength(8)]],
   })
 
 }

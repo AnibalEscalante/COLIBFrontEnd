@@ -73,7 +73,7 @@ export class RegisterScreenComponent implements OnInit {
   // Dialogs //
   ngOnInit() {
     //dialogs//
-    this.firstStepFormGroup = this._formBuilder.group({
+    /* this.firstStepFormGroup = this._formBuilder.group({
       firstCtrl: ''
     });
     this.secondStepFormGroup = this._formBuilder.group({
@@ -84,7 +84,7 @@ export class RegisterScreenComponent implements OnInit {
     });
     this.fourthStepFormGroup = this._formBuilder.group({
       fourthCtrl: ''
-    });
+    }); */
 
     //form group
     this.filteredOptions = this.myControl.valueChanges.pipe(
