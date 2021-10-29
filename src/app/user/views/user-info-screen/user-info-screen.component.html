@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="container">
         <div class="row design">
-            <div class="col-12 col-lg-3 my-3">
+            <div class="col-12 col-lg-3 my-3 ">
                 <app-menu [user]="user"></app-menu>
             </div>
             <div class="col-12 col-lg-9 py-3 my-info">
@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-center">
                         <div class="col-11 col-lg-9">
-                            <div class="card all-personal-info mt-4 mb-2">
+                            <div class="all-personal-info mt-4 mb-2">
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-10">
@@ -27,7 +27,7 @@
                                 <div class="card-body">
                                     <div class="card item">
                                         <p class="type-item mx-4">Nombre del usuario</p>
-                                        <p class="info-item ms-4" *ngIf="user">{{user.name}}</p>
+                                        <p class="info-item ms-4" *ngIf="user">{{user.name}} {{user.lastName}}</p>
                                         <p class="type-item mx-4">Correo electrónico</p>
                                         <p class="info-item ms-4">{{email}}</p>
                                         <p class="type-item mx-4">Número de móvil</p>

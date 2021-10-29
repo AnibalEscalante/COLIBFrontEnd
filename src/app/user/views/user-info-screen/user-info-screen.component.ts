@@ -50,15 +50,12 @@ export class UserInfoScreenComponent implements OnInit {
 
   async fetchUser() {
     try {
-
       this._id = this.authService.getId()
       const response: any= await this.userService.getUser(this._id!).toPromise();
       this.user = response.message;
       this.disciplines = response.message.idDisciplines
       this.skills = response.message.idSkills
       this.email = response.message.email
-      
-      
     }
     catch (error) {
       console.log('Algo ha salido mal');
