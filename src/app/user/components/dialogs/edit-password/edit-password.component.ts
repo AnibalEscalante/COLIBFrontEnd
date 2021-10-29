@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Auth } from 'src/app/core/models/auth.model';
+import { User } from 'src/app/core/models/user.model';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
   selector: 'app-edit-password',
@@ -18,9 +22,15 @@ export class EditPasswordComponent implements OnInit {
   hidePassword: boolean = true;
   hideNewPassword: boolean = true;
   hideReNewPassword: boolean = true;
+  public updatePassword: FormGroup;
+  public _id!: string | null;
+  public passwordNew!: string;
 
   constructor(
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UserService,
+    private authService: AuthService,
+    private formBuilder: FormBuilder
   ) {
     this.password.valueChanges.subscribe(value => {
       this.validPassword = value;
@@ -32,10 +42,30 @@ export class EditPasswordComponent implements OnInit {
 
     this.reNewPassword.valueChanges.subscribe(value => {
       this.validReNewPassword = value;
-    });
+    }),
+    this.updatePassword = this.formBuilder.group({
+      oldPassword: ['', [ Validators.minLength(8)]],
+      newPassword: ['', [ Validators.minLength(8)]],
+      confirmPassword: ['', [ Validators.minLength(8)]],
+    })
+
   }
 
   ngOnInit(): void {
+  }
+  
+  async onSubmit() {
+  
+    this.passwordNew = this.updatePassword.get('newPassword')!.value
+    
+    try {
+      this._id = this.authService.getId()
+      await this.userService.modifyPassword(this.passwordNew, this._id!).toPromise();
+     
+    } catch (error) {
+      console.log('error');
+
+    }
   }
 
   getPassword() {
