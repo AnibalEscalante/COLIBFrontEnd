@@ -23,7 +23,7 @@ export class UserInfoScreenComponent implements OnInit {
 
   public disciplines!: Discipline[];
   public skills!: Skill[];
-  public allDisciplines!: Discipline[];
+  public allDisciplines!: Discipline[] | string[];
   public user!: User;
   public _id!: string | null;
   public email!: string | null;

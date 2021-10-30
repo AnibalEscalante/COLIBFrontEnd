@@ -60,7 +60,7 @@ export class EditPersonalInfoComponent implements OnInit {
       email: this.updateForm.get('email')!.value,
       movilPhone: this.updateForm.get('movilPhone')!.value,
       password: this.updateForm.get('password')!.value,
-  }
+    }
     try {
       this._id = this.authService.getId()
       await this.userService.modifyUser(user, this._id!).toPromise();
