@@ -6,6 +6,8 @@ import {map, startWith} from 'rxjs/operators';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {MatChipInputEvent} from '@angular/material/chips';
+import { DisciplineService } from 'src/app/core/services/discipline/discipline.service';
+import { Discipline } from 'src/app/core/models/discipline.model';
 
 
 @Component({
@@ -17,6 +19,7 @@ export class EditDisciComponent implements OnInit {
 
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
+  
   filteredOptions!: Observable<string[]>;
 
   ngOnInit() {
@@ -30,16 +33,30 @@ export class EditDisciComponent implements OnInit {
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
+  filteredDisciplines: Observable<string[]>;
   fruits: string[] = ['Lemon'];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  allFruits: string[] = ['Appleee', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  myDisciplines!: string[];
+  allDisciplines!: any[];
 
-  @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('disciplineInput') disciplineInput!: ElementRef<HTMLInputElement>;
 
-  constructor() {
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+  constructor(
+    private disciplineService: DisciplineService
+  ) {
+    this.filteredDisciplines = this.fruitCtrl.valueChanges.pipe(
         startWith(null),
-        map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+        map((discipline: string | null) => discipline ? this._filter(discipline) : this.allFruits.slice()));
+  }
+
+  async fetchDiscipline() {
+    try {
+      this.allDisciplines = await this.disciplineService.getallDiscipline().toPromise();
+      console.log(this.allDisciplines)
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
   }
 
   add(event: MatChipInputEvent): void {
@@ -47,7 +64,7 @@ export class EditDisciComponent implements OnInit {
 
     // Add our fruit
     if (value) {
-      this.fruits.push(value);
+      this.myDisciplines.push(value);
     }
 
     // Clear the input value
@@ -56,24 +73,24 @@ export class EditDisciComponent implements OnInit {
     this.fruitCtrl.setValue(null);
   }
 
-  remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
+  remove(discipline: string): void {
+    const index = this.myDisciplines.indexOf(discipline);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.myDisciplines.splice(index, 1);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
+    this.myDisciplines.push(event.option.viewValue);
+    this.disciplineInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): any[]{
     const filterValue = value.toLowerCase();
-
-    return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  
+    return this.allDisciplines.filter(discipline => discipline.toLowerCase().includes(filterValue));
   }
 
 }
