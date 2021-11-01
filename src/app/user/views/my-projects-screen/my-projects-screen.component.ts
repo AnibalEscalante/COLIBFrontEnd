@@ -47,6 +47,7 @@ export class MyProjectsScreenComponent implements OnInit {
 
       this.id = this.authService.getId()
       const response: any= await this.userService.getMyProjects(this.id!).toPromise();
+      this.user = response.message;
       this.projects = response.message.idMyProjects
       console.log(this.projects);
       

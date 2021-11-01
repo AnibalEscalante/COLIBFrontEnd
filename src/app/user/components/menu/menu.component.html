@@ -1,4 +1,4 @@
-<div class="sideBar">
+<div class="sideBar d-none d-lg-block">
     <div class="info-user">
         <div class="header pt-3 text-center">
             <i type="button" class="fas fa-user mt-2"></i>
@@ -18,5 +18,17 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-success create-proyect py-3 mt-4 align-items-end text-center">Crear Proyecto</button>
+    <div class="create-proyect py-3 mt-4">
+        <button type="button" class="button-color btn btn-success">Crear Proyecto</button>
+    </div>
 </div>
+<div class="d-block d-lg-none">
+    <div class="header pt-3 text-center">
+        <i type="button" class="fas fa-user mt-2"></i>
+        <h2 class="my-3" *ngIf="user">{{user.name}}</h2>
+    </div>
+    <div class="create-proyect py-3 mt-4">
+        <button type="button" class="button-color btn btn-success">Crear Proyecto</button>
+    </div>
+</div>
+

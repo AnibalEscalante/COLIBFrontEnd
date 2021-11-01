@@ -35,6 +35,10 @@ export class UserService {
     return this.http.patch<User>(environment.baseUrl + '/user/'+ id, user);
   }
 
+  modifyPassword(password: string, id: string): Observable<User> {
+    return this.http.patch<User>(environment.baseUrl + '/user/'+ id, password);
+  }
+
   getInfoUser(id: string): Observable<any>{
     return this.http.get( environment.baseUrl + '/user/' + id + '/infoUser/')
   }
