@@ -10,28 +10,29 @@
                 <div class="card">
                     <H2 class=" mt-4 mb-0 mx-auto">Iniciar sesion</H2>
                     <div class="card-body">
-                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <form [formGroup]="registerForm">
                             <div class="d-grid gap-2 col-10 my-1 mx-auto">
                                 <mat-form-field appearance="outline">
                                     <mat-label>Ingresar correo electrónico</mat-label>
-                                    <input matInput placeholder="ejemplo@dom.com"  id="email" name="email" type="email" formControlName="email" class="form-control" [formControl]="emailreq">
-                                    <mat-error *ngIf="emailreq.invalid">{{getErrorMessage()}}</mat-error>
+                                    <input matInput placeholder="ejemplo@dom.com" id="email" name="email" type="email" formControlName="email" class="form-control">
+                                    <mat-error *ngIf="email?.invalid">{{getEmailErrorMessage()}}</mat-error>
                                 </mat-form-field>
                             </div>
                             <div class="d-grid gap-2 col-10 my-1 mx-auto">
                                 <mat-form-field appearance="outline">
                                     <mat-label>Ingresar contraseña</mat-label>
-                                    <input matInput  type="password" [type]="hide ? 'password' : 'text'" id="password" name="password" formControlName="password" class="form-control">
+                                    <input matInput type="password" [type]="hide ? 'password' : 'text'" id="password" name="password" formControlName="password" class="form-control">
+                                    <mat-error *ngIf="password?.invalid">{{getPasswordErrorMessage()}}</mat-error>
                                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                                     </button>
                                 </mat-form-field>
                             </div>
                             <div class="d-grid gap-2 col-10 mt-4 mb-5 mx-auto">
-                                <button class="btn btn-logIn" id="submitButton" type="submit">Iniciar sesion</button>
-                            </div> 
+                                <button class="btn btn-logIn" id="submitButton" (click)=onSubmit()>Iniciar sesion</button>
+                            </div>
                         </form>
-                    </div>       
+                    </div>
                 </div>
             </div>
             <div class="row justify-content-center">
