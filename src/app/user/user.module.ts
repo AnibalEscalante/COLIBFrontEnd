@@ -10,7 +10,7 @@ import { SavedProjectsScreenComponent } from './views/saved-projects-screen/save
 import { MyProjectsScreenComponent } from './views/my-projects-screen/my-projects-screen.component';
 import { RequestsScreenComponent } from './views/requests-screen/requests-screen.component';
 import { ProjectInfoScreenComponent } from './views/project-info-screen/project-info-screen.component';
-import { MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule, MAT_CHIPS_DEFAULT_OPTIONS} from '@angular/material/chips';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,6 +39,7 @@ import { MyProjectsComponent } from './components/my-projects/my-projects.compon
 import { MyProjectsSavedComponent } from './components/my-projects-saved/my-projects-saved.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 
 @NgModule({
@@ -67,6 +68,15 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MyProjectsSavedComponent,
     MenuComponent
   ],
+  providers: [
+    {
+      provide: MAT_CHIPS_DEFAULT_OPTIONS,
+      useValue: {
+        separatorKeyCodes: [ENTER, COMMA]
+      }
+    }
+  ],
+
   imports: [
     CommonModule,
     UserRoutingModule,

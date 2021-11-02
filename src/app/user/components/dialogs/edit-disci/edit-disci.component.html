@@ -5,12 +5,12 @@
         <div class="col-12 col-lg-12 p-0">
             <mat-form-field class="example-chip-list" appearance="fill">
                 <mat-label>Favorite Fruits</mat-label>
-                <mat-chip-list #chipList aria-label="Fruit selection">
+                <mat-chip-list #chipList aria-label="Disciplines selection">
                     <mat-chip *ngFor="let discipline of myDisciplines" [selectable]="selectable" [removable]="removable" (removed)="remove(discipline)">
                         {{discipline}}
                         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                     </mat-chip>
-                    <input placeholder="New fruit..." #disciplineInput [formControl]="fruitCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+                    <input placeholder="New discipline..." #disciplineInput [formControl]="disciplineCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
                 </mat-chip-list>
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                     <mat-option *ngFor="let discipline of filteredDisciplines | async" [value]="discipline">
@@ -19,13 +19,12 @@
                 </mat-autocomplete>
             </mat-form-field>
         </div>
-
     </div>
 
 </mat-dialog-content>
 <mat-dialog-actions class="px-3">
     <button class="btn btn-secondary" mat-dialog-close>Cancel</button>
     <div class="col d-flex align-items-bot justify-content-end">
-        <button class="btn btn-primary" [mat-dialog-close]="true" cdkFocusInitial>Guardar</button>
+        <button class="btn btn-primary" [mat-dialog-close]="true" cdkFocusInitial (click)='onSubmit()'>Guardar</button>
     </div>
 </mat-dialog-actions>

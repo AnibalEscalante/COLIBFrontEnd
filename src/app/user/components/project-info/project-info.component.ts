@@ -29,10 +29,10 @@ export class ProjectInfoComponent {
     this.isShown = ! this.showHideComponent;
   }
   
-  ngDoCheck() {
+  /* ngDoCheck() {
     console.log(this.projectInfo);
     console.log(this.showHideComponent)
-  }
+  } */
 
   showState(): string {
     if (this.projectInfo.state === 'Open') {
