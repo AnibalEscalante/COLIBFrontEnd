@@ -23,30 +23,18 @@ export class UserInfoScreenComponent implements OnInit {
 
   public disciplines!: Discipline[];
   public skills!: Skill[];
-  public allDisciplines!: Discipline[] | string[];
   public user!: User;
   public _id!: string | null;
   public email!: string | null;
 
   constructor(
     private contactsDialog: MatDialog,
-    private disciplineService: DisciplineService,
     private userService: UserService,
     private authService: AuthService
   ) {
-    this.fetchDiscipline()
     this.fetchUser()
   }
   
-  async fetchDiscipline() {
-    try {
-      this.allDisciplines = await this.disciplineService.getallDiscipline().toPromise();
-      
-    }
-    catch (error) {
-      console.log('Algo ha salido mal');
-    }
-  }
 
   async fetchUser() {
     try {
@@ -82,7 +70,8 @@ export class UserInfoScreenComponent implements OnInit {
   openDialogEditDisci() {
     let dialogRef = this.contactsDialog.open(EditDisciComponent, {
       width: '600px',
-      height: 'auto'
+      height: 'auto',
+      data: this.disciplines
     });
   }
 

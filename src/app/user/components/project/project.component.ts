@@ -46,7 +46,7 @@ export class ProjectComponent implements OnInit {
       this._id = this.authService.getId()
       const response: any= await this.userService.getUser(this._id!).toPromise();
       this.user = response.message;
-      console.log(this.user)
+      console.log(this.project)
     }
     catch (error) {
       console.log('Algo ha salido mal');
