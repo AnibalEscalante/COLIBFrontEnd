@@ -27,12 +27,10 @@ export class EditPersonalInfoComponent implements OnInit {
     this.updateForm = this.formBuilder.group({
       
       name: ['', [Validators.pattern('[a-zA-Z]{2,32}')]],
-      lastName: ['', [Validators.pattern('[a-zA-Z]{2,32}')]],         
+      lastName: ['',  [Validators.pattern('[a-zA-Z]{2,32}')]],         
       email: ['', [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
       )]],
-      movilPhone: ['', [Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
-      password: ['', [ Validators.minLength(8)]],
-      confirmPassword: ['', [ Validators.minLength(8)]],
+      movilPhone: ['',[Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]]
   }),
   this.fetchUser();
 
@@ -53,22 +51,37 @@ export class EditPersonalInfoComponent implements OnInit {
       console.log('Algo ha salido mal');
     }
   }
-  async onSubmit() {
-    let user: Partial<User & Auth> = {
-      name: this.updateForm.get('name')!.value,
-      lastName: this.updateForm.get('lastName')!.value,
-      email: this.updateForm.get('email')!.value,
-      movilPhone: this.updateForm.get('movilPhone')!.value,
-      password: this.updateForm.get('password')!.value,
-    }
-    try {
-      this._id = this.authService.getId()
-      await this.userService.modifyUser(user, this._id!).toPromise();
-     
-    } catch (error) {
-      console.log('error');
 
-    }
+
+  get name() {
+    return this.updateForm?.get('name')?.value;
+  }
+  get lastName() {
+    return this.updateForm?.get('lastName')?.value;
+  }
+  /* get email () {
+    return this.updateForm?.get('name');
+  } */
+  get movilPhone() {
+    return this.updateForm?.get('movilPhone')?.value;
+  }
+ 
+
+  async onSubmit() {
+      let user: Partial<User & Auth> = {
+        name:  this.name ? this.name : this.user.name,
+        lastName: this.lastName ? this.lastName: this.user.lastName,
+        email: this.updateForm.get('email')!.value,
+        movilPhone: this.movilPhone ? this.movilPhone : this.user.movilPhone
+      }
+      try {
+        this._id = this.authService.getId()
+        await this.userService.modifyUser(user, this._id!).toPromise();
+       
+      } catch (error) {
+        console.log('error');
+  
+      }
   }
 
 }

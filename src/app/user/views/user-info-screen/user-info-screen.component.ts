@@ -78,7 +78,8 @@ export class UserInfoScreenComponent implements OnInit {
   openDialogEditSkills() {
     let dialogRef = this.contactsDialog.open(EditSkillsComponent, {
       width: '600px',
-      height: 'auto'
+      height: 'auto',
+      data: this.skills
     });
   }
 }
