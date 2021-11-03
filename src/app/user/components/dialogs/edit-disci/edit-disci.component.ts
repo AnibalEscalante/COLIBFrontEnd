@@ -32,11 +32,7 @@ export class EditDisciComponent implements OnInit {
   disciplineCtrl = new FormControl();
   filteredDisciplines: Observable<string[]>;
   myDisciplines: string[] =[''];
-  allDisciplinesName: string[] = [''];
-  /* myDisci: string[] = ['biologia','matematicas','ingeniería de alimentos','ingeniería pesquera',
-  'derecho','ciencias religiosas','estadística','negocios y economía','comercio',
-  'trabajo social','ingeniería civil','ingeniería en construcción','ingeniería eléctrica',
-  'ingeniería química','ingeniería de transporte','ingeniería industrial','ingeniería informática']; */
+  allDisciplinesName: string[] = [];
   allDisci!: Discipline[];
   myDisciplineUpdate: Discipline[] = [];
   
@@ -87,7 +83,7 @@ export class EditDisciComponent implements OnInit {
       for(let discipline of this.allDisci){
         this.allDisciplinesName.push(discipline.name);
       }
-      this.allDisciplinesName.shift();
+      /* this.allDisciplinesName.shift(); */
       console.log(this.allDisciplinesName);
       console.log(this.data);
       
@@ -122,6 +118,7 @@ export class EditDisciComponent implements OnInit {
       console.log('error');
 
     }
+    window.location.reload()
   }
 
   add(event: MatChipInputEvent): void {

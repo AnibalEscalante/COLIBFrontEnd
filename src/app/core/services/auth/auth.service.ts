@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Auth } from '../../models/auth.model';
+import { Discipline } from '../../models/discipline.model';
+import { Skill } from '../../models/skill.model';
 
 
 @Injectable({
@@ -52,6 +54,8 @@ export class AuthService {
       email: string,
       movilPhone: string,
       password: string,
+      idDisciplines: Discipline[],
+      idSkills: Skill[]
     ): Observable<any> {
       return this.httpClient.post( this.baseUrl + '/auth/user/signIn',
     {
@@ -60,6 +64,8 @@ export class AuthService {
       email,
       movilPhone,
       password,
+      idDisciplines,
+      idSkills
     })
   }
 

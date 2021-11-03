@@ -3,13 +3,18 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
 import {delay, map, startWith} from 'rxjs/operators';
-import {COMMA, ENTER, V} from '@angular/cdk/keycodes';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { User } from 'src/app/core/models/user.model';
 import { Auth } from 'src/app/core/models/auth.model';
+import { DisciplineService } from 'src/app/core/services/discipline/discipline.service';
+import { UserService } from 'src/app/core/services/user/user.service';
+import { Discipline } from 'src/app/core/models/discipline.model';
+import { SkillService } from 'src/app/core/services/skill/skill.service';
+import { Skill } from 'src/app/core/models/skill.model';
 
 export class CdkCustomStepperWithoutFormExample {}
 @Component({
@@ -36,9 +41,16 @@ export class RegisterScreenComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private _formBuilder: FormBuilder,
+    private formBuilderDisci: FormBuilder,
+    private formBuilderSkills: FormBuilder,
     private router: Router, 
-    private AuthService : AuthService
+    private AuthService : AuthService,
+    public disciplineService: DisciplineService,
+    public skillService: SkillService,
+    private userService: UserService,
+    private authService: AuthService,
+    /*    public dialogRef: MatDialogRef<EditDisciComponent>,
+       @Inject(MAT_DIALOG_DATA) public data: Discipline[], */
     
     ) {
     (
@@ -58,16 +70,29 @@ export class RegisterScreenComponent implements OnInit {
     });
     
     //fruits//
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+    this.filteredDisciplines = this.disciplineCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => fruit ? this._filterFruits(fruit) : this.allFruits.slice()));
+      map((discipline: string | null) => discipline ? this._filterDiscipline(discipline) : this.allDisciplinesName.slice())
+    );
+    this.createFormDisci = this. formBuilderDisci.group({
+    
+      idDisciplines: ['']
+    })
+    this.fetchDisciplines();
+    
 
     //vegetables//
-    this.filteredVegetables = this.vegetableCtrl.valueChanges.pipe(
+    this.filteredSkills = this.skillCtrl.valueChanges.pipe(
       startWith(null),
-      map((vegetable: string | null) => vegetable ? this._filterVegetables(vegetable) : this.allVegetables.slice()));
-
+      map((skill: string | null) => skill ? this._filterSkill(skill) : this.allSkillsName.slice())
+  );
     
+    this.createFormSkills = this.formBuilderSkills.group({
+          
+      idSkills: ['']
+    })
+    this.fetchSkills();
+      
   }
 
   // Dialogs //
@@ -87,15 +112,16 @@ export class RegisterScreenComponent implements OnInit {
     }); */
 
     //form group
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptionsDisciplines = this.myControlDiscipline.valueChanges.pipe(
       startWith(''),
-      map(value => this._filterFruits(value))
+      map(value => this._filterDiscipline(value))
     );
 
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptionsSkills = this.myControlSkill.valueChanges.pipe(
       startWith(''),
-      map(value => this._filterVegetables(value))
+      map(value => this._filterSkill(value))
     );
+    
     
   }
 
@@ -117,12 +143,29 @@ export class RegisterScreenComponent implements OnInit {
 
   
   async onSubmit() {
+
+    for(let disciName of this.myDisciplines){
+
+      let discipline = this.allDisci.find(discipline => discipline.name === disciName)
+      this.myDisciplineUpdate.push(discipline!)
+
+    } 
+    for(let skillName of this.mySkills){
+
+      let skill = this.allSkills.find(skill => skill.name === skillName)
+      this.mySkillUpdate.push(skill!)
+
+    }
+    
+    
     let usuario: Partial<User & Auth> = {
         name: this.registerForm.get('name')!.value,
         lastName: this.registerForm.get('lastName')!.value,
         email: this.registerForm.get('email')!.value,
         movilPhone: this.registerForm.get('movilPhone')!.value,
         password: this.registerForm.get('password')!.value,
+        idDisciplines: this.myDisciplineUpdate,
+        idSkills: this.mySkillUpdate
     }
     try {
         await this.AuthService.
@@ -130,7 +173,9 @@ export class RegisterScreenComponent implements OnInit {
                     usuario.lastName!,
                     usuario.email!,
                     usuario.movilPhone!,
-                    usuario.password!)
+                    usuario.password!,
+                    usuario.idDisciplines!,
+                    usuario.idSkills!)
             .toPromise();
         this.mensaje="registro completo";
         this.isDivVisible = true;
@@ -181,101 +226,147 @@ export class RegisterScreenComponent implements OnInit {
     }
     return this.emailReq.hasError('emailReq') ? 'Not a valid email' : '';
   }
-
+  
   //chip form group//
-  myControl = new FormControl();
+  
   options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions!: Observable<string[]>;
-
+  
+  public _id!: string | null;
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
+ 
 
-  //fruits//
-  fruitCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Lemon'];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry', 'Anana', 'banana'];
+  //disciplines//
+  disciplineCtrl = new FormControl();
+  filteredDisciplines: Observable<string[]>;
+  filteredOptionsDisciplines!: Observable<string[]>;
+  createFormDisci: FormGroup;
+  myDisciplines: string[] =[];
+  allDisciplinesName: string[] = [];
+  allDisci!: Discipline[];
+  myDisciplineUpdate: Discipline[] = [];
+  myControlDiscipline = new FormControl();
 
-  //vegetables//
-  vegetableCtrl = new FormControl();
-  filteredVegetables: Observable<string[]>;
-  vegetables: string[] = ['Melons'];
-  allVegetables: string[] =['Melons' , 'peas', 'cabbages', 'broccoli', 'watercress', 'beetroot'];
+  //skills//
+  createFormSkills: FormGroup
+  filteredOptionsSkills!: Observable<string[]>;
+  myControlSkill = new FormControl();
 
-  @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
+  skillCtrl = new FormControl();
+  filteredSkills: Observable<string[]>;
+  mySkills: string[] =[];
+  allSkillsName: string[] = [];
+  allSkills!: Skill[];
+  mySkillUpdate: Skill[] = [];
 
-  @ViewChild('fruitInput') vegetableInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('disciplineInput') disciplineInput!: ElementRef<HTMLInputElement>;
+
+  @ViewChild('skillInput') skillInput!: ElementRef<HTMLInputElement>;
+  
+  async fetchDisciplines() {
+    try {
+      this.allDisci = await this.disciplineService.getallDiscipline().toPromise()
+      console.log(this.allDisci);
+      for(let discipline of this.allDisci){
+        this.allDisciplinesName.push(discipline.name);
+      }
+      /* this.allDisciplinesName.shift(); */
+      console.log(this.allDisciplinesName);
+      
+      
+      
+    } catch (error) {
+      console.log('algo malo ha ocurrido');
+    }
+  }
 
   //fruit functions//
-  addFruit(event: MatChipInputEvent): void {
+  addDiscipline(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our fruit
     if (value) {
-      this.fruits.push(value);
+      this.myDisciplines.push(value);
     }
 
     // Clear the input value
     event.chipInput!.clear();
 
-    this.fruitCtrl.setValue(null);
+    this.disciplineCtrl.setValue(null);
   }
 
-  removeFruit(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
+  removeDiscipline(discipline: string): void {
+    const index = this.myDisciplines.indexOf(discipline);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.myDisciplines.splice(index, 1);
     }
   }
 
-  selectedFruit(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+  selectedDiscipline(event: MatAutocompleteSelectedEvent): void {
+    this.myDisciplines.push(event.option.viewValue);
+    this.disciplineInput.nativeElement.value = '';
+    this.disciplineCtrl.setValue(null);
   }
 
-  private _filterFruits(value: string): string[] {
+  private _filterDiscipline(value: string): string[]{
     const filterValue = value.toLowerCase();
-
-    return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  
+    return this.allDisciplinesName.filter(discipline => discipline.toLowerCase().includes(filterValue));
   }
 
   //vegetable function//
 
-  addVegetable(event: MatChipInputEvent): void {
+  async fetchSkills() {
+    try {
+      this.allSkills = await this.skillService.getallSkill().toPromise()
+      console.log(this.allSkills);
+      for(let skill of this.allSkills){
+        this.allSkillsName.push(skill.name);
+      }
+      /* this.allSkillsName.shift(); */
+      console.log(this.allSkillsName);
+      
+      
+      
+    } catch (error) {
+      console.log('algo malo ha ocurrido');
+    }
+  }
+
+  addSkill(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our fruit
     if (value) {
-      this.vegetables.push(value);
+      this.mySkills.push(value);
     }
 
     // Clear the input value
     event.chipInput!.clear();
 
-    this.vegetableCtrl.setValue(null);
+    this.skillCtrl.setValue(null);
   }
 
-  removeVegetable(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
+  removeSkill(skill: string): void {
+    const index = this.mySkills.indexOf(skill);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.mySkills.splice(index, 1);
     }
   }
 
-  selectedVegetable(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+  selectedSkill(event: MatAutocompleteSelectedEvent): void {
+    this.mySkills.push(event.option.viewValue);
+    this.skillInput.nativeElement.value = '';
+    this.skillCtrl.setValue(null);
   }
-  
-  private _filterVegetables(value: string): string[] {
-    const filterValue = value.toLowerCase();
 
-    return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  private _filterSkill(value: string): string[]{
+    const filterValue = value.toLowerCase();
+  
+    return this.allSkillsName.filter(skill => skill.toLowerCase().includes(filterValue));
   }
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////

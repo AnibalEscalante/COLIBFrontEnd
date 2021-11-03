@@ -11,14 +11,14 @@
                 </div>
                 <div class="d-grid gap-2 col-12 my-1 mx-auto">
                     <mat-form-field appearance="outline">
-                        <mat-label *ngIf="user" >{{user.lastName}}</mat-label>
+                        <mat-label *ngIf="user">{{user.lastName}}</mat-label>
                         <input matInput formControlName="lastName" placeholder="Apellido">
                     </mat-form-field>
                 </div>
                 <div class="d-grid gap-2 col-12 my-1 mx-auto">
                     <mat-form-field appearance="outline">
                         <mat-label *ngIf="user">{{email}}</mat-label>
-                        <input matInput formControlName="email" placeholder="ejemplo@dom.com" [formControl]="email">
+                        <input matInput formControlName="email" placeholder="ejemplo@dom.com">
                         <!-- <mat-error *ngIf="email.invalid">{{getErrorEmailMessage()}}</mat-error> -->
                     </mat-form-field>
                 </div>
@@ -36,5 +36,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button type="button" class="btn btn-secondary me-2" mat-dialog-close>Cancelar</button>
-    <button type="button" class="btn btn-primary" mat-dialog-close type="submit" (click)='onSubmit()'>Guardar</button>
+    <button type="button" class="btn btn-primary" mat-dialog-close type="submit" (click)='fetchUser()' (click)='onSubmit()'>Guardar</button>
 </mat-dialog-actions>
