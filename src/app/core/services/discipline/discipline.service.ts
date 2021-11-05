@@ -27,16 +27,4 @@ export class DisciplineService {
  getDiscipline(id: string): Observable<Discipline> {
     return this.http.get<Discipline>(environment.baseUrl + '/discipline/'+ id);
   }
-
-  registNewDiscipline(discipline: Partial<Discipline>): Observable<Discipline> {
-    return this.http.post<Discipline>(environment.baseUrl + '/discipline', discipline);
-  }
-
-  modifyDiscipline(discipline: Partial<Discipline>, id: string): Observable<Discipline> {
-    return this.http.patch<Discipline>(environment.baseUrl + '/discipline'+ id, discipline);
-  }
- 
- deleteDiscipline(id: string): Observable<Discipline> {
-    return this.http.delete<Discipline>(environment.baseUrl + '/discipline'+ id);
-  } 
 }
