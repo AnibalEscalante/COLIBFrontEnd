@@ -1,11 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {MatChipInputEvent} from '@angular/material/chips';
+import { Project } from 'src/app/core/models/project.model';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { ProjectService } from 'src/app/core/services/project/project.service';
+import { ActivatedRoute } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -26,15 +31,78 @@ export class EditProjectComponent implements OnInit {
   filteredFruits: Observable<string[]>;
   fruits: string[] = ['Lemon'];
   allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  
+
+
+  public _id!: string | null;
+  public updateProject: FormGroup;
+  public project!: Project
+  public userEmail!: string;
 
   @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
 
-  constructor() {
+  constructor(
+    public dialogRef: MatDialogRef<EditProjectComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {id: string},
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private projectService: ProjectService,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-   }
 
+      this.updateProject = this.formBuilder.group({
+      
+        title: ['', [Validators.pattern('[a-zA-Z]{2,32}')]],
+        content: ['',  [Validators.pattern('[a-zA-Z]{2,32}')]],       
+        finishedDate: ['',  [Validators.required]]
+    }),
+    this.fetchProject();
+   }
+  
+   async fetchProject() {
+    try {
+      this._id = this.authService.getId()
+      const response: any= await this.projectService.getProject(this.data.id).toPromise();
+      this.project = response.message;
+      console.log(this.data.id);
+      
+      console.log(this.project);
+      
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
+  }
+
+  get title() {
+    return this.updateProject?.get('title')?.value;
+  }
+  get content() {
+    return this.updateProject?.get('content')?.value;
+  }
+  get finishedDate() {
+    return this.updateProject?.get('finishedDate')?.value;
+  }
+
+  async onSubmit() {
+    let project: Partial<Project> = {
+      title:  this.title ? this.title : this.project.title,
+      content: this.content ? this.content: this.project.content,
+      finishedDate: this.finishedDate ? this.finishedDate: this.project.finishedDate
+    }
+
+    try {
+      /* this._id = this.authService.getId() */
+      await this.projectService.modifyProject(project, this.data.id).toPromise();
+     
+    } catch (error) {
+      console.log('error');
+
+    }
+  }
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),

@@ -86,9 +86,6 @@ export class AuthService {
 
   getId(): string | null{
     const token = this.tokenDecoder.decodeToken(this.getToken());
-    console.log(token.authenticated);
-    
-    
     return token.authenticated;
     
   }

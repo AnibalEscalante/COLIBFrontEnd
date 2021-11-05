@@ -12,6 +12,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { ProjectService } from 'src/app/core/services/project/project.service';
+import { Project } from 'src/app/core/models/project.model';
 
 
 @Component({
@@ -40,11 +42,12 @@ export class EditDisciComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<EditDisciComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Discipline[],
+    @Inject(MAT_DIALOG_DATA) public data: {disciplines: Discipline[] , isUserProject: string, id: string},
     public disciplineService: DisciplineService,
     private userService: UserService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private projectService: ProjectService
   ) {
     this.filteredDisciplines = this.disciplineCtrl.valueChanges.pipe(
         startWith(null),
@@ -67,7 +70,7 @@ export class EditDisciComponent implements OnInit {
   }
   allMyDisciplines(){
 
-    for(let discipline of this.data){
+    for(let discipline of this.data.disciplines){
       this.myDisciplines.push(discipline.name);
     }
     this.myDisciplines.shift();
@@ -109,16 +112,23 @@ export class EditDisciComponent implements OnInit {
     let user: Partial<User> = {
       idDisciplines: this.myDisciplineUpdate
     }
+
+    let project: Partial<Project> = {
+      idDisciplines: this.myDisciplineUpdate
+    }
     
-    try {
-      this._id = this.authService.getId()
-      await this.userService.modifyUser(user, this._id!).toPromise();
-     
+    try { 
+      if (this.data.isUserProject === 'user'){
+        this._id = this.authService.getId()
+        await this.userService.modifyUser(user, this._id!).toPromise();
+      }
+      if (this.data.isUserProject === 'project'){ 
+        await this.projectService.modifyProject(project, this.data.id).toPromise();
+      }
     } catch (error) {
       console.log('error');
 
     }
-    window.location.reload()
   }
 
   add(event: MatChipInputEvent): void {

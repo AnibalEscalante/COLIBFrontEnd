@@ -12,6 +12,9 @@ import { UserService } from 'src/app/core/services/user/user.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/core/models/user.model';
+import { ActivatedRoute} from '@angular/router';
+import { ProjectService } from 'src/app/core/services/project/project.service';
+import { Project } from 'src/app/core/models/project.model';
 
 
 @Component({
@@ -40,11 +43,13 @@ export class EditSkillsComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<EditSkillsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Skill[],
+    @Inject(MAT_DIALOG_DATA) public data: {skills: Skill[] , isUserProject: string, id: string},
     public skillService: SkillService,
     private userService: UserService,
+    private projectService: ProjectService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.filteredSkills = this.skillCtrl.valueChanges.pipe(
         startWith(null),
@@ -67,11 +72,10 @@ export class EditSkillsComponent implements OnInit {
   }
   allMySkills(){
 
-    for(let skill of this.data){
+    for(let skill of this.data.skills){
       this.mySkills.push(skill.name);
     }
     this.mySkills.shift();
-    console.log(this.mySkills)
   }
   
   
@@ -79,16 +83,9 @@ export class EditSkillsComponent implements OnInit {
   async fetchSkills() {
     try {
       this.alSkills = await this.skillService.getallSkill().toPromise()
-      console.log(this.alSkills);
       for(let skill of this.alSkills){
         this.allSkillsName.push(skill.name);
       }
-      /* this.allSkillsName.shift(); */
-      console.log(this.allSkillsName);
-      console.log(this.data);
-      
-      
-      
     } catch (error) {
       console.log('algo malo ha ocurrido');
     }
@@ -103,22 +100,28 @@ export class EditSkillsComponent implements OnInit {
       this.mySkillUpdate.push(skill!)
 
     } 
-    console.log(this.mySkillUpdate);
-        
 
     let user: Partial<User> = {
       idSkills: this.mySkillUpdate
     }
-    
-    try {
-      this._id = this.authService.getId()
-      await this.userService.modifyUser(user, this._id!).toPromise();
-     
+
+    let project: Partial<Project> = {
+      idSkills: this.mySkillUpdate
+    }
+
+    try { 
+      if (this.data.isUserProject === 'user'){
+        this._id = this.authService.getId()
+        await this.userService.modifyUser(user, this._id!).toPromise();
+      }
+      if (this.data.isUserProject === 'project'){ 
+        await this.projectService.modifyProject(project, this.data.id).toPromise();
+      }
     } catch (error) {
       console.log('error');
 
     }
-    window.location.reload()
+   /*  window.location.reload() */
   }
 
   add(event: MatChipInputEvent): void {

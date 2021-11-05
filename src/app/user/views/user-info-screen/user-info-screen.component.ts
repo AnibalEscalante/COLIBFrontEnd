@@ -26,7 +26,7 @@ export class UserInfoScreenComponent implements OnInit {
   public user!: User;
   public _id!: string | null;
   public email!: string | null;
-
+  public userUpdate: string = 'user';
   constructor(
     private contactsDialog: MatDialog,
     private userService: UserService,
@@ -58,6 +58,9 @@ export class UserInfoScreenComponent implements OnInit {
       width: '500px',
       height: 'auto'
     });
+    dialogRef.afterClosed().subscribe(result => {
+      this.fetchUser()
+    });
   }
 
   editPassword() {
@@ -71,7 +74,10 @@ export class UserInfoScreenComponent implements OnInit {
     let dialogRef = this.contactsDialog.open(EditDisciComponent, {
       width: '600px',
       height: 'auto',
-      data: this.disciplines
+      data: {disciplines: this.disciplines , isUserProject: 'user'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.fetchUser()
     });
   }
 
@@ -79,7 +85,10 @@ export class UserInfoScreenComponent implements OnInit {
     let dialogRef = this.contactsDialog.open(EditSkillsComponent, {
       width: '600px',
       height: 'auto',
-      data: this.skills
+      data: {skills: this.skills , isUserProject: 'user'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.fetchUser()
     });
   }
 }
