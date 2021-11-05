@@ -23,12 +23,15 @@ export class ProjectComponent implements OnInit {
   public colorState: string = '';
   public user!: User;
   public _id!: string | null
+  public newSavedProject: Project[] = []
+  public mySavedProject: Project[] = []
 
   constructor(
     private userService: UserService,
     private authService: AuthService
   ) { 
-    this.fetchUser()
+    this.fetchUser();
+    this.fetchMySavedProject();
   }
 
   ngOnInit(): void {
@@ -46,22 +49,44 @@ export class ProjectComponent implements OnInit {
       this._id = this.authService.getId()
       const response: any= await this.userService.getUser(this._id!).toPromise();
       this.user = response.message;
-      console.log(this.project)
     }
     catch (error) {
       console.log('Algo ha salido mal');
     }
   } 
-
-  async modifyProject(){
+  async fetchMySavedProject() {
     try {
-      this.user
-      console.log(this.user);
-      
+
       this._id = this.authService.getId()
-      await this.userService.modifyUser(this.user, this._id!).toPromise();
+      const response: any= await this.userService.getSavedProjects(this._id!).toPromise();
+      this.mySavedProject= response.message.idSavedProjects;
       
-      /* this.user.idSavedProjects = this.project */
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
+  } 
+   
+
+  async modifyProjectUser(){
+    try {
+      /* for(let project of this.mySavedProject){
+        let i= 0;
+        if(this.project === project){
+          this.mySavedProject.splice(this.project)
+        }
+        i++
+      } */
+      this.mySavedProject.push(this.project)
+      console.log(this.mySavedProject);
+      
+      let user: Partial<User> = {
+        idSavedProjects: this.mySavedProject
+      }
+
+      this._id = this.authService.getId()
+      await this.userService.modifyUser(user, this._id!).toPromise();
+      
      
     } catch (error) {
       console.log('error');

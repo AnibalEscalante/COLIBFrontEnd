@@ -1,31 +1,30 @@
 <h2 mat-dialog-title>Editar Información Del Proyecto</h2>
 <mat-dialog-content class="mat-content">
-    <mat-card class="mar-card my-2">
-        <div class="row">
-            <div class="col-12 col-lg-12 card-hight">
-                <form>
+    <form [formGroup]="updateProject" (ngSubmit)="onSubmit()"> 
+        <mat-card class="mar-card my-2">
+            <div class="row">
+                <div class="col-12 col-lg-12 card-hight">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Titulo del proyecto:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <input type="text" class="form-control" formControlName="title" id="title">
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Contenido del proyecto:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <textarea class="form-control" id="message-text" formControlName="content" ></textarea>
                     </div>
-                </form>
+                </div>
             </div>
+        </mat-card>
+        <div>
+            <h4 class="mb-0">Fecha de cierre</h4>
+            <mat-form-field appearance="fill">
+                <mat-label>Seleccione la fecha</mat-label>
+                <input matInput formControlName="finishedDate" [matDatepicker]="dp3">
+                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            </mat-form-field>
         </div>
-    </mat-card>
-    <div>
-        <h4 class="mb-0">Fecha de cierre</h4>
-        <mat-form-field appearance="fill">
-            <mat-label>Seleccione la fecha</mat-label>
-            <input matInput [matDatepicker]="dp3" disabled>
-            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-        </mat-form-field>
-    </div>
-
+    </form>
     <mat-card class="mat-card my-2">
         <div class="row">
             <div class="col-12 col-lg-12">
@@ -52,6 +51,6 @@
 <mat-dialog-actions>
     <button class="btn btn-secondary" mat-dialog-close>Cancel</button>
     <div class="col d-flex align-items-bot justify-content-end">
-        <button class="btn btn-primary" [mat-dialog-close]="true" cdkFocusInitial>Guardar</button>
+        <button class="btn btn-primary" [mat-dialog-close]="true"  (click)='onSubmit()' cdkFocusInitial>Guardar</button>
     </div>
 </mat-dialog-actions>

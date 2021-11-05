@@ -5,26 +5,21 @@
             <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
                 <div class="d-grid gap-2 col-12 my-1 mx-auto">
                     <mat-form-field appearance="outline">
-                        <mat-label *ngIf="user">{{user.name}}</mat-label>
                         <input matInput formControlName="name" placeholder="Nombre">
                     </mat-form-field>
                 </div>
                 <div class="d-grid gap-2 col-12 my-1 mx-auto">
                     <mat-form-field appearance="outline">
-                        <mat-label *ngIf="user">{{user.lastName}}</mat-label>
                         <input matInput formControlName="lastName" placeholder="Apellido">
                     </mat-form-field>
                 </div>
                 <div class="d-grid gap-2 col-12 my-1 mx-auto">
                     <mat-form-field appearance="outline">
-                        <mat-label *ngIf="user">{{email}}</mat-label>
                         <input matInput formControlName="email" placeholder="ejemplo@dom.com">
-                        <!-- <mat-error *ngIf="email.invalid">{{getErrorEmailMessage()}}</mat-error> -->
                     </mat-form-field>
                 </div>
                 <div class="d-grid gap-2 col-12 my-1 mx-auto">
                     <mat-form-field class="full-width" appearance="outline">
-                        <mat-label *ngIf="user">{{user.movilPhone}}</mat-label>
                         <span matPrefix> &nbsp;</span>
                         <input matInput formControlName="movilPhone" #input maxlength="9" type="number" placeholder="9 4554 1234">
                         <mat-hint align="end">{{input.value?.length || 0}}/9</mat-hint>

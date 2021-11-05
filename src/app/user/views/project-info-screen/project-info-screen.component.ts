@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { defaultThrottleConfig } from 'rxjs/internal/operators/throttle';
 import { Project } from 'src/app/core/models/project.model';
 import { ProjectService } from 'src/app/core/services/project/project.service';
 import { EditDisciComponent } from '../../components/dialogs/edit-disci/edit-disci.component';
@@ -17,7 +18,6 @@ export class ProjectInfoScreenComponent {
   
   public projectInfo!: Project;
   public response: any;
-
   constructor(
     public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
@@ -31,6 +31,11 @@ export class ProjectInfoScreenComponent {
     try {
       this.response = await this.projectService.getProject(this.activatedRoute.snapshot.params['id']).toPromise();
       this.projectInfo = this.response.message;
+      console.log(this.projectInfo);
+      this.projectInfo.idDisciplines
+      console.log(this.projectInfo.finishedDate);
+      
+      
     }
     catch (error) {
       console.log('uh que mal :c');
@@ -41,7 +46,11 @@ export class ProjectInfoScreenComponent {
     
     let dialogRef = this.dialog.open(EditProjectComponent, {
       width: '900px',
-      height: 'auto'
+      height: 'auto',
+      data: {id: this.projectInfo._id}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.fetchProject()
     });
   }
 
@@ -49,13 +58,21 @@ export class ProjectInfoScreenComponent {
     let dialogRef = this.dialog.open(EditDisciComponent, {
       width: '900px',
       height: 'auto',
+      data: {disciplines: this.projectInfo.idDisciplines, isUserProject: 'project', id: this.projectInfo._id}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.fetchProject()
     });
   }
 
   openDialogEditSkills() {
     let dialogRef = this.dialog.open(EditSkillsComponent, {
       width: '900px',
-      height: 'auto'
+      height: 'auto',
+      data: {skills: this.projectInfo.idSkills , isUserProject: 'project' , id: this.projectInfo._id}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.fetchProject()
     });
   }
 

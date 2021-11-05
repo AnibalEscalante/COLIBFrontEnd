@@ -47,17 +47,23 @@ export class EditPasswordComponent implements OnInit {
       oldPassword: ['', [ Validators.minLength(8)]],
       newPassword: ['', [ Validators.minLength(8)]],
       confirmPassword: ['', [ Validators.minLength(8)]],
-    })
-
+    }),
+    {
+    validator: this.MustMatch('password', 'confirmPassword')
+    }
   }
 
   ngOnInit(): void {
   }
+
+  get newPasword() {
+    return this.updatePassword?.get('newPassword')?.value;
+  }
   
   async onSubmit() {
   
-    this.passwordNew = this.updatePassword.get('newPassword')!.value
-    
+    this.passwordNew = this.updatePassword.get('newPassword')!.value 
+    /* this.newPassword = this.newPassword ? this.newPassword : this.password */
     try {
       this._id = this.authService.getId()
       await this.userService.modifyPassword(this.passwordNew, this._id!).toPromise();
@@ -99,5 +105,21 @@ export class EditPasswordComponent implements OnInit {
   getErrorReNewPasswordMessage() {
     return this.reNewPassword.hasError('required') ? 'Se requiere repetir la nueva contraseña' : '';
   }
+  
+  MustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+    
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            return;
+        }
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+  }     
 
 }

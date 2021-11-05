@@ -15,9 +15,10 @@ export class EditPersonalInfoComponent implements OnInit {
   
   public _id!: string | null;
   public updateForm: FormGroup;
-  public user!: User;
+  public user!: User & Auth;
+  public userEmail!: string;
 
-  public email = new FormControl('', [Validators.required, Validators.email]);
+  public emailreq = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(
     private userService: UserService,
@@ -45,7 +46,7 @@ export class EditPersonalInfoComponent implements OnInit {
       this._id = this.authService.getId()
       const response: any= await this.userService.getUser(this._id!).toPromise();
       this.user = response.message;
-      this.email = response.message.email
+      this.emailreq = response.message.email
     }
     catch (error) {
       console.log('Algo ha salido mal');
@@ -59,9 +60,9 @@ export class EditPersonalInfoComponent implements OnInit {
   get lastName() {
     return this.updateForm?.get('lastName')?.value;
   }
-  /* get email () {
-    return this.updateForm?.get('name');
-  } */
+   get email () {
+    return this.updateForm?.get('email')?.value;
+  } 
   get movilPhone() {
     return this.updateForm?.get('movilPhone')?.value;
   }
@@ -71,7 +72,7 @@ export class EditPersonalInfoComponent implements OnInit {
       let user: Partial<User & Auth> = {
         name:  this.name ? this.name : this.user.name,
         lastName: this.lastName ? this.lastName: this.user.lastName,
-        email: this.updateForm.get('email')!.value,
+        email: this.email ? this.email: this.user.email,
         movilPhone: this.movilPhone ? this.movilPhone : this.user.movilPhone
       }
       try {
