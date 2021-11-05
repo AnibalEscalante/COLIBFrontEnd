@@ -1,3 +1,4 @@
+import { Collaborator } from "./collaborator.model";
 import { Discipline } from "./discipline.model";
 import { Skill } from "./skill.model";
 import { User } from "./user.model";
@@ -7,10 +8,10 @@ export interface Project {
   title: string;
   content: string;
   state: string;
-  finishedDate?: Date | string;
+  finishDate?: Date;
   idSkills: Skill[];
   idDisciplines: Discipline[];
-  idCollaborators: User[];
+  idCollaborators: Collaborator[];
   updatedAt?: Date;
   createdAt?: Date;
 }

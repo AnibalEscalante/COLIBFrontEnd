@@ -57,7 +57,7 @@ export class EditProjectComponent implements OnInit {
       
         title: ['', [Validators.pattern('[a-zA-Z]{2,32}')]],
         content: ['',  [Validators.pattern('[a-zA-Z]{2,32}')]],       
-        finishedDate: ['',  [Validators.required]]
+        finishDate: ['',  [Validators.required]]
     }),
     this.fetchProject();
    }
@@ -83,15 +83,15 @@ export class EditProjectComponent implements OnInit {
   get content() {
     return this.updateProject?.get('content')?.value;
   }
-  get finishedDate() {
-    return this.updateProject?.get('finishedDate')?.value;
+  get finishDate() {
+    return this.updateProject?.get('finishDate')?.value;
   }
 
   async onSubmit() {
     let project: Partial<Project> = {
       title:  this.title ? this.title : this.project.title,
       content: this.content ? this.content: this.project.content,
-      finishedDate: this.finishedDate ? this.finishedDate: this.project.finishedDate
+      finishDate: this.finishDate ? this.finishDate: this.project.finishDate
     }
 
     try {

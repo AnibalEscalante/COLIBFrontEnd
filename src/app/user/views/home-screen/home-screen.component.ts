@@ -54,5 +54,8 @@ export class HomeScreenComponent implements OnInit {
       width:'900px',
       height: 'auto',
     });
+    dialogRef.afterClosed().subscribe(result => {
+      this.fetchProjects()
+    });
   }
 }

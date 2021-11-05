@@ -33,7 +33,7 @@ export class ProjectInfoScreenComponent {
       this.projectInfo = this.response.message;
       console.log(this.projectInfo);
       this.projectInfo.idDisciplines
-      console.log(this.projectInfo.finishedDate);
+      console.log(this.projectInfo.finishDate);
       
       
     }

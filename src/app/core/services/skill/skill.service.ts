@@ -26,12 +26,4 @@ export class SkillService {
   getSkill(id: string): Observable<Skill> {
     return this.http.get<Skill>(environment.baseUrl + '/skill'+ id);
   }
-
-  registNewSkill(skill: Partial<Skill>): Observable<Skill> {
-    return this.http.post<Skill>(environment.baseUrl + '/skill', skill);
-  }
-
-  modifySkill(skill: Partial<Skill>, id: string): Observable<Skill> {
-    return this.http.patch<Skill>(environment.baseUrl + '/skill'+ id, skill);
-  }
 }
