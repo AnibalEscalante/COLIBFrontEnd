@@ -14,6 +14,8 @@ export class HomeScreenComponent implements OnInit {
   public projects: Project[] = [];
   public searchTerm!: string;
   public term!: string;
+  public isShowComponent: boolean = false;
+  public showHideElements: string = 'homeProjects';
 
   constructor(
     public dialog: MatDialog,

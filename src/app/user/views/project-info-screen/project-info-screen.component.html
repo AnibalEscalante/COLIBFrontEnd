@@ -5,73 +5,7 @@
                 <app-menu></app-menu>
             </div>
             <div class="col-12 col-lg-9 py-3 my-info">
-                <div class="card-info">
-                    <div class="col-10 col-lg-9 my-4 mx-3">
-                        <div class="info">
-                            <div class="card-body">
-                                <div class="content-items">
-                                    <div class="row">
-                                        <div class="col-10">
-                                            <h1 class="card-title-info" *ngIf="projectInfo">{{projectInfo.title}}</h1>
-                                        </div>
-                                        <div class="col-2 d-flex align-items-top justify-content-end">
-                                            <i class="fas fa-edit" type="button" (click)="openDialog()"></i>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12">
-                                            <ul class="nav nav-pills-item nav-fill" *ngIf="projectInfo">
-                                                <div *ngFor="let collaborator of projectInfo.idCollaborators">
-                                                    <a class="nav-link p-0 me-3 mb-1" href="#">
-                                                        <i class="fas fa-user"></i> {{collaborator.name}} {{collaborator.lastName}}
-                                                    </a>
-                                                </div>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="published-item mt-2">Publicado el 23 de Agosto, 2021</h5>
-                                            <h5 class="published-item" *ngIf="projectInfo">se Cierra el {{projectInfo.finishDate}}</h5>
-                                        </div>
-                                        <div class="col d-flex align-items-center justify-content-end">
-                                            <button type="button" class="btn btn-primary btn-sm ">Colaborar</button>
-                                        </div>
-                                    </div>
-                                    <p class="card-subtitle-info mb-2 text-muted" *ngIf="projectInfo">
-                                        {{projectInfo.content}}
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-10 col-lg-10" *ngIf="projectInfo">
-                                            <p class="tag-title">Disciplinas</p>
-                                            <label *ngFor="let discipline of projectInfo.idDisciplines">
-                                                <p class="tag me-2 mb-2">{{discipline.name}}</p>
-                                            </label>
-                                        </div>
-                                        <div class="col-2 col-lg-2 d-flex align-items-top justify-content-end">
-                                            <i class="fas fa-edit" type="button" (click)="openDialogEditDisci()"></i>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-10 col-lg-10" *ngIf="projectInfo">
-                                            <p class="tag-title">Habilidades</p>
-                                            <label *ngFor="let skill of projectInfo.idSkills">
-                                                <p class="tag me-2 mb-2">{{skill.name}}</p>
-                                            </label>
-                                        </div>
-                                        <div class="col-2 col-lg-2 d-flex align-items-top justify-content-end">
-                                            <i class="fas fa-edit" type="button" (click)="openDialogEditSkills()"></i>
-                                        </div>
-                                    </div>
-                                    <div class="button-search">
-                                        <button type="button" class="btn btn-secondary btn-sm ms-2 mt-2">Compartir</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                <app-profile-project-info [projectInfo]="projectInfo" ></app-profile-project-info>
             </div>
         </div>
     </div>

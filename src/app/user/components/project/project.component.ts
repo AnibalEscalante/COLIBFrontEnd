@@ -13,11 +13,23 @@ export class ProjectComponent implements OnInit {
   
   @Input()
   public project!: Project;
+
+  @Input()
+  public isShowComponent!: boolean;
+  
+  @Input()
+  public showHideElements!: string
   
   @Output() projectList= new EventEmitter<Project>();
 
   @Output() show= new EventEmitter<boolean>();
   
+  public showSaved: boolean = false;
+  public showHideComponent: boolean = false;
+  public showHomeProject: boolean = false;
+  public showMyProjects: boolean = false;
+  public showSavedProjects: boolean = false;
+  public showColabProjects: boolean = false;
   public showinfo: boolean = false;
   public projectId: any;
   public colorState: string = '';
@@ -25,17 +37,26 @@ export class ProjectComponent implements OnInit {
   public _id!: string | null
   public newSavedProject: Project[] = []
   public mySavedProject: Project[] = []
-
+  public myProjects: Project[] = []
   constructor(
     private userService: UserService,
     private authService: AuthService
   ) { 
-    this.fetchUser();
-    this.fetchMySavedProject();
+    this.fetchUser();/* 
+    this.fetchMySavedProject(); */
   }
 
   ngOnInit(): void {
     this.projectId = 'projecto' + this.project._id;
+    if(this.showHideElements === 'homeProjects'){
+      this.showHomeProject = true;
+    }
+    if (this.showHideElements === 'myProjects'){
+      this.showMyProjects = true;
+    }
+    if (this.showHideElements === 'mySavedProjects'){
+      this.showSavedProjects = true;
+    }
   }
   
   showComponent(){
@@ -53,8 +74,9 @@ export class ProjectComponent implements OnInit {
     catch (error) {
       console.log('Algo ha salido mal');
     }
-  } 
-  async fetchMySavedProject() {
+  }
+
+  /* async fetchMySavedProject() {
     try {
 
       this._id = this.authService.getId()
@@ -65,9 +87,23 @@ export class ProjectComponent implements OnInit {
     catch (error) {
       console.log('Algo ha salido mal');
     }
-  } 
-   
+  } */
+  async fetchMyProject() {
+    try {
 
+      this._id = this.authService.getId()
+      const response: any= await this.userService.getMyProjects(this._id!).toPromise();
+      this.user = response.message;
+      this.myProjects = response.message.idMyProjects
+      
+      
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
+  }
+   
+////////////////////////////boton guardar projecto//////////////////
   async modifyProjectUser(){
     try {
       /* for(let project of this.mySavedProject){

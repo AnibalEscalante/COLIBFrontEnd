@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/models/project.model';
 import { User } from 'src/app/core/models/user.model';
@@ -16,31 +17,19 @@ export class MyProjectsScreenComponent implements OnInit {
   public id!: string | null;
   public user!: User
   public projects!: Project[];
+  public showHideElements: string = 'myProjects'
 
   constructor(
     public projectService: ProjectService,
     public authService: AuthService,
-    public userService: UserService,
+    public userService: UserService
     
   ) {
-   /*  this.fetchProjects(); */
     this.fetchUser();
   }
-  
-  
-
 
   ngOnInit(): void {
   }
-
-  /* async fetchProjects() {
-    try {
-      this.projects = await this.projectService.getAllProject().toPromise();
-
-    } catch (error) {
-      console.log('uh que mal :c');
-    }
-  } */
 
   async fetchUser() {
     try {
@@ -56,5 +45,4 @@ export class MyProjectsScreenComponent implements OnInit {
       console.log('Algo ha salido mal');
     }
   } 
-
 }

@@ -15,6 +15,8 @@ export class SavedProjectsScreenComponent implements OnInit {
   public id!: string | null;
   public user!: User
   public projects!: Project[];
+  public showSavedProject: boolean = true;
+  public showHideElements: string = 'mySavedProjects'
 
   constructor(
     public projectService: ProjectService,

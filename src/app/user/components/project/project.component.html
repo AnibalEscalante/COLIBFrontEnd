@@ -1,12 +1,23 @@
 <div class="card-project mb-3">
     <div class="body">
         <div class="head">
-            <div class="row">
+            <div class="row" *ngIf="showHomeProject || showSavedProjects">
                 <div class="col-11">
-                    <h1 class="card-title mb-0">{{project.title}}</h1>
+                    <h1 class="title">{{project.title}}</h1>
                 </div>
-                <div class="col-1 d-flex align-items-center justify-content-end">
-                    <i class="fas fa-circle" [ngStyle]="{'color': showState()}"></i>
+                <div class="col-1 d-flex align-items-top justify-content-end">
+                    <i class="fas fa-circle circle-color"></i>
+                </div>
+            </div>
+            <div class="row" *ngIf="showMyProjects">
+                <div class="col-10">
+                    <h1 class="title">{{project.title}}</h1>
+                </div>
+                <div class="col-1 d-flex align-items-top justify-content-end">
+                    <i class="fas fa-circle circle-color"></i>
+                </div>
+                <div class="col-1 d-flex align-items-top justify-content-end">
+                    <i class="fas fa-trash-alt"></i>
                 </div>
             </div>
         </div>
@@ -14,23 +25,26 @@
         <div class="nav nav-pills nav-fill">
             <div *ngFor="let collaborator of project.idCollaborators">
                 <a class="nav-link p-0 me-3 mb-1" href="#">
-                    <i class="fas fa-user"></i> {{collaborator.name}} {{collaborator.lastName}}
+                    <i class="fas fa-user"></i> <!-- {{collaborator.name}} {{collaborator.lastName}} -->
                 </a>
             </div>
         </div>
         <div class="row d-none d-lg-block">
             <div class="col">
                 <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
-                        Compartir
-                        <i class="fas fa-share"></i>
-                    </button>
+                    Compartir
+                    <i class="fas fa-share"></i>
+                </button>
                 <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" (click)='modifyProjectUser()'>
-                        Guardar
-                        <i class="fa fa-bookmark"></i>
-                    </button>
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" (click)="mandarInfo()">
-                        Leer mas
-                    </button>
+                    Guardar
+                    <i class="fa fa-bookmark"></i>
+                </button>
+                <button type="button" *ngIf="showHomeProject"  class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" (click)="mandarInfo()">
+                    Leer mas
+                 </button>
+                 <button type="button" *ngIf="showMyProjects || showSavedProjects " class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" [routerLink]="['/user/projectinfo',project._id]">
+                    Leer mas
+                 </button>
                 <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
             </div>
         </div>
@@ -71,7 +85,7 @@
                 <div class="nav nav-fill">
                     <div *ngFor="let collaborator of project.idCollaborators">
                         <a class="off-canvas-nav-link nav-link p-0 me-3 mb-1" href="#">
-                            <i class="fas fa-user"></i> {{collaborator.name}} {{collaborator.lastName}}
+                            <i class="fas fa-user"></i> <!-- {{collaborator.name}} {{collaborator.lastName}} -->
                         </a>
                     </div>
                 </div>
