@@ -18,7 +18,7 @@
                     <ul class="nav nav-pills-item nav-fill">
                         <div *ngFor="let collaborator of projectInfo.idCollaborators">
                             <a class="nav-link p-0 me-3 mb-1" href="#">
-                                <i class="fas fa-user"></i> {{collaborator.name}} {{collaborator.lastName}}
+                                <i class="fas fa-user"></i> <!-- {{collaborator.name}} {{collaborator.lastName}} -->
                             </a>
                         </div>
                     </ul>
@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col">
                     <h5 class="published-item mt-2">Publicado el 23 de Agosto, 2021</h5>
-                    <h5 class="published-item">Cerrado el {{projectInfo.finishDate}}</h5>
+                    <h5 class="published-item">Cerrado el {{showDate}}</h5>
                 </div>
                 <div class="col d-flex align-items-center justify-content-end">
                     <button type="button" class="btn btn-primary btn-sm ">Colaborar</button>

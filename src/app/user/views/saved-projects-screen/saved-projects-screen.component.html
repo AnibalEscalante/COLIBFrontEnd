@@ -11,7 +11,7 @@
                     </div>
                     <div class="info">
                         <div class="col-12 col-lg-9 my-2 justify-content-center" *ngFor="let project of projects">
-                            <app-my-projects-saved [projects]="project"></app-my-projects-saved>
+                            <app-project [showHideElements]="showHideElements" [project]="project"></app-project>
                         </div>
                     </div>
                 </div>

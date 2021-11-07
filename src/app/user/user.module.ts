@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeScreenComponent } from './views/home-screen/home-screen.component';
@@ -40,6 +40,7 @@ import { MyProjectsSavedComponent } from './components/my-projects-saved/my-proj
 import { MenuComponent } from './components/menu/menu.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { ProfileProjectInfoComponent } from './components/profile-project-info/profile-project-info.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
     MessageComponent,
     MyProjectsComponent,
     MyProjectsSavedComponent,
-    MenuComponent
+    MenuComponent,
+    ProfileProjectInfoComponent
   ],
   providers: [
     {
@@ -74,7 +76,8 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
       useValue: {
         separatorKeyCodes: [ENTER, COMMA]
       }
-    }
+    },
+    DatePipe
   ],
 
   imports: [

@@ -7,6 +7,7 @@ export interface User {
   _id?: string;
   name: string;
   lastName: string;
+  nickName: string;
   movilPhone?: string;
   idDisciplines?: Discipline[];
   idSkills?: Skill[]; //string[v] y arriba tambien

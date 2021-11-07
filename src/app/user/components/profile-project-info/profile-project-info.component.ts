@@ -1,23 +1,21 @@
 import { DatePipe } from '@angular/common';
-import {Component} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { defaultThrottleConfig } from 'rxjs/internal/operators/throttle';
 import { Project } from 'src/app/core/models/project.model';
 import { ProjectService } from 'src/app/core/services/project/project.service';
-import { EditDisciComponent } from '../../components/dialogs/edit-disci/edit-disci.component';
-import { EditProjectComponent } from '../../components/dialogs/edit-project/edit-project.component';
-import { EditSkillsComponent } from '../../components/dialogs/edit-skills/edit-skills.component';
+import { EditDisciComponent } from '../dialogs/edit-disci/edit-disci.component';
+import { EditProjectComponent } from '../dialogs/edit-project/edit-project.component';
+import { EditSkillsComponent } from '../dialogs/edit-skills/edit-skills.component';
 
-
- @Component({
-  selector: 'app-project-info-screen',
-  templateUrl: './project-info-screen.component.html',
-  styleUrls: ['./project-info-screen.component.less']
+@Component({
+  selector: 'app-profile-project-info',
+  templateUrl: './profile-project-info.component.html',
+  styleUrls: ['./profile-project-info.component.less']
 })
-export class ProjectInfoScreenComponent {
+export class ProfileProjectInfoComponent implements OnInit {
   
-  public projectInfo!: Project;
+  @Input() public projectInfo!: Project;
   public response: any;
   public showFinishDate!: string | null;
   public showCreateDate!: string | null;
@@ -29,20 +27,7 @@ export class ProjectInfoScreenComponent {
     ) {
       this.fetchProject();
   }
-  
-  async fetchAllProject() {
-    try {
-      this.response = await this.projectService.getProject(this.activatedRoute.snapshot.params['id']).toPromise();
-      this.projectInfo = this.response.message;
-      this.projectInfo.idDisciplines
-      this.showFinishDate = this.datepipe.transform(this.projectInfo.finishDate, 'dd/MM/yyyy');
-      this.showCreateDate = this.datepipe.transform(this.projectInfo.createdAt, 'dd/MM/yyyy');
-
-      
-    }
-    catch (error) {
-      console.log('uh que mal :c');
-    }
+  ngOnInit(): void {
   }
   
   async fetchProject() {
@@ -52,16 +37,12 @@ export class ProjectInfoScreenComponent {
       this.projectInfo.idDisciplines
       this.showFinishDate = this.datepipe.transform(this.projectInfo.finishDate, 'dd/MM/yyyy');
       this.showCreateDate = this.datepipe.transform(this.projectInfo.createdAt, 'dd/MM/yyyy');
-
-
+      console.log(this.projectInfo.createdAt);
     }
     catch (error) {
       console.log('uh que mal :c');
     }
   }
-
-
-
 
 
   openDialog() {
@@ -98,6 +79,4 @@ export class ProjectInfoScreenComponent {
     });
   }
 
-  
-  
 }

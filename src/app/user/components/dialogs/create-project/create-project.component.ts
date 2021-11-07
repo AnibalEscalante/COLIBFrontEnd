@@ -8,11 +8,8 @@ import {ElementRef, ViewChild} from '@angular/core';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { Skill } from 'src/app/core/models/skill.model';
 import { Discipline } from 'src/app/core/models/discipline.model';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { Router } from '@angular/router';
 import { DisciplineService } from 'src/app/core/services/discipline/discipline.service';
 import { SkillService } from 'src/app/core/services/skill/skill.service';
-import { UserService } from 'src/app/core/services/user/user.service';
 import { Project } from 'src/app/core/models/project.model';
 import { ProjectService } from 'src/app/core/services/project/project.service';
 import { Collaborator } from 'src/app/core/models/collaborator.model';
@@ -171,7 +168,7 @@ export class CreateProjectComponent implements OnInit {
     }
 
     for(let collabName of this.myCollabs){
-      let collab = this.allCollabs.find(collab => collab.name === collabName)
+      let collab = this.allCollabs.find(collab => collab.nickName === collabName)
       this.myCollabUpdate.push(collab!)
     }
 
@@ -298,7 +295,7 @@ export class CreateProjectComponent implements OnInit {
       this.allCollabs = await this.collaboratorService.getallCollaborator().toPromise()
       console.log(this.allCollabs);
       for(let collab of this.allCollabs){
-        this.allCollabsName.push(collab.name + collab.lastName);
+        this.allCollabsName.push(collab.nickName);
       }
       console.log(this.allCollabsName);
     } catch (error) {

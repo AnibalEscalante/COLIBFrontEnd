@@ -1,7 +1,6 @@
 export interface Collaborator {
   _id?: string;
-  name: string;
-  lastName: string;
+  nickName: string;
   idUser: string;
   updateAt?: Date;
   createdAt?: Date;
