@@ -1,7 +1,7 @@
 <div class="card-project mb-3">
     <div class="body">
         <div class="head">
-            <div class="row" *ngIf="showHomeProject || showSavedProjects">
+            <div class="row" *ngIf="showHomeProject || showSavedProjects || showCollabProjects">
                 <div class="col-11">
                     <h1 class="title">{{project.title}}</h1>
                 </div>
@@ -35,14 +35,18 @@
                     Compartir
                     <i class="fas fa-share"></i>
                 </button>
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" (click)='modifyProjectUser()'>
+                <button type="button" class="btn btn-ligth btn-sm me-2 mt-2" *ngIf="isMySavedProject" (click)='modifyProjectUser()'>
+                    Guardar
+                    <i class="fa fa-bookmark"></i>
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" *ngIf="!isMySavedProject" (click)='modifyProjectUser()'>
                     Guardar
                     <i class="fa fa-bookmark"></i>
                 </button>
                 <button type="button" *ngIf="showHomeProject"  class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" (click)="mandarInfo()">
                     Leer mas
                  </button>
-                 <button type="button" *ngIf="showMyProjects || showSavedProjects " class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" [routerLink]="['/user/projectinfo',project._id]">
+                 <button type="button" *ngIf="showMyProjects || showSavedProjects || showCollabProjects" class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" [routerLink]="['/user/projectinfo',project._id]">
                     Leer mas
                  </button>
                 <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>

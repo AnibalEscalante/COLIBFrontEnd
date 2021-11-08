@@ -14,6 +14,9 @@ import { Project } from 'src/app/core/models/project.model';
 import { ProjectService } from 'src/app/core/services/project/project.service';
 import { Collaborator } from 'src/app/core/models/collaborator.model';
 import { CollaboratorService } from 'src/app/core/services/collaborator/collaborator.service';
+import { UserService } from 'src/app/core/services/user/user.service';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { User } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'app-create-project',
@@ -58,7 +61,10 @@ export class CreateProjectComponent implements OnInit {
 
   public createProject!: FormGroup;
   public state: string = 'Open';
-  public project!: Project
+  public project!: Project;
+  public myProjects!: Project[];
+  public user!: User
+  public myProjectUpdate!: Project[];
   public _id!: string | null;
   public selectable = true;
   public removable = true;
@@ -76,7 +82,9 @@ export class CreateProjectComponent implements OnInit {
     public disciplineService: DisciplineService,
     public skillService: SkillService,
     public collaboratorService: CollaboratorService, 
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private userService: UserService,
+    private authService: AuthService
     
     ) {
     (
@@ -125,6 +133,8 @@ export class CreateProjectComponent implements OnInit {
       idCollabs: ['']
     })
     this.fetchCollab();
+    this.fetchUserMyProjects();
+    this.fetchUser();
   }
   ngOnInit() {
     //form group
@@ -156,6 +166,16 @@ export class CreateProjectComponent implements OnInit {
     return this.createProject?.get('finishDate')?.value;
   }
   
+  async fetchUser() {
+    try {
+      this._id = this.authService.getId()
+      const response: any= await this.userService.getUser(this._id!).toPromise();
+      this.user = response.message;
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
+  }
   async onSubmit() {
     for(let disciName of this.myDisciplines){
       let discipline = this.allDisci.find(discipline => discipline.name === disciName)
@@ -172,26 +192,65 @@ export class CreateProjectComponent implements OnInit {
       this.myCollabUpdate.push(collab!)
     }
 
-    let project: Partial<Project> = {
-      title:  this.title,
+    let project: Project = {
+      title: this.title,
       content: this.content,
       finishDate: this.finishDate,
       state: this.state,
       idDisciplines: this.myDisciplineUpdate,
-      idSkills: this.mySkillUpdate
+      idSkills: this.mySkillUpdate,
+      idCollaborators: []
     }
-    console.log(project)
-    
+    this.project = project
+    this.myProjects.push(this.project)
+    console.log(this.myProjects);
+
+    let user: User = {
+      idMyProjects: this.myProjects,
+      name: this.user.name,
+      lastName: this.user.lastName,
+      nickName: this.user.nickName
+    }
+    console.log(user);
     try {
-      console.log(project);
-      
-      await this.projectService.registNewProject(project).toPromise();
-     
+      await this.projectService.registNewProject(this.project).toPromise();
+      this._id = this.authService.getId()
+      await this.userService.modifyUser(user, this._id!).toPromise();
     } catch (error) {
       console.log('error');
 
     }
   }
+  
+ /*  async modifyUserProject(){
+
+    
+    let user: Partial<User> = {
+      idMyProjects: this.myProjects
+    }
+    try {
+      this._id = this.authService.getId()
+      await this.userService.modifyUser(user, this._id!).toPromise();
+     
+    } catch (error) {
+      console.log('error');
+
+    }
+  } */
+  
+  async fetchUserMyProjects() {
+    try {
+
+      this._id = this.authService.getId()
+      const response: any= await this.userService.getMyProjects(this._id!).toPromise();
+      this.myProjects = response.message.idMyProjects
+      console.log(this.myProjects);
+      
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
+  } 
 
   ///////////////////////////discicplines function //////////////////////////////////////
   async fetchDisciplines() {

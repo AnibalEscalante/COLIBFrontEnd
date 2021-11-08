@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Project } from 'src/app/core/models/project.model';
 import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -13,6 +14,12 @@ export class ProjectComponent implements OnInit {
   
   @Input()
   public project!: Project;
+  
+  @Input()
+  public user!: User;
+
+  @Input()
+  public mySavedProject: Project[] = [];
 
   @Input()
   public isShowComponent!: boolean;
@@ -29,21 +36,20 @@ export class ProjectComponent implements OnInit {
   public showHomeProject: boolean = false;
   public showMyProjects: boolean = false;
   public showSavedProjects: boolean = false;
-  public showColabProjects: boolean = false;
+  public showCollabProjects: boolean = false;
   public showinfo: boolean = false;
+  public isMySavedProject: boolean = false;
   public projectId: any;
   public colorState: string = '';
-  public user!: User;
-  public _id!: string | null
-  public newSavedProject: Project[] = []
-  public mySavedProject: Project[] = []
-  public myProjects: Project[] = []
+  public colorSavedState: string = '';
+  public _id!: string | null;
+  public newSavedProject: Project[] = [];
+  public myProjects: Project[] = [];
   constructor(
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) { 
-    this.fetchUser();/* 
-    this.fetchMySavedProject(); */
   }
 
   ngOnInit(): void {
@@ -57,6 +63,11 @@ export class ProjectComponent implements OnInit {
     if (this.showHideElements === 'mySavedProjects'){
       this.showSavedProjects = true;
     }
+    if (this.showHideElements === 'myCollabProjects'){
+      this.showCollabProjects = true;
+    }
+    /* this.fetchUser(); *//* 
+    this.fetchMySavedProject(); */
   }
   
   showComponent(){
@@ -64,7 +75,7 @@ export class ProjectComponent implements OnInit {
     this.show.emit(this.showinfo)
   }
 
-  async fetchUser() {
+  /* async fetchUser() {
     try {
 
       this._id = this.authService.getId()
@@ -74,7 +85,7 @@ export class ProjectComponent implements OnInit {
     catch (error) {
       console.log('Algo ha salido mal');
     }
-  }
+  } */
 
   /* async fetchMySavedProject() {
     try {
@@ -102,30 +113,37 @@ export class ProjectComponent implements OnInit {
       console.log('Algo ha salido mal');
     }
   }
-   
+  
 ////////////////////////////boton guardar projecto//////////////////
   async modifyProjectUser(){
     try {
-      /* for(let project of this.mySavedProject){
-        let i= 0;
-        if(this.project === project){
-          this.mySavedProject.splice(this.project)
+      for(let project of this.mySavedProject){
+        if(this.project._id === project._id){
+         this.mySavedProject.splice(this.mySavedProject.findIndex(item => item._id === this.project._id),1);
+         this.isMySavedProject = true
+         this.colorSavedState = '#198754';
         }
-        i++
-      } */
-      this.mySavedProject.push(this.project)
-      console.log(this.mySavedProject);
+      }
+      if (!this.isMySavedProject){
+        this.mySavedProject.push(this.project)
+        this.colorSavedState = '#dc3545'
+      }
       
       let user: Partial<User> = {
         idSavedProjects: this.mySavedProject
       }
+      if (!this.isMySavedProject){
+        this.toastr.success('Se agregó el proyecto a tus elementos guardados');
+      }
+      if (this.isMySavedProject){
+        this.toastr.error('Se eliminó el proyecto de tus elementos guardados');
+      }
 
       this._id = this.authService.getId()
       await this.userService.modifyUser(user, this._id!).toPromise();
-      
-     
     } catch (error) {
-      console.log('error');
+      console.log('Ha ocurrido un error al guardar el proyecto');
+      this.toastr.success('Ha ocurrido un error al guardar el proyecto');
 
     }
   }

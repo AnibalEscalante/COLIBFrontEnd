@@ -52,8 +52,9 @@ export class RegisterScreenComponent implements OnInit {
     (
       this.registerForm = this.formBuilder.group({
       
+        nickName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],             
         name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
-        lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],         
+        lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
         email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
         )]],
         movilPhone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
@@ -112,6 +113,7 @@ export class RegisterScreenComponent implements OnInit {
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+  get nickName() { return this.registerForm?.get('nickName'); }
   get name() { return this.registerForm?.get('name'); }
   get lastName() { return this.registerForm?.get('lastName'); }
   get email() { return this.registerForm?.get('email'); }
@@ -137,6 +139,7 @@ export class RegisterScreenComponent implements OnInit {
     
     
     let usuario: Partial<User & Auth> = {
+        nickName: this.registerForm.get('nickName')!.value,
         name: this.registerForm.get('name')!.value,
         lastName: this.registerForm.get('lastName')!.value,
         email: this.registerForm.get('email')!.value,
@@ -147,7 +150,8 @@ export class RegisterScreenComponent implements OnInit {
     }
     try {
         await this.AuthService.
-            register(usuario.name!, 
+           register(usuario.nickName!,
+                    usuario.name!,
                     usuario.lastName!,
                     usuario.email!,
                     usuario.movilPhone!,

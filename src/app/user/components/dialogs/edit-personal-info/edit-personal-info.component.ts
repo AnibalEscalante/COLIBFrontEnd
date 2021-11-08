@@ -26,11 +26,10 @@ export class EditPersonalInfoComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { 
     this.updateForm = this.formBuilder.group({
-      
+      nickName: ['', [Validators.pattern('[a-zA-Z]{2,32}')]],
       name: ['', [Validators.pattern('[a-zA-Z]{2,32}')]],
       lastName: ['',  [Validators.pattern('[a-zA-Z]{2,32}')]],         
-      email: ['', [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
-      )]],
+      email: ['', [Validators.email]],
       movilPhone: ['',[Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]]
   }),
   this.fetchUser();
@@ -53,7 +52,9 @@ export class EditPersonalInfoComponent implements OnInit {
     }
   }
 
-
+  get nickName() {
+    return this.updateForm?.get('nickName')?.value;
+  }
   get name() {
     return this.updateForm?.get('name')?.value;
   }
@@ -70,6 +71,7 @@ export class EditPersonalInfoComponent implements OnInit {
 
   async onSubmit() {
       let user: Partial<User & Auth> = {
+        nickName : this.nickName ? this.nickName : this.user.nickName,
         name:  this.name ? this.name : this.user.name,
         lastName: this.lastName ? this.lastName: this.user.lastName,
         email: this.email ? this.email: this.user.email,

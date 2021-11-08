@@ -7,7 +7,7 @@
                         <div class="col-10">
                             <h1 class="card-title-info" *ngIf="projectInfo">{{projectInfo.title}}</h1>
                         </div>
-                        <div class="col-2 d-flex align-items-top justify-content-end">
+                        <div class="col-2 d-flex align-items-top justify-content-end" *ngIf="isShowElements">
                             <i class="fas fa-edit" type="button" (click)="openDialog()"></i>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                             <h5 class="published-item" *ngIf="projectInfo">Se cierra el {{showFinishDate}}</h5>
                         </div>
                         <div class="col d-flex align-items-center justify-content-end">
-                            <button type="button" class="btn btn-primary btn-sm ">Colaborar</button>
+                            <button type="button" class="btn btn-primary btn-sm" [disabled]="isShowElements">Colaborar</button>
                         </div>
                     </div>
                     <p class="card-subtitle-info mb-2 text-muted" *ngIf="projectInfo">

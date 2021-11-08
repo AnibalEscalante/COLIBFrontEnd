@@ -5,6 +5,11 @@
             <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
                 <div class="d-grid gap-2 col-12 my-1 mx-auto">
                     <mat-form-field appearance="outline">
+                        <input matInput formControlName="nickName" placeholder="Nickname">
+                    </mat-form-field>
+                </div>
+                <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                    <mat-form-field appearance="outline">
                         <input matInput formControlName="name" placeholder="Nombre">
                     </mat-form-field>
                 </div>
@@ -15,7 +20,7 @@
                 </div>
                 <div class="d-grid gap-2 col-12 my-1 mx-auto">
                     <mat-form-field appearance="outline">
-                        <input matInput formControlName="email" placeholder="ejemplo@dom.com">
+                        <input matInput formControlName="email" placeholder="ejemplo@gmail.com">
                     </mat-form-field>
                 </div>
                 <div class="d-grid gap-2 col-12 my-1 mx-auto">

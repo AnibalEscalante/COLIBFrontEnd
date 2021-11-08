@@ -12,6 +12,7 @@ export interface User {
   idDisciplines?: Discipline[];
   idSkills?: Skill[]; //string[v] y arriba tambien
   idSavedProjects?: Project[];
+  idCollaboratingProjects?: Project[] | string[];
   idMyProjects?: Project[] | string[];
   idRequestC?: RequestC[];
   idRequestResults?: RequestC[];
