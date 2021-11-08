@@ -7,11 +7,11 @@
             <div class="col-12 col-lg-9 py-3 my-projects">
                 <div class="all-proyects">
                     <div class="header text-center">
-                        <h2 class="project-saved">Proyectos guardados</h2>
+                        <h2 class="project-published">Proyectos en colaboracion</h2>
                     </div>
                     <div class="info">
-                        <div class="col-12 col-lg-9 my-2 justify-content-center" *ngFor="let project of mySavedProject">
-                            <app-project [showHideElements]="showHideElements" [project]="project" [mySavedProject]="mySavedProject"></app-project>
+                        <div class="col-12 col-lg-9 my-2 justify-content-center" *ngFor="let project of projects">
+                            <app-project [showHideElements]="showHideElements" [project]="project"></app-project>
                         </div>
                     </div>
                 </div>
@@ -19,4 +19,3 @@
         </div>
     </div>
 </div>
-

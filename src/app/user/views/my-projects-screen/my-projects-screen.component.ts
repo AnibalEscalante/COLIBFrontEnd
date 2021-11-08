@@ -26,12 +26,13 @@ export class MyProjectsScreenComponent implements OnInit {
     
   ) {
     this.fetchUser();
+    this.fetchUserMyProjects();
   }
 
   ngOnInit(): void {
   }
 
-  async fetchUser() {
+  async fetchUserMyProjects() {
     try {
 
       this.id = this.authService.getId()
@@ -45,4 +46,15 @@ export class MyProjectsScreenComponent implements OnInit {
       console.log('Algo ha salido mal');
     }
   } 
+
+  async fetchUser() {
+    try {
+      this.id = this.authService.getId()
+      const response: any= await this.userService.getUser(this.id!).toPromise();
+      this.user = response.message;
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
+  }
 }

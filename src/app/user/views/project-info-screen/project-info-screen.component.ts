@@ -4,7 +4,10 @@ import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { defaultThrottleConfig } from 'rxjs/internal/operators/throttle';
 import { Project } from 'src/app/core/models/project.model';
+import { User } from 'src/app/core/models/user.model';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ProjectService } from 'src/app/core/services/project/project.service';
+import { UserService } from 'src/app/core/services/user/user.service';
 import { EditDisciComponent } from '../../components/dialogs/edit-disci/edit-disci.component';
 import { EditProjectComponent } from '../../components/dialogs/edit-project/edit-project.component';
 import { EditSkillsComponent } from '../../components/dialogs/edit-skills/edit-skills.component';
@@ -19,15 +22,20 @@ export class ProjectInfoScreenComponent {
   
   public projectInfo!: Project;
   public response: any;
+  public user!: User;
+  public id!: string | null;
   public showFinishDate!: string | null;
   public showCreateDate!: string | null;
   constructor(
     public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
     private projectService: ProjectService,
+    private authService: AuthService,
+    private userService: UserService,
     public datepipe: DatePipe
     ) {
       this.fetchProject();
+      this.fetchUser();
   }
   
   async fetchAllProject() {
@@ -60,6 +68,17 @@ export class ProjectInfoScreenComponent {
     }
   }
 
+  
+  async fetchUser() {
+    try {
+      this.id = this.authService.getId()
+      const response: any= await this.userService.getUser(this.id!).toPromise();
+      this.user = response.message;
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
+  }
 
 
 

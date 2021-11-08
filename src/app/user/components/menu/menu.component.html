@@ -2,7 +2,7 @@
     <div class="info-user">
         <div class="header pt-3 text-center">
             <i type="button" class="fas fa-user mt-2"></i>
-            <h2 class="my-3" *ngIf="user">{{user.name}}</h2>
+            <h2 class="my-3" *ngIf="user">{{user.nickName}}</h2>
         </div>
         <div class="body">
             <div class="row justify-content-center">
@@ -11,6 +11,7 @@
                         <button type="button" class="list-group-item list-group-item-action py-3" [routerLink]="['/user/userinfo']" [routerLinkActive]="['active']">Información general</button>
                         <button type="button" class="list-group-item list-group-item-action py-3" [routerLink]="['/user/myprojects']" [routerLinkActive]="['active']">Proyectos publicados</button>
                         <button type="button" class="list-group-item list-group-item-action py-3" [routerLink]="['/user/savedprojects']" [routerLinkActive]="['active']">Proyectos guardados</button>
+                        <button type="button" class="list-group-item list-group-item-action py-3" [routerLink]="['/user/collabprojects']" [routerLinkActive]="['active']">Proyectos colaborativos</button>
                         <button type="button" class="list-group-item list-group-item-action py-3" [routerLink]="['/user/requests']" [routerLinkActive]="['active']">Solicitudes de colaboración</button>
                        
                     </div>

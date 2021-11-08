@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { CollabProjectsScreenComponent } from './views/collab-projects-screen/collab-projects-screen.component';
 import { ContactsScreenComponent } from './views/contacts-screen/contacts-screen.component';
 import { HomeScreenComponent } from './views/home-screen/home-screen.component';
 import { MyProjectsScreenComponent } from './views/my-projects-screen/my-projects-screen.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path: 'savedprojects',
         component: SavedProjectsScreenComponent
+      },
+      {
+        path: 'collabprojects',
+        component: CollabProjectsScreenComponent
       }
     ]
   }

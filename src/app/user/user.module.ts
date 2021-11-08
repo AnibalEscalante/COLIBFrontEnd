@@ -41,6 +41,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ProfileProjectInfoComponent } from './components/profile-project-info/profile-project-info.component';
+import { CollabProjectsScreenComponent } from './views/collab-projects-screen/collab-projects-screen.component';
+import { CollabProjectsComponent } from './components/collab-projects/collab-projects.component';
 
 
 @NgModule({
@@ -68,7 +70,9 @@ import { ProfileProjectInfoComponent } from './components/profile-project-info/p
     MyProjectsComponent,
     MyProjectsSavedComponent,
     MenuComponent,
-    ProfileProjectInfoComponent
+    ProfileProjectInfoComponent,
+    CollabProjectsScreenComponent,
+    CollabProjectsComponent
   ],
   providers: [
     {

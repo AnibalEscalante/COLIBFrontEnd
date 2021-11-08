@@ -49,6 +49,7 @@ export class AuthService {
   }
 
   register(
+      nickName: string,
       name: string,
       lastName: string,
       email: string,
@@ -59,6 +60,7 @@ export class AuthService {
     ): Observable<any> {
       return this.httpClient.post( this.baseUrl + '/auth/user/signIn',
     {
+      nickName,
       name,
       lastName,
       email,
