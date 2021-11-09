@@ -5,11 +5,8 @@ import { Observable } from 'rxjs';
 import { TokenService } from '../token/token.service';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Auth } from '../../models/auth.model';
 import { Discipline } from '../../models/discipline.model';
 import { Skill } from '../../models/skill.model';
-
 
 @Injectable({
   providedIn: 'root'
@@ -17,21 +14,13 @@ import { Skill } from '../../models/skill.model';
 export class AuthService {
 
   private baseUrl: string = environment.baseUrl;
-  
-  private tokenDecoder = new JwtHelperService();
 
   constructor( 
     private tokenService: TokenService,
     private httpClient: HttpClient,
     private router: Router
-
-    ) {
-
-   
-   
-  }
-
-
+  ) { }
+  
   login(email: string, password: string): Observable<any>{
 
     return this.httpClient.post( this.baseUrl + '/auth/login',
@@ -41,7 +30,7 @@ export class AuthService {
     }).pipe(
       tap(
         (data: any) => {
-            this.tokenService.saveToken(data.message);
+            this.tokenService.addToken(data.message);
             this.router.navigate(['/user/home']);
         }
       )
@@ -79,13 +68,12 @@ export class AuthService {
     return (token !== null)? true : false;
   }
 
-
   getToken(){
     return this.tokenService.getToken()!;
   }
 
   getId(): string | null{
-    const token = this.tokenDecoder.decodeToken(this.getToken());
+    const token = this.getToken();
     return token.authenticated;
     
   }
