@@ -36,15 +36,8 @@ export class ProfileProjectInfoComponent implements OnInit {
     ) {
   }
   ngOnInit(): void {
-    for(let project of this.myProjects){
-      if(project._id ===  this.projectInfo._id){
-        this.isShowElements = true;
-        console.log(this.isShowElements);
-        
-      }
-    }
     this.fetchProject();
-      this.fetchMyProject();
+    this.fetchMyProject();
   }
   
   async fetchProject() {
