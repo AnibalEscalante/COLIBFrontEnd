@@ -20,7 +20,11 @@
                             <input type="text" class="form-control" placeholder="Buscar contactos">
                             <button type="button" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
                         </div>
-                        <app-contact></app-contact>
+                        <div class="list-group list-group-flush mb-3">
+                            <div *ngFor="let chatContact of contacts">
+                                <app-contact [contact]="chatContact"></app-contact>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

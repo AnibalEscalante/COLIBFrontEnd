@@ -57,4 +57,8 @@ export class UserService {
   getRequests(id: string): Observable<any>{
     return this.http.get( environment.baseUrl + '/user/' + id + '/RequestsC/')
   }
+
+  getMyContacts(id: string): Observable<any>{
+    return this.http.get( environment.baseUrl + '/user/' + id + '/myContacts/')
+  }
 }

@@ -1,9 +1,3 @@
-.list-group {
-  overflow-y: scroll;
-  height: 450px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
 .list-group-item {
   padding: 0px;
 }
