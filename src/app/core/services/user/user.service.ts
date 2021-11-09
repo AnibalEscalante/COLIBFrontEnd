@@ -50,6 +50,9 @@ export class UserService {
   getSavedProjects(id: string): Observable<any>{
     return this.http.get( environment.baseUrl + '/user/' + id + '/savedProjects/')
   }
+  getCollabProjects(id: string): Observable<any>{
+    return this.http.get( environment.baseUrl + '/user/' + id + '/collabProjects/')
+  }
 
   getRequests(id: string): Observable<any>{
     return this.http.get( environment.baseUrl + '/user/' + id + '/RequestsC/')

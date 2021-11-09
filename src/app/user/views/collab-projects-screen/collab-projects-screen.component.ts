@@ -6,40 +6,37 @@ import { ProjectService } from 'src/app/core/services/project/project.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
-  selector: 'app-saved-projects-screen',
-  templateUrl: './saved-projects-screen.component.html',
-  styleUrls: ['./saved-projects-screen.component.less']
+  selector: 'app-collab-projects-screen',
+  templateUrl: './collab-projects-screen.component.html',
+  styleUrls: ['./collab-projects-screen.component.less']
 })
-export class SavedProjectsScreenComponent implements OnInit {
-  
+export class CollabProjectsScreenComponent implements OnInit {
+
   public id!: string | null;
   public user!: User
   public projects!: Project[];
-  public showSavedProject: boolean = true;
-  public showHideElements: string = 'mySavedProjects'
-  public mySavedProject: Project[] = [];
+  public showHideElements: string = 'myCollabProjects'
 
   constructor(
     public projectService: ProjectService,
     public authService: AuthService,
     public userService: UserService
+    
   ) {
-    this.fetchUserSavedProjects();
     this.fetchUser();
-    this.fetchMySavedProject();
+    this.fetchUserCollab();
   }
-  
 
   ngOnInit(): void {
   }
 
-  async fetchUserSavedProjects() {
+  async fetchUserCollab() {
     try {
 
       this.id = this.authService.getId()
-      const response: any= await this.userService.getSavedProjects(this.id!).toPromise();
+      const response: any= await this.userService.getCollabProjects(this.id!).toPromise();
       this.user = response.message;
-      this.projects = response.message.idSavedProjects
+      this.projects = response.message.idCollaboratingProjects;
       console.log(this.projects);
       
     }
@@ -47,6 +44,7 @@ export class SavedProjectsScreenComponent implements OnInit {
       console.log('Algo ha salido mal');
     }
   }
+
   async fetchUser() {
     try {
       this.id = this.authService.getId()
@@ -57,18 +55,4 @@ export class SavedProjectsScreenComponent implements OnInit {
       console.log('Algo ha salido mal');
     }
   }
-
-  async fetchMySavedProject() {
-    try {
-
-      this.id = this.authService.getId()
-      const response: any= await this.userService.getSavedProjects(this.id!).toPromise();
-      this.mySavedProject= response.message.idSavedProjects;
-      
-    }
-    catch (error) {
-      console.log('Algo ha salido mal');
-    }
-  }
-
 }

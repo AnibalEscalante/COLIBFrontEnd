@@ -14,7 +14,14 @@
                             <div class="card">
                                 <H2 class=" mt-3 mb-0 mx-auto">Registro</H2>
                                 <div class="card-body">
+                                    
                                         <ng-template matStepLabel>Complete sus datos</ng-template>
+                                        <mat-form-field class="mt-2" appearance="outline">
+                                            <mat-label>Nickname</mat-label>
+                                            <input matInput formControlName="nickName" placeholder="Nickname" required>
+                                        </mat-form-field>
+
+
                                         <mat-form-field class="mt-2" appearance="outline">
                                             <mat-label>Nombre</mat-label>
                                              <input matInput formControlName="name" placeholder="Nombre" required>
@@ -24,7 +31,6 @@
                                             <mat-label>Apellido</mat-label>
                                             <input matInput formControlName="lastName" placeholder="Apellido" required>
                                         </mat-form-field>
-
                                         <div class="example-container mt-2">
                                             <mat-form-field appearance="outline">
                                                 <mat-label>Enter your email</mat-label>
@@ -224,6 +230,12 @@
                                         <mat-label>Apellido</mat-label>
                                         <input matInput formControlName="lastName" placeholder="Apellido" required>
                                     </mat-form-field>
+
+                                    <mat-form-field class="mt-2" appearance="outline">
+                                        <mat-label>Nickname</mat-label>
+                                        <input matInput formControlName="nickName" placeholder="Nickname" required>
+                                    </mat-form-field>
+
 
                                     <div class="example-container mt-2">
                                         <mat-form-field appearance="outline">
