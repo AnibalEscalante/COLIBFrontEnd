@@ -28,7 +28,7 @@
                             <h5 class="published-item" *ngIf="projectInfo">Se cierra el {{showFinishDate}}</h5>
                         </div>
                         <div class="col d-flex align-items-center justify-content-end">
-                            <button type="button" class="btn btn-primary btn-sm" [disabled]="isShowElements">Colaborar</button>
+                            <button type="button" class="btn btn-primary btn-sm" *ngIf="isShowElements">Colaborar</button>
                         </div>
                     </div>
                     <p class="card-subtitle-info mb-2 text-muted" *ngIf="projectInfo">
@@ -41,7 +41,7 @@
                                 <p class="tag me-2 mb-2">{{discipline.name}}</p>
                             </label>
                         </div>
-                        <div class="col-2 col-lg-2 d-flex align-items-top justify-content-end">
+                        <div class="col-2 col-lg-2 d-flex align-items-top justify-content-end" *ngIf="isShowElements">
                             <i class="fas fa-edit" type="button" (click)="openDialogEditDisci()"></i>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                                 <p class="tag me-2 mb-2">{{skill.name}}</p>
                             </label>
                         </div>
-                        <div class="col-2 col-lg-2 d-flex align-items-top justify-content-end">
+                        <div class="col-2 col-lg-2 d-flex align-items-top justify-content-end" *ngIf="isShowElements">
                             <i class="fas fa-edit" type="button" (click)="openDialogEditSkills()"></i>
                         </div>
                     </div>
