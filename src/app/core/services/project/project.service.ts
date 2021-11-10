@@ -28,8 +28,8 @@ export class ProjectService {
     return this.http.get<Project>(environment.baseUrl + '/project/'+ id);
   }
 
-  registNewProject(project: Partial<Project>): Observable<Project> {
-    return this.http.post<Project>(environment.baseUrl + '/project/', project);
+  registNewProject(project: Partial<Project>, id:string): Observable<Project> {
+    return this.http.post<Project>(environment.baseUrl + '/project/' + id, project);
   }
 
   modifyProject(project: Partial<Project>, id: string): Observable<Project> {

@@ -26,37 +26,37 @@ import { User } from 'src/app/core/models/user.model';
 export class CreateProjectComponent implements OnInit {
 
   //disciplines//
-  disciplineCtrl = new FormControl();
-  filteredDisciplines: Observable<string[]>;
-  filteredOptionsDisciplines!: Observable<string[]>;
-  createFormDisci: FormGroup;
-  myDisciplines: string[] =[];
-  allDisciplinesName: string[] = [];
-  allDisci!: Discipline[];
-  myDisciplineUpdate: Discipline[] = [];
-  myControlDiscipline = new FormControl();
+  public disciplineCtrl = new FormControl();
+  public filteredDisciplines: Observable<string[]>;
+  public filteredOptionsDisciplines!: Observable<string[]>;
+  public createFormDisci: FormGroup;
+  public myDisciplines: string[] =[];
+  public allDisciplinesName: string[] = [];
+  public allDisci!: Discipline[];
+  public myDisciplineUpdate: Discipline[] = [];
+  public myControlDiscipline = new FormControl();
 
   //skills//
-  createFormSkills: FormGroup
-  filteredOptionsSkills!: Observable<string[]>;
-  myControlSkill = new FormControl();
-  skillCtrl = new FormControl();
-  filteredSkills: Observable<string[]>;
-  mySkills: string[] =[];
-  allSkillsName: string[] = [];
-  allSkills!: Skill[];
-  mySkillUpdate: Skill[] = [];
+  public createFormSkills: FormGroup
+  public filteredOptionsSkills!: Observable<string[]>;
+  public myControlSkill = new FormControl();
+  public skillCtrl = new FormControl();
+  public filteredSkills: Observable<string[]>;
+  public mySkills: string[] =[];
+  public allSkillsName: string[] = [];
+  public allSkills!: Skill[];
+  public mySkillUpdate: Skill[] = [];
   ///collaborators//
 
-  createFormCollab: FormGroup
-  filteredOptionsCollab!: Observable<string[]>;
-  myControlCollab = new FormControl();
-  collabCtrl = new FormControl();
-  filteredCollab: Observable<string[]>;
-  myCollabs: string[] =[];
-  allCollabsName: string[] = [];
-  allCollabs!: Collaborator[];
-  myCollabUpdate: Collaborator[] = [];
+  public createFormCollab: FormGroup
+  public filteredOptionsCollab!: Observable<string[]>;
+  public myControlCollab = new FormControl();
+  public collabCtrl = new FormControl();
+  public filteredCollab: Observable<string[]>;
+  public myCollabs: string[] =[];
+  public allCollabsName: string[] = [];
+  public allCollabs!: Collaborator[];
+  public myCollabUpdate: Collaborator[] = [];
 
 
   public createProject!: FormGroup;
@@ -65,7 +65,7 @@ export class CreateProjectComponent implements OnInit {
   public myProjects!: Project[];
   public user!: User
   public myProjectUpdate!: Project[];
-  public _id!: string | null;
+  public _id: string | null;
   public selectable = true;
   public removable = true;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -87,6 +87,7 @@ export class CreateProjectComponent implements OnInit {
     private authService: AuthService
     
     ) {
+      this._id = null;
     (
       this.createProject = this.formBuilder.group({
       
@@ -122,7 +123,7 @@ export class CreateProjectComponent implements OnInit {
       idSkills: ['']
     })
     this.fetchSkills();
-
+    //collabs//
     this.filteredCollab = this.collabCtrl.valueChanges.pipe(
       startWith(null),
       map((collab: string | null) => collab ? this._filterCollab(collab) : this.allCollabsName.slice())
@@ -133,6 +134,7 @@ export class CreateProjectComponent implements OnInit {
       idCollabs: ['']
     })
     this.fetchCollab();
+
     this.fetchUserMyProjects();
     this.fetchUser();
   }
@@ -187,8 +189,8 @@ export class CreateProjectComponent implements OnInit {
       this.mySkillUpdate.push(skill!)
     }
 
-    for(let collabName of this.myCollabs){
-      let collab = this.allCollabs.find(collab => collab.nickName === collabName)
+    for(let collabNickName of this.myCollabs){
+      let collab = this.allCollabs.find(collab => collab.nickName === collabNickName)
       this.myCollabUpdate.push(collab!)
     }
 
@@ -199,23 +201,15 @@ export class CreateProjectComponent implements OnInit {
       state: this.state,
       idDisciplines: this.myDisciplineUpdate,
       idSkills: this.mySkillUpdate,
-      idCollaborators: []
+      idCollaborators: this.myCollabUpdate
     }
     this.project = project
     this.myProjects.push(this.project)
     console.log(this.myProjects);
-
-    let user: User = {
-      idMyProjects: this.myProjects,
-      name: this.user.name,
-      lastName: this.user.lastName,
-      nickName: this.user.nickName
-    }
-    console.log(user);
     try {
-      await this.projectService.registNewProject(this.project).toPromise();
       this._id = this.authService.getId()
-      await this.userService.modifyUser(user, this._id!).toPromise();
+      await this.projectService.registNewProject(this.project, this._id!).toPromise();
+
     } catch (error) {
       console.log('error');
 

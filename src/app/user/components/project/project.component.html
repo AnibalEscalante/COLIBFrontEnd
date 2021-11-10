@@ -25,7 +25,7 @@
         <div class="nav nav-pills nav-fill">
             <div *ngFor="let collaborator of project.idCollaborators">
                 <a class="nav-link p-0 me-3 mb-1" href="#">
-                    <i class="fas fa-user"></i> <!-- {{collaborator.name}} {{collaborator.lastName}} -->
+                    <i class="fas fa-user"></i> {{collaborator.nickName}}
                 </a>
             </div>
         </div>
@@ -39,7 +39,7 @@
                     Guardar
                     <i class="fa fa-bookmark"></i>
                 </button>
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" *ngIf="!isMySavedProject" (click)='modifyProjectUser()'>
+                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" *ngIf="!isMySavedProject" (click)="toast()" (click)='modifyProjectUser()'>
                     Guardar
                     <i class="fa fa-bookmark"></i>
                 </button>

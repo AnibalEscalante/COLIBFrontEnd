@@ -25,7 +25,9 @@ export class ProjectInfoScreenComponent {
   public user!: User;
   public id!: string | null;
   public showFinishDate!: string | null;
+  public myProjects: Project[] = []
   public showCreateDate!: string | null;
+  public isShowElements: boolean = false;
   constructor(
     public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
@@ -34,23 +36,9 @@ export class ProjectInfoScreenComponent {
     private userService: UserService,
     public datepipe: DatePipe
     ) {
+      this.fetchMyProject();
       this.fetchProject();
       this.fetchUser();
-  }
-  
-  async fetchAllProject() {
-    try {
-      this.response = await this.projectService.getProject(this.activatedRoute.snapshot.params['id']).toPromise();
-      this.projectInfo = this.response.message;
-      this.projectInfo.idDisciplines
-      this.showFinishDate = this.datepipe.transform(this.projectInfo.finishDate, 'dd/MM/yyyy');
-      this.showCreateDate = this.datepipe.transform(this.projectInfo.createdAt, 'dd/MM/yyyy');
-
-      
-    }
-    catch (error) {
-      console.log('uh que mal :c');
-    }
   }
   
   async fetchProject() {
@@ -60,15 +48,48 @@ export class ProjectInfoScreenComponent {
       this.projectInfo.idDisciplines
       this.showFinishDate = this.datepipe.transform(this.projectInfo.finishDate, 'dd/MM/yyyy');
       this.showCreateDate = this.datepipe.transform(this.projectInfo.createdAt, 'dd/MM/yyyy');
-
-
+      console.log(this.projectInfo._id);
+      for(let project of this.myProjects){
+        if(project._id ===  this.projectInfo._id){
+          this.isShowElements = true;
+          console.log(this.isShowElements);
+          
+        }
+      }
     }
     catch (error) {
       console.log('uh que mal :c');
     }
   }
 
-  
+
+  async fetchMyProject() {
+    try {
+
+      this.id = this.authService.getId()
+      const response: any= await this.userService.getMyProjects(this.id!).toPromise();
+      this.user = response.message;
+      this.myProjects = response.message.idMyProjects
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
+  }
+
+  /* async fetchProject() {
+    try {
+      this.response = await this.projectService.getProject(this.activatedRoute.snapshot.params['id']).toPromise();
+      this.projectInfo = this.response.message;
+      this.projectInfo.idDisciplines
+      this.showFinishDate = this.datepipe.transform(this.projectInfo.finishDate, 'dd/MM/yyyy');
+      this.showCreateDate = this.datepipe.transform(this.projectInfo.createdAt, 'dd/MM/yyyy');
+
+
+    }
+    catch (error) {
+      console.log('uh que mal :c');
+    }
+  } */
   async fetchUser() {
     try {
       this.id = this.authService.getId()

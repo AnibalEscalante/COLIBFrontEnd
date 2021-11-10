@@ -19,13 +19,21 @@ import { EditSkillsComponent } from '../dialogs/edit-skills/edit-skills.componen
 export class ProfileProjectInfoComponent implements OnInit {
   
   @Input() public projectInfo!: Project;
+  
+  @Input() public showFinishDate!: string | null;
+
+  @Input() public showCreateDate!: string | null;
+  
+  @Input() public myProjects: Project[] = [];
+
   public response: any;
-  public showFinishDate!: string | null;
-  public showCreateDate!: string | null;
-  public user!: User;
-  public myProjects: Project[] = []
-  public _id!: string | null;
+  /* public showFinishDate!: string | null; */
   public isShowElements: boolean = false;
+  /* public showCreateDate!: string | null; */
+  public user!: User;
+  /* public myProjects: Project[] = [] */
+  public _id!: string | null;
+  
   constructor(
     public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
@@ -37,17 +45,12 @@ export class ProfileProjectInfoComponent implements OnInit {
   }
   ngOnInit(): void {
     this.fetchProject();
-    this.fetchMyProject();
+    /* this.fetchMyProject(); */
   }
   
   async fetchProject() {
     try {
-      this.response = await this.projectService.getProject(this.activatedRoute.snapshot.params['id']).toPromise();
-      this.projectInfo = this.response.message;
-      this.projectInfo.idDisciplines
-      this.showFinishDate = this.datepipe.transform(this.projectInfo.finishDate, 'dd/MM/yyyy');
-      this.showCreateDate = this.datepipe.transform(this.projectInfo.createdAt, 'dd/MM/yyyy');
-      console.log(this.projectInfo._id);
+      this.response = await this.projectService.getProject(this.activatedRoute.snapshot.params['id']).toPromise()
       for(let project of this.myProjects){
         if(project._id ===  this.projectInfo._id){
           this.isShowElements = true;
@@ -55,13 +58,14 @@ export class ProfileProjectInfoComponent implements OnInit {
           
         }
       }
+      
     }
     catch (error) {
       console.log('uh que mal :c');
     }
   }
 
-  async fetchMyProject() {
+ /*  async fetchMyProject() {
     try {
 
       this._id = this.authService.getId()
@@ -72,7 +76,7 @@ export class ProfileProjectInfoComponent implements OnInit {
     catch (error) {
       console.log('Algo ha salido mal');
     }
-  }
+  } */
 
 
   openDialog() {
