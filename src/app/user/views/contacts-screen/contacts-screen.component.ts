@@ -16,6 +16,7 @@ export class ContactsScreenComponent implements OnInit {
   
   public user: User | null;
   public contacts: Contact[];
+  public contact: Contact | null;
   private token: Token | null;
 
   constructor(
@@ -26,16 +27,15 @@ export class ContactsScreenComponent implements OnInit {
     this.user = null;
     this.contacts = [];
     this.token = this.tokenService.getToken();
+    this.contact = null;
   }
 
   async ngOnInit(): Promise<void> {
     this.user = await this.getUser();
     this.contacts = await this.fetchMyContacts();
-    console.log(this.contacts);
-    
   }
 
-  async getUser(): Promise<User | null> {
+  private async getUser(): Promise<User | null> {
     try {
       if (this.token) {
         const response: any = await this.userService.getUser(this.token?.authenticated).toPromise();
@@ -49,7 +49,7 @@ export class ContactsScreenComponent implements OnInit {
     }
   }
 
-  async fetchMyContacts(): Promise<Contact[] | []> {
+  private async fetchMyContacts(): Promise<Contact[] | []> {
     try {
       if (this.token) {
         const response: any = await this.userService.getMyContacts(this.token?.authenticated).toPromise();
@@ -62,9 +62,9 @@ export class ContactsScreenComponent implements OnInit {
       return [];
     }
   }
-  showContacts() {
-    console.log(this.user);
-    console.log(this.contacts);
+
+  public receive(event :any) {
+    this.contact = event;
   }
 
   editContacts() {
