@@ -22,7 +22,7 @@
                         </div>
                         <div class="list-group list-group-flush mb-3">
                             <div *ngFor="let chatContact of contacts">
-                                <app-contact [contact]="chatContact"></app-contact>
+                                <app-contact [contact]="chatContact" (chatContact)="receive($event)"></app-contact>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <app-message></app-message>
+                        <app-message [contact]="contact"></app-message>
                         <div class="col d-flex">
                             <input type="text" class="form-control" placeholder="Escribe un mensaje...">
                             <button type="button" class="btn btn-primary ms-2">Enviar</button>

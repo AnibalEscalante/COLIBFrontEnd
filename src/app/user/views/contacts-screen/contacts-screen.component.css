@@ -5,7 +5,7 @@
   background-color: white;
 }
 .list-group {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 450px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
