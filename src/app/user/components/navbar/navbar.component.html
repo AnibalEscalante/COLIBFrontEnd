@@ -2,10 +2,10 @@
     <div class="container-fluid">
         <ul class="nav">
             <li class="nav-item">
-                <img src="/assets/img/icono coliv.png" type="button" href="#" [routerLink]="['/user/home']">
+                <img src="/assets/img/icono coliv.png" type="button" [routerLink]="['/user/home']">
             </li>
             <li class="nav-item mt-2">
-                <h2 type="button" href="#" [routerLink]="['/user/home']">Colib</h2>
+                <h2 type="button" [routerLink]="['/user/home']">Colib</h2>
             </li>
         </ul>
         <ul class="nav">
@@ -26,21 +26,21 @@
                                         <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
                                         <i class="fas fa-times ps-2" type="button"></i>
                                     </div>
-                                    <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                    <a class="rec-request" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
                                 </div>
                                 <div class="col item-notification">
                                     <div class="col d-flex">
                                         <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
                                         <i class="fas fa-times ps-2" type="button"></i>
                                     </div>
-                                    <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                    <a class="rec-request" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
                                 </div>
                                 <div class="col item-notification">
                                     <div class="col d-flex">
                                         <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
                                         <i class="fas fa-times ps-2" type="button"></i>
                                     </div>
-                                    <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                    <a class="rec-request" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
                                 </div>
                             </mat-tab>
                             <mat-tab label="Resultado de tus solicitudes">
@@ -129,8 +129,8 @@
             </div>
             <!-- Responsive end -->
             <li class="nav-item me-3">
-                <button type="button" class="messages">
-                    <i class="fas fa-comments" [routerLink]="['/user/contacts']"></i>
+                <button type="button" class="messages" [routerLink]="['/user/contacts']">
+                    <i class="fas fa-comments"></i>
                     <span class="badge rounded-pill bg-danger">1</span>
                 </button>
             </li>

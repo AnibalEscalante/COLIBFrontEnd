@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Contact } from '../../../core/models/contact.model';
 import { io } from 'socket.io-client';
+import { Message } from '../../../core/models/message.model';
 
 @Component({
   selector: 'app-message',
@@ -10,19 +10,20 @@ import { io } from 'socket.io-client';
 export class MessageComponent implements OnInit {
 
   @Input()
-  public contact!: Contact | null;
+  public message!: Message | null;
   private socket = io("http://localhost:5200", {
     reconnectionDelayMax: 10000,
     query: {
-      "hola": "message"
+      message: "reciever"
   }});
 
-  constructor() { }
+  constructor() {
+    this.socket.on("message", (reciever: any) => {
+      console.log(reciever);
+    })
+   }
 
   ngOnInit(): void {
-    this.socket.on("hola", (message) => {
-      console.log(message);
-    })
   }
 
 }

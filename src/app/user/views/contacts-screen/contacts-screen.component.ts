@@ -6,6 +6,7 @@ import { TokenService } from '../../../core/services/token/token.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { Contact } from 'src/app/core/models/contact.model';
 import { Token } from 'src/app/core/models/token.model';
+import { Message } from '../../../core/models/message.model';
 
 @Component({
   selector: 'app-contacts-screen',
@@ -17,6 +18,7 @@ export class ContactsScreenComponent implements OnInit {
   public user: User | null;
   public contacts: Contact[];
   public contact: Contact | null;
+  public messages: Message[];
   private token: Token | null;
 
   constructor(
@@ -28,6 +30,7 @@ export class ContactsScreenComponent implements OnInit {
     this.contacts = [];
     this.token = this.tokenService.getToken();
     this.contact = null;
+    this.messages = [];
   }
 
   async ngOnInit(): Promise<void> {

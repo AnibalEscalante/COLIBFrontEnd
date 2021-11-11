@@ -77,7 +77,11 @@ export class AuthService {
   getId(): string | null{
     const token = this.getToken();
     return token.authenticated;
-    
+  }
+
+  getContact(): string{
+    const token = this.getToken();
+    return token.contact;
   }
   
 }
