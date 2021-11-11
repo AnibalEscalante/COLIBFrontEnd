@@ -5,7 +5,13 @@
                 <app-menu [user]="user"></app-menu>
             </div>
             <div class="col-12 col-lg-9 py-3 my-info">
-                <app-profile-project-info [projectInfo]="projectInfo" ></app-profile-project-info>
+                <app-profile-project-info 
+                    [projectInfo]="projectInfo" 
+                    [showCreateDate]="showCreateDate"
+                    [showFinishDate]="showFinishDate"
+                    [myProjects]="myProjects"
+
+                ></app-profile-project-info>
             </div>
         </div>
     </div>

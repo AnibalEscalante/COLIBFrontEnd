@@ -35,13 +35,14 @@ export class HomeScreenComponent implements OnInit {
     this.fetchMySavedProject();
   }
   ngOnInit(): void {
-    
   }
   
   async fetchProjects() {
     try {
       this.projects = await this.projectService.getAllProject().toPromise()
- 
+      this.term = this.projectinfo.title
+
+      
     } catch (error) {
       console.log('uh que mal :c');
     }

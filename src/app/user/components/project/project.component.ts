@@ -121,33 +121,37 @@ export class ProjectComponent implements OnInit {
         if(this.project._id === project._id){
          this.mySavedProject.splice(this.mySavedProject.findIndex(item => item._id === this.project._id),1);
          this.isMySavedProject = true
-         this.colorSavedState = '#198754';
         }
       }
       if (!this.isMySavedProject){
         this.mySavedProject.push(this.project)
-        this.colorSavedState = '#dc3545'
       }
       
       let user: Partial<User> = {
         idSavedProjects: this.mySavedProject
       }
-      if (!this.isMySavedProject){
-        this.toastr.success('Se agregó el proyecto a tus elementos guardados');
-      }
-      if (this.isMySavedProject){
-        this.toastr.error('Se eliminó el proyecto de tus elementos guardados');
-      }
+      this.toast()
 
       this._id = this.authService.getId()
       await this.userService.modifyUser(user, this._id!).toPromise();
     } catch (error) {
       console.log('Ha ocurrido un error al guardar el proyecto');
-      this.toastr.success('Ha ocurrido un error al guardar el proyecto');
+      this.toastr.success('Ha ocurrido un error al guardar el proyecto',);
 
     }
   }
-
+  toast(){
+    if (!this.isMySavedProject){
+      this.toastr.success("Se agregó el proyecto a tus elementos guardados", "", {
+        "positionClass": "toast-bottom-center",
+      });
+    }
+    if (this.isMySavedProject){
+      this.toastr.error("Se eliminó el proyecto de tus elementos guardados", "", {
+        "positionClass": "toast-bottom-center",
+      });
+    }
+  }
   mandarInfo() {
     this.projectList.emit(this.project);
   }
