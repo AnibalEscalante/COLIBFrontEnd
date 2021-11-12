@@ -43,6 +43,8 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ProfileProjectInfoComponent } from './components/profile-project-info/profile-project-info.component';
 import { CollabProjectsScreenComponent } from './views/collab-projects-screen/collab-projects-screen.component';
 import { CollabProjectsComponent } from './components/collab-projects/collab-projects.component';
+import { DeleteUserComponent } from './components/dialogs/delete-user/delete-user.component';
+import { DeleteProjectComponent } from './components/dialogs/delete-project/delete-project.component';
 
 
 @NgModule({
@@ -72,7 +74,9 @@ import { CollabProjectsComponent } from './components/collab-projects/collab-pro
     MenuComponent,
     ProfileProjectInfoComponent,
     CollabProjectsScreenComponent,
-    CollabProjectsComponent
+    CollabProjectsComponent,
+    DeleteUserComponent,
+    DeleteProjectComponent
   ],
   providers: [
     {

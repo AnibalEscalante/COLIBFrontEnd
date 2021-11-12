@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Project } from 'src/app/core/models/project.model';
 import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { UserService } from 'src/app/core/services/user/user.service';
+import { DeleteProjectComponent } from '../dialogs/delete-project/delete-project.component';
 
 @Component({
   selector: 'app-project',
@@ -31,6 +34,8 @@ export class ProjectComponent implements OnInit {
 
   @Output() show= new EventEmitter<boolean>();
   
+  public static routeNamesObject = {}
+  
   public showSaved: boolean = false;
   public showHideComponent: boolean = false;
   public showHomeProject: boolean = false;
@@ -45,13 +50,18 @@ export class ProjectComponent implements OnInit {
   public _id!: string | null;
   public newSavedProject: Project[] = [];
   public myProjects: Project[] = [];
+  public name: string | null;
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
   ) { 
+    this.name = null;
   }
-
+  
+  
   ngOnInit(): void {
     this.projectId = 'projecto' + this.project._id;
     if(this.showHideElements === 'homeProjects'){
@@ -66,8 +76,11 @@ export class ProjectComponent implements OnInit {
     if (this.showHideElements === 'myCollabProjects'){
       this.showCollabProjects = true;
     }
-    /* this.fetchUser(); *//* 
-    this.fetchMySavedProject(); */
+
+    /* this.route.queryParams.subscribe(params => {
+      this.project.idCollaborators = params['name'];
+    }); */
+
   }
   
   showComponent(){
@@ -75,30 +88,7 @@ export class ProjectComponent implements OnInit {
     this.show.emit(this.showinfo)
   }
 
-  /* async fetchUser() {
-    try {
 
-      this._id = this.authService.getId()
-      const response: any= await this.userService.getUser(this._id!).toPromise();
-      this.user = response.message;
-    }
-    catch (error) {
-      console.log('Algo ha salido mal');
-    }
-  } */
-
-  /* async fetchMySavedProject() {
-    try {
-
-      this._id = this.authService.getId()
-      const response: any= await this.userService.getSavedProjects(this._id!).toPromise();
-      this.mySavedProject= response.message.idSavedProjects;
-      
-    }
-    catch (error) {
-      console.log('Algo ha salido mal');
-    }
-  } */
   async fetchMyProject() {
     try {
 
@@ -135,18 +125,17 @@ export class ProjectComponent implements OnInit {
       this._id = this.authService.getId()
       await this.userService.modifyUser(user, this._id!).toPromise();
     } catch (error) {
-      console.log('Ha ocurrido un error al guardar el proyecto');
       this.toastr.success('Ha ocurrido un error al guardar el proyecto',);
 
     }
   }
   toast(){
-    if (!this.isMySavedProject){
+    if (this.isMySavedProject === false){
       this.toastr.success("Se agregó el proyecto a tus elementos guardados", "", {
         "positionClass": "toast-bottom-center",
       });
     }
-    if (this.isMySavedProject){
+    if (this.isMySavedProject === true){
       this.toastr.error("Se eliminó el proyecto de tus elementos guardados", "", {
         "positionClass": "toast-bottom-center",
       });

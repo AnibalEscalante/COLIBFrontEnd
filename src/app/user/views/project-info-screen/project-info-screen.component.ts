@@ -25,7 +25,9 @@ export class ProjectInfoScreenComponent {
   public user!: User;
   public id!: string | null;
   public showFinishDate!: string | null;
-  public myProjects: Project[] = []
+  public myProjects: Project[] = [];
+  public myProjectsCollab: Project[] = [];
+  public mySavedProject: Project[] = [];
   public showCreateDate!: string | null;
   public isShowElements: boolean = false;
   constructor(
@@ -39,6 +41,7 @@ export class ProjectInfoScreenComponent {
       this.fetchMyProject();
       this.fetchProject();
       this.fetchUser();
+      this.fetchMyProjectCollab();
   }
   
   async fetchProject() {
@@ -70,6 +73,33 @@ export class ProjectInfoScreenComponent {
       const response: any= await this.userService.getMyProjects(this.id!).toPromise();
       this.user = response.message;
       this.myProjects = response.message.idMyProjects
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
+  }
+
+  async fetchMySavedProject() {
+    try {
+
+      this.id = this.authService.getId()
+      const response: any= await this.userService.getSavedProjects(this.id!).toPromise();
+      this.mySavedProject= response.message.idSavedProjects;
+      console.log(this.mySavedProject)
+      
+    }
+    catch (error) {
+      console.log('Algo ha salido mal');
+    }
+  }
+
+  async fetchMyProjectCollab() {
+    try {
+
+      this.id = this.authService.getId()
+      const response: any= await this.userService.getCollabProjects(this.id!).toPromise();
+      this.user = response.message;
+      this.myProjectsCollab = response.message.idCollaboratingProjects
     }
     catch (error) {
       console.log('Algo ha salido mal');

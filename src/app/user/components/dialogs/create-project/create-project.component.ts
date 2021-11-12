@@ -28,42 +28,42 @@ export class CreateProjectComponent implements OnInit {
   //disciplines//
   public disciplineCtrl = new FormControl();
   public filteredDisciplines: Observable<string[]>;
-  public filteredOptionsDisciplines!: Observable<string[]>;
+  public filteredOptionsDisciplines: Observable<string[]> | null;
   public createFormDisci: FormGroup;
   public myDisciplines: string[] =[];
   public allDisciplinesName: string[] = [];
-  public allDisci!: Discipline[];
+  public allDisci: Discipline[];
   public myDisciplineUpdate: Discipline[] = [];
   public myControlDiscipline = new FormControl();
 
   //skills//
   public createFormSkills: FormGroup
-  public filteredOptionsSkills!: Observable<string[]>;
+  public filteredOptionsSkills: Observable<string[]> | null;
   public myControlSkill = new FormControl();
   public skillCtrl = new FormControl();
   public filteredSkills: Observable<string[]>;
   public mySkills: string[] =[];
   public allSkillsName: string[] = [];
-  public allSkills!: Skill[];
+  public allSkills: Skill[];
   public mySkillUpdate: Skill[] = [];
   ///collaborators//
 
   public createFormCollab: FormGroup
-  public filteredOptionsCollab!: Observable<string[]>;
+  public filteredOptionsCollab: Observable<string[]> | null;
   public myControlCollab = new FormControl();
   public collabCtrl = new FormControl();
   public filteredCollab: Observable<string[]>;
   public myCollabs: string[] =[];
   public allCollabsName: string[] = [];
-  public allCollabs!: Collaborator[];
+  public allCollabs: Collaborator[];
   public myCollabUpdate: Collaborator[] = [];
 
 
-  public createProject!: FormGroup;
+  public createProject: FormGroup;
   public state: string = 'Open';
-  public project!: Project;
-  public myProjects!: Project[];
-  public user!: User
+  public project: Project | null;
+  public myProjects: Project[];
+  public user: User | null;
   public myProjectUpdate!: Project[];
   public _id: string | null;
   public selectable = true;
@@ -88,6 +88,16 @@ export class CreateProjectComponent implements OnInit {
     
     ) {
       this._id = null;
+      this.user = null;
+      this.myProjects = [];
+      this.project = null;
+      this.allCollabs = [];
+      this.allSkills = [];
+      this.allDisci = [];
+      this.filteredOptionsCollab = null;
+      this.filteredOptionsSkills = null;
+      this.filteredOptionsDisciplines = null;
+
     (
       this.createProject = this.formBuilder.group({
       
@@ -216,21 +226,6 @@ export class CreateProjectComponent implements OnInit {
     }
   }
   
- /*  async modifyUserProject(){
-
-    
-    let user: Partial<User> = {
-      idMyProjects: this.myProjects
-    }
-    try {
-      this._id = this.authService.getId()
-      await this.userService.modifyUser(user, this._id!).toPromise();
-     
-    } catch (error) {
-      console.log('error');
-
-    }
-  } */
   
   async fetchUserMyProjects() {
     try {

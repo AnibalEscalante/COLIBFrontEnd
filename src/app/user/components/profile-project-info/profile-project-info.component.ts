@@ -1,12 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/core/models/project.model';
 import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ProjectService } from 'src/app/core/services/project/project.service';
 import { UserService } from 'src/app/core/services/user/user.service';
+import { DeleteProjectComponent } from '../dialogs/delete-project/delete-project.component';
 import { EditDisciComponent } from '../dialogs/edit-disci/edit-disci.component';
 import { EditProjectComponent } from '../dialogs/edit-project/edit-project.component';
 import { EditSkillsComponent } from '../dialogs/edit-skills/edit-skills.component';
@@ -26,31 +27,63 @@ export class ProfileProjectInfoComponent implements OnInit {
   
   @Input() public myProjects: Project[] = [];
 
+  @Input() public mySavedProject!: Project[];
+
+  @Input() public myProjectsCollab: Project[] = [];
+
   public response: any;
-  /* public showFinishDate!: string | null; */
+
   public isShowElements: boolean = false;
-  /* public showCreateDate!: string | null; */
+  
+  public isShowElementsCollab: boolean = false;
+
+  public isShowElementsSaved: boolean = false;
+
   public user!: User;
-  /* public myProjects: Project[] = [] */
+
   public _id!: string | null;
+
+  public colorState: string = '';
+
+  public idP!: string
   
   constructor(
     public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
     private projectService: ProjectService,
-    private userService: UserService,
-    private authService: AuthService,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    public router: Router
     ) {
   }
   ngOnInit(): void {
     this.fetchProject();
-    /* this.fetchMyProject(); */
+    for(let project of this.myProjects){
+      if(project._id ===  this.projectInfo._id){
+        this.isShowElements = true;
+        console.log(this.isShowElements);
+        
+      }
+    }
+    for(let project of this.myProjectsCollab){
+      if(project._id ===  this.projectInfo._id){
+        this.isShowElementsCollab = true;
+      }
+    }
+
+    for(let project of this.mySavedProject){
+      if(project._id ===  this.projectInfo._id){
+        this.isShowElementsSaved = true;
+        console.log(this.isShowElementsSaved);
+        
+      }
+    }
   }
   
   async fetchProject() {
     try {
       this.response = await this.projectService.getProject(this.activatedRoute.snapshot.params['id']).toPromise()
+      console.log(this.myProjects);
+      
       for(let project of this.myProjects){
         if(project._id ===  this.projectInfo._id){
           this.isShowElements = true;
@@ -58,25 +91,38 @@ export class ProfileProjectInfoComponent implements OnInit {
           
         }
       }
-      
+      for(let project of this.myProjectsCollab){
+        if(project._id ===  this.projectInfo._id){
+          this.isShowElementsCollab = true;
+          console.log(this.isShowElementsCollab);
+        }
+      }
+  
+      for(let project of this.mySavedProject){
+        if(project._id ===  this.projectInfo._id){
+          this.isShowElementsSaved = true;
+          console.log(this.isShowElementsSaved);
+          
+        }
+      }
     }
     catch (error) {
       console.log('uh que mal :c');
     }
   }
 
- /*  async fetchMyProject() {
-    try {
 
-      this._id = this.authService.getId()
-      const response: any= await this.userService.getMyProjects(this._id!).toPromise();
-      this.user = response.message;
-      this.myProjects = response.message.idMyProjects
+  
+  showState(): string {
+    if (this.projectInfo.state === 'Open') {
+      this.colorState = '#198754';
     }
-    catch (error) {
-      console.log('Algo ha salido mal');
+    if (this.projectInfo.state === 'Close') {
+      this.colorState = '#dc3545';
     }
-  } */
+
+    return this.colorState;
+  }
 
 
   openDialog() {
@@ -111,6 +157,18 @@ export class ProfileProjectInfoComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.fetchProject()
     });
+  }
+
+  deleteProjectDialog(){
+    let dialogRef = this.dialog.open(DeleteProjectComponent, {
+      width:'400px',
+      height: 'auto',
+      data: {idProject: this.activatedRoute.snapshot.params['id']}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.router.navigate(['/user/myprojects']);
+    });
+    
   }
 
 }
