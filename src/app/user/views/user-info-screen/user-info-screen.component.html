@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row design">
             <div class="col-12 col-lg-3 my-3 ">
-                <app-menu [user]="user"></app-menu>
+                <app-menu [id]="id" [idUser]="idUser" [user]="user"></app-menu>
             </div>
             <div class="col-12 col-lg-9 py-3 my-info">
                 <div class="general-info">
@@ -19,21 +19,30 @@
                                                 Información personal
                                             </p>
                                         </div>
-                                        <div class="col-2 d-flex align-items-center justify-content-end">
-                                            <i class="fas fa-edit" type="button" (click)="editPersonalInfo()"></i>
+                                        <div class="col-2 d-flex align-items-center justify-content-end" *ngIf="!myProfile">
+                                            <i class="fas fa-edit" type="button" (click)="editPersonalInfo()" ></i>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="card item">
-                                        <p class="type-item mx-4">Nombre del usuario</p>
+                                        <div class="row type-item mx-4">
+                                            <div class="col-11 p-0">
+                                              <p class="m-0">Nombre del usuario</p>  
+                                            </div>
+                                            <div class="col-1">
+                                                <div class="col-1 d-flex align-items-top" (click)="openDialog()" *ngIf="!myProfile">
+                                                    <i type="button" class="fas fa-trash-alt"></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <p class="info-item ms-4" *ngIf="user">{{user.name}} {{user.lastName}}</p>
                                         <p class="type-item mx-4">Correo electrónico</p>
                                         <p class="info-item ms-4">{{email}}</p>
                                         <p class="type-item mx-4">Número de móvil</p>
                                         <p class="info-item ms-4" *ngIf="user">{{user.movilPhone}}</p>
                                     </div>
-                                    <div class="card item mt-3">
+                                    <div class="card item mt-3" *ngIf="!myProfile">
                                         <p class="type-item mx-4">Contraseña</p>
                                         <p class="ms-4">Para mantener tu cuenta segura, no le des la contraseña a nadie.</p>
                                         <div class="col change-pass">
@@ -41,6 +50,10 @@
                                                 Cambiar contraseña
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="card item mt-3">
+                                        <p class="type-item mx-4">Proyectos publicados: {{cantProjects}}</p>
+                                     
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +65,7 @@
                                                 <div class="col-10">
                                                     <p class="tag-title mt-2">Disciplinas</p>
                                                 </div>
-                                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                                <div class="col-2 d-flex align-items-center justify-content-end" *ngIf="!myProfile">
                                                     <i class="fas fa-edit" type="button" (click)="openDialogEditDisci()"></i>
                                                 </div>
                                             </div>
@@ -75,7 +88,7 @@
                                                 <div class="col-10">
                                                     <p class="tag-title mt-2">Habilidades</p>
                                                 </div>
-                                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                                <div class="col-2 d-flex align-items-center justify-content-end" *ngIf="!myProfile">
                                                     <i class="fas fa-edit" type="button" (click)="openDialogEditSkills()"></i>
                                                 </div>
                                             </div>

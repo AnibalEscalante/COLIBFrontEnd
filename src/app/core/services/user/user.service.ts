@@ -61,4 +61,8 @@ export class UserService {
   getMyContacts(id: string): Observable<any>{
     return this.http.get( environment.baseUrl + '/user/' + id + '/myContacts/')
   }
+
+  deleteUser(id: string): Observable<User> {
+    return this.http.delete<User>(environment.baseUrl + '/user/'+ id);
+  }
 }

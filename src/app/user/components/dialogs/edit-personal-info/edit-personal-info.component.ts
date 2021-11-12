@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Auth } from 'src/app/core/models/auth.model';
 import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { UserService } from 'src/app/core/services/user/user.service';
+import { DeleteUserComponent } from '../delete-user/delete-user.component';
 
 @Component({
   selector: 'app-edit-personal-info',
@@ -23,7 +25,8 @@ export class EditPersonalInfoComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog
   ) { 
     this.updateForm = this.formBuilder.group({
       nickName: ['', [Validators.pattern('[a-zA-Z]{2,32}')]],
@@ -86,5 +89,4 @@ export class EditPersonalInfoComponent implements OnInit {
   
       }
   }
-
 }

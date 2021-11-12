@@ -1,4 +1,8 @@
-<h2 mat-dialog-title>Información personal</h2>
+<div class="row">
+    <div class="col-11">
+        <h2 mat-dialog-title>Información personal</h2>
+    </div>
+</div>
 <mat-dialog-content class="mat-typography">
     <div class="col-12">
         <div class="card-body">
@@ -34,7 +38,8 @@
         </div>
     </div>
 </mat-dialog-content>
+
 <mat-dialog-actions align="end">
-    <button type="button" class="btn btn-secondary me-2" mat-dialog-close>Cancelar</button>
-    <button type="button" class="btn btn-primary" mat-dialog-close type="submit" (click)='fetchUser()' (click)='onSubmit()'>Guardar</button>
+    <button  type="button" class="btn btn-secondary me-2" mat-dialog-close>Cancelar</button>
+    <button  type="button" class="btn btn-primary" mat-dialog-close type="submit" (click)='fetchUser()' (click)='onSubmit()'>Guardar</button>
 </mat-dialog-actions>
