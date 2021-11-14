@@ -42,6 +42,7 @@ export class ProjectInfoScreenComponent {
       this.fetchProject();
       this.fetchUser();
       this.fetchMyProjectCollab();
+      this.fetchUserSavedProjects();
   }
   
   async fetchProject() {
@@ -79,13 +80,13 @@ export class ProjectInfoScreenComponent {
     }
   }
 
-  async fetchMySavedProject() {
+  async fetchUserSavedProjects() {
     try {
 
       this.id = this.authService.getId()
       const response: any= await this.userService.getSavedProjects(this.id!).toPromise();
-      this.mySavedProject= response.message.idSavedProjects;
-      console.log(this.mySavedProject)
+      this.user = response.message;
+      this.mySavedProject = response.message.idSavedProjects
       
     }
     catch (error) {

@@ -14,9 +14,6 @@
                         <button type="button" class="list-group-item list-group-item-action py-3" [routerLink]="['/user/collabprojects']" [routerLinkActive]="['active']">Proyectos colaborativos</button>
                         <button type="button" class="list-group-item list-group-item-action py-3" [routerLink]="['/user/requests']" [routerLinkActive]="['active']">Solicitudes de colaboración</button>
                     </div>
-                    <div class="list-group" *ngIf="userProfile">
-                        <button type="button" class="list-group-item list-group-item-action py-3" [routerLink]="['/user/userinfo', idUser]" [routerLinkActive]="['active']">Información general</button>
-                    </div>
                 </div>
             </div>
         </div>

@@ -45,6 +45,7 @@ import { CollabProjectsScreenComponent } from './views/collab-projects-screen/co
 import { CollabProjectsComponent } from './components/collab-projects/collab-projects.component';
 import { DeleteUserComponent } from './components/dialogs/delete-user/delete-user.component';
 import { DeleteProjectComponent } from './components/dialogs/delete-project/delete-project.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { DeleteProjectComponent } from './components/dialogs/delete-project/dele
     CollabProjectsScreenComponent,
     CollabProjectsComponent,
     DeleteUserComponent,
-    DeleteProjectComponent
+    DeleteProjectComponent,
+    FooterComponent
   ],
   providers: [
     {

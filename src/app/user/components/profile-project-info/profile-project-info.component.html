@@ -35,6 +35,10 @@
                         <div class="col d-flex align-items-center justify-content-end" *ngIf="isShowElementsSaved">
                             <button type="button" class="btn btn-primary btn-sm" >Colaborar</button>
                         </div>
+                        <div class="col d-flex align-items-center justify-content-end" *ngIf="isShowElements || isShowElementsCollab">
+                            <button class="btn btn-secondary btn-sm" >Colaborando</button>
+                        </div>
+                    
                     </div>
                     <p class="card-subtitle-info mb-2 text-muted" *ngIf="projectInfo">
                         {{projectInfo.content}}

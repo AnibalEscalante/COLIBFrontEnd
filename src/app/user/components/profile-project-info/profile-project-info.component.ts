@@ -27,7 +27,7 @@ export class ProfileProjectInfoComponent implements OnInit {
   
   @Input() public myProjects: Project[] = [];
 
-  @Input() public mySavedProject!: Project[];
+  @Input() public mySavedProject: Project[] = [];
 
   @Input() public myProjectsCollab: Project[] = [];
 
@@ -57,44 +57,25 @@ export class ProfileProjectInfoComponent implements OnInit {
   }
   ngOnInit(): void {
     this.fetchProject();
-    for(let project of this.myProjects){
-      if(project._id ===  this.projectInfo._id){
-        this.isShowElements = true;
-        console.log(this.isShowElements);
-        
-      }
-    }
-    for(let project of this.myProjectsCollab){
-      if(project._id ===  this.projectInfo._id){
-        this.isShowElementsCollab = true;
-      }
-    }
-
-    for(let project of this.mySavedProject){
-      if(project._id ===  this.projectInfo._id){
-        this.isShowElementsSaved = true;
-        console.log(this.isShowElementsSaved);
-        
-      }
-    }
   }
   
   async fetchProject() {
     try {
+  
       this.response = await this.projectService.getProject(this.activatedRoute.snapshot.params['id']).toPromise()
       console.log(this.myProjects);
-      
       for(let project of this.myProjects){
         if(project._id ===  this.projectInfo._id){
           this.isShowElements = true;
           console.log(this.isShowElements);
-          
+          return;
         }
       }
       for(let project of this.myProjectsCollab){
         if(project._id ===  this.projectInfo._id){
           this.isShowElementsCollab = true;
           console.log(this.isShowElementsCollab);
+          return;
         }
       }
   
@@ -102,9 +83,11 @@ export class ProfileProjectInfoComponent implements OnInit {
         if(project._id ===  this.projectInfo._id){
           this.isShowElementsSaved = true;
           console.log(this.isShowElementsSaved);
+          return;
           
         }
       }
+      
     }
     catch (error) {
       console.log('uh que mal :c');
