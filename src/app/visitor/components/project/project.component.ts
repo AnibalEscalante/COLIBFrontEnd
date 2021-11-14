@@ -15,37 +15,35 @@ export class ProjectComponent implements OnInit {
 
   @Output() show = new EventEmitter<boolean>();
   
-  public showinfo: boolean = false;
+  public showInfo: boolean;
   public projectId: any;
-  public colorState: string = '';
+  public colorState: string;
 
-  constructor() {}
+  constructor() {
+    this.showInfo = false,
+    this.colorState = ''
+  }
 
   ngOnInit(): void {
     this.projectId = 'projecto' + this.project._id;
   }
   
-  showComponent(){
-    this.showinfo = true;
-    this.show.emit(this.showinfo)
+  public showComponent(){
+    this.showInfo = true;
+    this.show.emit(this.showInfo)
   }
 
-  sendProjectInfo() {
+  public sendProjectInfo() {
     this.readMoreEvent.emit(this.project);
   }
 
-  showInfo() {
-    console.log(this.project);
-  }
-
-  showState(): string {
-    if (this.project.state === 'Abierto') {
-      this.colorState = '#198754';
+  public showState(): string {
+    if (this.project.state === 'Open') {
+      this.colorState = '#379831';
     }
-    if (this.project.state === 'Cerrado') {
+    if (this.project.state === 'Close') {
       this.colorState = '#dc3545';
     }
-
     return this.colorState;
   }
 

@@ -15,3 +15,19 @@ h1 {
   margin: 0px;
   background-color: white;
 }
+.far {
+  font-size: 250px;
+  color: #C4C4C4;
+}
+.mat-standard-chip.mat-chip-with-trailing-icon {
+  background-color: white;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+}
+.btn-omitir {
+  background-color: rgba(255, 255, 255, 0);
+  color: grey;
+  border: hidden;
+  transition: none;
+}

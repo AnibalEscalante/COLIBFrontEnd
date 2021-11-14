@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-4">
-                <div class="card content  mt-4">
+                <div class="content mt-4">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10">
@@ -29,15 +29,21 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                <div class="card chat-card mt-4">
+                <div class="chat-card mt-4">
                     <div class="card-header">
                         <div class="col-10 d-flex align-items-center">
                             <i class="fas fa-user chat-fa-user"></i>
-                            <h4 class="chat-contact mt-3 ms-2">Roberto Jovas</h4>
+                            <h4 class="chat-contact mt-3 ms-2">{{contact?.nickName}}</h4>
                         </div>
                     </div>
                     <div class="card-body">
-                        <app-message [contact]="contact"></app-message>
+                        <div class="chat-message-card mb-3">
+                            <div class="col-11">
+                                <div *ngFor="let message of messages">
+                                    <app-message [message]="message"></app-message>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col d-flex">
                             <input type="text" class="form-control" placeholder="Escribe un mensaje...">
                             <button type="button" class="btn btn-primary ms-2">Enviar</button>

@@ -6,6 +6,9 @@ import { TokenService } from '../../../core/services/token/token.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { Contact } from 'src/app/core/models/contact.model';
 import { Token } from 'src/app/core/models/token.model';
+import { Message } from '../../../core/models/message.model';
+import { MessageService } from '../../../core/services/message/message.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-contacts-screen',
@@ -14,48 +17,28 @@ import { Token } from 'src/app/core/models/token.model';
 })
 export class ContactsScreenComponent implements OnInit {
   
-  public user: User | null;
   public contacts: Contact[];
   public contact: Contact | null;
-  private token: Token | null;
+  public messages: Message[];
 
   constructor(
     private contactsDialog: MatDialog,
-    private tokenService: TokenService,
-    private userService: UserService
+    private messageService: MessageService,
+    private authService: AuthService
   ) {
-    this.user = null;
     this.contacts = [];
-    this.token = this.tokenService.getToken();
     this.contact = null;
+    this.messages = [];
   }
 
   async ngOnInit(): Promise<void> {
-    this.user = await this.getUser();
     this.contacts = await this.fetchMyContacts();
-  }
-
-  private async getUser(): Promise<User | null> {
-    try {
-      if (this.token) {
-        const response: any = await this.userService.getUser(this.token?.authenticated).toPromise();
-        if (response) return response.message;
-        else return null;
-      }
-      else return null;
-    } catch (error) {
-      console.log('algo salió mal');
-      return null;
-    }
   }
 
   private async fetchMyContacts(): Promise<Contact[] | []> {
     try {
-      if (this.token) {
-        const response: any = await this.userService.getMyContacts(this.token?.authenticated).toPromise();
-        if (response) return response.message.idContacts;
-        else return [];
-      }
+      const response: Contact[] | null = await this.messageService.fetchMyContacts(this.authService.getId());
+      if (response) return response;
       else return [];
     } catch (error) {
       console.log('algo salió mal');

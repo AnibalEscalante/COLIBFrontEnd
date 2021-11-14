@@ -1,8 +1,11 @@
 .card-project {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-.card-head {
+.head {
   height: max-content;
+}
+.body {
+  padding: 20px;
 }
 .card-subtitle {
   height: 100px;
@@ -18,6 +21,9 @@
 .btn-read-more {
   float: right;
 }
+.btn-ligth {
+  border-color: black;
+}
 .nav-pills {
   border-bottom-style: solid;
   padding-bottom: 1;
@@ -26,6 +32,9 @@
 .fa-circle {
   font-size: 20px;
   color: #379831;
+}
+.fa-trash-alt {
+  font-size: 20px;
 }
 .fa-user {
   font-size: 20px;
