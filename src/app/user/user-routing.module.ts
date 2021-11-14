@@ -24,6 +24,12 @@ const routes: Routes = [
         component: UserInfoScreenComponent
       },
       {
+        path: 'userinfo/:id',
+        component: UserInfoScreenComponent,
+        data: {routeName: "usuario"}
+      },
+      
+      {
         path: 'contacts',
         component: ContactsScreenComponent
       },
@@ -50,6 +56,7 @@ const routes: Routes = [
     ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
