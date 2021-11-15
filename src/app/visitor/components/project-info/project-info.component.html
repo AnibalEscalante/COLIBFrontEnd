@@ -3,7 +3,7 @@
         <div class="content-items">
             <div class="row">
                 <div class="col-10">
-                    <h1 class="card-title-info mb-0">"{{projectInfo.title}}"</h1>
+                    <h1 class="card-title-info mb-0">{{projectInfo.title}}</h1>
                 </div>
                 <div class="col-2 d-flex align-items-center justify-content-end">
                     <h5 class="state" [ngStyle]="{'color': showState()}">{{projectInfo.state}}</h5>
@@ -15,7 +15,8 @@
                     <div class="nav nav-fill">
                         <div *ngFor="let collaborator of projectInfo.idCollaborators">
                             <a class="nav-link p-0 me-3 mb-1" href="#">
-                                <i class="fas fa-user"></i> <!-- {{collaborator.name}} {{collaborator.lastName}} -->
+                                <i class="fas fa-user"></i>
+                                <!-- {{collaborator.name}} {{collaborator.lastName}} -->
                             </a>
                         </div>
                     </div>

@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { User } from 'src/app/core/models/user.model';
 import { Auth } from 'src/app/core/models/auth.model';
 import { DisciplineService } from 'src/app/core/services/discipline/discipline.service';
-import { UserService } from 'src/app/core/services/user/user.service';
 import { Discipline } from 'src/app/core/models/discipline.model';
 import { SkillService } from 'src/app/core/services/skill/skill.service';
 import { Skill } from 'src/app/core/models/skill.model';
@@ -23,22 +22,63 @@ export class CdkCustomStepperWithoutFormExample {}
   styleUrls: ['./register-screen.component.less']
 })
 export class RegisterScreenComponent implements OnInit {
-  hide = true;
-  firstStepFormGroup!: FormGroup;
-  secondStepFormGroup!: FormGroup;
-  thirdStepFormGroup!: FormGroup;
-  fourthStepFormGroup!: FormGroup;
-
-  firstFormGroup!: FormGroup;
-
   
+  public hidePassword: boolean;
+  public hideConfirmPassword: boolean;
+  public firstStepFormGroup!: FormGroup;
+  public secondStepFormGroup!: FormGroup;
+  public thirdStepFormGroup!: FormGroup;
+  public fourthStepFormGroup!: FormGroup;
 
-  registerForm!: FormGroup;
-  submitted = false;
-  mensaje: string = "";
-  isDivVisible = false;
+  public registerForm: FormGroup;
 
+  //////////////////////////////////////////// Vars Step 1 ////////////////////////////////////////////
 
+  public submitted: boolean;
+  public message: string;
+  public isDivVisible: boolean;
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ////////////////////////////////////////// Vars Step 2 & 3 //////////////////////////////////////////
+  public selectable: boolean;
+  public removable: boolean;
+  separatorKeysCodes: number[];
+
+  //disciplines//
+  public filteredDisciplines: Observable<string[]>;
+  public disciplineCtrl: FormControl;
+  public filteredOptionsDisciplines!: Observable<string[]>;
+  public createFormDisci: FormGroup;
+  public myDisciplines: string[];
+  public allDisciplinesName: string[];
+  public allDisci: Discipline[];
+  public myDisciplineUpdate: Discipline[];
+  public myControlDiscipline: FormControl;
+
+  //skills//
+  public createFormSkills: FormGroup;
+  public filteredOptionsSkills!: Observable<string[]>;
+  public myControlSkill: FormControl;
+  public skillCtrl : FormControl;
+  public filteredSkills: Observable<string[]>;
+  public mySkills: string[];
+  public allSkillsName: string[];
+  public allSkills: Skill[];
+  public mySkillUpdate: Skill[];
+
+  //////////////////////////////////////////// Vars Step 4 ////////////////////////////////////////////
+
+  public messageImg: string;
+  public imagePath: string;
+  public imgURL: any;
+
+  public messageImgMovil: string;
+  public imagePathMovil: string;
+  public imgURLMovil: any;
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   constructor(
     private formBuilder: FormBuilder,
     private formBuilderDisci: FormBuilder,
@@ -47,46 +87,67 @@ export class RegisterScreenComponent implements OnInit {
     private AuthService : AuthService,
     public disciplineService: DisciplineService,
     public skillService: SkillService,
-
-    ) {
-    (
-      this.registerForm = this.formBuilder.group({
-      
-        nickName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],             
-        name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
-        lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
-        email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
-        )]],
-        movilPhone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['', [Validators.required]],
+  ) {
+    this.hidePassword = true;
+    this.hideConfirmPassword = true;
+    this.submitted = false,
+    this.message = '',
+    this.isDivVisible = false,
+    this.selectable = true,
+    this.removable = true,
+    this.separatorKeysCodes = [ENTER, COMMA],
+    this.disciplineCtrl = new FormControl(),
+    this.myDisciplines = [],
+    this.allDisciplinesName = [],
+    this.allDisci = [],
+    this.myDisciplineUpdate = [],
+    this.myControlDiscipline = new FormControl(),
+    this.myControlSkill = new FormControl(),
+    this.skillCtrl = new FormControl(),
+    this.mySkills = [],
+    this.allSkillsName = [],
+    this.allSkills = [],
+    this.mySkillUpdate = [],
+    this.messageImg = '',
+    this.imagePath = '',
+    this.messageImgMovil = '',
+    this.imagePathMovil = '',
+    
+    this.registerForm = this.formBuilder.group({
+    
+      nickName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],             
+      name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
+      lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
+      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$")]],
+      movilPhone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', [Validators.required]],
     }),
     {
         validator: this.MustMatch('password', 'confirmPassword')
-        
-    });
+    };
 
     this.filteredDisciplines = this.disciplineCtrl.valueChanges.pipe(
       startWith(null),
       map((discipline: string | null) => discipline ? this._filterDiscipline(discipline) : this.allDisciplinesName.slice())
     );
+
     this.createFormDisci = this. formBuilderDisci.group({
-    
       idDisciplines: ['']
     })
+
     this.fetchDisciplines();
     
     this.filteredSkills = this.skillCtrl.valueChanges.pipe(
       startWith(null),
       map((skill: string | null) => skill ? this._filterSkill(skill) : this.allSkillsName.slice())
-  );
-    
+    );
+  
     this.createFormSkills = this.formBuilderSkills.group({
-          
       idSkills: ['']
     })
+
     this.fetchSkills();
-      
   }
 
   ngOnInit() {
@@ -100,11 +161,7 @@ export class RegisterScreenComponent implements OnInit {
       startWith(''),
       map(value => this._filterSkill(value))
     );
-    
-    
   }
-
-  emailReq = new FormControl('', [Validators.required, Validators.email]);
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,23 +177,25 @@ export class RegisterScreenComponent implements OnInit {
   get movilPhone() { return this.registerForm?.get('movilPhone'); }
   get password() { return this.registerForm?.get('password'); }
   get confirmPassword() { return this.registerForm?.get('confirmPassword'); }
-
+  
+  getErrorMessage() {
+    if (this.email?.hasError('required')) {
+      return 'Ingrese un correo electrónico';
+    }
+    return this.email?.invalid ? 'El dato ingresado no es un correo electónico valido' : '';
+  }
   
   async onSubmit() {
 
     for(let disciName of this.myDisciplines){
-
       let discipline = this.allDisci.find(discipline => discipline.name === disciName)
       this.myDisciplineUpdate.push(discipline!)
+    }
 
-    } 
     for(let skillName of this.mySkills){
-
       let skill = this.allSkills.find(skill => skill.name === skillName)
       this.mySkillUpdate.push(skill!)
-
     }
-    
     
     let usuario: Partial<User & Auth> = {
         nickName: this.registerForm.get('nickName')!.value,
@@ -159,85 +218,47 @@ export class RegisterScreenComponent implements OnInit {
                     usuario.idDisciplines!,
                     usuario.idSkills!)
             .toPromise();
-        this.mensaje="registro completo";
+        this.message="registro completo";
         this.isDivVisible = true;
         delay(5000);
         this.router.navigate(['/visitor/login']);
 
     } catch (error) {
-        this.mensaje = "registro no exitoso";
+        this.message = "registro no exitoso";
         this.isDivVisible = true;
     }
   }
   
-    onReset() {
-        this.submitted = false;
-        this.registerForm.reset();
-    }
+  onReset() {
+      this.submitted = false;
+      this.registerForm.reset();
+  }
   
-    return() {
-        this.router.navigate(['']);
-    }
+  return() {
+    this.router.navigate(['']);
+  }
 
-
-    MustMatch(controlName: string, matchingControlName: string) {
-        return (formGroup: FormGroup) => {
-            const control = formGroup.controls[controlName];
-            const matchingControl = formGroup.controls[matchingControlName];
-        
-            if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-                return;
-            }
-            if (control.value !== matchingControl.value) {
-                matchingControl.setErrors({ mustMatch: true });
-            } else {
-                matchingControl.setErrors(null);
-            }
-        }
-    }     
-
+  MustMatch(controlName: string, matchingControlName: string) {
+      return (formGroup: FormGroup) => {
+          const control = formGroup.controls[controlName];
+          const matchingControl = formGroup.controls[matchingControlName];
+      
+          if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+              return;
+          }
+          if (control.value !== matchingControl.value) {
+              matchingControl.setErrors({ mustMatch: true });
+          } else {
+              matchingControl.setErrors(null);
+          }
+      }
+  }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////// Step 2-3/////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
-  getErrorMessage() {
-    if (this.emailReq.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.emailReq.hasError('emailReq') ? 'Not a valid email' : '';
-  }
-
-  options: string[] = ['One', 'Two', 'Three'];
-  
-  public _id!: string | null;
-  selectable = true;
-  removable = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
- 
-
-  //disciplines//
-  disciplineCtrl = new FormControl();
-  filteredDisciplines: Observable<string[]>;
-  filteredOptionsDisciplines!: Observable<string[]>;
-  createFormDisci: FormGroup;
-  myDisciplines: string[] =[];
-  allDisciplinesName: string[] = [];
-  allDisci!: Discipline[];
-  myDisciplineUpdate: Discipline[] = [];
-  myControlDiscipline = new FormControl();
-
-  //skills//
-  createFormSkills: FormGroup
-  filteredOptionsSkills!: Observable<string[]>;
-  myControlSkill = new FormControl();
-  skillCtrl = new FormControl();
-  filteredSkills: Observable<string[]>;
-  mySkills: string[] =[];
-  allSkillsName: string[] = [];
-  allSkills!: Skill[];
-  mySkillUpdate: Skill[] = [];
 
   @ViewChild('disciplineInput') disciplineInput!: ElementRef<HTMLInputElement>;
 
@@ -284,6 +305,7 @@ export class RegisterScreenComponent implements OnInit {
   }
 
   ///////////////skills///////////////////
+
   async fetchSkills() {
     try {
       this.allSkills = await this.skillService.getallSkill().toPromise()
@@ -327,4 +349,37 @@ export class RegisterScreenComponent implements OnInit {
   //////////////////////////////////////////// Step 4///////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
+
+  public previewImg(files: any) {
+    console.log(files);
+    if (files.length === 0) return;
+    let mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.messageImg = 'El documento subido solo puede ser una imagen.';
+      return;
+    }
+    let reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    };
+  }
+
+  public previewImgMovil(files: any) {
+    console.log(files);
+    
+    if (files.length === 0) return;
+    let mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.messageImgMovil = 'El documento subido solo puede ser una imagen.';
+      return;
+    }
+    let reader = new FileReader();
+    this.imagePathMovil = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURLMovil = reader.result;
+    };
+  }
 }

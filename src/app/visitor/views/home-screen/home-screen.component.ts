@@ -10,31 +10,29 @@ import { ProjectService } from 'src/app/core/services/project/project.service';
 export class HomeScreenComponent implements OnInit {
 
   projects: Project[] = [];
-  offcanvasProjectIndo!: string;
   public isshowinfo!: boolean;
   
   constructor(
     private  projectService: ProjectService
     ){
-      this.fetchProjects();
   }
     
   ngOnInit(): void {
-
+    this.fetchProjects();
   }
     
     
   project!: Project;
 
-  getProject(event: any) {
+  public getProject(event: any) {
     this.project = event;
   }
 
-  recibirIsShowInfo(event: any){
+  public recibirIsShowInfo(event: any){
     this.isshowinfo = event
   }
 
-  async fetchProjects() {
+  private async fetchProjects() {
     try {
       this.projects = await this.projectService.getAllProject().toPromise();
 

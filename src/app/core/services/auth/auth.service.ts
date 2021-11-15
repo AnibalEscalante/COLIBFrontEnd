@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { Discipline } from '../../models/discipline.model';
 import { Skill } from '../../models/skill.model';
+import { MessageService } from '../message/message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class AuthService {
 
   constructor( 
     private tokenService: TokenService,
+    private messageService: MessageService,
     private httpClient: HttpClient,
     private router: Router
   ) { }
@@ -30,8 +32,9 @@ export class AuthService {
     }).pipe(
       tap(
         (data: any) => {
-            this.tokenService.addToken(data.message);
-            this.router.navigate(['/user/home']);
+          this.tokenService.addToken(data.message);
+          this.messageService.listen(this.getId());
+          this.router.navigate(['/user/home']);
         }
       )
     )
@@ -74,10 +77,8 @@ export class AuthService {
     return this.tokenService.getToken()!;
   }
 
-  getId(): string | null{
+  getId(): string{
     const token = this.getToken();
     return token.authenticated;
-    
   }
-  
 }
