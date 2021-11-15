@@ -108,7 +108,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MatNativeDateModule,
     MatTabsModule,
     MatMenuModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+   
   ]
 })
 export class UserModule { }

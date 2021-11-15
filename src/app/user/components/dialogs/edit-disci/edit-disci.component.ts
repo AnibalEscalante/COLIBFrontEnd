@@ -136,6 +136,7 @@ export class EditDisciComponent implements OnInit {
 
     // Add our fruit
     if (value) {
+      for(let myDisciNames of this.myDisciplines)
       this.myDisciplines.push(value);
     }
 
@@ -149,12 +150,24 @@ export class EditDisciComponent implements OnInit {
     const index = this.myDisciplines.indexOf(discipline);
 
     if (index >= 0) {
-      this.myDisciplines.splice(index, 1);
+      this.myDisciplines.splice(index, 1);/* 
+      this.allDisciplinesName.push(discipline) */
     }
   }
-
+  
   selected(event: MatAutocompleteSelectedEvent): void {
+    const index = this.allDisciplinesName.indexOf(event.option.viewValue)
+    for(let myNamesDisci of this.allDisciplinesName){
+      if(myNamesDisci === event.option.viewValue){
+        if (index >= 0){
+          this.allDisciplinesName.splice(index, 1);
+        }
+      }
+    }
     this.myDisciplines.push(event.option.viewValue);
+    if (index >= 0){
+      this.allDisciplinesName.splice(index, 1);
+    }
     this.disciplineInput.nativeElement.value = '';
     this.disciplineCtrl.setValue(null);
   }
