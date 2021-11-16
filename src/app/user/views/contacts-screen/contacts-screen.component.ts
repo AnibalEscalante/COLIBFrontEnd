@@ -23,6 +23,9 @@ export class ContactsScreenComponent implements OnInit {
   public user: User | null;
   public sendMessage: FormGroup;
   public term: string;
+  public isShowInfo: boolean;
+  public loadingContacts: boolean;
+  public noContacts: boolean;
 
   constructor(
     private contactsDialog: MatDialog,
@@ -37,6 +40,9 @@ export class ContactsScreenComponent implements OnInit {
     this.messages = [];
     this.user = null;
     this.term = '';
+    this.isShowInfo = false;
+    this.loadingContacts = true;
+    this.noContacts = false;
 
     this.sendMessage = this.formBuilder.group({
       content: ['', [Validators.required]]
@@ -44,15 +50,21 @@ export class ContactsScreenComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.user = await this.fetchUser();    
+    this.user = await this.fetchUser();
     this.contacts = await this.fetchMyContacts();
   }
 
   private async fetchMyContacts(): Promise<Contact[] | []> {
     try {
       const response: Contact[] | null = await this.messageService.fetchMyContacts(this.authService.getId());
-      if (response) return response;
-      else return [];
+      if (response) {
+        this.loadingContacts = false;
+        return response;
+      }
+      else {
+        this.noContacts = true;
+        return [];
+      }
     } catch (error) {
       console.log('algo salió mal');
       return [];
@@ -123,7 +135,12 @@ export class ContactsScreenComponent implements OnInit {
     let dialogRef = this.contactsDialog.open(EditContactsComponent, {
       height: '510px',
       width: '1000px',
+      data: {contacts: this.contacts}
+    });
+    dialogRef.afterClosed().subscribe(async result => {
+      this.loadingContacts = true;
+      this.noContacts = false;
+      this.contacts = await this.fetchMyContacts();
     });
   }
-
 }
