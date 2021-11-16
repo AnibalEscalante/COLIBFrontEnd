@@ -209,6 +209,7 @@ export class CreateProjectComponent implements OnInit {
       content: this.content,
       finishDate: this.finishDate,
       state: this.state,
+      idUser: this._id!,
       idDisciplines: this.myDisciplineUpdate,
       idSkills: this.mySkillUpdate,
       idCollaborators: this.myCollabUpdate

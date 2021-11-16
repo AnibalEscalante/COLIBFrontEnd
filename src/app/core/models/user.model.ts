@@ -16,7 +16,7 @@ export interface User {
   idCollaboratingProjects?: Project[] | string[];
   idMyProjects?: Project[] | string[];
   idContacts?: Contact[];
-  idRequestC?: RequestC[];
+  idRequestsC?: RequestC[];
   idRequestResults?: RequestC[];
   updateAt?: Date;
   createdAt?: Date;

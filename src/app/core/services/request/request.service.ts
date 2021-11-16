@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { RequestC } from '../../models/requestC.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,28 +14,32 @@ export class RequestService {
     private http: HttpClient
   ) { }
 
-  getallRequest(): Observable<Request[]> {
-    let request: Request[] = [];
-    const response = this.http.get<Request[]>(environment.baseUrl + '/Request/all').pipe(map((data: any) => data.message));
+  getallRequest(): Observable<RequestC[]> {
+    let request: RequestC[] = [];
+    const response = this.http.get<RequestC[]>(environment.baseUrl + '/requestC/all').pipe(map((data: any) => data.message));
     response.subscribe(
       res => (request = res)
     );
     return response;
   }
 
-  getRequest(id: string): Observable<Request> {
-    return this.http.get<Request>(environment.baseUrl + '/Request'+ id);
+  getRequest(id: string): Observable<RequestC> {
+    return this.http.get<RequestC>(environment.baseUrl + '/requestC/'+ id);
   }
 
-  registNewRequest(request: Partial<Request>): Observable<Request> {
-    return this.http.post<Request>(environment.baseUrl + '/Request', request);
+  registNewRequest(idUserSender: string,idProject: string, idReceiver: string): Observable<RequestC> {
+    return this.http.post<RequestC>(environment.baseUrl + '/requestC', {idUserSender, idProject, idReceiver});
   }
 
-  modifyRequest(request: Partial<Request>, id: string): Observable<Request> {
-    return this.http.patch<Request>(environment.baseUrl + '/Request'+ id, request);
+  registNewRequestReply(idUserSender: string,idProject: string, idReceiver: string): Observable<RequestC> {
+    return this.http.post<RequestC>(environment.baseUrl + '/requestC/reply', {idUserSender, idProject, idReceiver});
   }
 
-  deleteRequest(id: string): Observable<Request> {
-    return this.http.delete<Request>(environment.baseUrl + '/Request'+ id);
+  modifyRequest(request: Partial<RequestC>, id: string): Observable<RequestC> {
+    return this.http.patch<RequestC>(environment.baseUrl + '/requestC'+ id, request);
+  }
+
+  deleteRequest(id: string, idUserSender: string): Observable<RequestC> {
+    return this.http.delete<RequestC>(environment.baseUrl + '/requestC/'+ id + '/' + idUserSender);
   }
 }

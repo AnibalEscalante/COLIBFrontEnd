@@ -37,15 +37,14 @@ export class UserInfoScreenComponent implements OnInit {
     private authService: AuthService,
     private activatedRoute: ActivatedRoute
   ) {
+    this.id = this.authService.getId();
+    this.idUser = this.activatedRoute.snapshot.params['id'];
     this.skills = []
     this.disciplines = []
     this.myProjects = []
-    this.id = null;
     this.email = null
     this.cantProjects = 0;
-    this.idUser = this.activatedRoute.snapshot.params['id'];
     this.fetchUser();
-    /* this.fetchUserMyProjects(); */
   }
   
 
@@ -75,7 +74,6 @@ export class UserInfoScreenComponent implements OnInit {
 
   async userProfile(){
     try {
-      this.id = this.authService.getId()
       const response: any= await this.userService.getUser(this.id!).toPromise();
       this.user = response.message;
       this.disciplines = response.message.idDisciplines;
@@ -86,25 +84,6 @@ export class UserInfoScreenComponent implements OnInit {
       console.log('Algo ha salido mal');
     }
   }
-
- /*  async fetchUserMyProjects() {
-    try {
-
-      this.id = this.authService.getId()
-      const response: any= await this.userService.getMyProjects(this.id!).toPromise();
-      this.user = response.message;
-      this.myProjects = response.message.idMyProjects
-      console.log(this.myProjects);
-      for(let projects of this.myProjects){
-        this.cantProjects++;
-      }
-      
-    }
-    catch (error) {
-      console.log('Algo ha salido mal');
-    }
-  }  */
-
 
   ngOnInit(): void {
   }
