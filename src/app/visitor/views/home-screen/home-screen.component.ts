@@ -31,8 +31,8 @@ export class HomeScreenComponent implements OnInit {
     this.project = event;
   }
 
-  public recibirIsShowInfo(event: any){
-    this.isshowinfo = event
+  public reciveIsShowInfo(event: any){
+    this.isshowinfo = event;
   }
 
   private async fetchProjects(): Promise<Project[] | []> {
