@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { io } from 'socket.io-client';
 import { Contact } from '../../models/contact.model';
 import { UserService } from '../user/user.service';
-import { AuthService } from '../auth/auth.service';
+import { Message } from '../../models/message.model';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +19,8 @@ export class MessageService {
   private contacts: Contact[];
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private http: HttpClient
   ) {
     this.socket.emit('connection', 'client');
     this.contacts = [];
@@ -42,5 +46,9 @@ export class MessageService {
 
   public getContacts(): Contact[] {
     return this.contacts;
+  }
+
+  public sendMessage(content: string, idReceiver: string, idSender: string): Observable<Message> {
+    return this.http.post<Message>(environment.baseUrl + '/message/', { content, idReceiver, idSender });
   }
 }

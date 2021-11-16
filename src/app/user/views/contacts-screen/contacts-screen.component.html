@@ -16,12 +16,9 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Buscar contactos">
-                            <button type="button" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
-                        </div>
+                        <input type="text" [(ngModel)]="term" class="form-control mb-3" placeholder="Buscar contactos">
                         <div class="list-group list-group-flush mb-3">
-                            <div *ngFor="let chatContact of contacts">
+                            <div *ngFor="let chatContact of contacts | filter:term">
                                 <app-contact [contact]="chatContact" (chatContact)="receive($event)"></app-contact>
                             </div>
                         </div>
@@ -44,10 +41,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col d-flex">
-                            <input type="text" class="form-control" placeholder="Escribe un mensaje...">
-                            <button type="button" class="btn btn-primary ms-2">Enviar</button>
-                        </div>
+                        <form [formGroup]="sendMessage">
+                            <div class="col d-flex">
+                                <input type="text" class="form-control" formControlName="content" placeholder="Escribe un mensaje...">
+                                <button type="button" (click)="onSubmit()" class="btn btn-primary ms-2">Enviar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

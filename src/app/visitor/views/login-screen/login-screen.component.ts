@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-screen',

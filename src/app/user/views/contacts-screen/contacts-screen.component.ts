@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { EditContactsComponent } from '../../components/dialogs/edit-contacts/edit-contacts.component';
-import { User } from 'src/app/core/models/user.model';
-import { TokenService } from '../../../core/services/token/token.service';
-import { UserService } from 'src/app/core/services/user/user.service';
 import { Contact } from 'src/app/core/models/contact.model';
-import { Token } from 'src/app/core/models/token.model';
-import { Message } from '../../../core/models/message.model';
 import { MessageService } from '../../../core/services/message/message.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
+import { MessageChat } from 'src/app/core/models/messageChat.model';
+import { User } from '../../../core/models/user.model';
+import { UserService } from 'src/app/core/services/user/user.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contacts-screen',
@@ -19,19 +19,32 @@ export class ContactsScreenComponent implements OnInit {
   
   public contacts: Contact[];
   public contact: Contact | null;
-  public messages: Message[];
+  public messages: MessageChat[];
+  public user: User | null;
+  public sendMessage: FormGroup;
+  public term: string;
 
   constructor(
     private contactsDialog: MatDialog,
     private messageService: MessageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService,
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.contacts = [];
     this.contact = null;
     this.messages = [];
+    this.user = null;
+    this.term = '';
+
+    this.sendMessage = this.formBuilder.group({
+      content: ['', [Validators.required]]
+    })
   }
 
   async ngOnInit(): Promise<void> {
+    this.user = await this.fetchUser();    
     this.contacts = await this.fetchMyContacts();
   }
 
@@ -46,8 +59,64 @@ export class ContactsScreenComponent implements OnInit {
     }
   }
 
+  private async fetchUser(): Promise<User | null> {
+    try {
+      const response: any = await this.userService.getUser(this.authService.getId()).toPromise();
+      if (response) return response.message;
+      else return null;
+    } catch (error) {
+      console.log('algo salió mal');
+      return null;
+    }
+  }
+  
+  public getTime(date?: Date) {
+    return date != null ? new Date(date).getTime() : 0;
+  }
+
   public receive(event :any) {
     this.contact = event;
+    if (this.contact?.idSentMessages && this.contact?.idRecievedMessages) {
+      let sentMessages: MessageChat[] = [];
+      for (let message of this.contact.idSentMessages) {
+        let current: MessageChat = {
+          nickName: this.contact.nickName,
+          content: message.content
+        }
+        sentMessages.push(current);
+      }
+
+      let recievedMessages: MessageChat[] = [];
+      for (let message of this.contact.idRecievedMessages) {
+        let current: MessageChat = {
+          nickName: this.user?.nickName!,
+          content: message.content
+        }
+        recievedMessages.push(current);
+      }
+      
+      this.messages = sentMessages.concat(recievedMessages);
+      this.messages = this.messages.slice().sort((messageA, messageB) => {
+        if (messageA.createdAt && messageB.createdAt)
+          return this.getTime(messageA.createdAt) - this.getTime(messageB.createdAt);
+        return 0;
+      })
+    }
+  }
+
+  get content() {return this.sendMessage?.get('content');}
+
+  async onSubmit() {
+    try {
+      let message = this.content?.value;
+      if (message && this.contact?.idUser && this.user?._id){
+        let data = await this.messageService.sendMessage(message, this.contact?.idUser, this.user?._id).toPromise();
+        console.log(data);
+        
+      }
+    } catch (error) {
+      this.toastr.error('Mensaje no enviado.');
+    }
   }
 
   editContacts() {
