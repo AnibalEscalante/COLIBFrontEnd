@@ -9,20 +9,23 @@ import { ProjectService } from 'src/app/core/services/project/project.service';
 })
 export class HomeScreenComponent implements OnInit {
 
-  projects: Project[] = [];
-  public isshowinfo!: boolean;
+  public projects: Project[];
+  public isshowinfo: boolean;
+  public term: string;
+  public project: Project | null;
   
   constructor(
     private  projectService: ProjectService
-    ){
+  ) {
+    this.term = '';
+    this.projects = [];
+    this.isshowinfo = false;
+    this.project = null;
   }
     
-  ngOnInit(): void {
-    this.fetchProjects();
+  async ngOnInit(): Promise<void> {
+    this.projects = await this.fetchProjects();
   }
-    
-    
-  project!: Project;
 
   public getProject(event: any) {
     this.project = event;
@@ -32,12 +35,14 @@ export class HomeScreenComponent implements OnInit {
     this.isshowinfo = event
   }
 
-  private async fetchProjects() {
+  private async fetchProjects(): Promise<Project[] | []> {
     try {
-      this.projects = await this.projectService.getAllProject().toPromise();
-
+      let response = await this.projectService.getAllProject().toPromise();
+      if (response) return response;
+      else return [];
     } catch (error) {
       console.log('uh que mal :c');
+      return [];
     }
   }
 
