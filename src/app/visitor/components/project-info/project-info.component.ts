@@ -8,7 +8,7 @@ import { Project } from 'src/app/core/models/project.model';
 })
 export class ProjectInfoComponent implements OnInit {
   
-  @Input() projectInfo!: Project;
+  @Input() projectInfo!: Project | null;
 
   @Input() showHideComponent!: boolean;
   
@@ -29,13 +29,14 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   public showState(): string {
-    if (this.projectInfo.state === 'Open') {
-      this.colorState = '#379831';
+    if (this.projectInfo) {
+      if (this.projectInfo.state === 'Open') {
+        this.colorState = '#379831';
+      }
+      if (this.projectInfo.state === 'Close') {
+        this.colorState = '#dc3545';
+      }
     }
-    if (this.projectInfo.state === 'Close') {
-      this.colorState = '#dc3545';
-    }
-
     return this.colorState;
   }
 

@@ -4,8 +4,8 @@ export interface Contact {
   _id?: string;
   nickName: string;
   idUser: string;
-  idSentMessages?: Message[] | string[];
-  idRecievedMessages?: Message[] | string[];
+  idSentMessages?: Message[];
+  idRecievedMessages?: Message[];
   updateAt?: Date;
   createdAt?: Date;
 }

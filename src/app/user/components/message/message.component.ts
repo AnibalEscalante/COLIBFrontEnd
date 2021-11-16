@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Message } from '../../../core/models/message.model';
+import { MessageChat } from '../../../core/models/messageChat.model';
 
 @Component({
   selector: 'app-message',
@@ -9,14 +9,13 @@ import { Message } from '../../../core/models/message.model';
 export class MessageComponent implements OnInit {
 
   @Input()
-  public message!: Message | null;
+  public message!: MessageChat | null;
 
   constructor(
   ) {
   }
 
   ngOnInit(): void {
-    console.log("Message.component");
     
   }
 

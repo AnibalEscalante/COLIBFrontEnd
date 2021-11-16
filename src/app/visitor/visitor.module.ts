@@ -20,6 +20,7 @@ import { ProjectInfoComponent } from './components/project-info/project-info.com
 import { FooterComponent } from './components/footer/footer.component';
 import { LandingScreenComponent } from './views/landing-screen/landing-screen.component';
 import { HomeScreenComponent } from './views/home-screen/home-screen.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { HomeScreenComponent } from './views/home-screen/home-screen.component';
     MatChipsModule,
     MatAutocompleteModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    Ng2SearchPipeModule
   ]
 })
 export class VisitorModule { }
