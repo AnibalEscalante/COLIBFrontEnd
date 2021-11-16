@@ -10,6 +10,16 @@
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+.spinner-border {
+  width: 5rem;
+  height: 5rem;
+  font-size: 2rem;
+  color: lightgray;
+}
+.btn-success {
+  background-color: #32CD32;
+  border: none;
+}
 /*--------------- Chat ----------------*/
 .chat-contact {
   font-size: x-large;
