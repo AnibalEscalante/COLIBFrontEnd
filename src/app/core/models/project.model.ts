@@ -9,6 +9,7 @@ export interface Project {
   content: string;
   state: string;
   finishDate?: Date;
+  idUser: string;
   idSkills: Skill[];
   idDisciplines: Discipline[];
   idCollaborators: Collaborator[];

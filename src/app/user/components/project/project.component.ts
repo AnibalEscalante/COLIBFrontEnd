@@ -19,7 +19,7 @@ export class ProjectComponent implements OnInit {
   public project!: Project;
   
   @Input()
-  public user!: User;
+  public user: User | null;
 
   @Input()
   public mySavedProject: Project[] = [];
@@ -54,11 +54,10 @@ export class ProjectComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private toastr: ToastrService,
-    private dialog: MatDialog,
-    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) { 
     this.name = null;
+    this.user = null;
   }
   
   

@@ -15,10 +15,10 @@ import { User } from 'src/app/core/models/user.model';
 export class HomeScreenComponent implements OnInit {
   
   public projects: Project[] = [];
-  public _id!: string | null;
-  public searchTerm!: string;
-  public term!: string;
-  public user!: User;
+  public _id: string | null;
+  public searchTerm: string | null;
+  public term: any;
+  public user: User | null;
   public isShowComponent: boolean = false;
   public showHideElements: string = 'homeProjects';
   public mySavedProject: Project[] = [];
@@ -30,6 +30,9 @@ export class HomeScreenComponent implements OnInit {
     public  projectService: ProjectService
 
   ){
+    this.user = null;
+    this._id = null;
+    this.searchTerm = null;
     this.fetchProjects();
     this.fetchUser();
     this.fetchMySavedProject();
@@ -40,8 +43,6 @@ export class HomeScreenComponent implements OnInit {
   async fetchProjects() {
     try {
       this.projects = await this.projectService.getAllProject().toPromise()
-      this.term = this.projectinfo.title
-
       
     } catch (error) {
       console.log('uh que mal :c');

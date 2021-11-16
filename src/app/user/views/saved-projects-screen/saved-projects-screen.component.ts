@@ -12,7 +12,7 @@ import { UserService } from 'src/app/core/services/user/user.service';
 })
 export class SavedProjectsScreenComponent implements OnInit {
   
-  public id!: string | null;
+  public id: string | null;
   public user!: User
   public projects!: Project[];
   public showSavedProject: boolean = true;
@@ -24,6 +24,7 @@ export class SavedProjectsScreenComponent implements OnInit {
     public authService: AuthService,
     public userService: UserService
   ) {
+    this.id = this.authService.getId()
     this.fetchUserSavedProjects();
     this.fetchUser();
     this.fetchMySavedProject();
@@ -35,13 +36,9 @@ export class SavedProjectsScreenComponent implements OnInit {
 
   async fetchUserSavedProjects() {
     try {
-
-      this.id = this.authService.getId()
       const response: any= await this.userService.getSavedProjects(this.id!).toPromise();
       this.user = response.message;
       this.projects = response.message.idSavedProjects
-      console.log(this.projects);
-      
     }
     catch (error) {
       console.log('Algo ha salido mal');
@@ -49,7 +46,6 @@ export class SavedProjectsScreenComponent implements OnInit {
   }
   async fetchUser() {
     try {
-      this.id = this.authService.getId()
       const response: any= await this.userService.getUser(this.id!).toPromise();
       this.user = response.message;
     }
@@ -60,8 +56,6 @@ export class SavedProjectsScreenComponent implements OnInit {
 
   async fetchMySavedProject() {
     try {
-
-      this.id = this.authService.getId()
       const response: any= await this.userService.getSavedProjects(this.id!).toPromise();
       this.mySavedProject= response.message.idSavedProjects;
       

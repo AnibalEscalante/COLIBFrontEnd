@@ -3,9 +3,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/core/models/project.model';
+import { RequestC } from 'src/app/core/models/requestC.model';
 import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ProjectService } from 'src/app/core/services/project/project.service';
+import { RequestService } from 'src/app/core/services/request/request.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { DeleteProjectComponent } from '../dialogs/delete-project/delete-project.component';
 import { EditDisciComponent } from '../dialogs/edit-disci/edit-disci.component';
@@ -20,37 +22,28 @@ import { EditSkillsComponent } from '../dialogs/edit-skills/edit-skills.componen
 export class ProfileProjectInfoComponent implements OnInit {
   
   @Input() public projectInfo!: Project;
-  
   @Input() public showFinishDate!: string | null;
-
   @Input() public showCreateDate!: string | null;
-  
   @Input() public myProjects: Project[] = [];
-
   @Input() public mySavedProject: Project[] = [];
-
   @Input() public myProjectsCollab: Project[] = [];
 
+
   public response: any;
-
   public isShowElements: boolean = false;
-  
   public isShowElementsCollab: boolean = false;
-
   public isShowElementsSaved: boolean = false;
-
   public user!: User;
-
   public _id!: string | null;
-
   public colorState: string = '';
-
   public idP!: string
   
   constructor(
     public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
     private projectService: ProjectService,
+    private requestService: RequestService,
+    private authService: AuthService,
     public datepipe: DatePipe,
     public router: Router
     ) {
@@ -94,7 +87,20 @@ export class ProfileProjectInfoComponent implements OnInit {
     }
   }
 
-
+  async collaborater(){
+   /*  this._id = this.authService.getId()
+    try {
+      let request: RequestC<Partial> = {
+        idProject: this.projectInfo._id,
+        idUserSender: this._id,
+        idReceiver: this
+      }
+      const response: any= await this.requestService.registNewRequest(request).toPromise();
+    } catch (error) {
+      console.log('error');
+      
+    } */
+  }
   
   showState(): string {
     if (this.projectInfo.state === 'Open') {
