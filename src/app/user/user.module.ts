@@ -46,6 +46,8 @@ import { CollabProjectsComponent } from './components/collab-projects/collab-pro
 import { DeleteUserComponent } from './components/dialogs/delete-user/delete-user.component';
 import { DeleteProjectComponent } from './components/dialogs/delete-project/delete-project.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NavbarRequestResultComponent } from './components/navbar-request-result/navbar-request-result.component';
+import { NavbarRequestComponent } from './components/navbar-request/navbar-request.component';
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import { FooterComponent } from './components/footer/footer.component';
     CollabProjectsComponent,
     DeleteUserComponent,
     DeleteProjectComponent,
-    FooterComponent
+    FooterComponent,
+    NavbarRequestResultComponent,
+    NavbarRequestComponent
   ],
   providers: [
     {

@@ -1,0 +1,5 @@
+<div class="col item-notification d-flex">
+    <div class="col-12">
+        <p class="mb-0"><a class="title" *ngIf="user">{{user!.name}}</a> quiere colaborar en tu proyecto <a class="title" *ngIf="project"> {{project!.title}}. </a> <a class="rec-request" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a></p>
+    </div>
+</div>

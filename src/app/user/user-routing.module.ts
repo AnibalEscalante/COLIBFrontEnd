@@ -25,8 +25,7 @@ const routes: Routes = [
       },
       {
         path: 'userinfo/:id',
-        component: UserInfoScreenComponent,
-        data: {routeName: "usuario"}
+        component: UserInfoScreenComponent
       },
       
       {
