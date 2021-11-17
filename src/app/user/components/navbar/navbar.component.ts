@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, Input, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/models/project.model';
 import { RequestC } from 'src/app/core/models/requestC.model';
@@ -5,6 +6,10 @@ import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ProjectService } from 'src/app/core/services/project/project.service';
 import { UserService } from 'src/app/core/services/user/user.service';
+=======
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../core/services/auth/auth.service';
+>>>>>>> 043ba4e53b5f44f9b558eea2e91f5a483260bbbf
 
 @Component({
   selector: 'app-navbar',
@@ -65,4 +70,8 @@ export class NavbarComponent implements OnInit {
     }
   }
   
+  public signOut() {
+    this.authService.logout();
+  }
+
 }

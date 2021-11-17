@@ -14,7 +14,7 @@
         <div class="nav nav-pills nav-fill">
             <div *ngFor="let colaborator of project.idCollaborators">
                 <a class="off-canvas-nav-link nav-link p-0 me-3 mb-1" href="#">
-                    <i class="fas fa-user"></i> <!-- {{colaborator.name}} {{colaborator.lastName}} -->
+                    <i class="fas fa-user"></i> {{colaborator.nickName}}
                 </a>
             </div>
         </div>
@@ -71,7 +71,7 @@
                 <div class="nav nav-fill">
                     <div *ngFor="let colaborator of project.idCollaborators">
                         <a class="off-canvas-nav-link nav-link p-0 me-3 mb-1" href="#">
-                            <i class="fas fa-user"></i> <!-- {{colaborator.name}} {{colaborator.lastName}} -->
+                            <i class="fas fa-user"></i> {{colaborator.nickName}}
                         </a>
                     </div>
                 </div>

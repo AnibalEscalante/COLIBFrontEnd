@@ -8,6 +8,7 @@ import { tap } from 'rxjs/operators';
 import { Discipline } from '../../models/discipline.model';
 import { Skill } from '../../models/skill.model';
 import { MessageService } from '../message/message.service';
+import { RoutesService } from '../routes/routes.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class AuthService {
     private tokenService: TokenService,
     private messageService: MessageService,
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private routes: RoutesService
   ) { }
   
   login(email: string, password: string): Observable<any>{
@@ -73,8 +75,17 @@ export class AuthService {
     return (token !== null)? true : false;
   }
 
+  redirect() {
+    this.routes.redirect(this.entity());
+  }
+
   getToken(){
     return this.tokenService.getToken()!;
+  }
+
+  entity(): string | null{
+    const token = this.getToken();
+    return token.entity;
   }
 
   getId(): string{

@@ -30,7 +30,7 @@ export class TokenService {
   }
 
   removeToken(){
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('credentials');    
   }
 
   encrypt(token: string): string{
