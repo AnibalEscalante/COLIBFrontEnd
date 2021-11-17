@@ -12,7 +12,7 @@ import { UserService } from 'src/app/core/services/user/user.service';
 export class RequestsScreenComponent implements OnInit {
   
   public id: string | null;
-  public user: User | null;
+  public user!: User;
   public myRequests: RequestC[];
   constructor(
     private authService: AuthService,
@@ -23,7 +23,7 @@ export class RequestsScreenComponent implements OnInit {
     this.fetchUserRequests();
     this.fetchUser();
     this.myRequests = [];
-    this.user = null;
+
   }
 
   ngOnInit(): void {
@@ -34,7 +34,7 @@ export class RequestsScreenComponent implements OnInit {
       const response: any= await this.userService.getRequests(this.id!).toPromise();
       this.user = response.message;
       this.myRequests = response.message.idRequestsC
-      
+      console.log(this.myRequests)
     }
     catch (error) {
       console.log('Algo ha salido mal');

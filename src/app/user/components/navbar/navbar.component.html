@@ -21,36 +21,13 @@
                         </div>
                         <mat-tab-group>
                             <mat-tab label="Solicitudes de colaboración">
-                                <div class="col item-notification">
-                                    <div class="col d-flex">
-                                        <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
-                                        <i class="fas fa-times ps-2" type="button"></i>
-                                    </div>
-                                    <a class="rec-request" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
-                                </div>
-                                <div class="col item-notification">
-                                    <div class="col d-flex">
-                                        <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
-                                        <i class="fas fa-times ps-2" type="button"></i>
-                                    </div>
-                                    <a class="rec-request" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
-                                </div>
-                                <div class="col item-notification">
-                                    <div class="col d-flex">
-                                        <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
-                                        <i class="fas fa-times ps-2" type="button"></i>
-                                    </div>
-                                    <a class="rec-request" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                <div *ngFor="let request of requests">
+                                    <app-navbar-request [request]="request"></app-navbar-request>
                                 </div>
                             </mat-tab>
                             <mat-tab label="Resultado de tus solicitudes">
-                                <div class="col item-notification d-flex">
-                                    <p class="mb-0">"Nombre del usuario" ha "estado de la solicitud" tu solicitud en el proyecto “Nombre del proyecto”.</p>
-                                    <i class="fas fa-times ps-2" type="button"></i>
-                                </div>
-                                <div class="col item-notification d-flex">
-                                    <p class="mb-0">"Nombre del usuario" ha "estado de la solicitud" tu solicitud en el proyecto “Nombre del proyecto”.</p>
-                                    <i class="fas fa-times ps-2" type="button"></i>
+                                <div *ngFor="let result of requestsReply">
+                                    <app-navbar-request-result [result]="result"></app-navbar-request-result>
                                 </div>
                             </mat-tab>
                         </mat-tab-group>
