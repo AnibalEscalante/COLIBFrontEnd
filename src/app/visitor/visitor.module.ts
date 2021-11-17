@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { VisitorRoutingModule } from './visitor-routing.module';
 import { LoginScreenComponent } from './views/login-screen/login-screen.component';
 import { RegisterScreenComponent } from './views/register-screen/register-screen.component';
@@ -32,6 +32,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ProjectInfoComponent,
     FooterComponent,
     HomeScreenComponent
+  ],
+  providers: [
+    DatePipe
   ],
   imports: [
     CommonModule,

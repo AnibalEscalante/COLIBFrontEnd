@@ -9,49 +9,59 @@ import { ProjectInfoScreenComponent } from './views/project-info-screen/project-
 import { RequestsScreenComponent } from './views/requests-screen/requests-screen.component';
 import { SavedProjectsScreenComponent } from './views/saved-projects-screen/saved-projects-screen.component';
 import { UserInfoScreenComponent } from './views/user-info-screen/user-info-screen.component';
+import { UserGuard } from '../core/guards/user/user.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: NavbarComponent,
+    canActivate: [UserGuard],
     children: [
       {
         path: 'home',
-        component: HomeScreenComponent
+        component: HomeScreenComponent,
+        canActivate: [UserGuard]
       },
       {
         path: 'userinfo',
-        component: UserInfoScreenComponent
+        component: UserInfoScreenComponent,
+        canActivate: [UserGuard]
       },
       {
         path: 'userinfo/:id',
         component: UserInfoScreenComponent,
-        data: {routeName: "usuario"}
+        data: { routeName: "usuario" },
+        canActivate: [UserGuard]
       },
-      
       {
         path: 'contacts',
-        component: ContactsScreenComponent
+        component: ContactsScreenComponent,
+        canActivate: [UserGuard]
       },
       {
         path: 'myprojects',
-        component: MyProjectsScreenComponent
+        component: MyProjectsScreenComponent,
+        canActivate: [UserGuard]
       },
       {
         path: 'projectinfo/:id',
-        component: ProjectInfoScreenComponent
+        component: ProjectInfoScreenComponent,
+        canActivate: [UserGuard]
       },
       {
         path: 'requests',
-        component: RequestsScreenComponent
+        component: RequestsScreenComponent,
+        canActivate: [UserGuard]
       },
       {
         path: 'savedprojects',
-        component: SavedProjectsScreenComponent
+        component: SavedProjectsScreenComponent,
+        canActivate: [UserGuard]
       },
       {
         path: 'collabprojects',
-        component: CollabProjectsScreenComponent
+        component: CollabProjectsScreenComponent,
+        canActivate: [UserGuard]
       }
     ]
   }
