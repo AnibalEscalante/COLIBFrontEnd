@@ -15,7 +15,7 @@ export class HomeScreenComponent implements OnInit {
   public project: Project | null;
   
   constructor(
-    private  projectService: ProjectService
+    private projectService: ProjectService
   ) {
     this.term = '';
     this.projects = [];

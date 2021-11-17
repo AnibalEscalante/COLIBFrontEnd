@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Project } from '../../../core/models/project.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-project',
@@ -18,10 +19,16 @@ export class ProjectComponent implements OnInit {
   public showInfo: boolean;
   public projectId: any;
   public colorState: string;
+  public showCreateDate: string | null;
+  public showFisnishDate: string | null;
 
-  constructor() {
+  constructor(
+    private datepipe: DatePipe
+  ) {
     this.showInfo = false,
-    this.colorState = ''
+    this.colorState = '',
+    this.showCreateDate = '',
+    this.showFisnishDate = ''
   }
 
   ngOnInit(): void {
@@ -45,6 +52,11 @@ export class ProjectComponent implements OnInit {
       this.colorState = '#dc3545';
     }
     return this.colorState;
+  }
+
+  public showDate() {
+    this.showCreateDate = this.datepipe.transform(this.project.createdAt, 'dd/MM/yyyy');
+    this.showFisnishDate = this.datepipe.transform(this.project.finishDate, 'dd/MM/yyyy')
   }
 
 }
