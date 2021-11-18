@@ -49,6 +49,7 @@ export class AuthService {
       email: string,
       movilPhone: string,
       password: string,
+      profileImg: string,
       idDisciplines: Discipline[],
       idSkills: Skill[]
     ): Observable<any> {
@@ -60,6 +61,7 @@ export class AuthService {
       email,
       movilPhone,
       password,
+      profileImg,
       idDisciplines,
       idSkills
     })

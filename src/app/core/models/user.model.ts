@@ -10,6 +10,7 @@ export interface User {
   lastName: string;
   nickName: string;
   movilPhone?: string;
+  profileImg: string;
   idDisciplines?: Discipline[];
   idSkills?: Skill[]; //string[v] y arriba tambien
   idSavedProjects?: Project[];

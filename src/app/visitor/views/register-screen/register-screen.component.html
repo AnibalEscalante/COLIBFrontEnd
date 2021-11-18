@@ -3,7 +3,7 @@
         <div class="d-none d-md-block">
             <mat-stepper linear #stepper>
                 <form class="form" #form="ngForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <mat-step [stepControl]="firstStepFormGroup" optional>
+                    <mat-step [stepControl]="firstStepFormGroup" required>
                         <div class="row justify-content-center mt-3">
                             <div class="col-auto">
                                 <h1 class="title text-center mb-4" type="button" [routerLink]="['/visitor/home']">Colib</h1>

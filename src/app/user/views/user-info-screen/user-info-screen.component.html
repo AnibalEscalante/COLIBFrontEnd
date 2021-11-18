@@ -20,13 +20,13 @@
                                             </p>
                                         </div>
                                         <div class="col-2 d-flex align-items-center justify-content-end" *ngIf="!myProfile">
-                                            <i class="fas fa-edit" type="button" (click)="editPersonalInfo()" ></i>
+                                            <i class="fas fa-edit" type="button" (click)="editPersonalInfo()"></i>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="card item">
-                                        <p class="type-item ms-4">Nombre del usuario</p>  
+                                        <p class="type-item ms-4">Nombre del usuario</p>
                                         <p class="info-item ms-4" *ngIf="user">{{user.name}} {{user.lastName}}</p>
                                         <p class="type-item mx-4">Correo electrónico</p>
                                         <p class="info-item ms-4">{{email}}</p>
@@ -70,7 +70,7 @@
                                                     <label *ngFor="let discipline of disciplines">
                                                         <p class="tag me-2 mb-2">{{discipline.name}}</p>
                                                     </label>
-                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
                                                     <label *ngFor="let skill of skills">
                                                         <p class="tag me-2 mb-2">{{skill.name}}</p>
                                                     </label>
-                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
