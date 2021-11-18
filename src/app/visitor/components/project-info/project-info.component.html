@@ -15,8 +15,7 @@
                     <div class="nav nav-fill">
                         <div *ngFor="let collaborator of projectInfo?.idCollaborators">
                             <a class="nav-link p-0 me-3 mb-1" href="#">
-                                <i class="fas fa-user"></i>
-                                <!-- {{collaborator.name}} {{collaborator.lastName}} -->
+                                <i class="fas fa-user"></i> {{collaborator.nickName}}
                             </a>
                         </div>
                     </div>
@@ -24,8 +23,8 @@
             </div>
             <div class="row">
                 <div class="col mt-2">
-                    <h5 class="published-item">Publicado el 23 de Agosto, 2021</h5>
-                    <h5 class="published-item">Cerrado el {{projectInfo?.finishDate}}</h5>
+                    <h5 class="published-item">Publicado el {{showCreateDate}}</h5>
+                    <h5 class="published-item">Cerrado el {{showFinishDate}}</h5>
                 </div>
                 <div class="col d-flex align-items-center justify-content-end">
                     <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/visitor/login']">Colaborar</button>
@@ -47,10 +46,6 @@
                 </div>
             </div>
             <div class="button-search">
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/register']">
-                    Compartir
-                    <i class="fas fa-share"></i>
-                </button>
                 <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/register']">
                     Guardar
                     <i class="fa fa-bookmark"></i>

@@ -21,31 +21,24 @@
         <div class="row d-none d-lg-block">
             <div class="col">
                 <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/login']">
-                        Compartir
-                        <i class="fas fa-share"></i>
-                    </button>
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/login']">
                         Guardar
                         <i class="fa fa-bookmark"></i>
                     </button>
                 <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" (click)="sendProjectInfo()">
                         Leer mas
                     </button>
-                <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
+                <p class="mb-0 mt-2">Publicado el {{showCreateDate}}</p>
             </div>
         </div>
         <!-- Responsive Strat -->
         <div class="row d-block d-lg-none">
             <div class="col">
                 <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/login']">
-                    <i class="fas fa-share"></i>
-                </button>
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/login']">
                     <i class="fa fa-bookmark"></i>
                 </button>
                 <a type="button" class="btn btn-secondary btn-sm btn-read-more mt-2" data-bs-toggle="offcanvas" href="#{{projectId}}" aria-controls="offcanvasInfoProject">Leer mas</a>
             </div>
-            <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
+            <p class="mb-0 mt-2">Publicado el {{showCreateDate}}</p>
         </div>
         <!-- Responsive end -->
     </div>
@@ -79,8 +72,8 @@
         </div>
         <div class="row">
             <div class="col-8 mt-2">
-                <h5 class="published-item">Publicado el 23 de Agosto, 2021</h5>
-                <h5 class="published-item">Cerrado el {{project.finishDate}}</h5>
+                <h5 class="published-item">Publicado el {{showCreateDate}}</h5>
+                <h5 class="published-item">Cerrado el {{showFinishDate}}</h5>
             </div>
             <div class="col-4 d-flex align-items-center justify-content-end">
                 <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/visitor/login']">Colaborar</button>
@@ -102,10 +95,6 @@
             </div>
         </div>
         <div class="button-search">
-            <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/register']">
-                Compartir
-                <i class="fas fa-share"></i>
-            </button>
             <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/register']">
                 Guardar
                 <i class="fa fa-bookmark"></i>

@@ -70,9 +70,6 @@ export class UserInfoScreenComponent implements OnInit {
       this.disciplines = response.message.idDisciplines;
       this.skills = response.message.idSkills;
       this.email = response.message.email;
-      console.log(response);
-      
-      console.log(this.idUser);
     } catch (error) {
       console.log('Algo ha salido mal');
     }
