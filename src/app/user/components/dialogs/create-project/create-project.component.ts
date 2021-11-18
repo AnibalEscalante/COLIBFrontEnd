@@ -12,11 +12,10 @@ import { DisciplineService } from 'src/app/core/services/discipline/discipline.s
 import { SkillService } from 'src/app/core/services/skill/skill.service';
 import { Project } from 'src/app/core/models/project.model';
 import { ProjectService } from 'src/app/core/services/project/project.service';
-import { Collaborator } from 'src/app/core/models/collaborator.model';
-import { CollaboratorService } from 'src/app/core/services/collaborator/collaborator.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { User } from 'src/app/core/models/user.model';
+import { Contact } from 'src/app/core/models/contact.model';
 
 @Component({
   selector: 'app-create-project',
@@ -55,8 +54,8 @@ export class CreateProjectComponent implements OnInit {
   public filteredCollab: Observable<string[]>;
   public myCollabs: string[] =[];
   public allCollabsName: string[] = [];
-  public allCollabs: Collaborator[];
-  public myCollabUpdate: Collaborator[] = [];
+  public allCollabs: Contact[];
+  public myCollabUpdate: Contact[] = [];
 
 
   public createProject: FormGroup;
@@ -81,7 +80,6 @@ export class CreateProjectComponent implements OnInit {
     private formBuilderCollab: FormBuilder,
     public disciplineService: DisciplineService,
     public skillService: SkillService,
-    public collaboratorService: CollaboratorService, 
     private projectService: ProjectService,
     private userService: UserService,
     private authService: AuthService
@@ -273,11 +271,23 @@ export class CreateProjectComponent implements OnInit {
 
     if (index >= 0) {
       this.myDisciplines.splice(index, 1);
+      this.allDisciplinesName.push(discipline)
     }
   }
 
   selectedDiscipline(event: MatAutocompleteSelectedEvent): void {
+    const index = this.allDisciplinesName.indexOf(event.option.viewValue)
+    for(let myNamesDisci of this.allDisciplinesName){
+      if(myNamesDisci === event.option.viewValue){
+        if (index >= 0){
+          this.allDisciplinesName.splice(index, 1);
+        }
+      }
+    }
     this.myDisciplines.push(event.option.viewValue);
+    if (index >= 0){
+      this.allDisciplinesName.splice(index, 1);
+    }
     this.disciplineInput.nativeElement.value = '';
     this.disciplineCtrl.setValue(null);
   }
@@ -322,11 +332,23 @@ export class CreateProjectComponent implements OnInit {
 
     if (index >= 0) {
       this.mySkills.splice(index, 1);
+      this.allSkillsName.push(skill)
     }
   }
 
   selectedSkill(event: MatAutocompleteSelectedEvent): void {
+    const index = this.allSkillsName.indexOf(event.option.viewValue)
+    for(let myNamesSkill of this.allSkillsName){
+      if(myNamesSkill === event.option.viewValue){
+        if (index >= 0){
+          this.allSkillsName.splice(index, 1);
+        }
+      }
+    }
     this.mySkills.push(event.option.viewValue);
+    if (index >= 0){
+      this.allSkillsName.splice(index, 1);
+    }
     this.skillInput.nativeElement.value = '';
     this.skillCtrl.setValue(null);
   }
@@ -340,8 +362,10 @@ export class CreateProjectComponent implements OnInit {
 
 /////////////////////////////////function collaborator////////////////////////////   
   async fetchCollab() {
+    this._id = this.authService.getId()
     try {
-      this.allCollabs = await this.collaboratorService.getallCollaborator().toPromise()
+      const response: any = await this.userService.getMyContacts(this._id).toPromise()
+      this.allCollabs = response.message.idContacts
       console.log(this.allCollabs);
       for(let collab of this.allCollabs){
         this.allCollabsName.push(collab.nickName);
