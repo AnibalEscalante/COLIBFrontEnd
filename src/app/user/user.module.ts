@@ -46,6 +46,7 @@ import { CollabProjectsComponent } from './components/collab-projects/collab-pro
 import { DeleteUserComponent } from './components/dialogs/delete-user/delete-user.component';
 import { DeleteProjectComponent } from './components/dialogs/delete-project/delete-project.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { EditProfileImgComponent } from './components/dialogs/edit-profile-img/edit-profile-img.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { FooterComponent } from './components/footer/footer.component';
     CollabProjectsComponent,
     DeleteUserComponent,
     DeleteProjectComponent,
-    FooterComponent
+    FooterComponent,
+    EditProfileImgComponent
   ],
   providers: [
     {
