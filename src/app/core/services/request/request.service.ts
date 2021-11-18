@@ -42,4 +42,7 @@ export class RequestService {
   deleteRequest(id: string, idUserSender: string): Observable<RequestC> {
     return this.http.delete<RequestC>(environment.baseUrl + '/requestC/'+ id + '/' + idUserSender);
   }
+  deleteRequestResult(id: string, idUserSender: string): Observable<RequestC> {
+    return this.http.delete<RequestC>(environment.baseUrl + '/requestC/reply/'+ id + '/' + idUserSender);
+  }
 }

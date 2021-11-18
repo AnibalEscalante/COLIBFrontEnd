@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Project } from 'src/app/core/models/project.model';
 import { RequestC } from 'src/app/core/models/requestC.model';
-import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ProjectService } from 'src/app/core/services/project/project.service';
 import { RequestService } from 'src/app/core/services/request/request.service';
@@ -16,7 +15,7 @@ import { UserService } from 'src/app/core/services/user/user.service';
 export class RequestsComponent implements OnInit {
   
   @Input() public request: RequestC | null;
-  
+
   public id: string | null;
   public senderName!: string;
   public projectName!: string;
@@ -66,10 +65,10 @@ export class RequestsComponent implements OnInit {
       
     }
   }
-  async collaborater(){
+  collaborater(){
     this.id = this.authService.getId()
     try {
-      await this.requestService.registNewRequestReply(this.id, this.request!.idProject, this.request!.idUserSender).toPromise();
+      this.requestService.registNewRequestReply(this.id, this.request!.idProject, this.request!.idUserSender).toPromise();
       
       this.toastr.success("Peticion enviada con exito, espere hasta que su peticion sea procesada", "", {
         "positionClass": "toast-bottom-center",
@@ -78,5 +77,21 @@ export class RequestsComponent implements OnInit {
       console.log('error')
     }
   }
+  deleteRequest(){
+    this.id = this.authService.getId()
+    try {
+
+      this.requestService.deleteRequest(this.request!._id!, this.id).toPromise();
+      
+      this.toastr.error("Peticion cancelada con exito", "", {
+        "positionClass": "toast-bottom-center",
+      });
+      
+    } catch (error) {
+      console.log('error');
+      
+    }
+  }
+
 
 }

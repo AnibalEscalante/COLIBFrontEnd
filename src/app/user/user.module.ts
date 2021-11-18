@@ -47,6 +47,8 @@ import { DeleteUserComponent } from './components/dialogs/delete-user/delete-use
 import { DeleteProjectComponent } from './components/dialogs/delete-project/delete-project.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { EditProfileImgComponent } from './components/dialogs/edit-profile-img/edit-profile-img.component';
+import { NavbarRequestResultComponent } from './components/navbar-request-result/navbar-request-result.component';
+import { NavbarRequestComponent } from './components/navbar-request/navbar-request.component';
 
 
 @NgModule({
@@ -80,7 +82,9 @@ import { EditProfileImgComponent } from './components/dialogs/edit-profile-img/e
     DeleteUserComponent,
     DeleteProjectComponent,
     FooterComponent,
-    EditProfileImgComponent
+    EditProfileImgComponent,
+    NavbarRequestResultComponent,
+    NavbarRequestComponent
   ],
   providers: [
     {
