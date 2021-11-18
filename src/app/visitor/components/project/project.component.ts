@@ -20,7 +20,7 @@ export class ProjectComponent implements OnInit {
   public projectId: any;
   public colorState: string;
   public showCreateDate: string | null;
-  public showFisnishDate: string | null;
+  public showFinishDate: string | null;
 
   constructor(
     private datepipe: DatePipe
@@ -28,11 +28,12 @@ export class ProjectComponent implements OnInit {
     this.showInfo = false,
     this.colorState = '',
     this.showCreateDate = '',
-    this.showFisnishDate = ''
+    this.showFinishDate = ''
   }
 
   ngOnInit(): void {
     this.projectId = 'projecto' + this.project._id;
+    this.showDate();
   }
   
   public showComponent(){
@@ -56,7 +57,7 @@ export class ProjectComponent implements OnInit {
 
   public showDate() {
     this.showCreateDate = this.datepipe.transform(this.project.createdAt, 'dd/MM/yyyy');
-    this.showFisnishDate = this.datepipe.transform(this.project.finishDate, 'dd/MM/yyyy')
+    this.showFinishDate = this.datepipe.transform(this.project.finishDate, 'dd/MM/yyyy');
   }
 
 }
