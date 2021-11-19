@@ -19,6 +19,7 @@ export class NavbarRequestResultComponent implements OnInit {
   public project: Project | null;
   public user : User | null;
   public id: string | null;
+  public state: string | null;
   constructor(
     private projectService: ProjectService,
     private userService: UserService,
@@ -29,9 +30,11 @@ export class NavbarRequestResultComponent implements OnInit {
     this.project = null;
     this.user = null
     this.id = null;
+    this.state = null;
   }
 
   ngOnInit(): void {
+    this.state = this.result.state
     this.fetchUserProject();
   }
 

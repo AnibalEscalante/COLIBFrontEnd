@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Project } from 'src/app/core/models/project.model';
 import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { RequestService } from 'src/app/core/services/request/request.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
@@ -51,7 +52,8 @@ export class ProjectComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private requestService: RequestService
   ) { 
     this.name = null;
     this.user = null;
@@ -72,10 +74,7 @@ export class ProjectComponent implements OnInit {
     if (this.showHideElements === 'myCollabProjects'){
       this.showCollabProjects = true;
     }
-
-    /* this.route.queryParams.subscribe(params => {
-      this.project.idCollaborators = params['name'];
-    }); */
+    console.log(this.project.idCollaborators[0]);
 
   }
   
@@ -140,7 +139,18 @@ export class ProjectComponent implements OnInit {
   mandarInfo() {
     this.projectList.emit(this.project);
   }
-  
+  ///////////////////////////////canvas////////////////////
+  async collaborater(){
+    this._id = this.authService.getId()
+    try {
+      await this.requestService.registNewRequest(this._id, this.project._id!, this.project.idUser).toPromise();
+      this.toastr.success("Peticion enviada con exito, espere hasta que su peticion sea procesada", "", {
+        "positionClass": "toast-bottom-center",
+      });
+    } catch (error) {
+      console.log('error')
+    }
+  }
   showState(): string {
     if (this.project.state === 'Abierto') {
       this.colorState = '#198754';

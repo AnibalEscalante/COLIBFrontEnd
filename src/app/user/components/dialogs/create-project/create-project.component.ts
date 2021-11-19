@@ -15,7 +15,10 @@ import { ProjectService } from 'src/app/core/services/project/project.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { User } from 'src/app/core/models/user.model';
+import { Collaborator } from 'src/app/core/models/collaborator.model';
 import { Contact } from 'src/app/core/models/contact.model';
+import { CollaboratorService } from 'src/app/core/services/collaborator/collaborator.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-project',
@@ -55,7 +58,7 @@ export class CreateProjectComponent implements OnInit {
   public myCollabs: string[] =[];
   public allCollabsName: string[] = [];
   public allCollabs: Contact[];
-  public myCollabUpdate: Contact[] = [];
+  public myCollabUpdate: Collaborator[] = [];
 
 
   public createProject: FormGroup;
@@ -82,8 +85,9 @@ export class CreateProjectComponent implements OnInit {
     public skillService: SkillService,
     private projectService: ProjectService,
     private userService: UserService,
-    private authService: AuthService
-    
+    private collaboratorService: CollaboratorService,
+    private authService: AuthService,
+    private toastr: ToastrService
     ) {
       this._id = null;
       this.user = null;
@@ -162,7 +166,6 @@ export class CreateProjectComponent implements OnInit {
       startWith(''),
       map(value => this._filterCollab(value))
     );
-    
   }
 
 
@@ -188,18 +191,19 @@ export class CreateProjectComponent implements OnInit {
   }
   async onSubmit() {
     for(let disciName of this.myDisciplines){
-      let discipline = this.allDisci.find(discipline => discipline.name === disciName)
+      let discipline = this.allDisci.find(discipline => discipline.name === disciName);
       this.myDisciplineUpdate.push(discipline!)
     } 
 
     for(let skillName of this.mySkills){
-      let skill = this.allSkills.find(skill => skill.name === skillName)
+      let skill = this.allSkills.find(skill => skill.name === skillName);
       this.mySkillUpdate.push(skill!)
     }
 
     for(let collabNickName of this.myCollabs){
-      let collab = this.allCollabs.find(collab => collab.nickName === collabNickName)
-      this.myCollabUpdate.push(collab!)
+      let collab = this.allCollabs.find(collab => collab.nickName === collabNickName);
+      let newCollab: any = await this.collaboratorService.getCollaboratorByIdUser(collab!.idUser).toPromise();
+      this.myCollabUpdate.push(newCollab.message)
     }
 
     let project: Project = {
@@ -218,9 +222,12 @@ export class CreateProjectComponent implements OnInit {
     try {
       this._id = this.authService.getId()
       await this.projectService.registNewProject(this.project, this._id!).toPromise();
-
+      window.location.reload();
     } catch (error) {
       console.log('error');
+      this.toastr.error("Algunos datos que se agergaron no existen, porfavor agrega datos existentes", "", {
+        "positionClass": "toast-bottom-center",
+      });
 
     }
   }

@@ -20,6 +20,7 @@ export class RequestsComponent implements OnInit {
   public senderName!: string;
   public projectName!: string;
   public projectInfo: Project | null;
+  public state: string | null;
   constructor(
     private userService: UserService,
     private projectService: ProjectService,
@@ -30,6 +31,7 @@ export class RequestsComponent implements OnInit {
     this.projectInfo = null;
     this.request = null;
     this.id = null;
+    this.state = null;
    }
 
   ngOnInit(): void {
@@ -67,8 +69,23 @@ export class RequestsComponent implements OnInit {
   }
   collaborater(){
     this.id = this.authService.getId()
+    this.state ='Aceptada';
     try {
-      this.requestService.registNewRequestReply(this.id, this.request!.idProject, this.request!.idUserSender).toPromise();
+      this.requestService.registNewRequestReply(this.id, this.request!.idProject, this.request!.idUserSender, this.state).toPromise();
+      
+      this.toastr.success("Peticion enviada con exito, espere hasta que su peticion sea procesada", "", {
+        "positionClass": "toast-bottom-center",
+      });
+    } catch (error) {
+      console.log('error')
+    }
+  }
+
+  collaboraterRejected(){
+    this.id = this.authService.getId()
+    this.state ='Rechazada';
+    try {
+      this.requestService.registNewRequestReplyRejected(this.id, this.request!.idProject, this.request!.idUserSender, this.state).toPromise();
       
       this.toastr.success("Peticion enviada con exito, espere hasta que su peticion sea procesada", "", {
         "positionClass": "toast-bottom-center",

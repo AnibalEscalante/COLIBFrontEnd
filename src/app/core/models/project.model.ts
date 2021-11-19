@@ -1,8 +1,6 @@
 import { Collaborator } from "./collaborator.model";
-import { Contact } from "./contact.model";
 import { Discipline } from "./discipline.model";
 import { Skill } from "./skill.model";
-import { User } from "./user.model";
 
 export interface Project {
   _id?: string;
@@ -13,7 +11,7 @@ export interface Project {
   idUser: string;
   idSkills: Skill[];
   idDisciplines: Discipline[];
-  idCollaborators: Contact[];
+  idCollaborators: Collaborator[];
   updatedAt?: Date;
   createdAt?: Date;
 }

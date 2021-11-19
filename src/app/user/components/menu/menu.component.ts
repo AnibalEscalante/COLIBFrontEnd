@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/core/models/user.model';
-import { UserService } from 'src/app/core/services/user/user.service';
 import { CreateProjectComponent } from '../dialogs/create-project/create-project.component';
 
 @Component({
@@ -12,7 +11,7 @@ import { CreateProjectComponent } from '../dialogs/create-project/create-project
 export class MenuComponent implements OnInit {
 
   @Input()
-  public user: User | null;
+  public user!: User | null;
 
   @Input()
   public id: string | null;
@@ -27,7 +26,7 @@ export class MenuComponent implements OnInit {
     public dialog: MatDialog,
   ) {
     this.myProfile();
-    this.user = null;
+    /* this.user = null; */
     this.id = null;
     this.idUser = null;
   }
