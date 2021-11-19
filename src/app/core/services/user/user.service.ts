@@ -35,8 +35,8 @@ export class UserService {
     return this.http.patch<User>(environment.baseUrl + '/user/'+ id, user);
   }
 
-  modifyPassword(password: string, id: string): Observable<User> {
-    return this.http.patch<User>(environment.baseUrl + '/user/'+ id, password);
+  modifyPassword(passwordNew: string, id: string): Observable<User> {
+    return this.http.patch<User>(environment.baseUrl + '/user/'+ id +'/pass', passwordNew);
   }
 
   getInfoUser(id: string): Observable<any>{

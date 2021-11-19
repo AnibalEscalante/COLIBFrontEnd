@@ -56,13 +56,11 @@ export class ProjectInfoScreenComponent {
       for(let project of this.myProjects){
         if(project._id ===  this.projectInfo._id){
           this.isShowElements = true;
-          console.log(this.isShowElements);
-          
         }
       }
     }
     catch (error) {
-      console.log('uh que mal :c');
+      console.log('Algo ha salido mal');
     }
   }
 

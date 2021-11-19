@@ -11,13 +11,13 @@ import { UserService } from 'src/app/core/services/user/user.service';
 })
 export class EditPasswordComponent implements OnInit {
   
-  private newPassword = new FormControl('', [Validators.required]);
-  private reNewPassword = new FormControl('', [Validators.required]);
+  public newPassword = new FormControl('', [Validators.required]);
+  public reNewPassword = new FormControl('', [Validators.required]);
   private validNewPassword!: string;
   private validReNewPassword!: string;
-  hidePassword: boolean = true;
-  hideNewPassword: boolean = true;
-  hideReNewPassword: boolean = true;
+  public hidePassword: boolean = true;
+  public hideNewPassword: boolean = true;
+  public hideReNewPassword: boolean = true;
   public updatePassword: FormGroup;
   public _id!: string | null;
   public passwordNew!: string;
@@ -36,7 +36,7 @@ export class EditPasswordComponent implements OnInit {
       this.validReNewPassword = value;
     }),
     this.updatePassword = this.formBuilder.group({
-      newPassword: ['', [ Validators.minLength(8)]],
+      password: ['', [ Validators.minLength(8)]],
       confirmPassword: ['', [ Validators.minLength(8)]],
     }),
     {
@@ -45,19 +45,17 @@ export class EditPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.validNewPassword)
   }
 
   get newPasword() {
-    return this.updatePassword?.get('newPassword')?.value;
+    return this.updatePassword?.get('password')?.value;
   }
   
-  async onSubmit() {
+  public async onSubmit() {
   
-    this.passwordNew = this.updatePassword.get('newPassword')!.value 
-    /* this.newPassword = this.newPassword ? this.newPassword : this.password */
+    this._id = this.authService.getId()
+    this.passwordNew = this.newPasword
     try {
-      this._id = this.authService.getId()
       await this.userService.modifyPassword(this.passwordNew, this._id!).toPromise();
      
     } catch (error) {

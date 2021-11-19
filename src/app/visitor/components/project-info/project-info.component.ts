@@ -43,8 +43,6 @@ export class ProjectInfoComponent implements OnInit {
       }
     }
     this.showDate();
-    console.log('hola');
-    
     return this.colorState;
   }
 

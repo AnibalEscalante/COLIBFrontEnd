@@ -77,9 +77,15 @@ export class ProjectInfoComponent {
     if (this.projectInfo.state === 'Close') {
       this.colorState = '#dc3545';
     }
+    this.dates();
     return this.colorState;
   }
 
+  public dates(){
+    this.showCreateDate = this.datepipe.transform(this.projectInfo!.createdAt, 'dd/MM/yyyy');
+    this.showFinishDate = this.datepipe.transform(this.projectInfo!.finishDate, 'dd/MM/yyyy');
+  
+  }
 
   //Dialogs//
   openDialog() {

@@ -39,8 +39,6 @@ export class MyProjectsScreenComponent implements OnInit {
       const response: any= await this.userService.getMyProjects(this.id!).toPromise();
       this.user = response.message;
       this.projects = response.message.idMyProjects
-      console.log(this.projects);
-      
     }
     catch (error) {
       console.log('Algo ha salido mal');

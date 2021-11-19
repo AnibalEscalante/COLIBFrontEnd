@@ -46,7 +46,7 @@ export class HomeScreenComponent implements OnInit {
       if (response) return response;
       else return [];
     } catch (error) {
-      console.log('uh que mal :c');
+      console.log('Algo ha salido mal');
       return [];
     }
   }
