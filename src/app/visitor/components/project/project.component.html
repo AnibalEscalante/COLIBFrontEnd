@@ -12,9 +12,10 @@
         </div>
         <p class="card-subtitle my-2">{{project.content}}</p>
         <div class="nav nav-pills nav-fill">
-            <div *ngFor="let colaborator of project.idCollaborators">
+            <div *ngFor="let collaborator of project.idCollaborators">
                 <a class="off-canvas-nav-link nav-link p-0 me-3 mb-1" href="#">
-                    <i class="fas fa-user"></i> {{colaborator.nickName}}
+                    <i class="fas fa-user" *ngIf="!collaborator.profileImg"></i>
+                    <img [src]="collaborator.profileImg" class="profile-img" *ngIf="collaborator.profileImg"> {{collaborator.nickName}}
                 </a>
             </div>
         </div>

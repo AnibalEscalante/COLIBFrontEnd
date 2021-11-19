@@ -39,6 +39,11 @@
 .nav-link {
   color: #32CD32 !important;
 }
+.profile-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+}
 /*--------- offcanvas start ----------*/
 .offcanvas-start {
   width: max-content;

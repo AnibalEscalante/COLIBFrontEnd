@@ -23,6 +23,11 @@
   background-color: #32CD32;
   border: none;
 }
+.profile-img-chat {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
 /*--------------- Chat ----------------*/
 .chat-contact {
   font-size: x-large;
