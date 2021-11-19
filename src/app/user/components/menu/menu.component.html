@@ -1,7 +1,7 @@
 <div class="sideBar d-none d-lg-block">
     <div class="info-user">
         <div class="header pt-3 text-center">
-            <img type="button" (click)="openEditProfileImage()" [src]="user!.profileImg" *ngIf="user!.profileImg" class="profile-img">
+            <img type="button" (click)="openEditProfileImage()" [src]="user!.profileImg" *ngIf="user?.profileImg" class="profile-img">
             <i type="button" (click)="openEditProfileImage()" *ngIf="!user!.profileImg" class="fas fa-user mt-2"></i>
             <h2 class="my-3" *ngIf="user">{{user.nickName}}</h2>
         </div>
