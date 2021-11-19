@@ -26,4 +26,7 @@ export class CollaboratorService {
     );
     return response;
   }
+  getCollaboratorByIdUser(id: string): Observable<Collaborator> {
+    return this.http.get<Collaborator>(environment.baseUrl + '/collaborator/userBy/'+ id);
+  }
 }

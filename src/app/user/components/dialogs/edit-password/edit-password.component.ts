@@ -13,10 +13,8 @@ import { UserService } from 'src/app/core/services/user/user.service';
 })
 export class EditPasswordComponent implements OnInit {
   
-  private password = new FormControl('', [Validators.required]);
   private newPassword = new FormControl('', [Validators.required]);
   private reNewPassword = new FormControl('', [Validators.required]);
-  private validPassword!: string;
   private validNewPassword!: string;
   private validReNewPassword!: string;
   hidePassword: boolean = true;
@@ -32,10 +30,6 @@ export class EditPasswordComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder
   ) {
-    this.password.valueChanges.subscribe(value => {
-      this.validPassword = value;
-    });
-
     this.newPassword.valueChanges.subscribe(value => {
       this.validNewPassword = value;
     });
@@ -44,7 +38,6 @@ export class EditPasswordComponent implements OnInit {
       this.validReNewPassword = value;
     }),
     this.updatePassword = this.formBuilder.group({
-      oldPassword: ['', [ Validators.minLength(8)]],
       newPassword: ['', [ Validators.minLength(8)]],
       confirmPassword: ['', [ Validators.minLength(8)]],
     }),
@@ -74,10 +67,7 @@ export class EditPasswordComponent implements OnInit {
     }
   }
 
-  getPassword() {
-    return this.password;
-  }
-
+ 
   getNewPassword() {
     return this.newPassword;
   }
@@ -92,10 +82,6 @@ export class EditPasswordComponent implements OnInit {
     } else {
       this.toastr.success('La contraseña se guardó exitosamente.');
     }
-  }
-
-  getErrorActualPasswordMessage() {
-    return this.password.hasError('required') ? 'Se requiere la contraseña actual' : '';
   }
 
   getErrorNewPasswordMessage() {

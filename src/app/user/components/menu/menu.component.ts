@@ -12,7 +12,7 @@ import { EditProfileImgComponent } from '../dialogs/edit-profile-img/edit-profil
 export class MenuComponent implements OnInit {
 
   @Input()
-  public user: User | null;
+  public user!: User | null;
 
   @Input()
   public id: string | null;
@@ -27,6 +27,8 @@ export class MenuComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
   ) {
+    /* this.myProfile(); */
+    /* this.user = null; */
     this.user = null;
     this.id = null;
     this.idUser = null;
