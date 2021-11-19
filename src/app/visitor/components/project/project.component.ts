@@ -15,6 +15,8 @@ export class ProjectComponent implements OnInit {
   @Output() readMoreEvent = new EventEmitter<any>();
 
   @Output() show = new EventEmitter<boolean>();
+
+  @Output() dates = new EventEmitter<any>();
   
   public showInfo: boolean;
   public projectId: any;
@@ -35,6 +37,13 @@ export class ProjectComponent implements OnInit {
     this.projectId = 'projecto' + this.project._id;
     this.showDate();
   }
+
+  public sendDates() {
+    this.dates.emit({
+      createDate: this.showCreateDate,
+      finishDate: this.showFinishDate
+    });
+  }
   
   public showComponent(){
     this.showInfo = true;
@@ -43,6 +52,7 @@ export class ProjectComponent implements OnInit {
 
   public sendProjectInfo() {
     this.readMoreEvent.emit(this.project);
+    this.sendDates();
   }
 
   public showState(): string {

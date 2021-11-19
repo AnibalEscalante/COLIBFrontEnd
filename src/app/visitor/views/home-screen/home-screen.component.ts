@@ -13,6 +13,7 @@ export class HomeScreenComponent implements OnInit {
   public isshowinfo: boolean;
   public term: string;
   public project: Project | null;
+  public dates: any;
   
   constructor(
     private projectService: ProjectService
@@ -29,6 +30,10 @@ export class HomeScreenComponent implements OnInit {
 
   public getProject(event: any) {
     this.project = event;
+  }
+
+  public getDates(event: any) {
+    this.dates = event;
   }
 
   public reciveIsShowInfo(event: any){
