@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/models/project.model';
 
@@ -18,6 +19,7 @@ export class ProjectInfoComponent implements OnInit {
   public showFinishDate: string | null;
 
   constructor(
+    private datepipe: DatePipe
   ) {
     this.colorState = '';
     this.isShow = true;
@@ -29,10 +31,6 @@ export class ProjectInfoComponent implements OnInit {
     this.isShow = this.showHideComponent;
   }
 
-  public toggleShow() {
-    this.isShow = ! this.showHideComponent;
-  }
-
   public showState(): string {
     if (this.projectInfo) {
       if (this.projectInfo.state === 'Open') {
@@ -42,7 +40,15 @@ export class ProjectInfoComponent implements OnInit {
         this.colorState = '#dc3545';
       }
     }
+    this.showDate();
+    console.log('hola');
+    
     return this.colorState;
+  }
+
+  public showDate() {
+    this.showCreateDate = this.datepipe.transform(this.projectInfo!.createdAt, 'dd/MM/yyyy');
+    this.showFinishDate = this.datepipe.transform(this.projectInfo!.finishDate, 'dd/MM/yyyy');
   }
 
 }
