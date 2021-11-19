@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Project } from 'src/app/core/models/project.model';
@@ -28,10 +29,10 @@ export class ProjectComponent implements OnInit {
   @Input()
   public showHideElements!: string
   
-  @Output() projectList= new EventEmitter<Project>();
+  @Output() projectList = new EventEmitter<Project>();
 
-  @Output() show= new EventEmitter<boolean>();
-  
+  @Output() show = new EventEmitter<boolean>();
+
   public static routeNamesObject = {}
   
   public showSaved: boolean = false;
@@ -45,6 +46,7 @@ export class ProjectComponent implements OnInit {
   public projectId: any;
   public colorState: string = '';
   public colorSavedState: string = '';
+  public showFinishDate!: string | null;
   public _id!: string | null;
   public newSavedProject: Project[] = [];
   public myProjects: Project[] = [];
@@ -53,7 +55,8 @@ export class ProjectComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private toastr: ToastrService,
-    private requestService: RequestService
+    private requestService: RequestService,
+    public datepipe: DatePipe,
   ) { 
     this.name = null;
     this.user = null;
@@ -74,16 +77,15 @@ export class ProjectComponent implements OnInit {
     if (this.showHideElements === 'myCollabProjects'){
       this.showCollabProjects = true;
     }
-    console.log(this.project.idCollaborators[0]);
-
+    this.showFinishDate = this.datepipe.transform(this.project.finishDate, 'dd/MM/yyyy');
+    /* this.showCreateDate = this.datepipe.transform(this.project.createdAt, 'dd/MM/yyyy'); */
   }
   
   showComponent(){
     this.showinfo = true;
     this.show.emit(this.showinfo)
   }
-
-
+  
   async fetchMyProject() {
     try {
 
@@ -91,8 +93,6 @@ export class ProjectComponent implements OnInit {
       const response: any= await this.userService.getMyProjects(this._id!).toPromise();
       this.user = response.message;
       this.myProjects = response.message.idMyProjects
-      
-      
     }
     catch (error) {
       console.log('Algo ha salido mal');
@@ -139,6 +139,7 @@ export class ProjectComponent implements OnInit {
   mandarInfo() {
     this.projectList.emit(this.project);
   }
+ 
   ///////////////////////////////canvas////////////////////
   async collaborater(){
     this._id = this.authService.getId()

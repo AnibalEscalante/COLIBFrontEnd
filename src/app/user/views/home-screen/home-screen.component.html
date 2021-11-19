@@ -6,7 +6,7 @@
                     <input type="text" [(ngModel)]="term" class="form-control" placeholder="Buscar proyectos">
                 </div>
                 <div class="col-12 col-lg-6 mt-2 d-flex align-items-center justify-content-end">
-                    <button type="button" class="btn btn-primary btn-sm" (click)="openCreateProject()">Publicar proyecto</button>
+                    <button type="button" class="btn btn-project btn-sm" (click)="openCreateProject()">Publicar proyecto</button>
                 </div>
             </div>
         </div>
@@ -31,11 +31,8 @@
 
                 </div>
             </div>
-            <div class="col-12 col-lg-6 d-none d-lg-block ">
-                <app-project-info 
-                    [projectInfo]="projectinfo" 
-                    [showHideComponent]="isshowinfo"
-                ></app-project-info>
+            <div class="col-12 col-lg-6 d-none d-lg-block">
+                <app-project-info *ngIf="isshowinfo" [projectInfo]="projectinfo" [showHideComponent]="isshowinfo"></app-project-info>
             </div>
         </div>
     </div>

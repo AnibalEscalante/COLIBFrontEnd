@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Project } from 'src/app/core/models/project.model';
-import { RequestC } from 'src/app/core/models/requestC.model';
 import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ProjectService } from 'src/app/core/services/project/project.service';
@@ -78,10 +77,8 @@ export class ProfileProjectInfoComponent implements OnInit {
           this.isShowElementsSaved = true;
           console.log(this.isShowElementsSaved);
           return;
-          
         }
       }
-      
     }
     catch (error) {
       console.log('uh que mal :c');

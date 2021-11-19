@@ -41,14 +41,7 @@ export class NavbarComponent implements OnInit {
   async fetchUserRequestsReply(){
     try {
       const response: any= await this.userService.getRequestsReply(this.id!).toPromise();
-      console.log(response);
-      
       this.requestsReply = response.message.idRequestResults
-
-      console.log(this.requestsReply);
-      console.log(this.projectId);
-      
-      
     } catch (error) {
       console.log('error');
     }
@@ -56,9 +49,7 @@ export class NavbarComponent implements OnInit {
   async fetchUserRequests(){
     try {
       const response: any= await this.userService.getRequests(this.id!).toPromise();
-      console.log(response);
       this.requests = response.message.idRequestsC
-      
     } catch (error) {
       console.log('error');
     }

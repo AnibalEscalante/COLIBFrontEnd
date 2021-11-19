@@ -22,12 +22,14 @@ export class HomeScreenComponent implements OnInit {
   public isShowComponent: boolean = false;
   public showHideElements: string = 'homeProjects';
   public mySavedProject: Project[] = [];
+  public projectinfo!: Project;
+  public isshowinfo!: boolean;
 
   constructor(
     public dialog: MatDialog,
     public authService: AuthService,
     public userService: UserService,
-    public  projectService: ProjectService
+    public projectService: ProjectService
 
   ){
     this.user = null;
@@ -74,13 +76,11 @@ export class HomeScreenComponent implements OnInit {
 
 
   //show info component//
-  projectinfo!: Project;
   recibir(event: any) {
     this.projectinfo = event;
   }
 
   //show component//
-  public isshowinfo!: boolean;
   recibirIsShowInfo(event: any){
     this.isshowinfo = event
   }

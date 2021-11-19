@@ -76,6 +76,7 @@ export class RequestsComponent implements OnInit {
       this.toastr.success("Peticion enviada con exito, espere hasta que su peticion sea procesada", "", {
         "positionClass": "toast-bottom-center",
       });
+      window.location.reload();
     } catch (error) {
       console.log('error')
     }
@@ -87,9 +88,10 @@ export class RequestsComponent implements OnInit {
     try {
       this.requestService.registNewRequestReplyRejected(this.id, this.request!.idProject, this.request!.idUserSender, this.state).toPromise();
       
-      this.toastr.success("Peticion enviada con exito, espere hasta que su peticion sea procesada", "", {
+      this.toastr.error("Peticion cancelada con exito", "", {
         "positionClass": "toast-bottom-center",
       });
+      window.location.reload();
     } catch (error) {
       console.log('error')
     }
@@ -99,10 +101,6 @@ export class RequestsComponent implements OnInit {
     try {
 
       this.requestService.deleteRequest(this.request!._id!, this.id).toPromise();
-      
-      this.toastr.error("Peticion cancelada con exito", "", {
-        "positionClass": "toast-bottom-center",
-      });
       
     } catch (error) {
       console.log('error');
