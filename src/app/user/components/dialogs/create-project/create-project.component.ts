@@ -223,6 +223,9 @@ export class CreateProjectComponent implements OnInit {
       this._id = this.authService.getId()
       await this.projectService.registNewProject(this.project, this._id!).toPromise();
       window.location.reload();
+      this.toastr.success("has credo un proyecto nuevo", "", {
+        "positionClass": "toast-bottom-center",
+      });
     } catch (error) {
       console.log('error');
       this.toastr.error("Algunos datos que se agergaron no existen, porfavor agrega datos existentes", "", {

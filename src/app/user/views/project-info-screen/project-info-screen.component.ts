@@ -107,20 +107,6 @@ export class ProjectInfoScreenComponent {
     }
   }
 
-  /* async fetchProject() {
-    try {
-      this.response = await this.projectService.getProject(this.activatedRoute.snapshot.params['id']).toPromise();
-      this.projectInfo = this.response.message;
-      this.projectInfo.idDisciplines
-      this.showFinishDate = this.datepipe.transform(this.projectInfo.finishDate, 'dd/MM/yyyy');
-      this.showCreateDate = this.datepipe.transform(this.projectInfo.createdAt, 'dd/MM/yyyy');
-
-
-    }
-    catch (error) {
-      console.log('uh que mal :c');
-    }
-  } */
   async fetchUser() {
     try {
       this.id = this.authService.getId()

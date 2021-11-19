@@ -3,7 +3,7 @@
         <div class="head">
             <div class="row" *ngIf="showHomeProject || showSavedProjects || showCollabProjects || showMyProjects">
                 <div class="col-11">
-                    <h1 class="title mb-0">{{project.title}}</h1>
+                    <h1 class="title mb-0 " *ngIf="project">{{project.title}}</h1>
                 </div>
                 <div class="col-1 d-flex align-items-center justify-content-end">
                     <i class="fas fa-circle circle-color"></i>
@@ -19,22 +19,29 @@
             </div>
         </div>
         <div class="row d-none d-lg-block">
-            <div class="col">
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" (click)='modifyProjectUser()'>
-                    Guardar
-                    <i class="fa fa-bookmark"></i>
-                </button>
-                <button type="button" *ngIf="showHomeProject"  class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" (click)="mandarInfo()">
-                    Leer mas
-                 </button>
-                 <button type="button" *ngIf="showMyProjects || showSavedProjects || showCollabProjects" class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" [routerLink]="['/user/projectinfo',project._id]">
-                    Leer mas
-                 </button>
-                    <button type="button"  *ngIf="showHomeProject" class="btn btn-secondary btn-sm me-2 mt-2" (click)="collaborater()">
+            <div class="row">
+                <div class="col-9">
+                    <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" (click)='modifyProjectUser()'>
+                        Guardar
+                        <i class="fa fa-bookmark"></i>
+                    </button>
+                    <button type="button" *ngIf="showHomeProject"  class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" (click)="mandarInfo()">
+                        Leer mas
+                    </button>
+                    <button type="button" *ngIf="showMyProjects || showSavedProjects || showCollabProjects" class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" [routerLink]="['/user/projectinfo',project._id]">
+                        Leer mas
+                    </button>
+                </div>
+                <div class="col-3 d-flex align-items-center justify-content-end">
+                    <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" *ngIf="isShowElementsSaved" (click)="collaborater()">
                         Colaborar
                     </button>
-                <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
+                    <button class="btn btn-secondary btn-sm me-2 mt-2" *ngIf="isShowElementsCollab" disabled>
+                        Colaborando
+                    </button>
+                </div> 
             </div>
+            <p class="mb-0 mt-2">Publicado el {{showCreateDate}}</p>
         </div>
         <!-- Responsive Strat -->
         <div class="row d-block d-lg-none">
@@ -44,7 +51,7 @@
                     </button>
                 <a type="button" class="btn btn-secondary btn-sm btn-read-more mt-2" data-bs-toggle="offcanvas" href="#{{projectId}}" aria-controls="offcanvasInfoProject">Leer mas</a>
             </div>
-            <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
+            <p class="mb-0 mt-2">Publicado el {{showCreateDate}}</p>
         </div>
         <!-- Responsive end -->
     </div>
@@ -77,21 +84,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-8 mt-2">
-                <h5 class="published-item">Publicado el 23 de Agosto, 2021</h5>
-                <h5 class="published-item">Cerrado el {{project.finishDate}}</h5>
+            <div class="col mt-2">
+                <h5 class="published-item">Publicado el {{showCreateDate}}</h5>
+                <h5 class="published-item">Se cierra el {{showFinishDate}}</h5>
             </div>
-            <div class="col-4 d-flex align-items-center justify-content-end" *ngIf="showSavedProjects || showHomeProject">
-                <button type="button" class="btn btn-primary btn-sm" (click)="collaborater()">Colaborar</button>
+            <div class="col d-flex align-items-center justify-content-end">
+                <div class="col d-flex align-items-center justify-content-end">
+                    <button type="button" class="btn btn-collab btn-sm" (click)="collaborater()">Colaborar</button>
+                </div>
             </div>
-          <!--   <div class="col-4 d-flex align-items-center justify-content-end" *ngIf="showCollabProjects">
-                <a class="collaborating">Colaborando</a>
-            </div> -->
-            <div class="col-4 d-flex align-items-center justify-content-center" style="width: 6rem;">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Colaborando</li>
-                </ul>
-              </div>
         </div>
         <p class="card-subtitle-info mb-2">{{project.content}}</p>
         <div class="row">

@@ -73,7 +73,7 @@ export class HomeScreenComponent implements OnInit {
       console.log('Algo ha salido mal');
     }
   }
-
+  
 
   //show info component//
   recibir(event: any) {

@@ -24,14 +24,11 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <h5 type="date" class="published-item mt-2" data-date-format="DD MMMM YYYY">Publicado el {{projectInfo.createdAt}}</h5>
-                    <h5 class="published-item" *ngIf="projectInfo">Cerrado el {{projectInfo.finishDate}}</h5>
+                    <h5 type="date" class="published-item mt-2" >Publicado el {{projectInfo.createdAt}}</h5>
+                    <h5 class="published-item" *ngIf="projectInfo">Se cierra el {{projectInfo.finishDate}}</h5>
                 </div>
-                <div class="col d-flex align-items-center justify-content-end" *ngIf="isShowElementsSaved">
+                <div class="col d-flex align-items-center justify-content-end">
                     <button type="button" class="btn btn-collab btn-sm" (click)="collaborater()">Colaborar</button>
-                </div>
-                <div class="col d-flex align-items-center justify-content-end" *ngIf="isShowElementsCollab">
-                    <button class="btn btn-secondary btn-sm" >Colaborando</button>
                 </div>
             </div>
             <p class="card-subtitle-info mb-2 text-muted" *ngIf="projectInfo">
