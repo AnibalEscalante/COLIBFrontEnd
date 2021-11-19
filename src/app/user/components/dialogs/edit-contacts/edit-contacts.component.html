@@ -15,7 +15,7 @@
                             <div class="col-10 d-flex align-items-center">
                                 <i class="fas fa-user user-item-fa-user ms-1"></i>
                                 <p class="user-item-contact mt-3 ms-2">{{contact.nickName}}</p>
-                                <i class="fas fa-trash" type="button"></i>
+                                <i class="fas fa-trash" type="button" (click)="deleteMyContact(contact)"></i>
                             </div>
                         </li>
                     </div>
@@ -34,12 +34,12 @@
                             <div class="spinner-border" role="status"></div>
                         </div>
                         <li class="list-group-item list-group-item-action" *ngFor="let user of users | filter:usersFilter">
-                            <div class="col-10 d-flex align-items-center">
+                            <div class="col-10 d-flex align-items-center" *ngIf="myId !== user._id">
                                 <i class="fas fa-user user-item-fa-user ms-1" *ngIf="!user.profileImg"></i>
                                 <img [src]="user.profileImg" class="ms-1 profile-img" *ngIf="user.profileImg">
                                 <p class="user-item-contact mt-3 ms-2">{{user.nickName}}</p>
                                 <i class="fas fa-user-friends" *ngIf="myContact(user)"></i>
-                                <i class="fas fa-user-plus" type="button" *ngIf="!myContact(user)"></i>
+                                <i class="fas fa-user-plus" type="button" *ngIf="!myContact(user)" (click)="addContact(user)"></i>
                             </div>
                         </li>
                     </div>

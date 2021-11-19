@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ToastrService } from 'ngx-toastr';
 import { Contact } from 'src/app/core/models/contact.model';
 import { User } from 'src/app/core/models/user.model';
 import { UserService } from '../../../../core/services/user/user.service';
+import { ContactService } from '../../../../core/services/contact/contact.service';
+import { AuthService } from '../../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-edit-contacts',
@@ -17,10 +18,12 @@ export class EditContactsComponent implements OnInit {
   public contactsFilter: string;
   public usersFilter: string;
   public loadingUsers: boolean;
+  public myId: string | null;
 
   constructor(
-    private toastr: ToastrService,
     private userService: UserService,
+    private contactService: ContactService,
+    private authService: AuthService,
     @Inject(MAT_DIALOG_DATA) public data: {contacts: Contact[]}
   ) {
     this.contacts = this.data.contacts;
@@ -28,11 +31,11 @@ export class EditContactsComponent implements OnInit {
     this.contactsFilter = '';
     this.usersFilter = '';
     this.loadingUsers = true;
+    this.myId = this.authService.getId();
   }
 
   async ngOnInit(): Promise<void> {
     this.users = await this.fetchUsers();
-    
   }
 
   private async fetchUsers(): Promise<User[] | []> {
@@ -49,18 +52,34 @@ export class EditContactsComponent implements OnInit {
     }
   }
 
+  public async deleteMyContact(contact: Contact) {
+    try {
+      if (this.myId) 
+      await this.contactService.deleteContact(contact._id!, this.myId).toPromise();
+    } catch (error) {
+      console.log('Algo salió mal');
+    }
+  }
+
+  public async addContact(user: User) {
+    try {      
+      if (this.myId) {
+        let contact: Partial<Contact> = {
+          nickName: user.nickName,
+          profileImg: user.profileImg,
+          idUser: user._id
+        }
+        await this.contactService.addContact(this.myId, contact.idUser!, contact.nickName!, contact.profileImg!).toPromise();
+      }
+    } catch (error) {
+      console.log('Algo salió mal');
+    }
+  }
+
   public myContact(user: User): boolean{
     for (let contact of this.contacts) {
       if (contact.idUser === user._id) return true;
     }
     return false;
-  }
-
-  saveNotification() {
-    this.toastr.success('Los cambios se guardaron exitosamente.');
-  }
-
-  cancelNotification() {
-    this.toastr.warning('Los cambios no se guardaron.');
   }
 }
