@@ -58,13 +58,13 @@ export class ContactsScreenComponent implements OnInit {
     try {
       const response: Contact[] | null = await this.messageService.fetchMyContacts(this.authService.getId());
       if (response) {
+        if (response.length == 0) {
+          this.noContacts = true;
+        }
         this.loadingContacts = false;
         return response;
       }
-      else {
-        this.noContacts = true;
-        return [];
-      }
+      else return [];
     } catch (error) {
       console.log('algo salió mal');
       return [];

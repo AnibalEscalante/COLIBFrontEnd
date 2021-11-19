@@ -14,10 +14,15 @@ export class ProjectInfoComponent implements OnInit {
   
   public isShow: boolean;
   public colorState: string;
+  public showCreateDate: string | null;
+  public showFinishDate: string | null;
 
-  constructor() {
+  constructor(
+  ) {
     this.colorState = '';
     this.isShow = true;
+    this.showCreateDate = '';
+    this.showFinishDate = '';
   }
 
   ngOnInit(): void {

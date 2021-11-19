@@ -14,6 +14,7 @@ import { DisciplineService } from 'src/app/core/services/discipline/discipline.s
 import { Discipline } from 'src/app/core/models/discipline.model';
 import { SkillService } from 'src/app/core/services/skill/skill.service';
 import { Skill } from 'src/app/core/models/skill.model';
+import { ToastrService } from 'ngx-toastr';
 
 export class CdkCustomStepperWithoutFormExample {}
 @Component({
@@ -43,7 +44,7 @@ export class RegisterScreenComponent implements OnInit {
   ////////////////////////////////////////// Vars Step 2 & 3 //////////////////////////////////////////
   public selectable: boolean;
   public removable: boolean;
-  separatorKeysCodes: number[];
+  public separatorKeysCodes: number[];
 
   //disciplines//
   public filteredDisciplines: Observable<string[]>;
@@ -69,13 +70,8 @@ export class RegisterScreenComponent implements OnInit {
 
   //////////////////////////////////////////// Vars Step 4 ////////////////////////////////////////////
 
-  public messageImg: string;
   public imagePath: string;
   public imgURL: any;
-
-  public messageImgMovil: string;
-  public imagePathMovil: string;
-  public imgURLMovil: any;
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   
@@ -85,33 +81,31 @@ export class RegisterScreenComponent implements OnInit {
     private formBuilderSkills: FormBuilder,
     private router: Router, 
     private AuthService : AuthService,
-    public disciplineService: DisciplineService,
-    public skillService: SkillService,
+    private disciplineService: DisciplineService,
+    private skillService: SkillService,
+    private toastr: ToastrService
   ) {
     this.hidePassword = true;
     this.hideConfirmPassword = true;
-    this.submitted = false,
-    this.message = '',
-    this.isDivVisible = false,
-    this.selectable = true,
-    this.removable = true,
-    this.separatorKeysCodes = [ENTER, COMMA],
-    this.disciplineCtrl = new FormControl(),
-    this.myDisciplines = [],
-    this.allDisciplinesName = [],
-    this.allDisci = [],
-    this.myDisciplineUpdate = [],
-    this.myControlDiscipline = new FormControl(),
-    this.myControlSkill = new FormControl(),
-    this.skillCtrl = new FormControl(),
-    this.mySkills = [],
-    this.allSkillsName = [],
-    this.allSkills = [],
-    this.mySkillUpdate = [],
-    this.messageImg = '',
-    this.imagePath = '',
-    this.messageImgMovil = '',
-    this.imagePathMovil = '',
+    this.submitted = false;
+    this.message = '';
+    this.isDivVisible = false;
+    this.selectable = true;
+    this.removable = true;
+    this.separatorKeysCodes = [ENTER, COMMA];
+    this.disciplineCtrl = new FormControl();
+    this.myDisciplines = [];
+    this.allDisciplinesName = [];
+    this.allDisci = [];
+    this.myDisciplineUpdate = [];
+    this.myControlDiscipline = new FormControl();
+    this.myControlSkill = new FormControl();
+    this.skillCtrl = new FormControl();
+    this.mySkills = [];
+    this.allSkillsName = [];
+    this.allSkills = [];
+    this.mySkillUpdate = [];
+    this.imagePath = '';
     
     this.registerForm = this.formBuilder.group({
     
@@ -198,14 +192,15 @@ export class RegisterScreenComponent implements OnInit {
     }
     
     let usuario: Partial<User & Auth> = {
-        nickName: this.registerForm.get('nickName')!.value,
-        name: this.registerForm.get('name')!.value,
-        lastName: this.registerForm.get('lastName')!.value,
-        email: this.registerForm.get('email')!.value,
-        movilPhone: this.registerForm.get('movilPhone')!.value,
-        password: this.registerForm.get('password')!.value,
-        idDisciplines: this.myDisciplineUpdate,
-        idSkills: this.mySkillUpdate
+      nickName: this.registerForm.get('nickName')!.value,
+      name: this.registerForm.get('name')!.value,
+      lastName: this.registerForm.get('lastName')!.value,
+      email: this.registerForm.get('email')!.value,
+      movilPhone: this.registerForm.get('movilPhone')!.value,
+      password: this.registerForm.get('password')!.value,
+      profileImg: this.imgURL,
+      idDisciplines: this.myDisciplineUpdate,
+      idSkills: this.mySkillUpdate
     }
     try {
         await this.AuthService.
@@ -215,6 +210,7 @@ export class RegisterScreenComponent implements OnInit {
                     usuario.email!,
                     usuario.movilPhone!,
                     usuario.password!,
+                    usuario.profileImg!,
                     usuario.idDisciplines!,
                     usuario.idSkills!)
             .toPromise();
@@ -224,7 +220,7 @@ export class RegisterScreenComponent implements OnInit {
         this.router.navigate(['/visitor/login']);
 
     } catch (error) {
-        this.message = "registro no exitoso";
+        this.toastr.error('Ocurrió un proplema al intentar registrarse.');
         this.isDivVisible = true;
     }
   }
@@ -267,7 +263,6 @@ export class RegisterScreenComponent implements OnInit {
   async fetchDisciplines() {
     try {
       this.allDisci = await this.disciplineService.getallDiscipline().toPromise()
-      console.log(this.allDisci);
       for(let discipline of this.allDisci){
         this.allDisciplinesName.push(discipline.name);
       }
@@ -309,7 +304,6 @@ export class RegisterScreenComponent implements OnInit {
   async fetchSkills() {
     try {
       this.allSkills = await this.skillService.getallSkill().toPromise()
-      console.log(this.allSkills);
       for(let skill of this.allSkills){
         this.allSkillsName.push(skill.name);
       }
@@ -363,11 +357,10 @@ export class RegisterScreenComponent implements OnInit {
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
   public previewImg(files: any) {
-    console.log(files);
     if (files.length === 0) return;
     let mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
-      this.messageImg = 'El documento subido solo puede ser una imagen.';
+      this.toastr.warning('El documento subido solo puede ser una imagen.');      
       return;
     }
     let reader = new FileReader();
@@ -375,23 +368,6 @@ export class RegisterScreenComponent implements OnInit {
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
       this.imgURL = reader.result;
-    };
-  }
-
-  public previewImgMovil(files: any) {
-    console.log(files);
-    
-    if (files.length === 0) return;
-    let mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.messageImgMovil = 'El documento subido solo puede ser una imagen.';
-      return;
-    }
-    let reader = new FileReader();
-    this.imagePathMovil = files;
-    reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
-      this.imgURLMovil = reader.result;
     };
   }
 }

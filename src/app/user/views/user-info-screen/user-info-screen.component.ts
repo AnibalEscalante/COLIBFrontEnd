@@ -23,12 +23,12 @@ export class UserInfoScreenComponent implements OnInit {
   public disciplines: Discipline[];
   public skills: Skill[];
   public myProjects: Project[];
-  public user!: User;
+  public user: User | null;
   public id: string | null;
   public email: string | null;
   public userUpdate: string = 'user';
   public idUser: string;
-  public myProfile: boolean = true;
+  public myProfile: boolean;
   public cantProjects: number;
 
   constructor(
@@ -39,16 +39,21 @@ export class UserInfoScreenComponent implements OnInit {
   ) {
     this.id = this.authService.getId();
     this.idUser = this.activatedRoute.snapshot.params['id'];
-    this.skills = []
-    this.disciplines = []
-    this.myProjects = []
-    this.email = null
+    this.user = null;
+    this.skills = [];
+    this.disciplines = [];
+    this.myProjects = [];
+    this.email = null;
     this.cantProjects = 0;
+    this.userUpdate = 'user';
+    this.myProfile = true;
+  }
+
+  async ngOnInit(): Promise<void> {
     this.fetchUser();
   }
-  
 
-  async fetchUser() {
+  public async fetchUser() {
     try {
       if (this.idUser) this.myUserProfile() 
       else this.userProfile()
@@ -57,35 +62,32 @@ export class UserInfoScreenComponent implements OnInit {
       console.log('Algo ha salido mal');
     }
   }
-  async myUserProfile(){
+
+  public async myUserProfile(){
     try {
       const response: any = await this.userService.getUser(this.idUser).toPromise();
       this.user = response.message;
       this.disciplines = response.message.idDisciplines;
       this.skills = response.message.idSkills;
       this.email = response.message.email;
-      console.log(response);
-      
-      console.log(this.idUser);
     } catch (error) {
       console.log('Algo ha salido mal');
     }
   }
 
-  async userProfile(){
+  public async userProfile(){
     try {
-      const response: any= await this.userService.getUser(this.id!).toPromise();
-      this.user = response.message;
-      this.disciplines = response.message.idDisciplines;
-      this.skills = response.message.idSkills;
-      this.email = response.message.email;
-      this.myProfile = false;
+      if (this.id) {
+        const response: any= await this.userService.getUser(this.id).toPromise();
+        this.user = response.message;
+        this.disciplines = response.message.idDisciplines;
+        this.skills = response.message.idSkills;
+        this.email = response.message.email;
+        this.myProfile = false;
+      }
     } catch (error) {
       console.log('Algo ha salido mal');
     }
-  }
-
-  ngOnInit(): void {
   }
 
   editPersonalInfo() {
