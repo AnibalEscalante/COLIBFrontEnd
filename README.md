@@ -4,7 +4,7 @@ Autores:\
 -Nikolay Wladimir Carrasco Vega\
 -Anibal Eduardo Escalante Alvarez
 
-Descripción:
+Descripción:\
 El contenido en este repositorio corresponde al frontend de la aplicación web, la cual 
 tiene como funcionalidad poder publicar proyectos para que otros usuarios puedan
 mandar solicitudes, de este modo el usuario quien publicó el proyecto puede agregarlos
