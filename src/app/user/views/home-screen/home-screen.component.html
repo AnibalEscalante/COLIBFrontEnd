@@ -14,10 +14,10 @@
         <div class="d-block d-lg-none">
             <div class="row py-3">
                 <div class="col-12 col-lg-6">
-                    <input type="text" class="form-control" placeholder="Buscar proyectos">
+                    <input type="text" [(ngModel)]="term" class="form-control" placeholder="Buscar proyectos">
                 </div>
                 <div class="col-12 col-lg-6 mt-3">
-                    <button type="button" class="btn btn-primary btn-sm" (click)="openCreateProject()">Publicar proyecto</button>
+                    <button type="button" class="btn btn-project btn-sm" (click)="openCreateProject()">Publicar proyecto</button>
                 </div>
             </div>
         </div>
@@ -26,13 +26,21 @@
             <div class="col-12 col-lg-6 ">
                 <div class="row">
                     <div class="col-12 col-lg-12" *ngFor="let project of projects | filter:term">
-                        <app-project [showHideElements]="showHideElements" [user]="user" [isShowComponent]="isShowComponent" [project]="project" [mySavedProject]="mySavedProject" (projectList)="recibir($event)" (show)="recibirIsShowInfo($event)"></app-project>
+                        <app-project 
+                            [showHideElements]="showHideElements" 
+                            [user]="user" 
+                            [isShowComponent]="isShowComponent" 
+                            [project]="project" 
+                            [mySavedProject]="mySavedProject"
+                            (projectList)="recibir($event)" 
+                            (show)="recibirIsShowInfo($event)">
+                        </app-project>
                     </div>
 
                 </div>
             </div>
             <div class="col-12 col-lg-6 d-none d-lg-block">
-                <app-project-info *ngIf="isshowinfo" [projectInfo]="projectinfo" [showHideComponent]="isshowinfo"></app-project-info>
+                <app-project-info [projectInfo]="projectinfo" [showHideComponent]="isshowinfo"></app-project-info>
             </div>
         </div>
     </div>

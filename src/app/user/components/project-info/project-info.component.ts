@@ -34,7 +34,6 @@ export class ProjectInfoComponent {
   public isShowElements: boolean = false;
   public isShowElementsCollab: boolean = false;
   public isShowElementsSaved: boolean = false;
-  public projectInfoNew: Project | null;
   constructor(
     public dialog: MatDialog,
     public authService: AuthService,
@@ -45,63 +44,19 @@ export class ProjectInfoComponent {
     public projectService: ProjectService
 
   ) {
-    this.projectInfoNew = this.projectInfo
   }
   public isShown: boolean = true;
   public colorState: string = '';
   
   ngOnInit(): void {
     this.isShown = this.showHideComponent;
-    if(this.projectInfo){
-      this.fetchMyProjectCollab();
-      this.fetchUserSavedProjects();
-      this.fetchMyProject();
-      this.fetchProject();
-      this.showFinishDate = this.datepipe.transform(this.projectInfo.finishDate, 'dd/MM/yyyy');
-      this.showCreateDate = this.datepipe.transform(this.projectInfo.createdAt, 'dd/MM/yyyy');
-    }
   }
 
   toggleShow() {
     this.isShown = ! this.showHideComponent;
   }
   
-   async fetchProject() {
-
-    try {
-      this.response = await this.projectService.getProject(this.projectInfo._id!).toPromise();
-      this.projectInfo = this.response.message;
-      this.projectInfo.idDisciplines
-      console.log(this.projectInfo._id);
-      for(let project of this.myProjects){
-        if(project._id ===  this.projectInfo._id){
-          this.isShowElements = true;
-          console.log(this.isShowElements);
-          return;
-        }
-      }
-      for(let project of this.myProjectsCollab){
-        if(project._id ===  this.projectInfo._id){
-          this.isShowElementsCollab = true;
-          console.log(this.isShowElementsCollab);
-          return;
-        }
-      }
   
-      for(let project of this.mySavedProject){
-        if(project._id ===  this.projectInfo._id){
-          this.isShowElementsSaved = true;
-          console.log(this.isShowElementsSaved);
-          return;
-          
-        }
-      }
-    }
-    catch (error) {
-      console.log('uh que mal :c');
-    }
-  }
-
   async collaborater(){
     this.id = this.authService.getId()
     try {
@@ -113,45 +68,7 @@ export class ProjectInfoComponent {
       console.log('error')
     }
   }
-  async fetchMyProject() {
-    try {
 
-      this.id = this.authService.getId()
-      const response: any= await this.userService.getMyProjects(this.id!).toPromise();
-      this.user = response.message;
-      this.myProjects = response.message.idMyProjects
-    }
-    catch (error) {
-      console.log('Algo ha salido mal');
-    }
-  }
-
-  async fetchUserSavedProjects() {
-    try {
-
-      this.id = this.authService.getId()
-      const response: any= await this.userService.getSavedProjects(this.id!).toPromise();
-      this.user = response.message;
-      this.mySavedProject = response.message.idSavedProjects
-      
-    }
-    catch (error) {
-      console.log('Algo ha salido mal');
-    }
-  }
-
-  async fetchMyProjectCollab() {
-    try {
-
-      this.id = this.authService.getId()
-      const response: any= await this.userService.getCollabProjects(this.id!).toPromise();
-      this.user = response.message;
-      this.myProjectsCollab = response.message.idCollaboratingProjects
-    }
-    catch (error) {
-      console.log('Algo ha salido mal');
-    }
-  }
 
   showState(): string {
     if (this.projectInfo.state === 'Open') {
@@ -160,7 +77,6 @@ export class ProjectInfoComponent {
     if (this.projectInfo.state === 'Close') {
       this.colorState = '#dc3545';
     }
-
     return this.colorState;
   }
 

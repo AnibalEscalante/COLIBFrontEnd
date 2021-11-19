@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Project } from 'src/app/core/models/project.model';
 import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { ProjectService } from 'src/app/core/services/project/project.service';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 
@@ -14,27 +15,23 @@ import { UserService } from 'src/app/core/services/user/user.service';
 })
 export class ProjectComponent implements OnInit {
   
-  @Input()
-  public project!: Project;
-  
-  @Input()
-  public user: User | null;
+  @Input() public project!: Project;
+  @Input() public user: User | null;
 
-  @Input()
-  public mySavedProject: Project[] = [];
 
-  @Input()
-  public isShowComponent!: boolean;
+  @Input() public isShowComponent!: boolean;
+  @Input() public showHideElements!: string
   
-  @Input()
-  public showHideElements!: string
+  @Input() public mySavedProject: Project[] = [];
+
   
   @Output() projectList = new EventEmitter<Project>();
 
   @Output() show = new EventEmitter<boolean>();
 
   public static routeNamesObject = {}
-  
+  public showFinishDate!: string | null;
+  public showCreateDate!: string | null;
   public showSaved: boolean = false;
   public showHideComponent: boolean = false;
   public showHomeProject: boolean = false;
@@ -43,19 +40,25 @@ export class ProjectComponent implements OnInit {
   public showCollabProjects: boolean = false;
   public showinfo: boolean = false;
   public isMySavedProject: boolean = false;
+
+  public isShowElements: boolean = false;
+  public isShowElementsCollab: boolean = false;
+  public isShowElementsSaved: boolean = false;
+  
+  
   public projectId: any;
   public colorState: string = '';
   public colorSavedState: string = '';
-  public showFinishDate!: string | null;
   public _id!: string | null;
   public newSavedProject: Project[] = [];
-  public myProjects: Project[] = [];
   public name: string | null;
+  public response: any;
   constructor(
     private userService: UserService,
     private authService: AuthService,
     private toastr: ToastrService,
     private requestService: RequestService,
+    private projectService: ProjectService,
     public datepipe: DatePipe,
   ) { 
     this.name = null;
@@ -78,26 +81,17 @@ export class ProjectComponent implements OnInit {
       this.showCollabProjects = true;
     }
     this.showFinishDate = this.datepipe.transform(this.project.finishDate, 'dd/MM/yyyy');
-    /* this.showCreateDate = this.datepipe.transform(this.project.createdAt, 'dd/MM/yyyy'); */
+    this.showCreateDate = this.datepipe.transform(this.project.createdAt, 'dd/MM/yyyy');
   }
   
+  
+
   showComponent(){
     this.showinfo = true;
     this.show.emit(this.showinfo)
   }
   
-  async fetchMyProject() {
-    try {
 
-      this._id = this.authService.getId()
-      const response: any= await this.userService.getMyProjects(this._id!).toPromise();
-      this.user = response.message;
-      this.myProjects = response.message.idMyProjects
-    }
-    catch (error) {
-      console.log('Algo ha salido mal');
-    }
-  }
   
 ////////////////////////////boton guardar projecto//////////////////
   async modifyProjectUser(){
@@ -159,7 +153,6 @@ export class ProjectComponent implements OnInit {
     if (this.project.state === 'Cerrado') {
       this.colorState = '#dc3545';
     }
-
     return this.colorState;
   }
 }

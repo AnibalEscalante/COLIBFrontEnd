@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Project } from 'src/app/core/models/project.model';
+import { RequestC } from 'src/app/core/models/requestC.model';
 import { User } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ProjectService } from 'src/app/core/services/project/project.service';
@@ -56,18 +57,15 @@ export class ProfileProjectInfoComponent implements OnInit {
     try {
   
       this.response = await this.projectService.getProject(this.activatedRoute.snapshot.params['id']).toPromise()
-      console.log(this.myProjects);
       for(let project of this.myProjects){
         if(project._id ===  this.projectInfo._id){
           this.isShowElements = true;
-          console.log(this.isShowElements);
           return;
         }
       }
       for(let project of this.myProjectsCollab){
         if(project._id ===  this.projectInfo._id){
           this.isShowElementsCollab = true;
-          console.log(this.isShowElementsCollab);
           return;
         }
       }
@@ -75,10 +73,10 @@ export class ProfileProjectInfoComponent implements OnInit {
       for(let project of this.mySavedProject){
         if(project._id ===  this.projectInfo._id){
           this.isShowElementsSaved = true;
-          console.log(this.isShowElementsSaved);
           return;
         }
       }
+      
     }
     catch (error) {
       console.log('uh que mal :c');
