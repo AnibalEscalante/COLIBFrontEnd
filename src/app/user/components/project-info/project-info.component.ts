@@ -19,8 +19,8 @@ import { EditSkillsComponent } from '../dialogs/edit-skills/edit-skills.componen
 })
 export class ProjectInfoComponent {
   
-  @Input() projectInfo!: Project;
-  @Input() showHideComponent!: boolean;
+  @Input() public projectInfo!: Project;
+  @Input() public showHideComponent!: boolean;
   
   public user!: User
   public response: any;
@@ -34,6 +34,7 @@ export class ProjectInfoComponent {
   public isShowElements: boolean = false;
   public isShowElementsCollab: boolean = false;
   public isShowElementsSaved: boolean = false;
+  public projectInfoNew: Project | null;
   constructor(
     public dialog: MatDialog,
     public authService: AuthService,
@@ -44,38 +45,33 @@ export class ProjectInfoComponent {
     public projectService: ProjectService
 
   ) {
-    this.fetchMyProject();
-    this.fetchUserSavedProjects();
-    this.fetchMyProjectCollab();
+    this.projectInfoNew = this.projectInfo
   }
   public isShown: boolean = true;
   public colorState: string = '';
   
   ngOnInit(): void {
     this.isShown = this.showHideComponent;
-/*     this.fetchMyProject();
-    this.fetchUserSavedProjects();
-    this.fetchMyProjectCollab(); */
+    if(this.projectInfo){
+      this.fetchMyProjectCollab();
+      this.fetchUserSavedProjects();
+      this.fetchMyProject();
+      this.fetchProject();
+      this.showFinishDate = this.datepipe.transform(this.projectInfo.finishDate, 'dd/MM/yyyy');
+      this.showCreateDate = this.datepipe.transform(this.projectInfo.createdAt, 'dd/MM/yyyy');
+    }
   }
 
   toggleShow() {
     this.isShown = ! this.showHideComponent;
   }
-/* 
-  myFunction(){
-
-    this.showFinishDate = this.datepipe.transform(this.projectInfo.finishDate, 'dd/MM/yyyy');
-    this.showCreateDate = this.datepipe.transform(this.projectInfo.createdAt, 'dd/MM/yyyy');
-    
-   } */
   
    async fetchProject() {
+
     try {
       this.response = await this.projectService.getProject(this.projectInfo._id!).toPromise();
       this.projectInfo = this.response.message;
       this.projectInfo.idDisciplines
-      this.showFinishDate = this.datepipe.transform(this.projectInfo.finishDate, 'dd/MM/yyyy');
-      this.showCreateDate = this.datepipe.transform(this.projectInfo.createdAt, 'dd/MM/yyyy');
       console.log(this.projectInfo._id);
       for(let project of this.myProjects){
         if(project._id ===  this.projectInfo._id){

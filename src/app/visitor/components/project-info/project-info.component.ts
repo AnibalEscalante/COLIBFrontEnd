@@ -16,6 +16,7 @@ export class ProjectInfoComponent implements OnInit {
   public colorState: string;
   public showCreateDate: string | null;
   public showFinishDate: string | null;
+  public name: string;
 
   constructor(
   ) {
@@ -23,6 +24,7 @@ export class ProjectInfoComponent implements OnInit {
     this.isShow = true;
     this.showCreateDate = '';
     this.showFinishDate = '';
+    this.name = ''
   }
 
   ngOnInit(): void {

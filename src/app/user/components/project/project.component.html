@@ -20,7 +20,7 @@
         </div>
         <div class="row d-none d-lg-block">
             <div class="col">
-                <button type="button" class="btn btn-ligth btn-sm me-2 mt-2" (click)='modifyProjectUser()'>
+                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" (click)='modifyProjectUser()'>
                     Guardar
                     <i class="fa fa-bookmark"></i>
                 </button>
@@ -30,16 +30,16 @@
                  <button type="button" *ngIf="showMyProjects || showSavedProjects || showCollabProjects" class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" [routerLink]="['/user/projectinfo',project._id]">
                     Leer mas
                  </button>
+                    <button type="button"  *ngIf="showHomeProject" class="btn btn-secondary btn-sm me-2 mt-2" (click)="collaborater()">
+                        Colaborar
+                    </button>
                 <p class="mb-0 mt-2">Publicado el 23 de Agosto, 2021</p>
             </div>
         </div>
         <!-- Responsive Strat -->
         <div class="row d-block d-lg-none">
             <div class="col">
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
-                        <i class="fas fa-share"></i>
-                    </button>
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
+                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" (click)='modifyProjectUser()'>
                         <i class="fa fa-bookmark"></i>
                     </button>
                 <a type="button" class="btn btn-secondary btn-sm btn-read-more mt-2" data-bs-toggle="offcanvas" href="#{{projectId}}" aria-controls="offcanvasInfoProject">Leer mas</a>
@@ -81,9 +81,17 @@
                 <h5 class="published-item">Publicado el 23 de Agosto, 2021</h5>
                 <h5 class="published-item">Cerrado el {{project.finishDate}}</h5>
             </div>
-            <div class="col-4 d-flex align-items-center justify-content-end">
+            <div class="col-4 d-flex align-items-center justify-content-end" *ngIf="showSavedProjects || showHomeProject">
                 <button type="button" class="btn btn-primary btn-sm" (click)="collaborater()">Colaborar</button>
             </div>
+          <!--   <div class="col-4 d-flex align-items-center justify-content-end" *ngIf="showCollabProjects">
+                <a class="collaborating">Colaborando</a>
+            </div> -->
+            <div class="col-4 d-flex align-items-center justify-content-center" style="width: 6rem;">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Colaborando</li>
+                </ul>
+              </div>
         </div>
         <p class="card-subtitle-info mb-2">{{project.content}}</p>
         <div class="row">
@@ -101,7 +109,7 @@
             </div>
         </div>
         <div class="button-search">
-            <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/register']">
+            <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" (click)='modifyProjectUser()'>
                 Guardar
                 <i class="fa fa-bookmark"></i>
             </button>
