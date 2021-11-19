@@ -31,8 +31,12 @@ export class RequestService {
     return this.http.post<RequestC>(environment.baseUrl + '/requestC', {idUserSender, idProject, idReceiver});
   }
 
-  registNewRequestReply(idUserSender: string,idProject: string, idReceiver: string): Observable<RequestC> {
-    return this.http.post<RequestC>(environment.baseUrl + '/requestC/reply', {idUserSender, idProject, idReceiver});
+  registNewRequestReply(idUserSender: string,idProject: string, idReceiver: string, state: string): Observable<RequestC> {
+    return this.http.post<RequestC>(environment.baseUrl + '/requestC/reply', {idUserSender, idProject, idReceiver, state});
+  }
+
+  registNewRequestReplyRejected(idUserSender: string,idProject: string, idReceiver: string, state: string): Observable<RequestC> {
+    return this.http.post<RequestC>(environment.baseUrl + '/requestC/reply/rejected', {idUserSender, idProject, idReceiver, state});
   }
 
   modifyRequest(request: Partial<RequestC>, id: string): Observable<RequestC> {

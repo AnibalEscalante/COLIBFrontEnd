@@ -43,7 +43,6 @@ export class HomeScreenComponent implements OnInit {
   async fetchProjects() {
     try {
       this.projects = await this.projectService.getAllProject().toPromise()
-      
     } catch (error) {
       console.log('uh que mal :c');
     }

@@ -30,7 +30,7 @@ export class RegisterScreenComponent implements OnInit {
   public secondStepFormGroup!: FormGroup;
   public thirdStepFormGroup!: FormGroup;
   public fourthStepFormGroup!: FormGroup;
-
+  public isOptional!: boolean;
   public registerForm: FormGroup;
 
   //////////////////////////////////////////// Vars Step 1 ////////////////////////////////////////////
@@ -109,18 +109,18 @@ export class RegisterScreenComponent implements OnInit {
     
     this.registerForm = this.formBuilder.group({
     
-      nickName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],             
+      nickName: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]{2,32}')]],             
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
       lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]{2,32}')]],
-      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$")]],
-      movilPhone: ['', [Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
+      email: ['', [Validators.required, Validators.email]],
+      movilPhone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
     }),
     {
         validator: this.MustMatch('password', 'confirmPassword')
     };
-
+    
     this.filteredDisciplines = this.disciplineCtrl.valueChanges.pipe(
       startWith(null),
       map((discipline: string | null) => discipline ? this._filterDiscipline(discipline) : this.allDisciplinesName.slice())
@@ -325,11 +325,23 @@ export class RegisterScreenComponent implements OnInit {
     const index = this.mySkills.indexOf(skill);
     if (index >= 0) {
       this.mySkills.splice(index, 1);
+      this.allSkillsName.push(skill)
     }
   }
 
   selectedSkill(event: MatAutocompleteSelectedEvent): void {
+    const index = this.allSkillsName.indexOf(event.option.viewValue)
+    for(let myNamesSkill of this.allSkillsName){
+      if(myNamesSkill === event.option.viewValue){
+        if (index >= 0){
+          this.allSkillsName.splice(index, 1);
+        }
+      }
+    }
     this.mySkills.push(event.option.viewValue);
+    if (index >= 0){
+      this.allSkillsName.splice(index, 1);
+    }
     this.skillInput.nativeElement.value = '';
     this.skillCtrl.setValue(null);
   }

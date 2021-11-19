@@ -20,18 +20,10 @@
         </div>
         <div class="row d-none d-lg-block">
             <div class="col">
-                <button type="button" class="btn btn-secondary btn-sm me-2 mt-2">
-                    Compartir
-                    <i class="fas fa-share"></i>
-                </button>
                 <button type="button" class="btn btn-ligth btn-sm me-2 mt-2" (click)='modifyProjectUser()'>
                     Guardar
                     <i class="fa fa-bookmark"></i>
                 </button>
-                <!-- <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" *ngIf="!isMySavedProject" (click)="toast()" (click)='modifyProjectUser()'>
-                    Guardar
-                    <i class="fa fa-bookmark"></i>
-                </button> -->
                 <button type="button" *ngIf="showHomeProject"  class="btn btn-secondary btn-sm me-2 mt-2" (click)="showComponent()" (click)="mandarInfo()">
                     Leer mas
                  </button>
@@ -78,7 +70,7 @@
                 <div class="nav nav-fill">
                     <div *ngFor="let collaborator of project.idCollaborators">
                         <a class="off-canvas-nav-link nav-link p-0 me-3 mb-1" href="#">
-                            <i class="fas fa-user"></i> <!-- {{collaborator.name}} {{collaborator.lastName}} -->
+                            <i class="fas fa-user"></i> {{collaborator.nickName}}
                         </a>
                     </div>
                 </div>
@@ -90,7 +82,7 @@
                 <h5 class="published-item">Cerrado el {{project.finishDate}}</h5>
             </div>
             <div class="col-4 d-flex align-items-center justify-content-end">
-                <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/visitor/login']">Colaborar</button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="collaborater()">Colaborar</button>
             </div>
         </div>
         <p class="card-subtitle-info mb-2">{{project.content}}</p>
@@ -109,10 +101,6 @@
             </div>
         </div>
         <div class="button-search">
-            <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/register']">
-                Compartir
-                <i class="fas fa-share"></i>
-            </button>
             <button type="button" class="btn btn-secondary btn-sm me-2 mt-2" [routerLink]="['/visitor/register']">
                 Guardar
                 <i class="fa fa-bookmark"></i>

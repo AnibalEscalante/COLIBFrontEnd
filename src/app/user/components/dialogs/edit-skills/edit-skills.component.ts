@@ -143,11 +143,24 @@ export class EditSkillsComponent implements OnInit {
 
     if (index >= 0) {
       this.mySkills.splice(index, 1);
+      /* 
+      this.allSkillsName.push(skill) */
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
+    const index = this.allSkillsName.indexOf(event.option.viewValue)
+    for(let myNamesSkill of this.allSkillsName){
+      if(myNamesSkill === event.option.viewValue){
+        if (index >= 0){
+          this.allSkillsName.splice(index, 1);
+        }
+      }
+    }
     this.mySkills.push(event.option.viewValue);
+    if (index >= 0){
+      this.allSkillsName.splice(index, 1);
+    }
     this.skillInput.nativeElement.value = '';
     this.skillCtrl.setValue(null);
   }
