@@ -105,6 +105,9 @@ export class UserInfoScreenComponent implements OnInit {
       width: '400px',
       height: 'auto',
     });
+    dialogRef.afterClosed().subscribe(result => {
+      this.fetchUser()
+    });
   }
 
   openDialogEditDisci() {

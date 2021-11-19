@@ -79,7 +79,7 @@ export class ProfileProjectInfoComponent implements OnInit {
       
     }
     catch (error) {
-      console.log('uh que mal :c');
+      console.log('Algo ha salido mal');
     }
   }
 

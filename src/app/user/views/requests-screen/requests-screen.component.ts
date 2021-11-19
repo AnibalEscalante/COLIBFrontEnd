@@ -34,7 +34,6 @@ export class RequestsScreenComponent implements OnInit {
       const response: any= await this.userService.getRequests(this.id!).toPromise();
       this.user = response.message;
       this.myRequests = response.message.idRequestsC
-      console.log(this.myRequests)
     }
     catch (error) {
       console.log('Algo ha salido mal');

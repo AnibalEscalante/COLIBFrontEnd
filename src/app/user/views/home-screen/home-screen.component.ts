@@ -46,7 +46,7 @@ export class HomeScreenComponent implements OnInit {
     try {
       this.projects = await this.projectService.getAllProject().toPromise()
     } catch (error) {
-      console.log('uh que mal :c');
+      console.log('Algo ha salido mal');
     }
   }
 
