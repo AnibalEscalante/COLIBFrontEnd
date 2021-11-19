@@ -13,7 +13,8 @@
                     <div class="list-group list-group-flush">
                         <li class="list-group-item list-group-item-action" *ngFor="let contact of contacts | filter:contactsFilter">
                             <div class="col-10 d-flex align-items-center">
-                                <i class="fas fa-user user-item-fa-user ms-1"></i>
+                                <i class="fas fa-user user-item-fa-user ms-1" *ngIf="!contact.profileImg"></i>
+                                <img [src]="contact.profileImg" class="ms-1 profile-img" *ngIf="contact.profileImg">
                                 <p class="user-item-contact mt-3 ms-2">{{contact.nickName}}</p>
                                 <i class="fas fa-trash" type="button" (click)="deleteMyContact(contact)"></i>
                             </div>
