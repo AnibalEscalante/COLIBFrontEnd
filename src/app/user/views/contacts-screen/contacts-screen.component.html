@@ -37,7 +37,8 @@
                 <div class="chat-card mt-4" *ngIf="contact">
                     <div class="card-header">
                         <div class="col-10 d-flex align-items-center">
-                            <i class="fas fa-user chat-fa-user"></i>
+                            <i class="fas fa-user chat-fa-user" *ngIf="!contact.profileImg"></i>
+                            <img [src]="contact.profileImg" class="ms-1 profile-img-chat" *ngIf="contact.profileImg">
                             <h4 class="chat-contact mt-3 ms-2">{{contact?.nickName}}</h4>
                         </div>
                     </div>
