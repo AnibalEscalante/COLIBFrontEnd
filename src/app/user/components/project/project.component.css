@@ -1,0 +1,107 @@
+.card-project {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.head {
+  height: max-content;
+}
+.body {
+  padding: 20px;
+}
+.card-subtitle {
+  height: 100px;
+  word-wrap: break-word;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-top: 16px;
+  border-top-style: solid;
+  padding-top: 1;
+  border-width: 1px ;
+}
+.btn-read-more {
+  float: right;
+}
+.btn-ligth {
+  border-color: black;
+}
+.nav-pills {
+  border-bottom-style: solid;
+  padding-bottom: 1;
+  border-width: 1px ;
+}
+.fa-circle {
+  font-size: 20px;
+  color: #379831;
+}
+.fa-trash-alt {
+  font-size: 20px;
+}
+.fa-user {
+  font-size: 20px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3.5px;
+  padding-bottom: 3.5px;
+}
+.nav-link {
+  color: #32CD32 !important;
+}
+/*--------- offcanvas start ----------*/
+.offcanvas-start {
+  width: max-content;
+}
+.offcanvas-title {
+  white-space: initial;
+}
+.fa-circle {
+  font-size: 20px;
+}
+.state {
+  margin-bottom: 0px;
+  padding-right: 5px;
+  font-size: 15px;
+}
+.card-subtitle-info {
+  padding: 15px;
+  border-top-style: solid;
+  padding-top: 1;
+  border-bottom-style: solid;
+  padding-bottom: 1;
+  border-width: 1px;
+}
+.tag-title {
+  font-size: medium;
+  margin-bottom: 5px;
+}
+.tag {
+  color: #6c757d;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 25px;
+  border-color: #6c757d;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.off-canvas-nav-link {
+  padding: 0px;
+  text-align: left;
+}
+.card-subtitle-info {
+  padding: 15px;
+  border-top-style: solid;
+  padding-top: 1;
+  border-bottom-style: solid;
+  padding-bottom: 1;
+  border-width: 1px;
+}
+.published-item {
+  text-align: right;
+  text-align: left;
+  margin: 0px;
+}
+/*---------- offcanvas end -----------*/

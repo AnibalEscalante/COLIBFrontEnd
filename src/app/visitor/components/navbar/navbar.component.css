@@ -1,0 +1,33 @@
+img {
+  width: 50px;
+}
+h2 {
+  color: #32CD32;
+  font-size: 40px;
+  font-family: "Roboto";
+  margin-bottom: 0px;
+}
+.navbar {
+  background-color: white;
+  border-bottom-style: solid;
+  padding-bottom: 1;
+  border-width: 1px ;
+  border-color: #c4c4c4;
+}
+.register {
+  color: black;
+  font-family: "Roboto";
+  font-size: 15px;
+  font-weight: bold;
+}
+.logIn {
+  color: #32CD32;
+  font-family: "Roboto";
+  font-size: 15px;
+  font-weight: bold;
+}
+@media (max-width: 400px) {
+  h2 {
+    display: none;
+  }
+}

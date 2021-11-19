@@ -1,0 +1,10 @@
+.message {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.message .card-header {
+  background-color: #E9E9E9;
+}
+.message .card-header p {
+  margin-bottom: 0px;
+}

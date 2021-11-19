@@ -1,0 +1,30 @@
+<h2 mat-dialog-title class="ps-3">Editar habilidades</h2>
+<mat-dialog-content class="px-4">
+
+    <div class="row">
+        <div class="col-12 col-lg-12 p-0">
+            <mat-form-field class="example-chip-list" appearance="fill">
+                <mat-label>Favorite Fruits</mat-label>
+                <mat-chip-list #chipList aria-label="Skills selection">
+                    <mat-chip *ngFor="let skill of mySkills" [selectable]="selectable" [removable]="removable" (removed)="remove(skill)">
+                        {{skill}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New skill..." #skillInput [formControl]="skillCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let skill of filteredSkills | async" [value]="skill">
+                        {{skill}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions class="px-3">
+    <button class="btn btn-secondary" mat-dialog-close>Cancel</button>
+    <div class="col d-flex align-items-bot justify-content-end">
+        <button class="btn btn-primary" [mat-dialog-close]="true" cdkFocusInitial (click)='onSubmit()'>Guardar</button>
+    </div>
+</mat-dialog-actions>

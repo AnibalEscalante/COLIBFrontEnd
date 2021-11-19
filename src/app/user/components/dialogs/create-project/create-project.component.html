@@ -1,0 +1,106 @@
+<h2 mat-dialog-title>Crear proyecto</h2>
+<mat-dialog-content class="mat-content">
+  <div class="scroll">
+    <form [formGroup]="createProject">
+        <mat-card class="mar-card my-2">
+            <div class="row">
+                <div class="col-12 col-lg-12 card-hight">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Titulo del proyecto:</label>
+                        <input type="text" class="form-control" formControlName="title" id="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Contenido del proyecto:</label>
+                        <textarea class="form-control" formControlName="content" id="content"></textarea>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+        <div>
+        <h4 class="mb-0">Fecha de cierre</h4>
+        <mat-form-field appearance="fill">
+            <mat-label>Seleccione la fecha</mat-label>
+            <input matInput formControlName="finishDate" [matDatepicker]="dp3">
+            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+        </div>
+    </form>
+    <h2 mat-dialog-title>Selecciones los colaboradores</h2>
+    <mat-card class="mat-card my-2">
+        <div class="row">
+            <div class="col-12 col-lg-12">
+              <mat-form-field class="example-chip-list" appearance="fill">
+                <mat-chip-list #chipList3 aria-label="collabs selection">
+                    <mat-chip *ngFor="let collab of myCollabs" [selectable]="selectable" [removable]="removable" (removed)="removeDiscipline(collab)">
+                        {{collab}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New collabs..." #collabInput [formControl]="collabCtrl" [matAutocomplete]="auto3" [matChipInputFor]="chipList3" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addCollab($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selectedCollabs($event)">
+                    <mat-option *ngFor="let collab of filteredCollab | async" [value]="collab">
+                        {{collab}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            </div>
+        </div>
+    </mat-card>
+    
+    <h2 mat-dialog-title>Selecciones las Disciplinas</h2>
+    <mat-card class="mat-card my-2">
+        <div class="row">
+            <div class="col-12 col-lg-12">
+              <mat-form-field class="example-chip-list" appearance="fill">
+                <mat-chip-list #chipList1 aria-label="Disciplines selection">
+                    <mat-chip *ngFor="let discipline of myDisciplines" [selectable]="selectable" [removable]="removable" (removed)="removeDiscipline(discipline)">
+                        {{discipline}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New discipline..." #disciplineInput [formControl]="disciplineCtrl" [matAutocomplete]="auto1" [matChipInputFor]="chipList1" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addDiscipline($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="selectedDiscipline($event)">
+                    <mat-option *ngFor="let discipline of filteredDisciplines | async" [value]="discipline">
+                        {{discipline}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            </div>
+        </div>
+    </mat-card>
+
+    <h2 mat-dialog-title>Seleccione las habilidades</h2>
+    <mat-card class="mat-card my-2">
+        <div class="row">
+            <div class="col-12 col-lg-12">
+              <mat-form-field class="example-chip-list" appearance="fill">
+                <mat-chip-list #chipList2 aria-label="Skills selection">
+                    <mat-chip *ngFor="let skill of mySkills" [selectable]="selectable" [removable]="removable" (removed)="removeSkill(skill)">
+                        {{skill}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New skill..." #skillInput [formControl]="skillCtrl" 
+                    [matAutocomplete]="auto2" [matChipInputFor]="chipList2" 
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
+                    (matChipInputTokenEnd)="addSkill($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selectedSkill($event)">
+                    <mat-option *ngFor="let skill of filteredSkills | async" [value]="skill">
+                        {{skill}}
+                    </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+        </div>
+    </mat-card>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="col d-flex align-items-bot justify-content-start">
+        <button class="btn btn-secondary" mat-dialog-close>Cancel</button>
+    </div>
+    <div class="col d-flex align-items-bot justify-content-end">
+      <button class="btn btn-primary" [mat-dialog-close]="true" (click)='onSubmit()'cdkFocusInitial [disabled]="!createProject.valid">Guardar</button>
+    </div>
+</mat-dialog-actions>

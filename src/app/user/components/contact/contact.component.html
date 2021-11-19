@@ -1,0 +1,7 @@
+<li class="list-group-item list-group-item-action" type="button" (click)="sendChat()">
+    <div class="col d-flex align-items-center">
+        <i class="fas fa-user chat-fa-user ms-1" *ngIf="!contact!.profileImg"></i>
+        <img [src]="contact!.profileImg" class="ms-1 profile-img" *ngIf="contact!.profileImg">
+        <p class="user-item-contact mt-3 ms-2">{{contact!.nickName}}</p>
+    </div>
+</li>

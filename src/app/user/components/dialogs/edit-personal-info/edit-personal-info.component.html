@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-11">
+        <h2 mat-dialog-title>Información personal</h2>
+    </div>
+</div>
+<mat-dialog-content class="mat-typography">
+    <div class="col-12">
+        <div class="card-body">
+            <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+                <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="nickName" placeholder="Nickname">
+                    </mat-form-field>
+                </div>
+                <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="name" placeholder="Nombre">
+                    </mat-form-field>
+                </div>
+                <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="lastName" placeholder="Apellido">
+                    </mat-form-field>
+                </div>
+                <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="email" placeholder="ejemplo@gmail.com">
+                    </mat-form-field>
+                </div>
+                <div class="d-grid gap-2 col-12 my-1 mx-auto">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <span matPrefix> &nbsp;</span>
+                        <input matInput formControlName="movilPhone" #input maxlength="9" type="number" placeholder="9 4554 1234">
+                        <mat-hint align="end">{{input.value?.length || 0}}/9</mat-hint>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button  type="button" class="btn btn-secondary me-2" mat-dialog-close>Cancelar</button>
+    <button  type="button" class="btn btn-primary" mat-dialog-close type="submit" (click)='fetchUser()' (click)='onSubmit()'>Guardar</button>
+</mat-dialog-actions>

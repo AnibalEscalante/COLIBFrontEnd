@@ -1,0 +1,25 @@
+<div class="card-request">
+    <div class="card-header">
+        <h3 class="card-title">Solicitud de colaboracion de {{senderName}}</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 col-lg-12">
+                <h3 class="card-subtitle mb-2 text-muted mt-3">
+                    {{senderName}} quiere colaborar en tu proyecto "{{projectName}}", 
+                    haga click en aceptar si desea colaborar con {{senderName}}.
+
+                </h3>
+            </div>
+        </div>    
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-success btn-sm" (click)="collaborater()"  (click)="deleteRequest()">Aceptar</button>
+            </div>
+            <div class="col d-flex align-items-bot justify-content-end">
+                <button type="button" class="btn btn-danger btn-sm" (click)="collaboraterRejected()" (click)="deleteRequest()">Rechazar</button>
+            </div>
+        </div>
+
+    </div>
+</div>

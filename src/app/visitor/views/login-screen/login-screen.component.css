@@ -1,0 +1,29 @@
+.card {
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85%;
+}
+h1 {
+  color: #32CD32;
+  font-size: 50px;
+  text-justify: auto;
+}
+h2 {
+  font-size: 25px;
+}
+.btn-logIn {
+  background-color: #32CD32;
+  color: white;
+}
+a {
+  text-decoration: none;
+}
+body {
+  background-color: white;
+}

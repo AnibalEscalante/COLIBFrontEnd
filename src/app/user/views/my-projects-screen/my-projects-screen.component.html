@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-3 my-3">
+                <app-menu [id]="id" [user]="user"></app-menu>
+            </div>
+            <div class="col-12 col-lg-9 py-3 my-projects">
+                <div class="all-proyects">
+                    <div class="header text-center">
+                        <h2 class="project-published">Proyectos publicados</h2>
+                    </div>
+                    <div class="info">
+                        <div class="col-12 col-lg-9 my-2 justify-content-center" *ngFor="let project of projects">
+                            <app-project [showHideElements]="showHideElements" [project]="project"></app-project>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

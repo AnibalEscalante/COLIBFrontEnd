@@ -1,0 +1,64 @@
+<div class="background container-fuild">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4">
+                <div class="content mt-4">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-10">
+                                <h3 class="contacts mt-3">
+                                    Contactos
+                                </h3>
+                            </div>
+                            <div class="col-2 d-flex align-items-center justify-content-end">
+                                <i class="fas fa-edit" type="button" (click)="editContacts()"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <input type="text" [(ngModel)]="term" class="form-control mb-3" placeholder="Buscar contactos">
+                        <div class="list-group list-group-flush mb-3">
+                            <div class="text-center justify-content-center" *ngIf="noContacts">
+                                <p>Agrega usuarios a tu lista de contactos</p>
+                                <button class="btn btn-success" (click)="editContacts()"><samp class="me-2">Agregar</samp><i class="fas fa-plus"></i></button>
+                            </div>
+
+                            <div class="my-5 d-flex justify-content-center" *ngIf="loadingContacts">
+                                <div class="spinner-border" role="status"></div>
+                            </div>
+                            <div *ngFor="let chatContact of contacts | filter:term">
+                                <app-contact [contact]="chatContact" (chatContact)="receive($event)"></app-contact>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="chat-card mt-4" *ngIf="contact">
+                    <div class="card-header">
+                        <div class="col-10 d-flex align-items-center">
+                            <i class="fas fa-user chat-fa-user" *ngIf="!contact.profileImg"></i>
+                            <img [src]="contact.profileImg" class="ms-1 profile-img-chat" *ngIf="contact.profileImg">
+                            <h4 class="chat-contact mt-3 ms-2">{{contact?.nickName}}</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chat-message-card mb-3">
+                            <div class="col-11">
+                                <div *ngFor="let message of messages">
+                                    <app-message [message]="message"></app-message>
+                                </div>
+                            </div>
+                        </div>
+                        <form [formGroup]="sendMessage">
+                            <div class="col d-flex">
+                                <input type="text" class="form-control" formControlName="content" placeholder="Escribe un mensaje...">
+                                <button type="button" (click)="onSubmit()" class="btn btn-primary ms-2">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

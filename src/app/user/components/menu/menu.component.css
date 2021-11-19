@@ -1,0 +1,64 @@
+.info-user {
+  background-color: #FFFFFF;
+  height: 100%;
+  border-width: 0px;
+}
+.header {
+  background-color: #FFFFFF;
+}
+.body {
+  padding: 20px;
+}
+.sideBar {
+  position: sticky;
+  top: 85px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: medium;
+  margin-top: 0;
+  height: auto;
+}
+.fa-user {
+  font-size: 110px;
+  color: #dadada;
+  padding-top: 20px;
+  padding-bottom: 28px;
+  padding-right: 30px;
+  padding-left: 30px;
+  border-style: solid;
+  border-color: #dadada;
+  border-width: 10px;
+  border-radius: 200px;
+}
+.list-group-item {
+  border: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: medium;
+}
+.list-group-item.active {
+  background-color: white;
+  color: #32CD32;
+}
+.create-proyect {
+  border-radius: 200px;
+  border-width: 0px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.button-color {
+  border-width: 0px;
+  background-color: #32CD32;
+}
+.profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+}

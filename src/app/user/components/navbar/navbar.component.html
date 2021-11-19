@@ -1,0 +1,127 @@
+<nav class="navbar">
+    <div class="container-fluid">
+        <ul class="nav">
+            <li class="nav-item">
+                <img src="/assets/img/icono coliv.png" type="button" [routerLink]="['/user/home']">
+            </li>
+            <li class="nav-item mt-2">
+                <h2 type="button" [routerLink]="['/user/home']">Colib</h2>
+            </li>
+        </ul>
+        <ul class="nav">
+            <div class="d-none d-sm-block">
+                <li class="nav-item me-3">
+                    <button type="button" class="notifications" id="menuNotifications" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-notificactions dropdown-menu-end" aria-labelledby="menuNotifications">
+                        <div class="col notifications-drop">
+                            <h4 class="notifications-title">Notificaciones</h4>
+                        </div>
+                        <mat-tab-group>
+                            <mat-tab label="Solicitudes de colaboración">
+                                <div *ngFor="let request of requests">
+                                    <app-navbar-request [request]="request"></app-navbar-request>
+                                </div>
+                            </mat-tab>
+                            <mat-tab label="Resultado de tus solicitudes">
+                                <div *ngFor="let result of requestsReply">
+                                    <app-navbar-request-result [result]="result"></app-navbar-request-result>
+                                </div>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                </li>
+            </div>
+            <!-- Responsive start -->
+            <div class="d-block d-sm-none">
+                <li class="nav-item me-3">
+                    <button type="button" class="notifications" id="menuNotifications" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
+                        <div class="offcanvas-header">
+                            <h4 class="offcanvas-title" id="offcanvasNotificationsLabel">Notificaciones</h4>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div class="accordion" id="accordionNotifications">
+                                <div class="accordion-item">
+                                    <h5 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            Solicitudes de colaboración
+                                        </button>
+                                    </h5>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionNotifications">
+                                        <div class="accordion-body">
+                                            <div class="col item-notification">
+                                                <div class="col d-flex">
+                                                    <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
+                                                    <i class="fas fa-times ps-2" type="button"></i>
+                                                </div>
+                                                <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                            </div>
+                                            <div class="col item-notification">
+                                                <div class="col d-flex">
+                                                    <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
+                                                    <i class="fas fa-times ps-2" type="button"></i>
+                                                </div>
+                                                <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                            </div>
+                                            <div class="col item-notification">
+                                                <div class="col d-flex">
+                                                    <p class="mb-0">"Nombre del usuario" quiere colaborar en tu proyecto “Nombre del proyecto”.</p>
+                                                    <i class="fas fa-times ps-2" type="button"></i>
+                                                </div>
+                                                <a class="rec-request" href="#" [routerLink]="['/user/requests']" data-bs-dismiss="offcanvas" aria-label="Close">Ir a solicitudes</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Resultado de tus solicitudes
+                                        </button>
+                                    </h5>
+                                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionNotifications">
+                                        <div class="accordion-body">
+                                            <div class="col item-notification d-flex">
+                                                <p class="mb-0">"Nombre del usuario" ha "estado de la solicitud" tu solicitud en el proyecto “Nombre del proyecto”.</p>
+                                                <i class="fas fa-times ps-2" type="button"></i>
+                                            </div>
+                                            <div class="col item-notification d-flex">
+                                                <p class="mb-0">"Nombre del usuario" ha "estado de la solicitud" tu solicitud en el proyecto “Nombre del proyecto”.</p>
+                                                <i class="fas fa-times ps-2" type="button"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </div>
+            <!-- Responsive end -->
+            <li class="nav-item me-3">
+                <button type="button" class="messages" [routerLink]="['/user/contacts']">
+                    <i class="fas fa-comments"></i>
+                </button>
+            </li>
+            <li class="nav-item me-3">
+                <button type="button" class="profile" id="menuProfile" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end me-4" aria-labelledby="menuNotifications">
+                    <li><a class="dropdown-item my-2 itemProfile" [routerLink]="['/user/userinfo']">Información general</a></li>
+                    <li><a class="dropdown-item my-2 itemProfile" [routerLink]="['/user/myprojects']">Proyectos publicados</a></li>
+                    <li><a class="dropdown-item my-2 itemProfile" [routerLink]="['/user/savedprojects']">Proyectos guardados</a></li>
+                    <li><a class="dropdown-item my-2 itemProfile" [routerLink]="['/user/collabprojects']">Proyectos colaborativos</a></li>
+                    <li><a class="dropdown-item my-2 itemProfile" [routerLink]="['/user/requests']">Solicitudes de colaboración</a></li>
+                    <li><a class="dropdown-item mt-2 logOut" (click)="signOut()">Cerrar sesión</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<router-outlet></router-outlet>

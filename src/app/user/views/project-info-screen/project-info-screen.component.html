@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="row design">
+            <div class="col-12 col-lg-3 my-3">
+                <app-menu [id]="id" [user]="user"></app-menu>
+            </div>
+            <div class="col-12 col-lg-9 py-3 my-info">
+                <app-profile-project-info 
+                    [projectInfo]="projectInfo" 
+                    [showCreateDate]="showCreateDate"
+                    [showFinishDate]="showFinishDate"
+                    [myProjects]="myProjects"
+                    [myProjectsCollab]="myProjectsCollab"
+                    [mySavedProject]="mySavedProject"
+
+                ></app-profile-project-info>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="card-info">
+    <div class="col-10 col-lg-9 my-4 mx-3">
+        <div class="info">
+            <div class="card-body">
+                <div class="content-items">
+                    <div class="row">
+                        <div class="col-10">
+                            <h1 class="card-title-info mb-0" *ngIf="projectInfo">{{projectInfo.title}}</h1>
+                        </div>
+                        <div class="col-1 d-flex align-items-center justify-content-end">
+                            <h5 class="state" [ngStyle]="{'color': showState()}" *ngIf="projectInfo">{{projectInfo.state}}</h5>
+                            <i class="fas fa-circle" [ngStyle]="{'color': showState()}" *ngIf="projectInfo"></i>
+                        </div>
+                        <div class="col-1 d-flex align-items-center justify-content-end" *ngIf="isShowElements">
+                            <i class="fas fa-edit" type="button" (click)="openDialog()"></i>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-lg-12">
+                            <ul class="nav nav-pills-item nav-fill" *ngIf="projectInfo">
+                                <div *ngFor="let collaborator of projectInfo.idCollaborators">
+                                    <a class="nav-link p-0 me-3 mb-1" href="#">
+                                        <i class="fas fa-user"></i> {{collaborator.nickName}} 
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="published-item mt-2">Publicado el {{showCreateDate}}</h5>
+                            <h5 class="published-item" *ngIf="projectInfo">Se cierra el {{showFinishDate}}</h5>
+                        </div>
+                        <div class="col d-flex align-items-center justify-content-end" *ngIf="isShowElementsSaved">
+                            <button type="button" class="btn btn-collab btn-sm" (click)="collaborater()">Colaborar</button>
+                        </div>
+                        <div class="col d-flex align-items-center justify-content-end" *ngIf="isShowElementsCollab">
+                            <button class="btn btn-secondary btn-sm" >Colaborando</button>
+                        </div>
+                    
+                    </div>
+                    <p class="card-subtitle-info mb-2 text-muted" *ngIf="projectInfo">
+                        {{projectInfo.content}}
+                    </p>
+                    <div class="row">
+                        <div class="col-10 col-lg-10" *ngIf="projectInfo">
+                            <p class="tag-title">Disciplinas</p>
+                            <label *ngFor="let discipline of projectInfo.idDisciplines">
+                                <p class="tag me-2 mb-2">{{discipline.name}}</p>
+                            </label>
+                        </div>
+                        <div class="col-2 col-lg-2 d-flex align-items-center justify-content-end" *ngIf="isShowElements">
+                            <i class="fas fa-edit" type="button" (click)="openDialogEditDisci()"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-10 col-lg-10" *ngIf="projectInfo">
+                            <p class="tag-title">Habilidades</p>
+                            <label *ngFor="let skill of projectInfo.idSkills">
+                                <p class="tag me-2 mb-2">{{skill.name}}</p>
+                            </label>
+                        </div>
+                        <div class="col-2 col-lg-2 d-flex align-items-center justify-content-end" *ngIf="isShowElements">
+                            <i class="fas fa-edit" type="button" (click)="openDialogEditSkills()"></i>
+                        </div>
+                    </div>
+                    <div class="button-search">
+                        <div class="row mt-2">
+                            <div class="col-12 d-flex align-items-center justify-content-end" (click)="deleteProjectDialog()" *ngIf="isShowElements">
+                                <i type="button" class="fas fa-trash-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

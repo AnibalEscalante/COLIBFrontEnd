@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+    <div class="container">
+        <div class="d-none d-lg-block">
+            <div class="row my-3">
+                <div class="col-12 col-lg-6">
+                    <input type="text" [(ngModel)]="term" class="form-control" placeholder="Buscar proyectos">
+                </div>
+                <div class="col-12 col-lg-6 mt-2 d-flex align-items-center justify-content-end">
+                    <button type="button" class="btn btn-project btn-sm" [routerLink]="['/visitor/login']">Publicar proyecto</button>
+                </div>
+            </div>
+        </div>
+        <!-- Responsive start -->
+        <div class="d-block d-lg-none">
+            <div class="row my-3">
+                <div class="col-12 col-lg-6">
+                    <input type="text" [(ngModel)]="term" class="form-control" placeholder="Buscar proyectos">
+                </div>
+                <div class="col-12 col-lg-6 mt-3">
+                    <button type="button" class="btn btn-project btn-sm" [routerLink]="['/visitor/login']">Publicar proyecto</button>
+                </div>
+            </div>
+        </div>
+        <!-- Responsive end -->
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="row">
+                    <div *ngFor="let project of projects | filter:term">
+                        <app-project [project]="project" (readMoreEvent)="getProject($event)" (show)="reciveIsShowInfo($event)" (dates)="getDates($event)"></app-project>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 d-none d-lg-block">
+                <app-project-info [projectInfo]="project" [showHideComponent]="isshowinfo"></app-project-info>
+            </div>
+        </div>
+    </div>
+</div>

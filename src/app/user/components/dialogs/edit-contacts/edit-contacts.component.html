@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-end">
+    <button type="button" class="btn-close mb-3" mat-dialog-close aria-label="Close"></button>
+</div>
+<mat-dialog-content class="mat-typography">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 mat-dialog-title class="title-card">Mis Contactos</h3>
+                </div>
+                <div class="card-body">
+                    <input type="text" [(ngModel)]="contactsFilter" class="form-control mb-3 mt-2" placeholder="Buscar en mis contactos">
+                    <div class="list-group list-group-flush">
+                        <li class="list-group-item list-group-item-action" *ngFor="let contact of contacts | filter:contactsFilter">
+                            <div class="col-10 d-flex align-items-center">
+                                <i class="fas fa-user user-item-fa-user ms-1" *ngIf="!contact.profileImg"></i>
+                                <img [src]="contact.profileImg" class="ms-1 profile-img" *ngIf="contact.profileImg">
+                                <p class="user-item-contact mt-3 ms-2">{{contact.nickName}}</p>
+                                <i class="fas fa-trash" type="button" (click)="deleteMyContact(contact)"></i>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 mat-dialog-title class="title-card">Usuarios</h3>
+                </div>
+                <div class="card-body">
+                    <input type="text" [(ngModel)]="usersFilter" class="form-control mb-3 mt-2" placeholder="Buscar usuarios">
+                    <div class="list-group list-group-flush">
+                        <div class="my-5 d-flex justify-content-center" *ngIf="loadingUsers">
+                            <div class="spinner-border" role="status"></div>
+                        </div>
+                        <li class="list-group-item list-group-item-action" *ngFor="let user of users | filter:usersFilter">
+                            <div class="col-10 d-flex align-items-center" *ngIf="myId !== user._id">
+                                <i class="fas fa-user user-item-fa-user ms-1" *ngIf="!user.profileImg"></i>
+                                <img [src]="user.profileImg" class="ms-1 profile-img" *ngIf="user.profileImg">
+                                <p class="user-item-contact mt-3 ms-2">{{user.nickName}}</p>
+                                <i class="fas fa-user-friends" *ngIf="myContact(user)"></i>
+                                <i class="fas fa-user-plus" type="button" *ngIf="!myContact(user)" (click)="addContact(user)"></i>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>

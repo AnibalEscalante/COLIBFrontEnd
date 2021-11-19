@@ -1,1 +1,21 @@
-<p>navbar works!</p>
+<nav class="navbar">
+    <div class="container-fluid">
+        <ul class="nav">
+            <li class="nav-item">
+                <img src="/assets/img/icono coliv.png" type="button" href="#"[routerLink]="['/visitor/home']">
+            </li>
+            <li class="nav-item mt-2">
+                <h2 type="button" href="#"[routerLink]="['/visitor/home']">Colib</h2>
+            </li>
+        </ul>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="register nav-link" [routerLink]="['/visitor/register']">Registrarse</a>
+            </li>
+            <li class="nav-item">
+                <a class="logIn nav-link" [routerLink]="['/visitor/login']">Iniciar Sesión</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<router-outlet></router-outlet>
