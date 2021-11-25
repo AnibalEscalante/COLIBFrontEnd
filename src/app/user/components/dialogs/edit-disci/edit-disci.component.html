@@ -4,13 +4,13 @@
     <div class="row">
         <div class="col-12 col-lg-12 p-0">
             <mat-form-field class="example-chip-list" appearance="fill">
-                <mat-label>Favorite Fruits</mat-label>
+                <mat-label>Disciplinas</mat-label>
                 <mat-chip-list #chipList aria-label="Disciplines selection">
                     <mat-chip *ngFor="let discipline of myDisciplines" [selectable]="selectable" [removable]="removable" (removed)="remove(discipline)">
                         {{discipline}}
                         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                     </mat-chip>
-                    <input placeholder="New discipline..." #disciplineInput [formControl]="disciplineCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" >
+                    <input placeholder="Nueva disciplina" #disciplineInput [formControl]="disciplineCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" >
                 </mat-chip-list>
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                     <mat-option *ngFor="let discipline of filteredDisciplines | async" [value]="discipline">

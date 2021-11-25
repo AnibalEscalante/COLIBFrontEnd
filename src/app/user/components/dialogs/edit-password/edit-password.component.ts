@@ -36,8 +36,8 @@ export class EditPasswordComponent implements OnInit {
       this.validReNewPassword = value;
     }),
     this.updatePassword = this.formBuilder.group({
-      password: ['', [ Validators.minLength(8)]],
-      confirmPassword: ['', [ Validators.minLength(8)]],
+      password: ['', [ Validators.minLength(8), Validators.required]],
+      confirmPassword: ['', [ Validators.minLength(8), Validators.required]],
     }),
     {
     validator: this.MustMatch('password', 'confirmPassword')

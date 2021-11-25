@@ -43,7 +43,7 @@ export class NavbarRequestComponent implements OnInit {
 
   async fetchUser(){
     try {
-      const response: any= await this.userService.getUser(this.id!).toPromise();
+      const response: any= await this.userService.getUser(this.request.idUserSender!).toPromise();
       this.user = response.message
       console.log(this.user!.name);
       

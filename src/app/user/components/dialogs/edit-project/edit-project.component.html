@@ -28,23 +28,22 @@
     <mat-card class="mat-card my-2">
         <div class="row">
             <div class="col-12 col-lg-12">
+                <mat-label>Seleccione colaborador</mat-label>
                 <mat-form-field class="example-chip-list" appearance="fill">
-                    <mat-label>Favorite Fruits</mat-label>
-                    <mat-chip-list #chipList aria-label="Fruit selection">
-                        <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
-                            {{fruit}}
-                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                        </mat-chip>
-                        <input placeholder="New fruit..." #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
-                    </mat-chip-list>
-                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                        <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                            {{fruit}}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
+                    <mat-chip-list #chipList3 aria-label="collabs selection">
+                    <mat-chip *ngFor="let collab of myCollabs" [selectable]="selectable" [removable]="removable" (removed)="removeCollab(collab)">
+                        {{collab}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New collabs..." #collabInput [formControl]="collabCtrl" [matAutocomplete]="auto3" [matChipInputFor]="chipList3" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addCollab($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selectedCollabs($event)">
+                    <mat-option *ngFor="let collab of filteredCollab | async" [value]="collab">
+                        {{collab}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
             </div>
-
         </div>
     </mat-card>
 </mat-dialog-content>

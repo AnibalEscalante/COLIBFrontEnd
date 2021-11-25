@@ -218,7 +218,6 @@ export class CreateProjectComponent implements OnInit {
     }
     this.project = project
     this.myProjects.push(this.project)
-    console.log(this.myProjects);
     try {
       this._id = this.authService.getId()
       await this.projectService.registNewProject(this.project, this._id!).toPromise();
