@@ -85,12 +85,7 @@ export class EditDisciComponent implements OnInit {
       console.log(this.allDisci);
       for(let discipline of this.allDisci){
         this.allDisciplinesName.push(discipline.name);
-      }
-      /* this.allDisciplinesName.shift(); */
-      console.log(this.allDisciplinesName);
-      console.log(this.data);
-      
-      
+      } 
       
     } catch (error) {
       console.log('algo malo ha ocurrido');
@@ -101,13 +96,9 @@ export class EditDisciComponent implements OnInit {
   async onSubmit() {
     
     for(let disciName of this.myDisciplines){
-
       let discipline = this.allDisci.find(discipline => discipline.name === disciName)
       this.myDisciplineUpdate.push(discipline!)
-
     } 
-    console.log(this.myDisciplineUpdate);
-        
 
     let user: Partial<User> = {
       idDisciplines: this.myDisciplineUpdate
@@ -133,16 +124,10 @@ export class EditDisciComponent implements OnInit {
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-
-    // Add our fruit
     if (value) {
-      for(let myDisciNames of this.myDisciplines)
       this.myDisciplines.push(value);
     }
-
-    // Clear the input value
     event.chipInput!.clear();
-
     this.disciplineCtrl.setValue(null);
   }
 
@@ -150,8 +135,7 @@ export class EditDisciComponent implements OnInit {
     const index = this.myDisciplines.indexOf(discipline);
 
     if (index >= 0) {
-      this.myDisciplines.splice(index, 1);/* 
-      this.allDisciplinesName.push(discipline) */
+      this.myDisciplines.splice(index, 1);
     }
   }
   

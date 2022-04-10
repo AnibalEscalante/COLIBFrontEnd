@@ -11,6 +11,11 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ProjectService } from 'src/app/core/services/project/project.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { CollaboratorService } from 'src/app/core/services/collaborator/collaborator.service';
+import { UserService } from 'src/app/core/services/user/user.service';
+import { Collaborator } from 'src/app/core/models/collaborator.model';
+import { Contact } from 'src/app/core/models/contact.model';
 
 
 @Component({
@@ -20,57 +25,94 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EditProjectComponent implements OnInit {
   
-  myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions!: Observable<string[]>;
+  public selectable = true;
+  public removable = true;
+  public separatorKeysCodes: number[] = [ENTER, COMMA];
+  public createFormCollab: FormGroup
+  public filteredOptionsCollab: Observable<string[]> | null;
+  public myControlCollab = new FormControl();
+  public collabCtrl = new FormControl();
+  public filteredCollab: Observable<string[]>;
+  public myCollabs: string[] =[''];
+  public allCollabsName: string[] = [];
+  public allCollabs: Contact[];
+  public myCollabUpdate: Collaborator[] = [];
 
-  selectable = true;
-  removable = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Lemon'];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
-  
 
 
   public _id!: string | null;
   public updateProject: FormGroup;
   public project!: Project
   public userEmail!: string;
-
-  @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
-
+  
+  @ViewChild('collabInput') collabInput!: ElementRef<HTMLInputElement>;
+  
   constructor(
     public dialogRef: MatDialogRef<EditProjectComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {id: string},
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private projectService: ProjectService,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-
-      this.updateProject = this.formBuilder.group({
+    private formBuilderCollab: FormBuilder,
+    private userService: UserService,
+    private collaboratorService: CollaboratorService,
+    private toastr: ToastrService
+    ) {
+      this._id = null;
+      this.allCollabs = [];
+      this.filteredOptionsCollab = null;
       
+      this.updateProject = this.formBuilder.group({
+        
         title: ['', [Validators.pattern('[a-zA-Z]{2,32}')]],
         content: ['',  [Validators.pattern('[a-zA-Z]{2,32}')]],       
         finishDate: ['',  [Validators.required]]
-    }),
-    this.fetchProject();
-   }
+      }),
+      this.filteredCollab = this.collabCtrl.valueChanges.pipe(
+        startWith(null),
+        map((collab: string | null) => collab ? this._filterCollab(collab) : this.allCollabsName.slice())
+      );
+        
+      this.createFormCollab = this.formBuilderCollab.group({
+        
+        idCollabs: ['']
+      })
+      this.fetchProject();
+      this.fetchCollab();
+      this.allMyCollabs();
+  }
+  ngOnInit() {
+    this.filteredOptionsCollab = this.myControlCollab.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterCollab(value))
+    );
+  }
+      
+  allMyCollabs(){
+    for(let collab of this.allCollabs){
+      this.myCollabs.push(collab.nickName);
+    }
+    this.myCollabs.shift();
+  }
   
+  async fetchCollab() {
+    this._id = this.authService.getId()
+    try {
+      const response: any = await this.userService.getMyContacts(this._id).toPromise()
+      this.allCollabs = response.message.idContacts
+      for(let collab of this.allCollabs){
+        this.allCollabsName.push(collab.nickName);
+      }
+    } catch (error) {
+      console.log('algo malo ha ocurrido');
+    }
+  }
+
    async fetchProject() {
     try {
       this._id = this.authService.getId()
       const response: any= await this.projectService.getProject(this.data.id).toPromise();
       this.project = response.message;
-      console.log(this.data.id);
-      
-      console.log(this.project);
-      
     }
     catch (error) {
       console.log('Algo ha salido mal');
@@ -88,60 +130,60 @@ export class EditProjectComponent implements OnInit {
   }
 
   async onSubmit() {
+    for(let collabNickName of this.myCollabs){
+      let collab = this.allCollabs.find(collab => collab.nickName === collabNickName);
+      let newCollab: any = await this.collaboratorService.getCollaboratorByIdUser(collab!.idUser).toPromise();
+      this.myCollabUpdate.push(newCollab.message)
+    }
+
     let project: Partial<Project> = {
       title:  this.title ? this.title : this.project.title,
       content: this.content ? this.content: this.project.content,
-      finishDate: this.finishDate ? this.finishDate: this.project.finishDate
+      finishDate: this.finishDate ? this.finishDate: this.project.finishDate,
+      idCollaborators: this.myCollabUpdate
     }
 
     try {
-      /* this._id = this.authService.getId() */
       await this.projectService.modifyProject(project, this.data.id).toPromise();
-     
+      this.toastr.success("se ha modificado el proyecto", "", {
+        "positionClass": "toast-bottom-center",
+      });
     } catch (error) {
       console.log('error');
 
     }
   }
-  ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
-  }
 
-  add(event: MatChipInputEvent): void {
+
+  addCollab(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
     if (value) {
-      this.fruits.push(value);
+      this.myCollabs.push(value);
     }
-
-    // Clear the input value
     event.chipInput!.clear();
 
-    this.fruitCtrl.setValue(null);
+    this.collabCtrl.setValue(null);
   }
 
-  remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
+  removeCollab(collab: string): void {
+    const index = this.myCollabs.indexOf(collab);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.myCollabs.splice(index, 1);
     }
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+  selectedCollabs(event: MatAutocompleteSelectedEvent): void {
+    this.myCollabs.push(event.option.viewValue);
+    this.collabInput.nativeElement.value = '';
+    this.collabCtrl.setValue(null);
   }
 
-  private _filter(value: string): string[] {
+  private _filterCollab(value: string): string[]{
     const filterValue = value.toLowerCase();
-
-    return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  
+    return this.allCollabsName.filter(collab => collab.toLowerCase().includes(filterValue));
   }
 
 }

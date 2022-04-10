@@ -48,8 +48,7 @@ export class EditSkillsComponent implements OnInit {
     private userService: UserService,
     private projectService: ProjectService,
     private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.filteredSkills = this.skillCtrl.valueChanges.pipe(
         startWith(null),
@@ -121,18 +120,15 @@ export class EditSkillsComponent implements OnInit {
       console.log('error');
 
     }
-   /*  window.location.reload() */
   }
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
     if (value) {
       this.mySkills.push(value);
     }
 
-    // Clear the input value
     event.chipInput!.clear();
 
     this.skillCtrl.setValue(null);
@@ -143,8 +139,6 @@ export class EditSkillsComponent implements OnInit {
 
     if (index >= 0) {
       this.mySkills.splice(index, 1);
-      /* 
-      this.allSkillsName.push(skill) */
     }
   }
 
@@ -167,7 +161,6 @@ export class EditSkillsComponent implements OnInit {
 
   private _filter(value: string): string[]{
     const filterValue = value.toLowerCase();
-  
     return this.allSkillsName.filter(skill => skill.toLowerCase().includes(filterValue));
   }
 
